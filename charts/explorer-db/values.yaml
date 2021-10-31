@@ -1,7 +1,13 @@
+# App Name
 appname: explorer-db
+
+# Orgnanization Name
 orgname: org1
+
+# root account for Psql
 database_username: hppoc
 database_passwd: password
+
 namespace: n1
 
 replicaCount: 1
