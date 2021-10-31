@@ -1,15 +1,33 @@
 # helm-charts
 
-# The Bitnami Library for Kubernetes
+# The Dashslab Library for Kubernetes
 
 
 ## TL;DR
 
 ```bash
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
-$ helm search repo bitnami
-$ helm install my-release bitnami/<chart>
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm search repo dashslab
+$ helm install my-release dashslab/<chart>
 ```
+
+## Installation
+
+You can install with either `helm install`, or ArgoCD deployment. 
+
+### Option 1: Helm Install
+
+I will encourage to using `Helm build` to establish your project, [Helm Dependency](https://helm.sh/docs/helm/helm_dependency/)
+
+```bash
+# install locally
+$ helm install my-release dashslab/<chart>
+```
+
+### Option 2: ArgoCD
+For ArgoCD deployment, and requiring customized configuration, you shall download the artifacts directly, from this project's
+[Release](https://github.com/rtang03/helm-charts/releases). You need to pick your preferred chart releases, and establish
+your ArgoCD project manually. 
 
 
 ## Before you begin
@@ -29,19 +47,14 @@ To install Helm, refer to the [Helm install guide](https://github.com/helm/helm#
 The following command allows you to download and install all the charts from this repository:
 
 ```bash
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
 ```
 
-### Using Helm
+### Workflow
 
-Once you have installed the Helm client, you can deploy a Bitnami Helm Chart into a Kubernetes cluster.
+- Use PR to submit change
+- Do not git tag
 
-Please refer to the [Quick Start guide](https://helm.sh/docs/intro/quickstart/) if you wish to get running in just a few commands, otherwise the [Using Helm Guide](https://helm.sh/docs/intro/using_helm/) provides detailed instructions on how to use the Helm client to manage packages on your Kubernetes cluster.
-
-Useful Helm Client Commands:
-* View available charts: `helm search repo`
-* Install a chart: `helm install my-release bitnami/<package-name>`
-* Upgrade your application: `helm upgrade`
 
 # Attribution
 
