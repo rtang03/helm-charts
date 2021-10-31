@@ -1,0 +1,32 @@
+This directory contains a basic scaffolding to serve as the basis for creating a new chart.
+
+Some of the items that need to be implemented are:
+- commonAnnotations
+- commonLabels
+- imagePullSecret
+- extraDeploy
+- resources.requests
+- resources.limits
+- livenessProbe
+- readinessProbe
+- customLivenessProbe
+- customReadinessProbe
+- podLabels
+- affinity
+- nodeSelector
+- tolerations (that would override the default one)
+- podAnnotations
+- priorityClassName
+- lifecycleHooks
+- sidecars
+- initContainers
+- extraEnvVars
+- extraEnvVarsCM
+- extraEnvVarsSecret
+- command (which would override the default one)
+- args (which would override the default one)
+- extraVolumes
+- extraVolumeMounts
+- updateStrategy
+- podSecurityContext
+- containerSecurityContext
