@@ -4,7 +4,7 @@ metadata:
   name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
   labels:
     {{- include "hlf-explorer-db.labels" . | nindent 4 }}
-    svc.name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+    svc.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   type: {{ .Values.service.type }}
   {{- with .Values.service.ports }}
