@@ -62,14 +62,14 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-HKICL App Name
+App Name
 */}}
 {{- define "hkicl.appname" -}}
 {{- default (include "hlf-explorer-db.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
-HKICL Org Name
+Org Name
 */}}
 {{- define "hkicl.orgname" -}}
 {{- default "default-org" .Values.orgname }}

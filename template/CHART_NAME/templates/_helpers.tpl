@@ -1,57 +1,76 @@
 {{/*
-Return the proper %%MAIN_OBJECT_BLOCK%% image name
+Expand the name of the chart.
 */}}
-{{- define "%%TEMPLATE_NAME%%.image" -}}
-{{ include "common.images.image" (dict "imageRoot" .Values.%%MAIN_OBJECT_BLOCK%%.image "global" .Values.global) }}
-{{- end -}}
+{{- define "%%TEMPLATED_APP_NAME%%.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
 
 {{/*
-Return the proper image name (for the init container volume-permissions image)
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
 */}}
-{{- define "%%TEMPLATE_NAME%%.volumePermissions.image" -}}
-{{- include "common.images.image" ( dict "imageRoot" .Values.volumePermissions.image "global" .Values.global ) -}}
-{{- end -}}
+{{- define "%%TEMPLATED_APP_NAME%%.fullname" -}}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- if contains $name .Release.Name }}
+{{- .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+{{- end }}
+{{- end }}
+{{- end }}
 
 {{/*
-Return the proper Docker Image Registry Secret Names
+Create chart name and version as used by the chart label.
 */}}
-{{- define "%%TEMPLATE_NAME%%.imagePullSecrets" -}}
-{{- include "common.images.pullSecrets" (dict "images" (list .Values.%%MAIN_OBJECT_BLOCK%%.image .Values.%%SECONDARY_OBJECT_BLOCK%%.image .Values.volumePermissions.image) "global" .Values.global) -}}
-{{- end -}}
+{{- define "%%TEMPLATED_APP_NAME%%.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "%%TEMPLATED_APP_NAME%%.labels" -}}
+helm.sh/chart: {{ include "%%TEMPLATED_APP_NAME%%.chart" . }}
+{{ include "%%TEMPLATED_APP_NAME%%.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "%%TEMPLATED_APP_NAME%%.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "%%TEMPLATED_APP_NAME%%.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "%%TEMPLATE_NAME%%.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (printf "%s-foo" (include "common.names.fullname" .)) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
-{{- end -}}
+{{- define "%%TEMPLATED_APP_NAME%%.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "%%TEMPLATED_APP_NAME%%.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
 
 {{/*
-Return true if cert-manager required annotations for TLS signed certificates are set in the Ingress annotations
-Ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
+App Name
 */}}
-{{- define "%%TEMPLATE_NAME%%.ingress.certManagerRequest" -}}
-{{ if or (hasKey . "cert-manager.io/cluster-issuer") (hasKey . "cert-manager.io/issuer") }}
-    {{- true -}}
-{{- end -}}
-{{- end -}}
+{{- define "hkicl.appname" -}}
+{{- default (include "%%TEMPLATED_APP_NAME%%.fullname" .) .Values.appname }}
+{{- end }}
 
 {{/*
-Compile all warnings into a single message.
+Org Name
 */}}
-{{- define "%%TEMPLATE_NAME%%.validateValues" -}}
-{{- $messages := list -}}
-{{- $messages := append $messages (include "%%TEMPLATE_NAME%%.validateValues.foo" .) -}}
-{{- $messages := append $messages (include "%%TEMPLATE_NAME%%.validateValues.bar" .) -}}
-{{- $messages := without $messages "" -}}
-{{- $message := join "\n" $messages -}}
-
-{{- if $message -}}
-{{-   printf "\nVALUES VALIDATION:\n%s" $message -}}
-{{- end -}}
-{{- end -}}
-
+{{- define "hkicl.orgname" -}}
+{{- default "default-org" .Values.orgname }}
+{{- end }}
