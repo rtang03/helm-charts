@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  grafana:
+  - apiVersion: v2
+    appVersion: 8.1.2
+    created: "2021-10-31T15:47:14.159344536Z"
+    description: grafana
+    digest: d1208c3e9abf343b4cebace93a05840384fe5185a74e2883d415d34d5f326493
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
+    version: 0.1.0
   hlf-explorer-db:
   - apiVersion: v2
     appVersion: 1.1.8
@@ -32,4 +43,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.0/jaeger-0.1.0.tgz
     version: 0.1.0
-generated: "2021-10-31T15:13:50.645912007Z"
+generated: "2021-10-31T15:47:14.159354936Z"
