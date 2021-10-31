@@ -49,7 +49,7 @@ This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnam
 
 # License
 
-Copyright (c) 2015-2021 Bitnami
+Copyright (c) 2015-2021 Dashslab
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
