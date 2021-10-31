@@ -7,12 +7,11 @@ type: application
 appVersion: 8.2.2
 annotations:
   artifacthub.io/changes: |
-    - lower system resource
-    - kind: fixed
-      description: 1st attempt fixing
+    - kind: "fixed"
+      description: "1st attempt fixing"
       links:
-        - name: improve security rating
-          url: https://github.com/rtang03/helm-charts/issues/8
+        - name: "improve security rating"
+          url: "https://github.com/rtang03/helm-charts/issues/8"
   artifacthub.io/maintainers: |
-    - name: rtang03
-      email: ask@dashslab.com
+    - name: "rtang03"
+      email: "ask@dashslab.com"
