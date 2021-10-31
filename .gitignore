@@ -1,7 +1,0 @@
-### macOS template
-# General
-.DS_Store
-.idea/
-*.tgz
-/.idea/*
-.vscode
