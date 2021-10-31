@@ -55,7 +55,9 @@ $ helm search repo dashslab
 $ helm install my-release dashslab/<chart>
 ```
 
-## Chart Versioning
+## Development
+
+### Chart Versioning
 
 - MAKE SURE you have updated / incremented Chart version, for EVERY chart change.
 - Please must follow semantic version of Chart version
@@ -74,6 +76,9 @@ please make sure to increment the chart version, at patch level.**
 
 Do not use template directory now. Need to fix it.
 
-# Attribution
+### Reference Info
+- [Artifacthub annotation](https://artifacthub.io/docs/topics/annotations/helm/)
+
+### Attribution
 
 This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnami/charts).
