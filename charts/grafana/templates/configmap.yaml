@@ -1,0 +1,11 @@
+{{- range .Values.configmap.json }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .name }}
+  labels:
+    cm.hkicl/name: cm-{{ .name }}
+data:
+{{ ($.Files.Glob .filename).AsConfig | indent 2 }}
+---
+{{- end }}
