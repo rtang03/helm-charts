@@ -1,15 +1,14 @@
-# helm-charts
+# Chart Library for fabric-es project
 
-# The Dashslab Library for Kubernetes
+- see [fabric-es](https://rtang03.github.com/fabric-es)
 
+## Supported Charts
 
-## TL;DR
+Below charts are usable, and deployment tested. We do not support automated helm test.
 
-```bash
-$ helm repo add dashslab https://rtang03.github.io/helm-charts
-$ helm search repo dashslab
-$ helm install my-release dashslab/<chart>
-```
+- hlf-explorer
+- hlf-explorer-db
+- jaeger
 
 ## Installation
 
@@ -47,42 +46,28 @@ To install Helm, refer to the [Helm install guide](https://github.com/helm/helm#
 The following command allows you to download and install all the charts from this repository:
 
 ```bash
+# Getting Started
 $ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm search repo dashslab
+$ helm install my-release dashslab/<chart>
 ```
+
+## Chart Versioning
+
+- MAKE SURE you have updated / incremented Chart version, for EVERY chart change.
+- Please must follow semantic version of Chart version
+- Every newly added Chart should start with `0.1.0'
 
 ### Workflow
 
-- Use PR to submit change
-- Do not git tag
-
+1. Open an issue, for chart change
+2. Use PR to submit change, with above issue link
+3. Every PR merge will trigger `chart-releaser-action` Action, which create new release, and new git tag.
 
 ### Template
 
-Do not use template directory now. Need to fix it. 
-
-## Active Charts
-
-Below charts are usable, and deployment tested. We do not support automated helm test. 
-
-- hlf-explorer
-- hlf-explorer-db
+Do not use template directory now. Need to fix it.
 
 # Attribution
 
 This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnami/charts).
-
-# License
-
-Copyright (c) 2015-2021 Dashslab
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

@@ -1,0 +1,23 @@
+appname: jaeger
+orgname: n1
+namespace: default
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "14269"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 5Gi
+  mountPath: "/badger"
