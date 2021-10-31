@@ -21,4 +21,15 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.2/hlf-explorer-db-0.1.2.tgz
     version: 0.1.2
-generated: "2021-10-31T13:56:36.284078762Z"
+  jaeger:
+  - apiVersion: v2
+    appVersion: "1.27"
+    created: "2021-10-31T15:13:50.645896007Z"
+    description: jaeger
+    digest: 2bbc3be98e365ee82157588dc1552b3de507b41311243831f8678c06a9302978
+    name: jaeger
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.0/jaeger-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-31T15:13:50.645912007Z"
