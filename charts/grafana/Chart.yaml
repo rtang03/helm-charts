@@ -1,7 +1,7 @@
 apiVersion: v2
 name: grafana
 # source coming from https://istio.io/latest/docs/ops/integrations/grafana/#configuration
-version: 0.1.1
+version: 0.1.2
 description: grafana
 type: application
 appVersion: 8.2.2
