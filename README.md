@@ -56,6 +56,17 @@ $ helm repo add dashslab https://rtang03.github.io/helm-charts
 - Do not git tag
 
 
+### Template
+
+Do not use template directory now. Need to fix it. 
+
+## Active Charts
+
+Below charts are usable, and deployment tested. We do not support automated helm test. 
+
+- hlf-explorer
+- hlf-explorer-db
+
 # Attribution
 
 This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnami/charts).

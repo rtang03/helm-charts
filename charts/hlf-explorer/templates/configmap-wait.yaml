@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wait-for-it
+  labels:
+    cm.hkicl/name: cm-wait-for-it
+data:
+{{ ($.Files.Glob "config/wait-for-it.sh").AsConfig | indent 2 }}
