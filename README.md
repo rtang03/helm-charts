@@ -1,3 +1,5 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/dashslab)](https://artifacthub.io/packages/search?repo=dashslab)
+
 # Chart Library for fabric-es project
 
 - see [fabric-es](https://rtang03.github.com/fabric-es)
@@ -9,6 +11,7 @@ Below charts are usable, and deployment tested. We do not support automated helm
 - hlf-explorer
 - hlf-explorer-db
 - jaeger
+- grafana
 
 ## Installation
 
@@ -62,7 +65,10 @@ $ helm install my-release dashslab/<chart>
 
 1. Open an issue, for chart change
 2. Use PR to submit change, with above issue link
-3. Every PR merge will trigger `chart-releaser-action` Action, which create new release, and new git tag.
+3. Every PR merge will automatically trigger `chart-releaser-action` Action, which create new release, and new git tag.
+
+**Notice that the Github Action will fail if there is pre-existing git-tag, as the Chart version. Therefore, for chart modification, 
+please make sure to increment the chart version, at patch level.**
 
 ### Template
 

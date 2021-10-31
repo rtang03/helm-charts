@@ -1,0 +1,18 @@
+# Source: grafana/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "grafana.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: service
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app.kubernetes.io/name: {{ include "hkicl.appname" . }}
+    app.kubernetes.io/instance: {{ include "hkicl.appname" . }}
