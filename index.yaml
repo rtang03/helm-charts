@@ -22,16 +22,6 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.3/hlf-explorer-db-0.1.3.tgz
     version: 0.1.3
-  - apiVersion: v2
-    appVersion: 1.1.8
-    created: "2021-10-31T13:33:53.236113948Z"
-    description: Hyperledger Explorer Database (psql)
-    digest: 4a06224fede82845fcdcdddfa11f5b26983ea2e3d969fb23c44121901a73f085
-    name: hlf-explorer-db
-    type: application
-    urls:
-    - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.2/hlf-explorer-db-0.1.2.tgz
-    version: 0.1.2
   jaeger:
   - apiVersion: v2
     appVersion: "1.27"
