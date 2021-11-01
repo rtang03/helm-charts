@@ -1,4 +1,5 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/dashslab)](https://artifacthub.io/packages/search?repo=dashslab)
+[![Release Charts](https://github.com/rtang03/helm-charts/actions/workflows/release.yml/badge.svg)](https://github.com/rtang03/helm-charts/actions/workflows/release.yml)
 
 # Chart Library for fabric-es project
 

@@ -1,0 +1,595 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "appname": "redis-exporter",
+      "orgname": "bochk",
+      "replicaCount": 1,
+      "image": {
+        "repository": "oliver006/redis_exporter",
+        "pullPolicy": "IfNotPresent",
+        "imagePullSecrets": [],
+        "nameOverride": "",
+        "fullnameOverride": "",
+        "timezone": "Asia/Hong_Kong"
+      },
+      "podAnnotations": {
+        "sidecar.istio.io/inject": "false"
+      },
+      "service": {
+        "type": "ClusterIP",
+        "ports": [
+          {
+            "port": 9121,
+            "targetPort": 9121,
+            "protocol": "TCP",
+            "name": "tcp-exporter"
+          }
+        ]
+      },
+      "livenessProbe": {},
+      "readinessProbe": {},
+      "resources": {
+        "requests": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        },
+        "limits": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        }
+      },
+      "autoscaling": {
+        "enabled": false,
+        "minReplicas": 1,
+        "maxReplicas": 1,
+        "targetCPUUtilizationPercentage": 80,
+        "targetMemoryUtilizationPercentage": 80
+      },
+      "nodeSelector": {},
+      "tolerations": [],
+      "affinity": {}
+    }
+  ],
+  "required": [
+    "appname",
+    "orgname",
+    "replicaCount",
+    "image",
+    "podAnnotations",
+    "service",
+    "livenessProbe",
+    "readinessProbe",
+    "resources",
+    "autoscaling",
+    "nodeSelector",
+    "tolerations",
+    "affinity"
+  ],
+  "properties": {
+    "appname": {
+      "$id": "#/properties/appname",
+      "type": "string",
+      "title": "The appname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "redis-exporter"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "bochk"
+      ]
+    },
+    "replicaCount": {
+      "$id": "#/properties/replicaCount",
+      "type": "integer",
+      "title": "The replicaCount schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "image": {
+      "$id": "#/properties/image",
+      "type": "object",
+      "title": "The image schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "repository": "oliver006/redis_exporter",
+          "pullPolicy": "IfNotPresent",
+          "imagePullSecrets": [],
+          "nameOverride": "",
+          "fullnameOverride": "",
+          "timezone": "Asia/Hong_Kong"
+        }
+      ],
+      "required": [
+        "repository",
+        "pullPolicy",
+        "imagePullSecrets",
+        "nameOverride",
+        "fullnameOverride",
+        "timezone"
+      ],
+      "properties": {
+        "repository": {
+          "$id": "#/properties/image/properties/repository",
+          "type": "string",
+          "title": "The repository schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "oliver006/redis_exporter"
+          ]
+        },
+        "pullPolicy": {
+          "$id": "#/properties/image/properties/pullPolicy",
+          "type": "string",
+          "title": "The pullPolicy schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "IfNotPresent"
+          ]
+        },
+        "imagePullSecrets": {
+          "$id": "#/properties/image/properties/imagePullSecrets",
+          "type": "array",
+          "title": "The imagePullSecrets schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            []
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/image/properties/imagePullSecrets/items"
+          }
+        },
+        "nameOverride": {
+          "$id": "#/properties/image/properties/nameOverride",
+          "type": "string",
+          "title": "The nameOverride schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "fullnameOverride": {
+          "$id": "#/properties/image/properties/fullnameOverride",
+          "type": "string",
+          "title": "The fullnameOverride schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "timezone": {
+          "$id": "#/properties/image/properties/timezone",
+          "type": "string",
+          "title": "The timezone schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "Asia/Hong_Kong"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "podAnnotations": {
+      "$id": "#/properties/podAnnotations",
+      "type": "object",
+      "title": "The podAnnotations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "sidecar.istio.io/inject": "false"
+        }
+      ],
+      "required": [
+        "sidecar.istio.io/inject"
+      ],
+      "properties": {
+        "sidecar.istio.io/inject": {
+          "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/inject",
+          "type": "string",
+          "title": "The sidecar.istio.io/inject schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "false"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "service": {
+      "$id": "#/properties/service",
+      "type": "object",
+      "title": "The service schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "type": "ClusterIP",
+          "ports": [
+            {
+              "port": 9121,
+              "targetPort": 9121,
+              "protocol": "TCP",
+              "name": "tcp-exporter"
+            }
+          ]
+        }
+      ],
+      "required": [
+        "type",
+        "ports"
+      ],
+      "properties": {
+        "type": {
+          "$id": "#/properties/service/properties/type",
+          "type": "string",
+          "title": "The type schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "ClusterIP"
+          ]
+        },
+        "ports": {
+          "$id": "#/properties/service/properties/ports",
+          "type": "array",
+          "title": "The ports schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "port": 9121,
+                "targetPort": 9121,
+                "protocol": "TCP",
+                "name": "tcp-exporter"
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/service/properties/ports/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/service/properties/ports/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "port": 9121,
+                    "targetPort": 9121,
+                    "protocol": "TCP",
+                    "name": "tcp-exporter"
+                  }
+                ],
+                "required": [
+                  "port",
+                  "targetPort",
+                  "protocol",
+                  "name"
+                ],
+                "properties": {
+                  "port": {
+                    "$id": "#/properties/service/properties/ports/items/anyOf/0/properties/port",
+                    "type": "integer",
+                    "title": "The port schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      9121
+                    ]
+                  },
+                  "targetPort": {
+                    "$id": "#/properties/service/properties/ports/items/anyOf/0/properties/targetPort",
+                    "type": "integer",
+                    "title": "The targetPort schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                      9121
+                    ]
+                  },
+                  "protocol": {
+                    "$id": "#/properties/service/properties/ports/items/anyOf/0/properties/protocol",
+                    "type": "string",
+                    "title": "The protocol schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "TCP"
+                    ]
+                  },
+                  "name": {
+                    "$id": "#/properties/service/properties/ports/items/anyOf/0/properties/name",
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "tcp-exporter"
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "livenessProbe": {
+      "$id": "#/properties/livenessProbe",
+      "type": "object",
+      "title": "The livenessProbe schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "readinessProbe": {
+      "$id": "#/properties/readinessProbe",
+      "type": "object",
+      "title": "The readinessProbe schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "The resources schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "limits": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        }
+      ],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "50m",
+              "memory": "64Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "50m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "64Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "50m",
+              "memory": "64Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "50m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "64Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "autoscaling": {
+      "$id": "#/properties/autoscaling",
+      "type": "object",
+      "title": "The autoscaling schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": false,
+          "minReplicas": 1,
+          "maxReplicas": 1,
+          "targetCPUUtilizationPercentage": 80,
+          "targetMemoryUtilizationPercentage": 80
+        }
+      ],
+      "required": [
+        "enabled",
+        "minReplicas",
+        "maxReplicas",
+        "targetCPUUtilizationPercentage",
+        "targetMemoryUtilizationPercentage"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/autoscaling/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            false
+          ]
+        },
+        "minReplicas": {
+          "$id": "#/properties/autoscaling/properties/minReplicas",
+          "type": "integer",
+          "title": "The minReplicas schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "maxReplicas": {
+          "$id": "#/properties/autoscaling/properties/maxReplicas",
+          "type": "integer",
+          "title": "The maxReplicas schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "targetCPUUtilizationPercentage": {
+          "$id": "#/properties/autoscaling/properties/targetCPUUtilizationPercentage",
+          "type": "integer",
+          "title": "The targetCPUUtilizationPercentage schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            80
+          ]
+        },
+        "targetMemoryUtilizationPercentage": {
+          "$id": "#/properties/autoscaling/properties/targetMemoryUtilizationPercentage",
+          "type": "integer",
+          "title": "The targetMemoryUtilizationPercentage schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            80
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "nodeSelector": {
+      "$id": "#/properties/nodeSelector",
+      "type": "object",
+      "title": "The nodeSelector schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "tolerations": {
+      "$id": "#/properties/tolerations",
+      "type": "array",
+      "title": "The tolerations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        []
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/tolerations/items"
+      }
+    },
+    "affinity": {
+      "$id": "#/properties/affinity",
+      "type": "object",
+      "title": "The affinity schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

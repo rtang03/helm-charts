@@ -1,0 +1,14 @@
+apiVersion: v2
+name: redis-exporter
+# source coming from https://hub.docker.com/r/oliver006/redis_exporter
+version: 0.1.0
+description: Redis-prometheus-exporter for fabric-es project
+type: application
+appVersion: 1.29.0
+annotations:
+  artifacthub.io/changes: |
+    - "initial commit"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "true"
