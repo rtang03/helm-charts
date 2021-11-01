@@ -91,6 +91,23 @@ entries:
   hlf-explorer:
   - annotations:
       artifacthub.io/changes: |
+        - "add NOTES.txt"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-11-01T10:14:48.26012896Z"
+    description: Hyperledger Explorer chart
+    digest: 3d6134903621836e214291705a7b35efbc942928647ecb70451477f9d1dd8cb6
+    name: hlf-explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-0.1.3/hlf-explorer-0.1.3.tgz
+    version: 0.1.3
+  - annotations:
+      artifacthub.io/changes: |
         - "none"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -280,6 +297,24 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
+  redisearch:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-11-01T10:14:48.449177911Z"
+    description: Redisearch for fabric-es project
+    digest: 19bf3937c2ba5fea8d56eb410558278f3679d6f44febf13fe22d94d9480f2cd0
+    name: redisearch
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-0.1.0/redisearch-0.1.0.tgz
+    version: 0.1.0
   redisearch-prometheus-exporter:
   - annotations:
       artifacthub.io/changes: |
@@ -299,4 +334,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T08:05:54.91646303Z"
+generated: "2021-11-01T10:14:48.449680414Z"
