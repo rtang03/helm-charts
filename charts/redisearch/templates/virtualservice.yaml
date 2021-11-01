@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "redisearch.labels" . | nindent 4 }}
+    vs.hkicl/name: vs-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+spec:
+  hosts:
+    - "{{ default "redisearch" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
+    - "{{ default "redisearch" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local"
+  tcp:
+    - route:
+        - destination:
+            host: {{ .Values.appname }}-{{.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 6379
+          weight: 100
