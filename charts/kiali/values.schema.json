@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "appname": "kiali",
+      "orgname": "n1",
+      "namespace": "istio-system"
+    }
+  ],
+  "required": [
+    "appname",
+    "orgname",
+    "namespace"
+  ],
+  "properties": {
+    "appname": {
+      "$id": "#/properties/appname",
+      "type": "string",
+      "title": "The appname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "kiali"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "n1"
+      ]
+    },
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "istio-system"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

@@ -109,6 +109,10 @@ Do not use template directory now. Need to fix it.
 ### Reference Info
 - [ArtifactHub annotation](https://artifacthub.io/docs/topics/annotations/helm/)
 - [Validate helm chart with json schema](https://www.arthurkoziel.com/validate-helm-chart-values-with-json-schemas/)
+- [json2yaml](https://www.json2yaml.com)
+- [json schema generation](https://www.jsonschema.net/home)
+
+
 ### Attribution
 
 This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnami/charts).

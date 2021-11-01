@@ -1,7 +1,13 @@
 apiVersion: v2
 name: jaeger
 # source coming from https://istio.io/latest/docs/ops/integrations/jaeger/#configuration
-version: 0.1.0
+version: 0.1.1
 description: jaeger
 type: application
 appVersion: "1.27"
+annotations:
+  artifacthub.io/changes: |
+    - "add schema.json"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"

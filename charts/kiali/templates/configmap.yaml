@@ -1,0 +1,91 @@
+# Source: kiali-server/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiali
+  namespace: {{ .Release.Namespace }}
+  labels:
+    helm.sh/chart: kiali-server-{{ .Chart.AppVersion}}
+    app: kiali
+    app.kubernetes.io/name: kiali
+    app.kubernetes.io/instance: kiali
+    version: "v{{ .Chart.AppVersion}}"
+    app.kubernetes.io/version: "v{{ .Chart.AppVersion}}"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: "kiali"
+data:
+  config.yaml: |
+    auth:
+      openid: {}
+      openshift:
+        client_id_prefix: kiali
+      strategy: anonymous
+    deployment:
+      accessible_namespaces:
+      - '**'
+      additional_service_yaml: {}
+      affinity:
+        node: {}
+        pod: {}
+        pod_anti: {}
+      host_aliases: []
+      hpa:
+        api_version: autoscaling/v2beta2
+        spec: {}
+      image_digest: ""
+      image_name: quay.io/kiali/kiali
+      image_pull_policy: Always
+      image_pull_secrets: []
+      image_version: v{{ .Chart.AppVersion}}
+      ingress_enabled: false
+      instance_name: kiali
+      logger:
+        log_format: text
+        log_level: info
+        sampler_rate: "1"
+        time_field_format: 2006-01-02T15:04:05Z07:00
+      namespace: {{ .Release.Namespace }}
+      node_selector: {}
+      override_ingress_yaml:
+        metadata: {}
+      pod_annotations: {}
+      pod_labels:
+        sidecar.istio.io/inject: "false"
+      priority_class_name: ""
+      replicas: 1
+      resources: {}
+      secret_name: kiali
+      service_annotations: {}
+      service_type: ""
+      tolerations: []
+      version_label: v{{ .Chart.AppVersion}}
+      view_only_mode: false
+    external_services:
+      jaeger:
+        url: "http://jaeger.default.svc.cluster.local:16686"
+      prometheus:
+        url: "http://prometheus.default.svc.cluster.local:9090"
+      grafana:
+        in_cluster_url: "http://grafana.default.svc.cluster.local:3000"
+        url: "http://grafana.default.svc.cluster.local:3000"
+      custom_dashboards:
+        enabled: true
+    identity:
+      cert_file: ""
+      private_key_file: ""
+    istio_namespace: {{ .Release.Namespace }}
+    kiali_feature_flags:
+      certificates_information_indicators:
+        enabled: true
+        secrets:
+        - cacerts
+        - istio-ca-secret
+      clustering:
+        enabled: true
+    login_token:
+      signing_key: CHANGEME
+    server:
+      metrics_enabled: true
+      metrics_port: 9090
+      port: 20001
+      web_root: /kiali

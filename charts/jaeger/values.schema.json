@@ -1,0 +1,314 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "appname": "jaeger",
+      "orgname": "n1",
+      "namespace": "default",
+      "podAnnotations": {
+        "prometheus.io/scrape": "true",
+        "prometheus.io/port": "14269"
+      },
+      "resources": {
+        "requests": {
+          "cpu": "100m",
+          "memory": "64Mi"
+        },
+        "limits": {
+          "cpu": "100m",
+          "memory": "128Mi"
+        }
+      },
+      "persistence": {
+        "enabled": true,
+        "annotations": {},
+        "storageClass": "",
+        "accessMode": "ReadWriteOnce",
+        "size": "5Gi",
+        "mountPath": "/badger"
+      }
+    }
+  ],
+  "required": [
+    "appname",
+    "orgname",
+    "namespace",
+    "podAnnotations",
+    "resources",
+    "persistence"
+  ],
+  "properties": {
+    "appname": {
+      "$id": "#/properties/appname",
+      "type": "string",
+      "title": "The appname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "jaeger"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "n1"
+      ]
+    },
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "default"
+      ]
+    },
+    "podAnnotations": {
+      "$id": "#/properties/podAnnotations",
+      "type": "object",
+      "title": "The podAnnotations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "prometheus.io/scrape": "true",
+          "prometheus.io/port": "14269"
+        }
+      ],
+      "required": [
+        "prometheus.io/scrape",
+        "prometheus.io/port"
+      ],
+      "properties": {
+        "prometheus.io/scrape": {
+          "$id": "#/properties/podAnnotations/properties/prometheus.io/scrape",
+          "type": "string",
+          "title": "The prometheus.io/scrape schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "true"
+          ]
+        },
+        "prometheus.io/port": {
+          "$id": "#/properties/podAnnotations/properties/prometheus.io/port",
+          "type": "string",
+          "title": "The prometheus.io/port schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "14269"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "The resources schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "100m",
+            "memory": "64Mi"
+          },
+          "limits": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          }
+        }
+      ],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "100m",
+              "memory": "64Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "100m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "64Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "100m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "128Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "persistence": {
+      "$id": "#/properties/persistence",
+      "type": "object",
+      "title": "The persistence schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "annotations": {},
+          "storageClass": "",
+          "accessMode": "ReadWriteOnce",
+          "size": "5Gi",
+          "mountPath": "/badger"
+        }
+      ],
+      "required": [
+        "enabled",
+        "annotations",
+        "storageClass",
+        "accessMode",
+        "size",
+        "mountPath"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/persistence/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "annotations": {
+          "$id": "#/properties/persistence/properties/annotations",
+          "type": "object",
+          "title": "The annotations schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {}
+          ],
+          "required": [],
+          "additionalProperties": true
+        },
+        "storageClass": {
+          "$id": "#/properties/persistence/properties/storageClass",
+          "type": "string",
+          "title": "The storageClass schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "accessMode": {
+          "$id": "#/properties/persistence/properties/accessMode",
+          "type": "string",
+          "title": "The accessMode schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "ReadWriteOnce"
+          ]
+        },
+        "size": {
+          "$id": "#/properties/persistence/properties/size",
+          "type": "string",
+          "title": "The size schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "5Gi"
+          ]
+        },
+        "mountPath": {
+          "$id": "#/properties/persistence/properties/mountPath",
+          "type": "string",
+          "title": "The mountPath schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "/badger"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
