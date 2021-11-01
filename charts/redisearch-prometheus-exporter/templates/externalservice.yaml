@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisearch-{{ .Values.orgname }}
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: redisearch-{{ .Values.orgname }}.{{ .Values.orgname }}.svc.cluster.local
+  ports:
+    - port: 6379
+
