@@ -2,12 +2,12 @@ apiVersion: v2
 name: redisearch
 description: Redisearch for fabric-es project
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 2.0.5
 annotations:
   artifacthub.io/changes: |
-    - "initial commit"
+    - "add values schema"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "false"
+  artifacthub.io/prerelease: "true"
