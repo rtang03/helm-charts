@@ -4,6 +4,8 @@
 
 - see [fabric-es](https://rtang03.github.com/fabric-es)
 
+**IMPORTANT NOTE: for any single change, increment the Chart version.**
+
 ## Supported Charts
 
 Below charts are usable, and deployment tested. We do not support automated helm test.
