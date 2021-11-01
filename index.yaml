@@ -262,4 +262,22 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/prometheus-0.1.0/prometheus-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T07:06:06.293154467Z"
+  redis-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.29.0
+    created: "2021-11-01T07:39:34.193720033Z"
+    description: Redis-prometheus-exporter for fabric-es project
+    digest: c5687f3614de14e30dcd8d064d47d50ce93189d2843b5fdd409d44eb492e973a
+    name: redis-exporter
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-01T07:39:34.193751133Z"
