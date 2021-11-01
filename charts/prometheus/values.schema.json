@@ -1,0 +1,805 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "appname": "prometheus",
+      "orgname": "org1",
+      "namespace": "n1",
+      "persistence": {
+        "enabled": true,
+        "annotations": {},
+        "storageClass": "",
+        "accessMode": "ReadWriteOnce",
+        "size": "20Gi",
+        "mountPath": "/data"
+      },
+      "podSecurityContext": {
+        "fsGroup": 65534,
+        "runAsGroup": 65534,
+        "runAsNonRoot": true,
+        "runAsUser": 65534
+      },
+      "securityContext": {},
+      "resources": {
+        "requests": {
+          "cpu": "300m",
+          "memory": "640Mi"
+        },
+        "limits": {
+          "cpu": "500m",
+          "memory": "1000Mi"
+        }
+      },
+      "prometheus": {
+        "global": {
+          "evaluation_interval": "1m",
+          "scrape_interval": "15s",
+          "scrape_timeout": "10s"
+        }
+      },
+      "scrapes": {
+        "istio": {
+          "enabled": true
+        },
+        "hyperledgerOrderer0": {
+          "enabled": true
+        },
+        "hyperledgerOrderer1": {
+          "enabled": true
+        },
+        "hyperledgerOrderer2": {
+          "enabled": true
+        },
+        "hyperledgerOrderer3": {
+          "enabled": true
+        },
+        "hyperledgerOrderer4": {
+          "enabled": true
+        },
+        "hyperledgerPeer0": {
+          "enabled": true
+        },
+        "hyperledgerPeer1": {
+          "enabled": true
+        },
+        "redisearchPrometheusExporter": {
+          "enabled": false
+        },
+        "redisExporter": {
+          "enabled": false
+        }
+      }
+    }
+  ],
+  "required": [
+    "appname",
+    "orgname",
+    "namespace",
+    "persistence",
+    "podSecurityContext",
+    "securityContext",
+    "resources",
+    "prometheus",
+    "scrapes"
+  ],
+  "properties": {
+    "appname": {
+      "$id": "#/properties/appname",
+      "type": "string",
+      "title": "The appname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "prometheus"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "org1"
+      ]
+    },
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "n1"
+      ]
+    },
+    "persistence": {
+      "$id": "#/properties/persistence",
+      "type": "object",
+      "title": "The persistence schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "annotations": {},
+          "storageClass": "",
+          "accessMode": "ReadWriteOnce",
+          "size": "20Gi",
+          "mountPath": "/data"
+        }
+      ],
+      "required": [
+        "enabled",
+        "annotations",
+        "storageClass",
+        "accessMode",
+        "size",
+        "mountPath"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/persistence/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "annotations": {
+          "$id": "#/properties/persistence/properties/annotations",
+          "type": "object",
+          "title": "The annotations schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {}
+          ],
+          "required": [],
+          "additionalProperties": true
+        },
+        "storageClass": {
+          "$id": "#/properties/persistence/properties/storageClass",
+          "type": "string",
+          "title": "The storageClass schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "accessMode": {
+          "$id": "#/properties/persistence/properties/accessMode",
+          "type": "string",
+          "title": "The accessMode schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "ReadWriteOnce"
+          ]
+        },
+        "size": {
+          "$id": "#/properties/persistence/properties/size",
+          "type": "string",
+          "title": "The size schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "20Gi"
+          ]
+        },
+        "mountPath": {
+          "$id": "#/properties/persistence/properties/mountPath",
+          "type": "string",
+          "title": "The mountPath schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "/data"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "podSecurityContext": {
+      "$id": "#/properties/podSecurityContext",
+      "type": "object",
+      "title": "The podSecurityContext schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "fsGroup": 65534,
+          "runAsGroup": 65534,
+          "runAsNonRoot": true,
+          "runAsUser": 65534
+        }
+      ],
+      "required": [
+        "fsGroup",
+        "runAsGroup",
+        "runAsNonRoot",
+        "runAsUser"
+      ],
+      "properties": {
+        "fsGroup": {
+          "$id": "#/properties/podSecurityContext/properties/fsGroup",
+          "type": "integer",
+          "title": "The fsGroup schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            65534
+          ]
+        },
+        "runAsGroup": {
+          "$id": "#/properties/podSecurityContext/properties/runAsGroup",
+          "type": "integer",
+          "title": "The runAsGroup schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            65534
+          ]
+        },
+        "runAsNonRoot": {
+          "$id": "#/properties/podSecurityContext/properties/runAsNonRoot",
+          "type": "boolean",
+          "title": "The runAsNonRoot schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "runAsUser": {
+          "$id": "#/properties/podSecurityContext/properties/runAsUser",
+          "type": "integer",
+          "title": "The runAsUser schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            65534
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "securityContext": {
+      "$id": "#/properties/securityContext",
+      "type": "object",
+      "title": "The securityContext schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "The resources schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "300m",
+            "memory": "640Mi"
+          },
+          "limits": {
+            "cpu": "500m",
+            "memory": "1000Mi"
+          }
+        }
+      ],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "300m",
+              "memory": "640Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "300m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "640Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "500m",
+              "memory": "1000Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "500m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "1000Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "prometheus": {
+      "$id": "#/properties/prometheus",
+      "type": "object",
+      "title": "The prometheus schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "global": {
+            "evaluation_interval": "1m",
+            "scrape_interval": "15s",
+            "scrape_timeout": "10s"
+          }
+        }
+      ],
+      "required": [
+        "global"
+      ],
+      "properties": {
+        "global": {
+          "$id": "#/properties/prometheus/properties/global",
+          "type": "object",
+          "title": "The global schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "evaluation_interval": "1m",
+              "scrape_interval": "15s",
+              "scrape_timeout": "10s"
+            }
+          ],
+          "required": [
+            "evaluation_interval",
+            "scrape_interval",
+            "scrape_timeout"
+          ],
+          "properties": {
+            "evaluation_interval": {
+              "$id": "#/properties/prometheus/properties/global/properties/evaluation_interval",
+              "type": "string",
+              "title": "The evaluation_interval schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "1m"
+              ]
+            },
+            "scrape_interval": {
+              "$id": "#/properties/prometheus/properties/global/properties/scrape_interval",
+              "type": "string",
+              "title": "The scrape_interval schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "15s"
+              ]
+            },
+            "scrape_timeout": {
+              "$id": "#/properties/prometheus/properties/global/properties/scrape_timeout",
+              "type": "string",
+              "title": "The scrape_timeout schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "10s"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "scrapes": {
+      "$id": "#/properties/scrapes",
+      "type": "object",
+      "title": "The scrapes schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "istio": {
+            "enabled": true
+          },
+          "hyperledgerOrderer0": {
+            "enabled": true
+          },
+          "hyperledgerOrderer1": {
+            "enabled": true
+          },
+          "hyperledgerOrderer2": {
+            "enabled": true
+          },
+          "hyperledgerOrderer3": {
+            "enabled": true
+          },
+          "hyperledgerOrderer4": {
+            "enabled": true
+          },
+          "hyperledgerPeer0": {
+            "enabled": true
+          },
+          "hyperledgerPeer1": {
+            "enabled": true
+          },
+          "redisearchPrometheusExporter": {
+            "enabled": false
+          },
+          "redisExporter": {
+            "enabled": false
+          }
+        }
+      ],
+      "required": [
+        "istio",
+        "hyperledgerOrderer0",
+        "hyperledgerOrderer1",
+        "hyperledgerOrderer2",
+        "hyperledgerOrderer3",
+        "hyperledgerOrderer4",
+        "hyperledgerPeer0",
+        "hyperledgerPeer1",
+        "redisearchPrometheusExporter",
+        "redisExporter"
+      ],
+      "properties": {
+        "istio": {
+          "$id": "#/properties/scrapes/properties/istio",
+          "type": "object",
+          "title": "The istio schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/istio/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerOrderer0": {
+          "$id": "#/properties/scrapes/properties/hyperledgerOrderer0",
+          "type": "object",
+          "title": "The hyperledgerOrderer0 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerOrderer0/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerOrderer1": {
+          "$id": "#/properties/scrapes/properties/hyperledgerOrderer1",
+          "type": "object",
+          "title": "The hyperledgerOrderer1 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerOrderer1/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerOrderer2": {
+          "$id": "#/properties/scrapes/properties/hyperledgerOrderer2",
+          "type": "object",
+          "title": "The hyperledgerOrderer2 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerOrderer2/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerOrderer3": {
+          "$id": "#/properties/scrapes/properties/hyperledgerOrderer3",
+          "type": "object",
+          "title": "The hyperledgerOrderer3 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerOrderer3/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerOrderer4": {
+          "$id": "#/properties/scrapes/properties/hyperledgerOrderer4",
+          "type": "object",
+          "title": "The hyperledgerOrderer4 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerOrderer4/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerPeer0": {
+          "$id": "#/properties/scrapes/properties/hyperledgerPeer0",
+          "type": "object",
+          "title": "The hyperledgerPeer0 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerPeer0/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "hyperledgerPeer1": {
+          "$id": "#/properties/scrapes/properties/hyperledgerPeer1",
+          "type": "object",
+          "title": "The hyperledgerPeer1 schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/hyperledgerPeer1/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "redisearchPrometheusExporter": {
+          "$id": "#/properties/scrapes/properties/redisearchPrometheusExporter",
+          "type": "object",
+          "title": "The redisearchPrometheusExporter schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": false
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/redisearchPrometheusExporter/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                false
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "redisExporter": {
+          "$id": "#/properties/scrapes/properties/redisExporter",
+          "type": "object",
+          "title": "The redisExporter schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": false
+            }
+          ],
+          "required": [
+            "enabled"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/scrapes/properties/redisExporter/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                false
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

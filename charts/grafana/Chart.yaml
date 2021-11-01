@@ -1,17 +1,14 @@
 apiVersion: v2
 name: grafana
 # source coming from https://istio.io/latest/docs/ops/integrations/grafana/#configuration
-version: 0.1.4
-description: grafana
+version: 0.1.5
+description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
 annotations:
   artifacthub.io/changes: |
-    - kind: "fixed"
-      description: "1st attempt fixing"
-      links:
-        - name: "improve security rating"
-          url: "https://github.com/rtang03/helm-charts/issues/8"
+    - "none"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "false"

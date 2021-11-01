@@ -6,15 +6,6 @@
 
 **IMPORTANT NOTE: for any single change, increment the Chart version.**
 
-## Supported Charts
-
-Below charts are usable, and deployment tested. We do not support automated helm test.
-
-- hlf-explorer
-- hlf-explorer-db
-- jaeger
-- grafana
-
 ## Installation
 
 You can install with either `helm install`, or ArgoCD deployment. 
@@ -88,7 +79,7 @@ annotations:
 
 ```yaml
 # https://github.com/rtang03/helm-charts/blob/gh-pages/artifacthub-repo.yml
-repositoryID: 1b740a16-eccf-4215-bd65-5ad24d681d2f
+repositoryID: xxxx-xxxx-xxxx
 owners: # (optional, used to claim repository ownership)
   - name: rtang03
     email: ask@dashslab.com
