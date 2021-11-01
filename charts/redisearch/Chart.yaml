@@ -1,13 +1,13 @@
 apiVersion: v2
-name: hlf-explorer
-description: Hyperledger Explorer chart
+name: redisearch
+description: Redisearch for fabric-es project
 type: application
-version: 0.1.3
-appVersion: 1.1.8
+version: 0.1.0
+appVersion: 2.0.5
 annotations:
   artifacthub.io/changes: |
-    - "add NOTES.txt"
+    - "initial commit"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "true"
+  artifacthub.io/prerelease: "false"
