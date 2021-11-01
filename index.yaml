@@ -280,4 +280,23 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T07:39:34.193751133Z"
+  redisearch-prometheus-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-11-01T08:05:54.916435029Z"
+    description: Export Redisearch FT.INFO for use by Prometheus.Supports RediSearch
+      v1.4, v1.6, >=v2.0
+    digest: 13134ca1e22590572eb9ebdefc23325023e991211dca5cb00b9f0413d15b36ec
+    name: redisearch-prometheus-exporter
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-01T08:05:54.91646303Z"
