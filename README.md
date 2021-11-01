@@ -66,8 +66,36 @@ $ helm install my-release dashslab/<chart>
 ### Workflow
 
 1. Open an issue, for chart change
-2. Use PR to submit change, with above issue link
-3. Every PR merge will automatically trigger `chart-releaser-action` Action, which create new release, and new git tag.
+2. Fork a branch for chart development / patching
+3. Edit `Chart.yaml`, (1) incremental Chart version; (2) Add ArtifactHub ChangeLog anotation. Notice that ArtifactHub requires "quoted" string.
+
+```yaml
+apiVersion: v2
+annotations:
+  artifacthub.io/changes: |
+    - kind: "fixed"
+      description: "1st attempt fixing"
+      links:
+        - name: "improve security rating"
+          url: "https://github.com/rtang03/helm-charts/issues/8"
+  ```
+4. Use PR to submit change, with above issue linked. Every PR merge will automatically trigger `chart-releaser-action` Action, which create new release, and new git tag.
+5. Check Github Action and releases, if the change is released.
+6. Check your deployment in ArtifactHub, go to `https://artifacthub.io/packages/helm/dashslab/<Chart-Name>`
+7. If you want to discard the deployed change, you need NOT delete the release, NOR untag it. You should edit below file
+
+```yaml
+# https://github.com/rtang03/helm-charts/blob/gh-pages/artifacthub-repo.yml
+repositoryID: 1b740a16-eccf-4215-bd65-5ad24d681d2f
+owners: # (optional, used to claim repository ownership)
+  - name: rtang03
+    email: ask@dashslab.com
+ignore: # (optional, packages that should not be indexed by Artifact Hub)
+  - name: grafana # Exact match
+  version: 0.1.1 # Regular expression (when omitted, all versions are ignored)
+  - name: hlf-explorer-db # Exact match
+    version: 0.1.2 # Regular expression (when omitted, all versions are ignored)
+```
 
 **Notice that the Github Action will fail if there is pre-existing git-tag, as the Chart version. Therefore, for chart modification, 
 please make sure to increment the chart version, at patch level.**
@@ -77,8 +105,8 @@ please make sure to increment the chart version, at patch level.**
 Do not use template directory now. Need to fix it.
 
 ### Reference Info
-- [Artifacthub annotation](https://artifacthub.io/docs/topics/annotations/helm/)
-
+- [ArtifactHub annotation](https://artifacthub.io/docs/topics/annotations/helm/)
+- [Validate helm chart with json schema](https://www.arthurkoziel.com/validate-helm-chart-values-with-json-schemas/)
 ### Attribution
 
 This repo is adopted from Bitnami chart repo, [charts](https://github.com/bitnami/charts).

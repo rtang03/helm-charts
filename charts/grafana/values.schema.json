@@ -1,0 +1,578 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "appname": "grafana",
+      "orgname": "org1",
+      "namespace": "n1",
+      "podAnnotations": {},
+      "podSecurityContext": {
+        "fsGroup": 472,
+        "runAsGroup": 472,
+        "runAsUser": 472
+      },
+      "resources": {
+        "requests": {
+          "cpu": "100m",
+          "memory": "128Mi"
+        },
+        "limits": {
+          "cpu": "300m",
+          "memory": "256Mi"
+        }
+      },
+      "persistence": {
+        "enabled": true,
+        "annotations": {},
+        "storageClass": "",
+        "accessMode": "ReadWriteOnce",
+        "size": "5Gi",
+        "mountPath": "/var/lib/grafana"
+      },
+      "configmap": {
+        "json": [
+          {
+            "name": "istio-service-dashboard",
+            "filename": "config/istio-service-dashboard_rev93.json",
+            "mountPath": "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json",
+            "subPath": "istio-service-dashboard_rev93.json"
+          },
+          {
+            "name": "istio-workload-dashboard",
+            "filename": "config/istio-workload-dashboard_rev93.json",
+            "mountPath": "/var/lib/grafana/dashboards/istio/istio-workload-dashboard_rev93.json",
+            "subPath": "istio-workload-dashboard_rev93.json"
+          },
+          {
+            "name": "istio-control-plane-dashboard",
+            "filename": "config/istio-control-plane-dashboard_rev93.json",
+            "mountPath": "/var/lib/grafana/dashboards/istio/istio-control-plane-dashboard_rev93.json",
+            "subPath": "istio-control-plane-dashboard_rev93.json"
+          },
+          {
+            "name": "istio-mesh-dashboard",
+            "filename": "config/istio-mesh-dashboard_rev93.json",
+            "mountPath": "/var/lib/grafana/dashboards/istio/istio-mesh-dashboard_rev93.json",
+            "subPath": "istio-mesh-dashboard_rev93.json"
+          },
+          {
+            "name": "istio-performance-dashboard",
+            "filename": "config/istio-performance-dashboard_rev93.json",
+            "mountPath": "/var/lib/grafana/dashboards/istio/istio-performance-dashboard_rev93.json",
+            "subPath": "istio-performance-dashboard_rev93.json"
+          },
+          {
+            "name": "hyperledger-fabric",
+            "filename": "config/hyperledger-fabric_rev1.json",
+            "mountPath": "/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json",
+            "subPath": "hyperledger-fabric_rev1.json"
+          },
+          {
+            "name": "orderers",
+            "filename": "config/orderers_rev1.json",
+            "mountPath": "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json",
+            "subPath": "orderers_rev1.json"
+          },
+          {
+            "name": "k8s-cluster",
+            "filename": "config/k8s-cluster.json",
+            "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-cluster.json",
+            "subPath": "k8s-cluster.json"
+          },
+          {
+            "name": "k8s-storage",
+            "filename": "config/k8s-storage.json",
+            "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-storage.json",
+            "subPath": "k8s-storage.json"
+          },
+          {
+            "name": "container",
+            "filename": "config/container_rev1.json",
+            "mountPath": "/var/lib/grafana/dashboards/k8s/container_rev1.json",
+            "subPath": "container_rev1.json"
+          }
+        ]
+      }
+    }
+  ],
+  "required": [
+    "appname",
+    "orgname",
+    "namespace",
+    "podAnnotations",
+    "podSecurityContext",
+    "resources",
+    "persistence",
+    "configmap"
+  ],
+  "properties": {
+    "appname": {
+      "$id": "#/properties/appname",
+      "type": "string",
+      "title": "The appname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "grafana"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "org1"
+      ]
+    },
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "n1"
+      ]
+    },
+    "podAnnotations": {
+      "$id": "#/properties/podAnnotations",
+      "type": "object",
+      "title": "The podAnnotations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {}
+      ],
+      "required": [],
+      "additionalProperties": true
+    },
+    "podSecurityContext": {
+      "$id": "#/properties/podSecurityContext",
+      "type": "object",
+      "title": "The podSecurityContext schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "fsGroup": 472,
+          "runAsGroup": 472,
+          "runAsUser": 472
+        }
+      ],
+      "required": [
+        "fsGroup",
+        "runAsGroup",
+        "runAsUser"
+      ],
+      "properties": {
+        "fsGroup": {
+          "$id": "#/properties/podSecurityContext/properties/fsGroup",
+          "type": "integer",
+          "title": "The fsGroup schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            472
+          ]
+        },
+        "runAsGroup": {
+          "$id": "#/properties/podSecurityContext/properties/runAsGroup",
+          "type": "integer",
+          "title": "The runAsGroup schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            472
+          ]
+        },
+        "runAsUser": {
+          "$id": "#/properties/podSecurityContext/properties/runAsUser",
+          "type": "integer",
+          "title": "The runAsUser schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": 0,
+          "examples": [
+            472
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "The resources schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "100m",
+            "memory": "128Mi"
+          },
+          "limits": {
+            "cpu": "300m",
+            "memory": "256Mi"
+          }
+        }
+      ],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "100m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "128Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "300m",
+              "memory": "256Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "300m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "256Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "persistence": {
+      "$id": "#/properties/persistence",
+      "type": "object",
+      "title": "The persistence schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "annotations": {},
+          "storageClass": "",
+          "accessMode": "ReadWriteOnce",
+          "size": "5Gi",
+          "mountPath": "/var/lib/grafana"
+        }
+      ],
+      "required": [
+        "enabled",
+        "annotations",
+        "storageClass",
+        "accessMode",
+        "size",
+        "mountPath"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/persistence/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "annotations": {
+          "$id": "#/properties/persistence/properties/annotations",
+          "type": "object",
+          "title": "The annotations schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {}
+          ],
+          "required": [],
+          "additionalProperties": true
+        },
+        "storageClass": {
+          "$id": "#/properties/persistence/properties/storageClass",
+          "type": "string",
+          "title": "The storageClass schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            ""
+          ]
+        },
+        "accessMode": {
+          "$id": "#/properties/persistence/properties/accessMode",
+          "type": "string",
+          "title": "The accessMode schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "ReadWriteOnce"
+          ]
+        },
+        "size": {
+          "$id": "#/properties/persistence/properties/size",
+          "type": "string",
+          "title": "The size schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "5Gi"
+          ]
+        },
+        "mountPath": {
+          "$id": "#/properties/persistence/properties/mountPath",
+          "type": "string",
+          "title": "The mountPath schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "/var/lib/grafana"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "configmap": {
+      "$id": "#/properties/configmap",
+      "type": "object",
+      "title": "The configmap schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "json": [
+            {
+              "name": "istio-service-dashboard",
+              "filename": "config/istio-service-dashboard_rev93.json",
+              "mountPath": "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json",
+              "subPath": "istio-service-dashboard_rev93.json"
+            },
+            {
+              "name": "istio-workload-dashboard",
+              "filename": "config/istio-workload-dashboard_rev93.json",
+              "mountPath": "/var/lib/grafana/dashboards/istio/istio-workload-dashboard_rev93.json",
+              "subPath": "istio-workload-dashboard_rev93.json"
+            },
+            {
+              "name": "istio-control-plane-dashboard",
+              "filename": "config/istio-control-plane-dashboard_rev93.json",
+              "mountPath": "/var/lib/grafana/dashboards/istio/istio-control-plane-dashboard_rev93.json",
+              "subPath": "istio-control-plane-dashboard_rev93.json"
+            },
+            {
+              "name": "istio-mesh-dashboard",
+              "filename": "config/istio-mesh-dashboard_rev93.json",
+              "mountPath": "/var/lib/grafana/dashboards/istio/istio-mesh-dashboard_rev93.json",
+              "subPath": "istio-mesh-dashboard_rev93.json"
+            },
+            {
+              "name": "istio-performance-dashboard",
+              "filename": "config/istio-performance-dashboard_rev93.json",
+              "mountPath": "/var/lib/grafana/dashboards/istio/istio-performance-dashboard_rev93.json",
+              "subPath": "istio-performance-dashboard_rev93.json"
+            },
+            {
+              "name": "hyperledger-fabric",
+              "filename": "config/hyperledger-fabric_rev1.json",
+              "mountPath": "/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json",
+              "subPath": "hyperledger-fabric_rev1.json"
+            },
+            {
+              "name": "orderers",
+              "filename": "config/orderers_rev1.json",
+              "mountPath": "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json",
+              "subPath": "orderers_rev1.json"
+            },
+            {
+              "name": "k8s-cluster",
+              "filename": "config/k8s-cluster.json",
+              "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-cluster.json",
+              "subPath": "k8s-cluster.json"
+            },
+            {
+              "name": "k8s-storage",
+              "filename": "config/k8s-storage.json",
+              "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-storage.json",
+              "subPath": "k8s-storage.json"
+            },
+            {
+              "name": "container",
+              "filename": "config/container_rev1.json",
+              "mountPath": "/var/lib/grafana/dashboards/k8s/container_rev1.json",
+              "subPath": "container_rev1.json"
+            }
+          ]
+        }
+      ],
+      "required": [
+        "json"
+      ],
+      "properties": {
+        "json": {
+          "$id": "#/properties/configmap/properties/json",
+          "type": "array",
+          "title": "The json schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "name": "istio-service-dashboard",
+                "filename": "config/istio-service-dashboard_rev93.json",
+                "mountPath": "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json",
+                "subPath": "istio-service-dashboard_rev93.json"
+              },
+              {
+                "name": "istio-workload-dashboard",
+                "filename": "config/istio-workload-dashboard_rev93.json",
+                "mountPath": "/var/lib/grafana/dashboards/istio/istio-workload-dashboard_rev93.json",
+                "subPath": "istio-workload-dashboard_rev93.json"
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/configmap/properties/json/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/configmap/properties/json/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "name": "istio-service-dashboard",
+                    "filename": "config/istio-service-dashboard_rev93.json",
+                    "mountPath": "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json",
+                    "subPath": "istio-service-dashboard_rev93.json"
+                  }
+                ],
+                "required": [
+                  "name",
+                  "filename",
+                  "mountPath",
+                  "subPath"
+                ],
+                "properties": {
+                  "name": {
+                    "$id": "#/properties/configmap/properties/json/items/anyOf/0/properties/name",
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "istio-service-dashboard"
+                    ]
+                  },
+                  "filename": {
+                    "$id": "#/properties/configmap/properties/json/items/anyOf/0/properties/filename",
+                    "type": "string",
+                    "title": "The filename schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "config/istio-service-dashboard_rev93.json"
+                    ]
+                  },
+                  "mountPath": {
+                    "$id": "#/properties/configmap/properties/json/items/anyOf/0/properties/mountPath",
+                    "type": "string",
+                    "title": "The mountPath schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json"
+                    ]
+                  },
+                  "subPath": {
+                    "$id": "#/properties/configmap/properties/json/items/anyOf/0/properties/subPath",
+                    "type": "string",
+                    "title": "The subPath schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "istio-service-dashboard_rev93.json"
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
