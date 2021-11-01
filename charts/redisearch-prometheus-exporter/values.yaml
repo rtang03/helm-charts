@@ -1,0 +1,56 @@
+# Application Name
+appname: redisearch-prometheus-exporter
+# The Redisearch is normally deployed to any Org, other than Org0 / Org1
+orgname: org2
+namespace: n2
+# At mimimum, can use "cidx", which commit Index
+redisearchExporterStaticIndex: "cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"
+replicaCount: 1
+debug: "false"
+timeout: "10s"
+
+image:
+  pullPolicy: IfNotPresent
+  imagePullSecrets: [ ]
+  nameOverride: ""
+  fullnameOverride: ""
+
+podAnnotations:
+  sidecar.istio.io/inject: "false"
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 9122
+      targetPort: 9122
+      protocol: TCP
+      name: tcp-exporter
+
+livenessProbe: {}
+
+readinessProbe: {}
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 50m
+    memory: 64Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

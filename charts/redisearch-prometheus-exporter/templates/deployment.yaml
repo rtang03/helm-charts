@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hkicl.appname" . }}
+  labels:
+    {{- include "redisearch-prometheus-exporter.labels" . | nindent 4 }}
+    app.hkicl/name: {{ include "hkicl.appname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "redisearch-prometheus-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "redisearch-prometheus-exporter.selectorLabels" . | nindent 8 }}
+        app.hkicl/name: {{ include "hkicl.appname" . }}
+    spec:
+      containers:
+        - name: {{ include "hkicl.appname" . }}
+          image: "ghcr.io/rtang03/redisearch_prometheus_exporter:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: REDISEARCH_ADDR
+              value: "redisearch-{{ .Values.orgname }}.{{ .Values.orgname }}.svc.cluster.local:6379"
+            - name: REDISEARCH_EXPORTER_CONNECTION_TIMEOUT
+              value: {{ .Values.timeout }}
+            - name: REDISEARCH_EXPORTER_DEBUG
+              value: {{ .Values.debug }}
+            - name: REDISEARCH_EXPORTER_STATIC_INDEX_LIST
+              value: {{ .Values.redisearchExporterStaticIndex | default "cidx" }}
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
