@@ -1,0 +1,117 @@
+apiVersion: v1
+entries:
+  grafana:
+    - annotations:
+        artifacthub.io/changes: |
+          - kind: "fixed"
+            description: "1st attempt fixing"
+            links:
+              - name: "improve security rating"
+                url: "https://github.com/rtang03/helm-charts/issues/8"
+        artifacthub.io/maintainers: |
+          - name: "rtang03"
+            email: "ask@dashslab.com"
+      apiVersion: v2
+      appVersion: 8.2.2
+      created: "2021-11-01T02:08:24.312826865Z"
+      description: grafana
+      digest: 8d0ba850ab8b66e7884d548a7e0b42ad0aea186a5e9c8daff81d1221dda7e142
+      name: grafana
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.4/grafana-0.1.4.tgz
+      version: 0.1.4
+    - annotations:
+        artifacthub.io/changes: |
+          - kind: "fixed"
+            description: "1st attempt fixing"
+            links:
+              - name: "improve security rating"
+                url: "https://github.com/rtang03/helm-charts/issues/8"
+        artifacthub.io/maintainers: |
+          - name: "rtang03"
+            email: "ask@dashslab.com"
+      apiVersion: v2
+      appVersion: 8.2.2
+      created: "2021-11-01T01:58:10.136814004Z"
+      description: grafana
+      digest: c2fa2615e02cf1b71ed046b07b34bff56bb3507e5f82116f78913dffcbe70696
+      name: grafana
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.3/grafana-0.1.3.tgz
+      version: 0.1.3
+    - annotations:
+        artifacthub.io/changes: |
+          - kind: "fixed"
+            description: "1st attempt fixing"
+            links:
+              - name: "improve security rating"
+                url: "https://github.com/rtang03/helm-charts/issues/8"
+        artifacthub.io/maintainers: |
+          - name: "rtang03"
+            email: "ask@dashslab.com"
+      apiVersion: v2
+      appVersion: 8.2.2
+      created: "2021-10-31T17:08:22.819310953Z"
+      description: grafana
+      digest: e00cc44cf97e8d2a00576b462e926e546dd4a7f8570729b6f6bc5eea124d19ff
+      name: grafana
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.2/grafana-0.1.2.tgz
+      version: 0.1.2
+    - annotations:
+        artifacthub.io/changes: |
+          - "lower system resource"
+          - kind: "fixed"
+            description: "1st attempt fixing"
+            links:
+              - name: "improve security rating"
+                url: "https://github.com/rtang03/helm-charts/issues/8"
+        artifacthub.io/maintainers: |
+          - name: "rtang03"
+            email: "ask@dashslab.com"
+      apiVersion: v2
+      appVersion: 8.2.2
+      created: "2021-10-31T16:55:27.539267749Z"
+      description: grafana
+      digest: eecb95eb33071e3ac81c5b53fa349e57c4408817cf51ce94a77c49cb5fcb580c
+      name: grafana
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.1/grafana-0.1.1.tgz
+      version: 0.1.1
+    - apiVersion: v2
+      appVersion: 8.1.2
+      created: "2021-10-31T15:47:14.159344536Z"
+      description: grafana
+      digest: d1208c3e9abf343b4cebace93a05840384fe5185a74e2883d415d34d5f326493
+      name: grafana
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
+      version: 0.1.0
+  hlf-explorer-db:
+    - apiVersion: v2
+      appVersion: 1.1.8
+      created: "2021-10-31T13:56:36.284066562Z"
+      description: Hyperledger Explorer Database (psql)
+      digest: 52d226a1ce6965a582e3cc3ec6349d17d16a35e387f49311adedec8966e89a43
+      name: hlf-explorer-db
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.3/hlf-explorer-db-0.1.3.tgz
+      version: 0.1.3
+  jaeger:
+    - apiVersion: v2
+      appVersion: "1.27"
+      created: "2021-10-31T15:13:50.645896007Z"
+      description: jaeger
+      digest: 2bbc3be98e365ee82157588dc1552b3de507b41311243831f8678c06a9302978
+      name: jaeger
+      type: application
+      urls:
+        - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.0/jaeger-0.1.0.tgz
+      version: 0.1.0
+generated: "2021-11-01T02:08:24.312858867Z"
