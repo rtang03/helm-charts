@@ -3,6 +3,23 @@ entries:
   grafana:
   - annotations:
       artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 8.2.2
+    created: "2021-11-01T07:06:05.598589729Z"
+    description: Grafana for fabric-es project
+    digest: 13765888ceee71015e282cc1040f3b670ded0c7352a9fdea05d5c8189329a689
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.5/grafana-0.1.5.tgz
+    version: 0.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - kind: "fixed"
           description: "1st attempt fixing"
           links:
@@ -74,6 +91,23 @@ entries:
   hlf-explorer:
   - annotations:
       artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-11-01T07:06:05.751340737Z"
+    description: Hyperledger Explorer chart
+    digest: 9644f4e55f5fe4730765350baba71e7a79cae5a26c041e9caa00efaebc1bbbce
+    name: hlf-explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-0.1.2/hlf-explorer-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "add schema.json"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -89,6 +123,23 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-0.1.1/hlf-explorer-0.1.1.tgz
     version: 0.1.1
   hlf-explorer-db:
+  - annotations:
+      artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-11-01T07:06:05.876039044Z"
+    description: Hyperledger Explorer Database (psql)
+    digest: 4de2d65120fbf937b63dd0648b5f5667894c2dd32bdd4c3ac1410762c2357772
+    name: hlf-explorer-db
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.5/hlf-explorer-db-0.1.5.tgz
+    version: 0.1.5
   - annotations:
       artifacthub.io/changes: |
         - "add schema.json"
@@ -118,6 +169,23 @@ entries:
   jaeger:
   - annotations:
       artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: "1.27"
+    created: "2021-11-01T07:06:06.021310652Z"
+    description: Jaeger for fabric-es project
+    digest: 238843946605497715c9d09b6e1c859235dc48298ef2292f895c509e42455fb7
+    name: jaeger
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.2/jaeger-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "add schema.json"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -145,6 +213,23 @@ entries:
   kiali:
   - annotations:
       artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.42.0
+    created: "2021-11-01T07:06:06.141632959Z"
+    description: Liali for fabric-es project
+    digest: 447a024f3e53532c84f582513828e693f14b19d13906938e87761c22e0179398
+    name: kiali
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.1/kiali-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -159,4 +244,22 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.0/kiali-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T03:11:54.418522995Z"
+  prometheus:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 2.26.0
+    created: "2021-11-01T07:06:06.293105367Z"
+    description: Prometheus from fabric-es project (with custom scrapes)
+    digest: dcc9926d48614b90362cc134c14ed6d4359564aa8c557918ab10c0d6d3e92cbb
+    name: prometheus
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/prometheus-0.1.0/prometheus-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-01T07:06:06.293154467Z"
