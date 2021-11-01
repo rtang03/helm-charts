@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hkicl.appname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "redis-exporter.labels" . | nindent 4 }}
+    app.hkicl/name: {{ include "hkicl.appname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+  {{- include "redis-exporter.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "redis-exporter.selectorLabels" . | nindent 8 }}
+        app.hkicl/name: {{ include "hkicl.appname" . }}
+    spec:
+      containers:
+        - name: {{ include "hkicl.appname" . }}
+          image: "oliver006/redis_exporter:v{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: REDIS_ADDR
+              value: "redisearch-{{ .Values.orgname }}.{{ .Values.orgname }}.svc.cluster.local:6379"
+            - name: REDIS_EXPORTER_CONNECTION_TIMEOUT
+              value: "15s"
+            - name: REDIS_EXPORTER_INCL_SYSTEM_METRICS
+              value: "false"
+            - name: REDIS_EXPORTER_REDIS_ONLY_METRICS
+              value: "true"
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+          {{- end }}
+          resources:
+      {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+  {{- end }}
