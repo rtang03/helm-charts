@@ -2,5 +2,11 @@ apiVersion: v2
 name: hlf-explorer
 description: Hyperledger Explorer chart
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 1.1.8
+annotations:
+  artifacthub.io/changes: |
+    - "add schema.json"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
