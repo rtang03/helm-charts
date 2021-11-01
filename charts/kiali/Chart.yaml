@@ -1,13 +1,14 @@
 apiVersion: v2
 name: kiali
 # source coming from https://github.com/istio/istio/blob/master/samples/addons/kiali.yaml
-version: 0.1.0
-description: kiali
+version: 0.1.1
+description: Liali for fabric-es project
 type: application
 appVersion: 1.42.0
 annotations:
   artifacthub.io/changes: |
-    - "initial commit"
+    - "none"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "false"
