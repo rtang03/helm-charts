@@ -13,6 +13,26 @@ entries:
           email: "ask@dashslab.com"
     apiVersion: v2
     appVersion: 8.2.2
+    created: "2021-11-01T02:08:24.312826865Z"
+    description: grafana
+    digest: 8d0ba850ab8b66e7884d548a7e0b42ad0aea186a5e9c8daff81d1221dda7e142
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.4/grafana-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: "fixed"
+          description: "1st attempt fixing"
+          links:
+            - name: "improve security rating"
+              url: "https://github.com/rtang03/helm-charts/issues/8"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+    apiVersion: v2
+    appVersion: 8.2.2
     created: "2021-11-01T01:58:10.136814004Z"
     description: grafana
     digest: c2fa2615e02cf1b71ed046b07b34bff56bb3507e5f82116f78913dffcbe70696
@@ -94,4 +114,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.0/jaeger-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T01:58:10.136828604Z"
+generated: "2021-11-01T02:08:24.312858867Z"
