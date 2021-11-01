@@ -300,6 +300,23 @@ entries:
   redisearch:
   - annotations:
       artifacthub.io/changes: |
+        - "add values schema"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-11-01T10:18:35.593982988Z"
+    description: Redisearch for fabric-es project
+    digest: 6641492a72f780a3025fcc944bc38fd973dde1c9aa8f8fc30e25c8b8540a4b2c
+    name: redisearch
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-0.1.1/redisearch-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -334,4 +351,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T10:14:48.449680414Z"
+generated: "2021-11-01T10:18:35.594017288Z"
