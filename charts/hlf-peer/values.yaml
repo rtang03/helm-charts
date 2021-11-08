@@ -1,0 +1,213 @@
+###############################
+# CONFIGURABLE ITEMS
+###############################
+# use "peer0" or "peer1"
+appname: peer0
+# orgnanization name
+orgname: bochk
+# fqdn used in Route 53 private hosted zone
+fqdn: peer0-bochk.cdi.testnet
+namespace: bochk
+mspid: BochkMSP
+timezone: Asia/Hong_Kong
+
+# configuring istio
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+persistence:
+  enabled: true
+  annotations: {}
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  ## storageClass: ""
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  mountPath: "/var/artifacts"  # fixture
+  # existingClaim: ""
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 128Mi
+  # NOTE: peer-0 shall require more cpu than peer-1
+  limits:
+    cpu: 600m
+    memory: 256Mi
+
+
+###### PEER-0 or PEER-1######
+###### PEER-0 ######
+gossip:
+  bootstrap:
+    # fqdn used in Route 53 private hosted zone
+    peer1-bochk.cdi.testnet:7051
+  external:
+    enabled: true
+    # fqdn used in Route 53 private hosted zone
+    endpoint: peer0-bochk.cdi.testnet:7051
+
+secretvol:
+  enabled: true
+  vol:
+    - name: tls-peer0
+      mountPath: /secret/tls
+    - name: msp-peer0
+      mountPath: /secret/msp
+
+###### PEER-1 ######
+#gossip:
+#  bootstrap:
+#    peer0-bochk.cdi.testnet:7051
+#  external:
+#    enabled: false
+#secretvol:
+#  enabled: true
+#  vol:
+#    - name: tls-peer1
+#      mountPath: /secret/tls
+#    - name: msp-peer1
+#      mountPath: /secret/msp
+
+###############################
+# FIXTURE. SHOULD NOT BE CHANGE
+###############################
+nodeSelector:
+  node.hkicl/nodename: node2
+
+certRootDir: /var/artifacts
+cryptoDir: crypto-config
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 7051
+      targetPort: 7051
+      protocol: TCP
+      name: tls-request
+    - port: 7052
+      targetPort: 7052
+      protocol: TCP
+      name: tls-chaincode
+    - port: 7053
+      targetPort: 7053
+      protocol: TCP
+      name: tls-event
+    - port: 9443
+      targetPort: 9443
+      protocol: TCP
+      name: http-metrics
+    - port: 1313
+      targetPort: 1313
+      protocol: TCP
+      name: tls-ping
+
+istioService:
+  enabled: true
+  ports:
+    - port: 7051
+      name: tls-ext-listen-endpoint
+      protocol: TLS
+      destPort: 7051
+    - port: 7052
+      name: tls-ext-listen-chaincode
+      protocol: TLS
+      destPort: 7052
+    - port: 7053
+      name: tls-ext-listen-event
+      protocol: TLS
+      destPort: 7053
+    - port: 1313
+      name: tls-ping
+      protocol: TLS
+      destPort: 1313
+    - name: http-nginx
+      protocol: HTTP
+      destPort: 8080
+      match:
+      - uri:
+          exact: /index.html
+      - uri:
+          exact: /gupload
+      - uri:
+          exact: /rootcert.pem
+      - uri:
+          exact: /tlscert.pem
+    - name: http-ext-metrics
+      protocol: HTTP
+      destPort: 9443
+      match:
+      - uri:
+          exact: /healthz
+
+configmap:
+  enabled: true
+  data: "config/*"
+  mountPath: "/setup"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+tolerations: []
+
+affinity: {}
+
+livenessProbe:
+  successThreshold: 1
+  failureThreshold: 3
+  httpGet:
+    scheme: HTTP
+    path: /healthz
+    port: 9443
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  successThreshold: 1
+  failureThreshold: 3
+  httpGet:
+    scheme: HTTP
+    path: /healthz
+    port: 9443
+  initialDelaySeconds: 30
+  periodSeconds: 10

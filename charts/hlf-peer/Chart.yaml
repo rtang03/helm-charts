@@ -1,0 +1,14 @@
+apiVersion: v2
+name: hlf-peer
+description: Hyperledger Fabric Peer chart for fabric-es project
+type: application
+version: 0.1.0
+appVersion: 2.3.2
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+annotations:
+  artifacthub.io/changes: |
+    - "initial commit"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "true"

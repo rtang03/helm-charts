@@ -1,0 +1,224 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  labels:
+    {{- include "hlf-peer.labels" . | nindent 4 }}
+    app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "hlf-peer.selectorLabels" . | nindent 6 }}
+      app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ .Chart.Name }}
+        version: {{ .Chart.Version }}
+        {{- include "hlf-peer.selectorLabels" . | nindent 8 }}
+        app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: my-pvc
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - name: my-cm
+          configMap:
+            name: cm-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+        {{- end }}
+        {{- if .Values.secretvol.enabled }}
+        {{- range .Values.secretvol.vol }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
+        {{- end }}
+        {{- end }}
+        - name: nginx-config
+          configMap:
+            name: cm-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}-nginx
+      containers:
+        - name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "hyperledger/fabric-peer:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              {{- if .Values.configmap.enabled }}
+              # Replace core yaml
+              mkdir -p /etc/hyperledger/fabric
+              cp {{ .Values.configmap.mountPath }}/core.yaml  /etc/hyperledger/fabric/core.yaml
+
+              # Create external builder
+              mkdir -p /builders/external/bin
+              cp {{ .Values.configmap.mountPath }}/build      /builders/external/bin
+              cp {{ .Values.configmap.mountPath }}/detect     /builders/external/bin
+              cp {{ .Values.configmap.mountPath }}/release    /builders/external/bin
+              chmod 755 /builders/external/bin/*
+              {{- end }}
+
+              # Prepare MSP directory
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/admincerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/cacerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/keystore
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/signcerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/user
+              mkdir -p {{ .Values.certRootDir }}/debug/deliver
+              mkdir -p {{ .Values.certRootDir }}/debug/broadcast
+
+              cp /secret/msp/admincerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/admincerts
+              cp /secret/msp/cacerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/cacerts
+              cp /secret/msp/keystore.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/keystore
+              cp /secret/msp/signcerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/signcerts
+
+              # Start server
+              echo "🚀  peer node starting..."
+              peer node start
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
+            - name: CORE_PEER_ADDRESSAUTODETECT
+              value: "true"
+            - name: CORE_VM_DOCKER_ATTACHOUT
+              value: "true"
+            - name: CORE_PEER_NETWORKID
+              value: "nid1"
+            - name: FABRIC_LOGGING_SPEC
+              value: "INFO"
+            - name: CORE_PEER_TLS_ENABLED
+              value: "true"
+            - name: CORE_PEER_GOSSIP_USELEADERELECTION
+              value: "true"
+            - name: CORE_PEER_GOSSIP_ORGLEADER
+              value: "false"
+            - name: CORE_PEER_PROFILE_ENABLED
+              value: "true"
+            - name: CORE_PEER_ID
+              value: "{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}"
+            - name: CORE_PEER_ADDRESS
+              value: "{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}:7051"
+            - name: CORE_PEER_LISTENADDRESS
+              value: "0.0.0.0:7051"
+            - name: CORE_PEER_CHAINCODELISTENADDRESS
+              value: "0.0.0.0:7052"
+            - name: CORE_PEER_EVENTS_ADDRESS
+              value: "0.0.0.0:7053"
+            - name: CORE_PEER_LOCALMSPID
+              value: {{ .Values.mspid }}
+            - name: CORE_PEER_MSPCONFIGPATH
+              value: {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp
+            - name: CORE_PEER_TLS_CERT_FILE
+              value: /secret/tls/tlscert.pem
+            - name: CORE_PEER_TLS_KEY_FILE
+              value: /secret/tls/tlskey.pem
+            - name: CORE_PEER_TLS_ROOTCERT_FILE
+              value: /secret/tls/rootcert.pem
+            - name: CORE_PEER_GOSSIP_BOOTSTRAP
+              value: "{{ .Values.gossip.bootstrap }}"
+            {{- if .Values.gossip.external.enabled }}
+            - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
+              value: "{{ .Values.gossip.external.endpoint }}"
+            {{- end }}
+            - name: CORE_OPERATIONS_LISTENADDRESS
+              value: ":9443"
+            - name: CORE_METRICS_PROVIDER
+              value: prometheus
+            - name: GODEBUG
+              value: "netdns=go+1"
+            - name: CORE_PEER_GOSSIP_ALIVETIMEINTERVAL
+              value: "5s"
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            {{- if and .Values.persistence.enabled }}
+            - mountPath: {{ .Values.persistence.mountPath | quote }}
+              name: my-pvc
+            {{- end }}
+            {{- if .Values.configmap.enabled }}
+            - mountPath: {{ .Values.configmap.mountPath | quote }}
+              name: my-cm
+            {{- end }}
+            {{- if .Values.secretvol.enabled }}
+            {{- range .Values.secretvol.vol }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: gupload
+          image: ghcr.io/rtang03/gupload:0.1.10
+          imagePullPolicy: IfNotPresent
+          workingDir: /var/gupload
+          ports:
+          - containerPort: 1313
+            protocol: TCP
+            name: tls-request
+          - containerPort: 8080
+            protocol: TCP
+            name: http-nginx
+          command:
+            - sh
+            - -c
+            - |
+              echo "### Starting gupload ###"
+              /var/gupload/gupload --version
+              set -x
+              nginx
+              ln -s /secret/tls/rootcert.pem /usr/share/nginx/html/rootcert.pem
+              /var/gupload/gupload serve --key /secret/tls/tlskey.pem --certificate /secret/tls/tlscert.pem
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/default.conf
+              name: nginx-config
+              subPath: default.conf
+            {{- if .Values.secretvol.enabled }}
+            {{- range .Values.secretvol.vol }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+    {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
