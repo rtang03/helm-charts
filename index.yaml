@@ -202,6 +202,25 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-explorer-db-0.1.3/hlf-explorer-db-0.1.3.tgz
     version: 0.1.3
+  hlf-peer:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-11-08T07:33:03.534300382Z"
+    description: Hyperledger Fabric Peer chart for fabric-es project
+    digest: 86c90b27582f86b2e50a196961f5329756b614c051cdeb9151578b7a51b07daf
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.0/hlf-peer-0.1.0.tgz
+    version: 0.1.0
   jaeger:
   - annotations:
       artifacthub.io/changes: |
@@ -387,4 +406,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-08T06:24:58.42811222Z"
+generated: "2021-11-08T07:33:03.534386882Z"
