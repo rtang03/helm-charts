@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  auth-server:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-11-08T06:24:58.251263429Z"
+    description: Experimental auth server
+    digest: 61aea873fe8d570d66dd92d245c909355354fb9ab10d433af0ae5d009851e983
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: auth-server
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.0/auth-server-0.1.0.tgz
+    version: 0.1.0
   grafana:
   - annotations:
       artifacthub.io/changes: |
@@ -300,6 +319,23 @@ entries:
   redisearch:
   - annotations:
       artifacthub.io/changes: |
+        - "remove unnecessary route"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-11-08T06:24:58.428067119Z"
+    description: Redisearch for fabric-es project
+    digest: 2d1c0624718eac1a2dbe6c8141506fa754072454d83abbba4bf9318d92a040da
+    name: redisearch
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-0.1.2/redisearch-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "add values schema"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -351,4 +387,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-01T10:18:35.594017288Z"
+generated: "2021-11-08T06:24:58.42811222Z"
