@@ -1,0 +1,17 @@
+nodeSelector:
+  node.hkicl/nodename: node2
+
+appname: peer0
+orgname: onemore
+fqdn: peer0-onemore.cdi.dev3
+namespace: onemore
+
+mspid: OnemoreMSP
+
+secretvol:
+  enabled: true
+  vol:
+  - name: tls-peer0
+    mountPath: /secret/tls
+  - name: msp-peer0
+    mountPath: /secret/msp

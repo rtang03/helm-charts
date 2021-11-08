@@ -1,0 +1,17 @@
+nodeSelector:
+  node.hkicl/nodename: node1
+
+appname: peer0
+orgname: org1
+fqdn: peer0-org1.cdi.dev3
+namespace: n1
+
+mspid: Org1MSP
+
+secretvol:
+  enabled: true
+  vol:
+  - name: tls-peer0
+    mountPath: /secret/tls
+  - name: msp-peer0
+    mountPath: /secret/msp
