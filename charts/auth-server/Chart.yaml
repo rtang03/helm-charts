@@ -1,12 +1,13 @@
 apiVersion: v2
-name: redisearch
-description: Redisearch for fabric-es project
+name: auth-server
+description: Experimental auth server
 type: application
-version: 0.1.2
-appVersion: 2.0.5
+version: 0.1.0
+appVersion: "0.0.6"
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 annotations:
   artifacthub.io/changes: |
-    - "remove unnecessary route"
+    - "initial commit"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"

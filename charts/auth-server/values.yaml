@@ -1,0 +1,113 @@
+# Application Name
+appname: auth
+orgname: bochk
+
+# Istio
+fqdn: '*.cdi.network'
+gateway: gw-gw-bochk
+namespace: bochk
+
+clientApplicationName: root_client
+clientSecret: password
+jwtExpInSecond: "900"
+jwtSecret: secret
+logLevel: debug
+logTarget: console
+orgAdminEmail: admin@myorg.net
+orgAdminId: myadmin
+orgAdminSecret: t7CCOf0Vr0i8
+port: "8443"
+redisHost: redisearch-bochk
+redisPort: "6379"
+refreshTokenExpInSec: "86400"
+typeormDatabase: auth_db
+typeormHost: postgres-postgresql
+typeormPassword: docker
+typeormPort: "5432"
+typeormUsername: postgres
+# test cert
+# certPathCert: /cert/test-cdi-network.crt
+# certPathKey: /cert/test-cdi-network.key
+# real cert
+certPathCert: /cert/tls.crt
+certPathKey: /cert/tls.key
+
+timezone: 'Asia/Hong_Kong'
+
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http-auth
+    - port: 8443
+      targetPort: 8443
+      protocol: TCP
+      name: https-auth
+
+istioService:
+  enabled: false
+
+
+secretvol:
+  enabled: true
+  vol:
+  - name: sec-tls-network-bochk
+    mountPath: /cert
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 64Mi
+  limits:
+    cpu: 125m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

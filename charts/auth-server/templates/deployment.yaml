@@ -1,0 +1,143 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  labels:
+    {{- include "auth-server.labels" . | nindent 4 }}
+    app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "auth-server.selectorLabels" . | nindent 6 }}
+      app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "auth-server.selectorLabels" . | nindent 8 }}
+        app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.secretvol.enabled }}
+      volumes:
+        {{- range .Values.secretvol.vol }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
+        {{- end }}
+      {{- end }}
+
+      initContainers:
+        - name: init
+          image: alpine:3.13.5
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              until [ `(printf "PING\r\n") | nc {{ .Values.redisHost }} {{ .Values.redisPort }} | grep '+PONG'` ]; do echo 'waiting for {{ .Values.redisHost }}:{{ .Values.redisPort }}...' && sleep 1; done; echo '{{ .Values.redisHost }}:{{ .Values.redisPort }} alive!'
+              until [ `echo 'QUIT' | nc -w 1 {{ .Values.typeormHost }} {{ .Values.typeormPort }}; echo $? | grep '0'` ]; do echo 'waiting for {{ .Values.typeormHost }}:{{ .Values.typeormPort }}...' && sleep 1; done; echo '{{ .Values.typeormHost }}:{{ .Values.typeormPort }} alive!'
+              sleep 3
+
+      containers:
+        - name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "ghcr.io/rtang03/auth-server:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CLIENT_APPLICATION_NAME
+              value: {{ .Values.clientApplicationName }}
+            - name: CLIENT_SECRET
+              value: {{ .Values.clientSecret }}
+            - name: JWT_EXP_IN_SECOND
+              value: "{{ .Values.jwtExpInSecond }}"
+            - name: JWT_SECRET
+              value: {{ .Values.jwtSecret }}
+            - name: LOG_LEVEL
+              value: {{ .Values.logLevel }}
+            - name: LOG_TARGET
+              value: {{ .Values.logTarget }}
+            - name: ORG_ADMIN_EMAIL
+              value: {{ .Values.orgAdminEmail }}
+            - name: ORG_ADMIN_ID
+              value: {{ .Values.orgAdminId }}
+            - name: ORG_ADMIN_SECRET
+              value: {{ .Values.orgAdminSecret }}
+            - name: PORT
+              value: "{{ .Values.port }}"
+            - name: REDIS_HOST
+              value: {{ .Values.redisHost }}
+            - name: REDIS_PORT
+              value: "{{ .Values.redisPort }}"
+            - name: REFRESH_TOKEN_EXP_IN_SEC
+              value: "{{ .Values.refreshTokenExpInSec }}"
+            - name: TYPEORM_DATABASE
+              value: {{ .Values.typeormDatabase }}
+            - name: TYPEORM_HOST
+              value: {{ .Values.typeormHost }}
+            - name: TYPEORM_PASSWORD
+              value: {{ .Values.typeormPassword }}
+            - name: TYPEORM_PORT
+              value: "{{ .Values.typeormPort }}"
+            - name: TYPEORM_USERNAME
+              value: {{ .Values.typeormUsername }}
+            - name: TIME_ZONE
+              value: {{ .Values.timezone }}
+            {{- if .Values.certPathKey }}
+            - name: CERT_PATH_KEY
+              value: {{ .Values.certPathKey }}
+            {{- end }}
+            {{- if .Values.certPathCert }}
+            - name: CERT_PATH_CERT
+              value: {{ .Values.certPathCert }}
+            {{- end }}
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- if .Values.secretvol.enabled }}
+          volumeMounts:
+            {{- range .Values.secretvol.vol }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

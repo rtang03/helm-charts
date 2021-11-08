@@ -9,7 +9,6 @@ metadata:
 spec:
   hosts:
     - "{{ default "redisearch" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
-    - "{{ default "redisearch" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local"
   tcp:
     - route:
         - destination:
