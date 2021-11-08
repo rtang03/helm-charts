@@ -205,6 +205,24 @@ entries:
   hlf-peer:
   - annotations:
       artifacthub.io/changes: |
+        - "add values schema"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-11-08T14:15:26.968605917Z"
+    description: Hyperledger Fabric Peer chart for fabric-es project
+    digest: 11b604ab37b17d20276470d31c450002b8714c142975b3498be7f978ede71480
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.1/hlf-peer-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -406,4 +424,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-08T07:33:03.534386882Z"
+generated: "2021-11-08T14:15:26.968699118Z"
