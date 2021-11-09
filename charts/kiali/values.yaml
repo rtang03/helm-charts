@@ -1,3 +1,6 @@
-appname: kiali
+### CONFIGURABLE
 orgname: n1
+
+### FIXTURE
+appname: kiali
 namespace: istio-system

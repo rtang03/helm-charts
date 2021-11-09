@@ -7,27 +7,13 @@
   "default": {},
   "examples": [
     {
-      "appname": "kiali",
-      "orgname": "n1",
-      "namespace": "istio-system"
+      "orgname": "n1"
     }
   ],
   "required": [
-    "appname",
-    "orgname",
-    "namespace"
+    "orgname"
   ],
   "properties": {
-    "appname": {
-      "$id": "#/properties/appname",
-      "type": "string",
-      "title": "The appname schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "kiali"
-      ]
-    },
     "orgname": {
       "$id": "#/properties/orgname",
       "type": "string",
@@ -36,16 +22,6 @@
       "default": "",
       "examples": [
         "n1"
-      ]
-    },
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "istio-system"
       ]
     }
   },
