@@ -3,6 +3,27 @@ entries:
   auth-server:
   - annotations:
       artifacthub.io/changes: |
+        - "add values and schema"
+        - "remove (empty) livenessProbe and readinessProbe"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-11-12T14:37:26.428019037Z"
+    description: Experimental auth server
+    digest: 6d000cacc73c6a55dce8ae55773a8625a1829efb25991a5f955c5a4cc5de5633
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: auth-server
+    sources:
+    - https://github.com/rtang03/auth-server
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.1/auth-server-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -19,7 +40,63 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.0/auth-server-0.1.0.tgz
     version: 0.1.0
+  explorer:
+  - annotations:
+      artifacthub.io/changes: |
+        - "first release candidate"
+        - "change chart name"
+        - "update values.schema.json"
+        - "update label"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-11-12T14:37:26.572365821Z"
+    description: Hyperledger Explorer chart (Experimental)
+    digest: ea39b6b4b0b1fa177402be8aa56abd05e8cdfffd41d3a32e58962a500e68d794
+    name: explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-0.1.4/explorer-0.1.4.tgz
+    version: 0.1.4
+  explorer-db:
+  - annotations:
+      artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-11-12T14:37:26.739529103Z"
+    description: Hyperledger Explorer Database (Experimental)
+    digest: e04c78aad05717f2216a471de633c553f0f064352ab0cb9531c224c5fe51289a
+    name: explorer-db
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-db-0.1.6/explorer-db-0.1.6.tgz
+    version: 0.1.6
   grafana:
+  - annotations:
+      artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 8.2.2
+    created: "2021-11-12T14:37:26.897162186Z"
+    description: Grafana for fabric-es project
+    digest: 804f86aad5e3efa49aaa3b7907ede5c312bb2f11935415126ad5573bfc8dd9a8
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.6/grafana-0.1.6.tgz
+    version: 0.1.6
   - annotations:
       artifacthub.io/changes: |
         - "none"
@@ -107,6 +184,64 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
     version: 0.1.0
+  gw:
+  - annotations:
+      artifacthub.io/changes: |
+        - "cleanup values.yaml"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: gw-data-consumer-0.4.3
+    created: "2021-11-12T14:37:27.054904969Z"
+    description: Gateway App for fabric-es project
+    digest: 68cd3b8631eae8343f97d306214339cec43af646ce94c49575556ca667016cd9
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.0/gw-0.1.0.tgz
+    version: 0.1.0
+  hlf-ca:
+  - annotations:
+      artifacthub.io/changes: |
+        - "correct label"
+        - "Cannot replace pre-existing CA directly"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-11-12T14:37:27.204605852Z"
+    description: CA chart (Experimental)
+    digest: 621b1f65ae8645fa351fe2131434a849e7646132f8039298a66a7101d366dd62
+    name: hlf-ca
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-ca-0.1.1/hlf-ca-0.1.1.tgz
+    version: 0.1.1
+  hlf-chaincode:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-11-12T14:37:27.32238084Z"
+    description: External Chaincode Container chart (Experimental)
+    digest: 7b37320cb5512613e3880202d0a0e42c53372399d69d5dbd10aa6e3da08d3346
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: hlf-chaincode
+    sources:
+    - https://github.com/rtang03/fabric-es-chaincode
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-chaincode-0.1.1/hlf-chaincode-0.1.1.tgz
+    version: 0.1.1
   hlf-explorer:
   - annotations:
       artifacthub.io/changes: |
@@ -212,6 +347,23 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 2.3.2
+    created: "2021-11-12T14:37:27.475192323Z"
+    description: Peer chart (Experimental)
+    digest: 679e7daa1b7bb6f45f63115d93696c0ee301d1e7fe9dc6053ee7498166150aa9
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.2/hlf-peer-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "add values schema"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
     created: "2021-11-08T14:15:26.968605917Z"
     description: Hyperledger Fabric Peer chart for fabric-es project
     digest: 11b604ab37b17d20276470d31c450002b8714c142975b3498be7f978ede71480
@@ -240,6 +392,23 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.0/hlf-peer-0.1.0.tgz
     version: 0.1.0
   jaeger:
+  - annotations:
+      artifacthub.io/changes: |
+        - "update label"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: "1.27"
+    created: "2021-11-12T14:37:27.606737109Z"
+    description: Jaeger for fabric-es project
+    digest: 66aaf6a3ca19e67493f3d660c71cdf9d6a57bbdcaa8a5a9b1c8b322631738f02
+    name: jaeger
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.3/jaeger-0.1.3.tgz
+    version: 0.1.3
   - annotations:
       artifacthub.io/changes: |
         - "none"
@@ -284,6 +453,23 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.0/jaeger-0.1.0.tgz
     version: 0.1.0
   kiali:
+  - annotations:
+      artifacthub.io/changes: |
+        - "change values.schema.json"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.42.0
+    created: "2021-11-12T14:37:27.743599794Z"
+    description: Kiiali for fabric-es project
+    digest: 243682618df5f6598ee71206b91c51f27cf9d980ba2932ef6786511c26693ec1
+    name: kiali
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.3/kiali-0.1.3.tgz
+    version: 0.1.3
   - annotations:
       artifacthub.io/changes: |
         - "change values.schema.json"
@@ -341,6 +527,23 @@ entries:
       artifacthub.io/maintainers: |
         - name: "rtang03"
           email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.26.0
+    created: "2021-11-12T14:37:27.918608275Z"
+    description: Prometheus from fabric-es project (with custom scrapes)
+    digest: c11b25ca4cdc2d7e4b11ff7bd966050f95ea58b8bd226a368f224cda9e1141f8
+    name: prometheus
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/prometheus-0.1.1/prometheus-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 2.26.0
@@ -371,6 +574,25 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/redis-exporter-0.1.0/redis-exporter-0.1.0.tgz
     version: 0.1.0
   redisearch:
+  - annotations:
+      artifacthub.io/changes: |
+        - "correct label"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-11-12T14:37:28.081286157Z"
+    description: Redisearch for fabric-es project
+    digest: 33623fd9b6d99dfbcf5b5a702f0414bf9d66f728b9dba16d61337cc626f1af3a
+    name: redisearch
+    sources:
+    - https://github.com/rtang03/fabric-es
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-0.1.3/redisearch-0.1.3.tgz
+    version: 0.1.3
   - annotations:
       artifacthub.io/changes: |
         - "remove unnecessary route"
@@ -425,6 +647,25 @@ entries:
   redisearch-prometheus-exporter:
   - annotations:
       artifacthub.io/changes: |
+        - "none"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-11-12T14:37:28.229302541Z"
+    description: Export Redisearch FT.INFO for use by Prometheus.Supports RediSearch
+      v1.4, v1.6, >=v2.0
+    digest: 6a8d56252dc1c0cdc15d71ab39f96188e8149a61d0129b568454153f76fbc7f1
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: redisearch-prometheus-exporter
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.1/redisearch-prometheus-exporter-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -441,4 +682,22 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.0/redisearch-prometheus-exporter-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-09T13:05:35.643803333Z"
+  service-entry:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-11-12T14:37:28.371012325Z"
+    description: Helper charts to deploy service-entry
+    digest: 956409e707e8176de2513560280dc51221ec66dbd06b8c42eeebbacd260f01b8
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-12T14:37:28.371194425Z"
