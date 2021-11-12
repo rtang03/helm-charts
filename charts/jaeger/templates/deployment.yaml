@@ -54,7 +54,7 @@ spec:
         {{- if and .Values.persistence.enabled }}
         - name: data
           persistentVolumeClaim:
-            claimName: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- else }}
         - name: data
           emptyDir: {}

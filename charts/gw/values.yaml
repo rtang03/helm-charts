@@ -1,0 +1,162 @@
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+# Application Name
+orgname: ORGNAME
+
+# Istio
+fqdn: 'uat-ORGNAME.cdi.network'
+namespace: NAMESAPCE
+
+orderers:
+  - name: orderer0-org0
+    url: grpcs://orderer0-org0.cdi.testnet:7050
+  - name: orderer1-org0
+    url: grpcs://orderer1-org0.cdi.testnet:7050
+  - name: orderer2-org0
+    url: grpcs://orderer2-org0.cdi.testnet:7050
+  - name: orderer3-org0
+    url: grpcs://orderer3-org0.cdi.testnet:7050
+  - name: orderer4-org0
+    url: grpcs://orderer4-org0.cdi.testnet:7050
+
+####  application-related
+administratorPort: 15011
+authorizationServerUri: 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
+caEnrollmentIdAdmin: ca-admin
+caEnrollmentSecret: CA_ENROLLMENT_SECRET
+caName: enrollment-ca-ORGNAME
+channelName: cdi-testnet
+connectionProfile: /connection/connection.yaml
+gatewayHost: uat-ORGNAME.cdi.network
+gatewayPort: 4101
+logLevel: debug
+mspid: MSPID
+orgAdminId: myadmin
+orgAdminSecret: ORG_ADMIN_SECRET
+orgCaUrl: 'https://enrollmentca-ORGNAME:7054'
+orgName: bochk
+orgUrl: 'https://uat-ORGNAME.cdi.network:4101/gw_org'
+queryPort: 5001
+redisHost: redisearch-ORGNAME
+redisPort: 6379
+wallet: /assets/wallet
+orgKey: /assets/orgkey
+timezone: 'Asia/Hong_Kong'
+nodeTLSRejectUnauthorized:
+  enabled: false
+  value: "0"
+dataAccessHeaderAuthType: Bearer
+dataAccessApigwUrl: https://uat-TARGET_ORGNAME.cdi.network/apigw/gw/s2s/thirdparty/v1/SaleTransaction/fileUrls
+dataAccessMappedUrl: https://uat-TARGET_ORGNAME.cdi.network/datafile/
+
+# Emali Consent Flow App Param
+aclOrgId: CDI_PARTICIPANT_000001
+aclOrgAccountType: consumer
+aclFile: /assets/acl.json
+
+# Init Container
+authCheckUrl: 'https://uat-ORGNAME.cdi.network:8443/account/login'
+authCheckReply: Unauthorized
+# test cert
+# certPathCert: /cert/test-cdi-network.crt
+# certPathKey: /cert/test-cdi-network.key
+# caPathCert: /cert/test-cacert.crt
+# real cert
+certPathCert: /cert/tls.crt
+certPathKey: /cert/tls.key
+caPathCert: /cert/rootca.crt
+
+debugPlaceholder: queryHandler:* ioredis:redis gw-lib:*
+
+nodeSelector:
+  node.hkicl/nodename: node2
+
+revisionHistoryLimit: 15
+
+image:
+  repository: hktfp5/cdi-samples
+  pullPolicy: IfNotPresent
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 50Mi
+  mountPath: "/assets"
+  # existingClaim: ""
+
+#secretvol:
+#  enabled: true
+#  vol:
+#    - name: msp-admin
+#      mountPath: /crypto/msp-admin
+#    - name: sec-tls-ca-org0
+#      mountPath: /crypto/sec-tls-ca-org0
+#    - name: tls-peer0
+#      mountPath: /crypto/tls-peer0
+#    - name: sec-tls-network-bochk
+#      mountPath: /cert
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 1Gi
+  limits:
+    cpu: 500m
+    memory: 3Gi
+
+# either 0 or 1
+replicaCount: 1
+
+#######################
+### FIXTURE         ###
+#######################
+appname: gw
+
+configmap:
+  enabled: true
+  data: "config/*.*"
+  mountPath: "/connection"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 4001
+      targetPort: 4001
+      protocol: TCP
+      name: http-gw
+    - port: 4101
+      targetPort: 4101
+      protocol: TCP
+      name: https-gw
+
+tolerations: []
+
+affinity: {}

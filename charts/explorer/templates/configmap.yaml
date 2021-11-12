@@ -1,0 +1,85 @@
+{{- if .Values.configmap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "explorer.labels" . | nindent 4 }}
+data:
+  config.json: |
+    {
+      "network-configs": {
+        "cdi": {
+          "name": {{ .Values.network_name | quote }},
+          "profile": "./connection-profile/test-network.json"
+        }
+      }
+    }
+  test-network.json: |
+    {
+      "name": "test-network",
+      "version": "1.0.0",
+      "client": {
+          "tlsEnable": true,
+          "clientTlsIdentity": "<<<ID>>>",
+          "caCredential": {
+              "id": "ca-admin",
+              "password": "<<<CA_ADMIN_PASSWORD>>>"
+          },
+          "adminCredential": {
+              "id": "<<<ID>>>",
+              "password": "<<<PASSWORD>>>"
+          },
+          "enableAuthentication": true,
+          "organization": {{ .Values.mspid | quote }},
+          "connection": {
+              "timeout": {
+                  "peer": {
+                      "endorser": "300"
+                  },
+                  "orderer": "300"
+              }
+          }
+      },
+      "channels": {
+          {{ .Values.channel_name | quote }}: {
+              "peers": {
+                  "peer0": {}
+              }
+          }
+      },
+      "organizations": {
+        "{{ .Values.mspid }}": {
+              "mspid": {{ .Values.mspid | quote }},
+              "adminPrivateKey": {
+                  "path": "/secret/msp-admin/keystore.pem"
+              },
+              "peers": ["peer0"],
+              "signedCert": {
+                  "path": "/secret/msp-admin/signcerts.pem"
+              },
+              "certificateAuthorities": ["ca1"]
+          }
+      },
+      "peers": {
+          "peer0": {
+              "tlsCACerts": {
+                  "path": "/secret/tls-peer0/rootcert.pem"
+              },
+              "url": "grpcs://peer0-{{ .Values.orgname }}:7051"
+          }
+      },
+      "certificateAuthorities": {
+          "ca1": {
+              "url": "https://enrollment-ca-{{ .Values.orgname }}:7054",
+              "httpOptions": {
+                  "verify": false
+              },
+              "tlsCACerts": {
+                  "path": "/secret/tls-peer0/rootcert.pem"
+              },
+              "caName": "enrollment-ca-{{ .Values.orgname }}"
+          }
+      }
+    }
+{{- end }}

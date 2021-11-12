@@ -1,11 +1,11 @@
-# Application Name
-appname: auth
-orgname: bochk
-
-# Istio
-fqdn: '*.cdi.network'
-gateway: gw-gw-bochk
-namespace: bochk
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+fqdn: 'uat-ORGNAME.cdi.network' # used by Istio
+gateway: gw-gw-ORGNAME
+namespace: NAMESPACE
+orgname: ORGNAME
 
 clientApplicationName: root_client
 clientSecret: password
@@ -17,7 +17,7 @@ orgAdminEmail: admin@myorg.net
 orgAdminId: myadmin
 orgAdminSecret: t7CCOf0Vr0i8
 port: "8443"
-redisHost: redisearch-bochk
+redisHost: redisearch-ORGNAME.NAMESPACE.svc.cluster.local
 redisPort: "6379"
 refreshTokenExpInSec: "86400"
 typeormDatabase: auth_db
@@ -34,11 +34,34 @@ certPathKey: /cert/tls.key
 
 timezone: 'Asia/Hong_Kong'
 
+secretvol:
+  enabled: true
+  vol:
+    - name: sec-tls-network-ORGNAME
+      mountPath: /cert
 
-replicaCount: 1
+resources:
+  requests:
+    cpu: 25m
+    memory: 64Mi
+  limits:
+    cpu: 125m
+    memory: 256Mi
 
 image:
   pullPolicy: IfNotPresent
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+#######################
+### FIXTURE         ###
+#######################
+appname: auth
+
+replicaCount: 1
 
 imagePullSecrets: []
 nameOverride: ""
@@ -53,13 +76,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations:
-  sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
-  sidecar.istio.io/logLevel: "warning"
-
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
   # capabilities:
@@ -67,7 +85,7 @@ securityContext: {}
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+# runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -80,24 +98,6 @@ service:
       targetPort: 8443
       protocol: TCP
       name: https-auth
-
-istioService:
-  enabled: false
-
-
-secretvol:
-  enabled: true
-  vol:
-  - name: sec-tls-network-bochk
-    mountPath: /cert
-
-resources:
-  requests:
-    cpu: 25m
-    memory: 64Mi
-  limits:
-    cpu: 125m
-    memory: 256Mi
 
 autoscaling:
   enabled: false

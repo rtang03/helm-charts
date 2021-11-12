@@ -7,19 +7,12 @@
   "default": {},
   "examples": [
     {
-      "appname": "grafana",
       "orgname": "org1",
       "namespace": "n1",
-      "podAnnotations": {},
-      "podSecurityContext": {
-        "fsGroup": 472,
-        "runAsGroup": 472,
-        "runAsUser": 472
-      },
       "resources": {
         "requests": {
           "cpu": "100m",
-          "memory": "128Mi"
+          "memory": "64Mi"
         },
         "limits": {
           "cpu": "300m",
@@ -73,12 +66,6 @@
             "subPath": "hyperledger-fabric_rev1.json"
           },
           {
-            "name": "orderers",
-            "filename": "config/orderers_rev1.json",
-            "mountPath": "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json",
-            "subPath": "orderers_rev1.json"
-          },
-          {
             "name": "k8s-cluster",
             "filename": "config/k8s-cluster.json",
             "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-cluster.json",
@@ -91,36 +78,29 @@
             "subPath": "k8s-storage.json"
           },
           {
-            "name": "container",
-            "filename": "config/container_rev1.json",
-            "mountPath": "/var/lib/grafana/dashboards/k8s/container_rev1.json",
-            "subPath": "container_rev1.json"
+            "name": "redisearch-dashboard",
+            "filename": "config/redisearch_rev1.json",
+            "mountPath": "/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json",
+            "subPath": "redisearch_rev1.json"
+          },
+          {
+            "name": "redis-dashboard",
+            "filename": "config/redis_rev1.json",
+            "mountPath": "/var/lib/grafana/dashboards/hyperledger/redis_rev1.json",
+            "subPath": "redis_rev1.json"
           }
         ]
       }
     }
   ],
   "required": [
-    "appname",
     "orgname",
     "namespace",
-    "podAnnotations",
-    "podSecurityContext",
     "resources",
     "persistence",
     "configmap"
   ],
   "properties": {
-    "appname": {
-      "$id": "#/properties/appname",
-      "type": "string",
-      "title": "The appname schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "grafana"
-      ]
-    },
     "orgname": {
       "$id": "#/properties/orgname",
       "type": "string",
@@ -141,70 +121,6 @@
         "n1"
       ]
     },
-    "podAnnotations": {
-      "$id": "#/properties/podAnnotations",
-      "type": "object",
-      "title": "The podAnnotations schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {}
-      ],
-      "required": [],
-      "additionalProperties": true
-    },
-    "podSecurityContext": {
-      "$id": "#/properties/podSecurityContext",
-      "type": "object",
-      "title": "The podSecurityContext schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "fsGroup": 472,
-          "runAsGroup": 472,
-          "runAsUser": 472
-        }
-      ],
-      "required": [
-        "fsGroup",
-        "runAsGroup",
-        "runAsUser"
-      ],
-      "properties": {
-        "fsGroup": {
-          "$id": "#/properties/podSecurityContext/properties/fsGroup",
-          "type": "integer",
-          "title": "The fsGroup schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            472
-          ]
-        },
-        "runAsGroup": {
-          "$id": "#/properties/podSecurityContext/properties/runAsGroup",
-          "type": "integer",
-          "title": "The runAsGroup schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            472
-          ]
-        },
-        "runAsUser": {
-          "$id": "#/properties/podSecurityContext/properties/runAsUser",
-          "type": "integer",
-          "title": "The runAsUser schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            472
-          ]
-        }
-      },
-      "additionalProperties": true
-    },
     "resources": {
       "$id": "#/properties/resources",
       "type": "object",
@@ -215,7 +131,7 @@
         {
           "requests": {
             "cpu": "100m",
-            "memory": "128Mi"
+            "memory": "64Mi"
           },
           "limits": {
             "cpu": "300m",
@@ -237,7 +153,7 @@
           "examples": [
             {
               "cpu": "100m",
-              "memory": "128Mi"
+              "memory": "64Mi"
             }
           ],
           "required": [
@@ -262,7 +178,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "128Mi"
+                "64Mi"
               ]
             }
           },
@@ -447,12 +363,6 @@
               "subPath": "hyperledger-fabric_rev1.json"
             },
             {
-              "name": "orderers",
-              "filename": "config/orderers_rev1.json",
-              "mountPath": "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json",
-              "subPath": "orderers_rev1.json"
-            },
-            {
               "name": "k8s-cluster",
               "filename": "config/k8s-cluster.json",
               "mountPath": "/var/lib/grafana/dashboards/k8s/k8s-cluster.json",
@@ -465,10 +375,16 @@
               "subPath": "k8s-storage.json"
             },
             {
-              "name": "container",
-              "filename": "config/container_rev1.json",
-              "mountPath": "/var/lib/grafana/dashboards/k8s/container_rev1.json",
-              "subPath": "container_rev1.json"
+              "name": "redisearch-dashboard",
+              "filename": "config/redisearch_rev1.json",
+              "mountPath": "/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json",
+              "subPath": "redisearch_rev1.json"
+            },
+            {
+              "name": "redis-dashboard",
+              "filename": "config/redis_rev1.json",
+              "mountPath": "/var/lib/grafana/dashboards/hyperledger/redis_rev1.json",
+              "subPath": "redis_rev1.json"
             }
           ]
         }

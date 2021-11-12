@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "namespace": "NAMESPACE",
+      "domainName": "cdi.testnet",
+      "peersEnabled": true,
+      "peers": [
+        {
+          "address": "3.115.198.47",
+          "targetOrg": "bochk"
+        },
+        {
+          "address": "3.36.8.166",
+          "targetOrg": "hktvmall"
+        },
+        {
+          "address": "8.166.173.83",
+          "targetOrg": "paob"
+        },
+        {
+          "address": "16.163.16.100",
+          "targetOrg": "scb"
+        },
+        {
+          "address": "16.162.227.194",
+          "targetOrg": "tradelink"
+        },
+        {
+          "address": "18.166.87.129",
+          "targetOrg": "hkt"
+        },
+        {
+          "address": "18.163.164.100",
+          "targetOrg": "gs1"
+        },
+        {
+          "address": "18.166.119.246",
+          "targetOrg": "hase"
+        },
+        {
+          "address": "18.166.106.200",
+          "targetOrg": "qfpay"
+        },
+        {
+          "address": "16.162.232.86",
+          "targetOrg": "dbs"
+        },
+        {
+          "address": "18.167.125.24",
+          "targetOrg": "keychainpay"
+        },
+        {
+          "address": "13.208.60.10",
+          "targetOrg": "hkicl"
+        }
+      ],
+      "orderersEnabled": false,
+      "orderers": [
+        {
+          "address": "13.208.117.152",
+          "targetOrg": "orderer0"
+        },
+        {
+          "address": "13.208.60.10",
+          "targetOrg": "orderer1"
+        },
+        {
+          "address": "15.152.88.93",
+          "targetOrg": "orderer2"
+        },
+        {
+          "address": "13.208.117.152",
+          "targetOrg": "orderer3"
+        },
+        {
+          "address": "13.208.60.10",
+          "targetOrg": "orderer4"
+        }
+      ]
+    }
+  ],
+  "required": [
+    "namespace",
+    "domainName",
+    "peersEnabled",
+    "peers",
+    "orderersEnabled",
+    "orderers"
+  ],
+  "properties": {
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "NAMESPACE"
+      ]
+    },
+    "domainName": {
+      "$id": "#/properties/domainName",
+      "type": "string",
+      "title": "The domainName schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "cdi.testnet"
+      ]
+    },
+    "peersEnabled": {
+      "$id": "#/properties/peersEnabled",
+      "type": "boolean",
+      "title": "The peersEnabled schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "peers": {
+      "$id": "#/properties/peers",
+      "type": "array",
+      "title": "The peers schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "address": "3.115.198.47",
+            "targetOrg": "bochk"
+          },
+          {
+            "address": "3.36.8.166",
+            "targetOrg": "hktvmall"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/peers/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/peers/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "address": "3.115.198.47",
+                "targetOrg": "bochk"
+              }
+            ],
+            "required": [
+              "address",
+              "targetOrg"
+            ],
+            "properties": {
+              "address": {
+                "$id": "#/properties/peers/items/anyOf/0/properties/address",
+                "type": "string",
+                "title": "The address schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "3.115.198.47"
+                ]
+              },
+              "targetOrg": {
+                "$id": "#/properties/peers/items/anyOf/0/properties/targetOrg",
+                "type": "string",
+                "title": "The targetOrg schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "bochk"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "orderersEnabled": {
+      "$id": "#/properties/orderersEnabled",
+      "type": "boolean",
+      "title": "The orderersEnabled schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        false
+      ]
+    },
+    "orderers": {
+      "$id": "#/properties/orderers",
+      "type": "array",
+      "title": "The orderers schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "address": "13.208.117.152",
+            "targetOrg": "orderer0"
+          },
+          {
+            "address": "13.208.60.10",
+            "targetOrg": "orderer1"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/orderers/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/orderers/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "address": "13.208.117.152",
+                "targetOrg": "orderer0"
+              }
+            ],
+            "required": [
+              "address",
+              "targetOrg"
+            ],
+            "properties": {
+              "address": {
+                "$id": "#/properties/orderers/items/anyOf/0/properties/address",
+                "type": "string",
+                "title": "The address schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "13.208.117.152"
+                ]
+              },
+              "targetOrg": {
+                "$id": "#/properties/orderers/items/anyOf/0/properties/targetOrg",
+                "type": "string",
+                "title": "The targetOrg schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "orderer0"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

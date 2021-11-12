@@ -1,0 +1,13 @@
+apiVersion: v2
+name: explorer-db
+description: Hyperledger Explorer Database (Experimental)
+type: application
+version: 0.1.6
+appVersion: 1.1.8
+annotations:
+  artifacthub.io/changes: |
+    - "none"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "true"

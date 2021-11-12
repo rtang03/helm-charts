@@ -1,0 +1,82 @@
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+replicaCount: 1
+
+image:
+  repository: hktfp5/eventstore
+  pullPolicy: IfNotPresent
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 128Mi
+  limits:
+    cpu: 125m
+    memory: 256Mi
+
+timezone: Asia/Hong_Kong
+
+#######################
+### FIXTURE         ###
+#######################
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+chaincodeAddress: 0.0.0.0:7052
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 7052
+      targetPort: 7052
+      protocol: TCP
+      name: grpc-chaincode
+
+istioService:
+  enabled: true
+  port: 7052
+  name: tcp-ext-chaincode
+  protocol: TCP
+  destPort: 7052
+
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""

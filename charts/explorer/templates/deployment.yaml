@@ -1,0 +1,198 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "explorer.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  revisionHistoryLimit: 30  # removes old replicasets for deployment rollbacks
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0  # Avoid Terminating and ContainerCreating at the same time
+  selector:
+    matchLabels:
+      {{- include "explorer.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "explorer.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "appname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: my-pvc
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - name: my-cm
+          configMap:
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+            items:
+              - key: "config.json"
+                path: "config.json"
+              - key: "test-network.json"
+                path: "test-network.json"
+        {{- end }}
+        {{- if .Values.secretvol.enabled }}
+        {{- range .Values.secretvol.vol }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
+        {{- end }}
+        {{- end }}
+        - name: pgbouncer
+          configMap:
+            name: pgbouncer-sidecar
+        - name: wait-for-it
+          configMap:
+            name: wait-for-it
+            defaultMode: 0777
+      containers:
+        - name: pgbouncer-sidecar
+          image: "edoburu/pgbouncer:{{ .Values.pgbouncer.tag }}"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /etc/pgbouncer/pgbouncer.ini
+              subPath: pgbouncer.ini
+              name: pgbouncer
+            - mountPath: /etc/pgbouncer/userlist.txt
+              subPath: userlist.txt
+              name: pgbouncer
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 5432
+            periodSeconds: 60
+          lifecycle:
+            preStop:
+              exec:
+                # Allow existing queries clients to complete within 120 seconds
+                command: ["/bin/sh", "-c", "killall -INT pgbouncer && sleep 120"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ['all']
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "hyperledger/explorer:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: DISCOVERY_AS_LOCALHOST
+              value: "false /opt/explorer/syncstart.sh"
+            - name: DATABASE_HOST
+              value: "127.0.0.1"
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_DATABASE
+              value: fabricexplorer
+            - name: DATABASE_USERNAME
+              value: {{ .Values.database_username }}
+            - name: DATABASE_PASSWD
+              value: {{ .Values.database_passwd }}
+            - name: LOG_LEVEL_APP
+              value: {{ .Values.log_level_app }}
+            - name: LOG_LEVEL_DB
+              value: {{ .Values.log_level_db }}
+            - name: LOG_LEVEL_CONSOLE
+              value: {{ .Values.log_level_console }}
+            - name: LOG_CONSOLE_STDOUT
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: "sec-enrollment-ca-{{ .Values.orgname }}"
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          command:
+            - sh
+            - -c
+            - |
+              echo "*** Starting POD ***"
+              # remove tailing return
+              export CA_ADMIN_PASSWORD=$(echo $adminpw | sed -e 's/[\r\n]//g')
+              set -x
+              cp /tmp/test-network.json /opt/explorer/app/platform/fabric/connection-profile/test-network.json
+              set +x
+              export PASSWORD=$(more /secret/tokens/token)
+              sed -i "s|<<<CA_ADMIN_PASSWORD>>>|$CA_ADMIN_PASSWORD|g" /opt/explorer/app/platform/fabric/connection-profile/test-network.json
+              sed -i "s|<<<ID>>>|$MY_POD_NAME|g" /opt/explorer/app/platform/fabric/connection-profile/test-network.json
+              sed -i "s|<<<PASSWORD>>>|$PASSWORD|g" /opt/explorer/app/platform/fabric/connection-profile/test-network.json
+              echo "test-network.json is ready"
+              set -x
+              sed -i "s|\"type\": \"local\"|\"type\": \"host\"|g" /opt/explorer/app/explorerconfig.json
+              sed -i "s|\"blocksSyncTime\": \"1\"|\"blocksSyncTime\": \"{{ .Values.blocksSyncTime }}\"|g" /opt/explorer/app/explorerconfig.json
+              set +x
+              sleep 5
+              #### Note 1:
+              # "sleep 5" is not elegent, but safe to use. But I am tired of troubleshooting external mesh.
+              # Below commented should theoretically work, but block by istio. Let it alone.
+              # apk update
+              # apk upgrade
+              # apk add postgresql-client bash
+              # set -x
+              # /setup/wait-for-it.sh -s -t 30 127.0.0.1:5432  -- echo "is_ready"
+              # psql --list postgres://127.0.0.1/fabricexplorer
+              # echo $?
+              ### End of Note1
+              ### Note 2:
+              # In theory, the sync process should start automatically. But not knowing why, it does not.
+              # run sync process at the background explicitly.
+              ### End of Note2
+              ### Note 3:
+              # syncstart.sh will trigger frequent chaincode query via peer0. That means, it may impact peer0 performance.
+              /opt/explorer/syncstart.sh &
+              npm run app-start && tail -f /dev/null
+          volumeMounts:
+            - name: wait-for-it
+              mountPath: /setup/wait-for-it.sh
+              subPath: wait-for-it.sh
+            {{- if and .Values.persistence.enabled }}
+            - mountPath: {{ .Values.persistence.mountPath | quote }}
+              name: my-pvc
+            {{- end }}
+            - mountPath: /opt/explorer/app/platform/fabric/config.json
+              name: my-cm
+              subPath: config.json
+            - mountPath: /tmp/test-network.json
+              name: my-cm
+              subPath: test-network.json
+            {{- if .Values.secretvol.enabled }}
+            {{- range .Values.secretvol.vol }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

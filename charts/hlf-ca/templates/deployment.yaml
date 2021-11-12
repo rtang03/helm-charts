@@ -1,0 +1,125 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-ca.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "hlf-ca.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "hlf-ca.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: my-pvc
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - name: my-cm
+          configMap:
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+      containers:
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{hyperledger/fabric-ca:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # command: ["sh", "-c", "fabric-ca-server start -d -b {{ .Values.adminName }}:${ADMINPW} --cfg.affiliations.allowremove --cfg.identities.allowremove --port 7054"]
+          command:
+            - sh
+            - -c
+            - |
+              {{- if .Values.configmap.enabled }}
+              # Copy server yaml
+              mkdir -p {{ .Values.caServerHome }}
+              cp {{ .Values.configmap.mountPath }}/fabric-ca-server-config.yaml {{ .Values.caServerHome }}/fabric-ca-server-config.yaml
+              # Replace username and password
+              sed -i "s|<<<ADMIN>>>|${ADMIN}|g" {{ .Values.caServerHome }}/fabric-ca-server-config.yaml
+              sed -i "s|<<<ADMINPW>>>|${ADMINPW}|g" {{ .Values.caServerHome }}/fabric-ca-server-config.yaml
+              {{- end }}
+
+              # Start server
+              echo "🚀  fabric-ca-server starting..."
+              fabric-ca-server start -d -b {{ .Values.adminName }}:${ADMINPW} --cfg.affiliations.allowremove --cfg.identities.allowremove --port 7054
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
+            - name: FABRIC_CA_SERVER_TLS_ENABLED
+              value: "true"
+            - name: FABRIC_CA_SERVER_CSR_HOSTS
+              value: 0.0.0.0
+            - name: FABRIC_CA_SERVER_DEBUG
+              value: "true"
+            - name: FABRIC_CA_SERVER_HOME
+              value: {{ .Values.caServerHome }}
+            - name: FABRIC_CA_SERVER_CSR_CN
+              value: "{{ include "appname" . }}-{{ include "orgname" . }}"
+            - name: FABRIC_CA_SERVER_CA_NAME
+              value: "{{ include "appname" . }}-{{ include "orgname" . }}"
+            - name: ADMIN
+              value: "{{ .Values.adminName }}"
+            - name: ADMINPW
+              valueFrom:
+                secretKeyRef:
+                  name: sec-{{ include "appname" . }}-{{ include "orgname" . }}
+                  key: adminpw
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          volumeMounts:
+            {{- if and .Values.persistence.enabled }}
+            - mountPath: {{ .Values.persistence.mountPath | quote }}
+              name: my-pvc
+            {{- end }}
+            {{- if .Values.configmap.enabled }}
+            - mountPath: {{ .Values.configmap.mountPath | quote }}
+              name: my-cm
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

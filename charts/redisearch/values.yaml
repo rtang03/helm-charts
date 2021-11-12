@@ -1,16 +1,58 @@
-# Application Name
-appname: redisearch
-orgname: org2
-namespace: n2
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: ORGNAME
+config:
+  maxmemory: 1000mb
+timezone: 'Asia/Hong_Kong'
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 1Gi
+
+nodeSelector:
+  node.hkicl/nodename: node3
+
+persistence:
+  enabled: true
+  annotations: {}
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1000Mi
+  mountPath: "/data"
+
+redisExporterTag: 1.29.0
+
 replicaCount: 1
 
+#######################
+### FIXTURE         ###
+#######################
+appname: redisearch
 image:
+  repository: redislabs/redisearch
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-timezone: 'Asia/Hong_Kong'
+
+redisExporter:
+  repository:  oliver006/redis_exporter
+  service:
+    port: 9121
+    protocol: TCP
+    name: tcp-exporter
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -21,13 +63,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations:
-  sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
-  sidecar.istio.io/logLevel: "warning"
-
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
   # capabilities:
@@ -35,7 +72,7 @@ securityContext: {}
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+# runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -44,22 +81,26 @@ service:
       targetPort: 6379
       protocol: TCP
       name: tcp-redis
+    - port: 9121
+      targetPort: 9121
+      protocol: TCP
+      name: tcp-red-exp
 
-livenessProbe: {}
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
 
-readinessProbe: {}
-
-resources:
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  requests:
-    cpu: 100m
-    memory: 128Mi
-  limits:
-    cpu: 300m
-    memory: 1Gi
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 5
 
 autoscaling:
   enabled: false
@@ -67,9 +108,6 @@ autoscaling:
   maxReplicas: 1
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-nodeSelector:
-  node.hkicl/nodename: node3
 
 tolerations: []
 

@@ -377,7 +377,7 @@ data:
         - source_labels: [__param_target]
           target_label: instance
         - target_label: __address__
-          replacement: redis-exporter:9121
+          replacement: redisearch-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local:9121
   {{- end }}
   recording_rules.yml: |
     {}

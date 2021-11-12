@@ -1,13 +1,14 @@
 apiVersion: v2
 name: redisearch-prometheus-exporter
 # source coming from https://github.com/rtang03/redisearch_prometheus_exporter
-version: 0.1.0
+version: 0.1.1
 description: "Export Redisearch FT.INFO for use by Prometheus.Supports RediSearch v1.4, v1.6, >=v2.0"
 type: application
 appVersion: 0.0.2
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 annotations:
   artifacthub.io/changes: |
-    - "initial commit"
+    - "none"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"

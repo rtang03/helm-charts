@@ -46,6 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "auth-server.selectorLabels" -}}
+app: {{ .Chart.Name }}
+version: {{ .Chart.Version }}
 app.kubernetes.io/name: {{ include "auth-server.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -64,13 +66,13 @@ Create the name of the service account to use
 {{/*
 App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "auth-server.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
 Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

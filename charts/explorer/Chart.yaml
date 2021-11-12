@@ -1,0 +1,16 @@
+apiVersion: v2
+name: explorer
+description: Hyperledger Explorer chart (Experimental)
+type: application
+version: 0.1.4
+appVersion: 1.1.8
+annotations:
+  artifacthub.io/changes: |
+    - "first release candidate"
+    - "change chart name"
+    - "update values.schema.json"
+    - "update label"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "true"

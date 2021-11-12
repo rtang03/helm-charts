@@ -1,0 +1,146 @@
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+appname: enrollment-ca # MUST BE EITHER enrollment-ca OR tls-ca
+orgname: ORGNAME
+
+# CA-TYPE is either tlsca-bochk.cdi.testnet OR enrollmentca-bochk.cdi.testnet
+# fqdn is for external access
+fqdn: CA-TYPE-ORGNAME.cdi.testnet
+namespace: NAMESPACE
+
+# used when appName is "tls-ca"
+tlsca:
+  adminpw: PASSWORD
+
+# used when appName is "enrollment-ca"
+enrollmentca:
+  adminpw: PASSWORD
+
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+
+timezone: Asia/Hong_Kong
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  annotations: {}
+  ## storageClass: ""
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 50Mi
+  mountPath: "/var/artifacts"
+  # existingClaim: ""
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+#######################
+### FIXTURE         ###
+#######################
+adminName: ca-admin
+caServerHome: /var/artifacts/caserver
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 7054
+      targetPort: 7054
+      protocol: TCP
+      name: tls-request
+    - port: 9443
+      targetPort: 9443
+      protocol: TCP
+      name: http-metrics
+
+istioService:
+  enabled: true
+  ports:
+    - port: 7054
+      name: https-ext-listen-endpoint
+      protocol: HTTPS
+      destPort: 7054
+    - port: 80
+      name: http-ext-metrics
+      protocol: HTTP
+      destPort: 9443
+      match:
+      - port: 80
+      - uri:
+          exact: /healthz
+
+livenessProbe:
+  successThreshold: 1
+  failureThreshold: 3
+  httpGet:
+    scheme: HTTP
+    path: /healthz
+    port: 9443
+  initialDelaySeconds: 20
+  periodSeconds: 10
+
+readinessProbe:
+  successThreshold: 1
+  failureThreshold: 3
+  httpGet:
+    scheme: HTTP
+    path: /healthz
+    port: 9443
+  initialDelaySeconds: 20
+  periodSeconds: 10
+
+configmap:
+  enabled: true
+  data: "config/*.*"
+  mountPath: "/setup"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+

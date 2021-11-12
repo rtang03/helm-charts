@@ -1,14 +1,15 @@
-###############################
-# CONFIGURABLE ITEMS
-###############################
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
 # use "peer0" or "peer1"
 appname: peer0
-# orgnanization name
-orgname: bochk
+# organization name
+orgname: ORGNAME
 # fqdn used in Route 53 private hosted zone
-fqdn: peer0-bochk.cdi.testnet
-namespace: bochk
-mspid: BochkMSP
+fqdn: peer0-ORGNAME.cdi.testnet
+namespace: NAMESPACE
+mspid: MSPID
 timezone: Asia/Hong_Kong
 
 # configuring istio
@@ -75,20 +76,19 @@ secretvol:
 #      mountPath: /secret/tls
 #    - name: msp-peer1
 #      mountPath: /secret/msp
-
-###############################
-# FIXTURE. SHOULD NOT BE CHANGE
-###############################
 nodeSelector:
   node.hkicl/nodename: node2
 
-certRootDir: /var/artifacts
-cryptoDir: crypto-config
-
 replicaCount: 1
 
+#######################
+### FIXTURE         ###
+#######################
 image:
+  repository: hyperledger/fabric-peer
   pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 2.3.2
 
 imagePullSecrets: []
 nameOverride: ""
@@ -104,7 +104,7 @@ serviceAccount:
   name: ""
 
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
   # capabilities:
@@ -112,7 +112,7 @@ securityContext: {}
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+# runAsUser: 1000
 
 service:
   type: ClusterIP
@@ -161,36 +161,20 @@ istioService:
       protocol: HTTP
       destPort: 8080
       match:
-      - uri:
-          exact: /index.html
-      - uri:
-          exact: /gupload
-      - uri:
-          exact: /rootcert.pem
-      - uri:
-          exact: /tlscert.pem
+        - uri:
+            exact: /index.html
+        - uri:
+            exact: /gupload
+        - uri:
+            exact: /rootcert.pem
+        - uri:
+            exact: /tlscert.pem
     - name: http-ext-metrics
       protocol: HTTP
       destPort: 9443
       match:
-      - uri:
-          exact: /healthz
-
-configmap:
-  enabled: true
-  data: "config/*"
-  mountPath: "/setup"
-
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 1
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-tolerations: []
-
-affinity: {}
+        - uri:
+            exact: /healthz
 
 livenessProbe:
   successThreshold: 1
@@ -211,3 +195,26 @@ readinessProbe:
     port: 9443
   initialDelaySeconds: 30
   periodSeconds: 10
+
+configmap:
+  enabled: true
+  data: "config/*"
+  mountPath: "/setup"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+tolerations: []
+
+affinity: {}
+
+##
+## HLF-PEER DEFAULT VALUES. These values can be overriden
+##
+# Cluster Wide
+certRootDir: /var/artifacts
+cryptoDir: crypto-config

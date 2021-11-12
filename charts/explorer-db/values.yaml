@@ -1,0 +1,99 @@
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: ORGNAME
+database_username: DATABASE_USERNAME
+database_passwd: DATABASE_PASSWORD
+namespace: NAMESPACE
+
+image:
+  pullPolicy: IfNotPresent
+
+persistence:
+  enabled: true
+  annotations: {}
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  ## storageClass: ""
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 5Gi
+  mountPath: "/var/explorer"
+  # existingClaim: ""
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+#######################
+### FIXTURE         ###
+#######################
+appname: explorer-db
+
+replicaCount: 1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+#  sidecar.istio.io/inject: "false"
+
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+      name: tcp-postgresql
+
+configmap:
+  enabled: true
+  data: "config/*"
+  mountPath: "/setup"
+
+affinity: {}
+tolerations: []
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+
+istioService:
+  enabled: true
+  ports:
+    - port: 5432
+      name: tcp-postgresql
+      protocol: TCP
+      destPort: 5432

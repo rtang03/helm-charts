@@ -1,7 +1,7 @@
 apiVersion: v2
 name: grafana
 # source coming from https://istio.io/latest/docs/ops/integrations/grafana/#configuration
-version: 0.1.5
+version: 0.1.6
 description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
@@ -11,4 +11,4 @@ annotations:
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "false"
+  artifacthub.io/prerelease: "true"

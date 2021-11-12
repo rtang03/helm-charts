@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "hlf-peer.labels" . | nindent 4 }}
-    app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       {{- include "hlf-peer.selectorLabels" . | nindent 6 }}
-      app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -20,28 +18,25 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: {{ .Chart.Name }}
-        version: {{ .Chart.Version }}
         {{- include "hlf-peer.selectorLabels" . | nindent 8 }}
-        app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: sa-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         {{- if and .Values.persistence.enabled }}
         - name: my-pvc
           persistentVolumeClaim:
-            claimName: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- end }}
         {{- if .Values.configmap.enabled }}
         - name: my-cm
           configMap:
-            name: cm-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- end }}
         {{- if .Values.secretvol.enabled }}
         {{- range .Values.secretvol.vol }}
@@ -52,9 +47,9 @@ spec:
         {{- end }}
         - name: nginx-config
           configMap:
-            name: cm-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}-nginx
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}-nginx
       containers:
-        - name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "hyperledger/fabric-peer:{{ .Chart.AppVersion }}"
@@ -113,9 +108,9 @@ spec:
             - name: CORE_PEER_PROFILE_ENABLED
               value: "true"
             - name: CORE_PEER_ID
-              value: "{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}"
+              value: "{{ include "appname" . }}-{{ include "orgname" . }}"
             - name: CORE_PEER_ADDRESS
-              value: "{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}:7051"
+              value: "{{ include "appname" . }}-{{ include "orgname" . }}:7051"
             - name: CORE_PEER_LISTENADDRESS
               value: "0.0.0.0:7051"
             - name: CORE_PEER_CHAINCODELISTENADDRESS

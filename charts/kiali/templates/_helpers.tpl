@@ -64,13 +64,13 @@ Create the name of the service account to use
 {{/*
 App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "kiali.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
 Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

@@ -1,3 +1,7 @@
+# About
+
+NOTE: This chart is opinionated for experimental project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
+
 ### Port forward
 
 ```shell
@@ -15,6 +19,8 @@ Note: After updating dashboard json file in configMap, Grafana deployment need t
 - Istio Service Dashboard
 - Istio Workload Dashboard
 - Istio Mesh Dashboard
+- Redis Dashboard
+- Redisearch Dashboard
 
-### Reference Info
-- [Monitor k8s w caAdvisor](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-b190cc97f0f6)
+### Reference
+- [k8s metrics](https://blog.freshtracks.io/a-deep-dive-into-kubernetes-metrics-part-3-container-resource-metrics-361c5ee46e66)
