@@ -1,0 +1,14 @@
+apiVersion: v2
+name: hlf-ca
+description: CA chart (Experimental)
+type: application
+version: 0.1.1
+appVersion: 1.5.0
+annotations:
+  artifacthub.io/changes: |
+    - "correct label"
+    - "Cannot replace pre-existing CA directly"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "false"

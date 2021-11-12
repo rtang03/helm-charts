@@ -1,27 +1,22 @@
-{{- if .Values.istioService.enabled }}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "auth-server.labels" . | nindent 4 }}
-    vs.hkicl/name: vs-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   gateways:
-  - gw-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  - gw-{{ include "appname" . }}-{{ include "orgname" . }}
   hosts:
   - {{ .Values.fqdn }}
-  http:
-  {{- range .Values.istioService.ports }}
-  {{ if eq "HTTP" .protocol }}
+  tls:
   - match:
-    {{- toYaml .match | nindent 4}}
+      - port: 8443
+        sniHosts:
+          - {{ .Values.fqdn }}
     route:
     - destination:
         host: {{ default "auth-server" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
         port:
-          number: {{ .destPort }}
+          number: 8443
       weight: 100
-  {{ end }}
-  {{- end }}
-{{- end }}

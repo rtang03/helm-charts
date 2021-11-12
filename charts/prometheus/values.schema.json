@@ -7,7 +7,6 @@
   "default": {},
   "examples": [
     {
-      "appname": "prometheus",
       "orgname": "org1",
       "namespace": "n1",
       "persistence": {
@@ -18,21 +17,14 @@
         "size": "20Gi",
         "mountPath": "/data"
       },
-      "podSecurityContext": {
-        "fsGroup": 65534,
-        "runAsGroup": 65534,
-        "runAsNonRoot": true,
-        "runAsUser": 65534
-      },
-      "securityContext": {},
       "resources": {
         "requests": {
-          "cpu": "300m",
+          "cpu": "100m",
           "memory": "640Mi"
         },
         "limits": {
-          "cpu": "500m",
-          "memory": "1000Mi"
+          "cpu": "400m",
+          "memory": "1500Mi"
         }
       },
       "prometheus": {
@@ -47,19 +39,19 @@
           "enabled": true
         },
         "hyperledgerOrderer0": {
-          "enabled": true
+          "enabled": false
         },
         "hyperledgerOrderer1": {
-          "enabled": true
+          "enabled": false
         },
         "hyperledgerOrderer2": {
-          "enabled": true
+          "enabled": false
         },
         "hyperledgerOrderer3": {
-          "enabled": true
+          "enabled": false
         },
         "hyperledgerOrderer4": {
-          "enabled": true
+          "enabled": false
         },
         "hyperledgerPeer0": {
           "enabled": true
@@ -68,36 +60,23 @@
           "enabled": true
         },
         "redisearchPrometheusExporter": {
-          "enabled": false
+          "enabled": true
         },
         "redisExporter": {
-          "enabled": false
+          "enabled": true
         }
       }
     }
   ],
   "required": [
-    "appname",
     "orgname",
     "namespace",
     "persistence",
-    "podSecurityContext",
-    "securityContext",
     "resources",
     "prometheus",
     "scrapes"
   ],
   "properties": {
-    "appname": {
-      "$id": "#/properties/appname",
-      "type": "string",
-      "title": "The appname schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "prometheus"
-      ]
-    },
     "orgname": {
       "$id": "#/properties/orgname",
       "type": "string",
@@ -208,82 +187,6 @@
       },
       "additionalProperties": true
     },
-    "podSecurityContext": {
-      "$id": "#/properties/podSecurityContext",
-      "type": "object",
-      "title": "The podSecurityContext schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "fsGroup": 65534,
-          "runAsGroup": 65534,
-          "runAsNonRoot": true,
-          "runAsUser": 65534
-        }
-      ],
-      "required": [
-        "fsGroup",
-        "runAsGroup",
-        "runAsNonRoot",
-        "runAsUser"
-      ],
-      "properties": {
-        "fsGroup": {
-          "$id": "#/properties/podSecurityContext/properties/fsGroup",
-          "type": "integer",
-          "title": "The fsGroup schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            65534
-          ]
-        },
-        "runAsGroup": {
-          "$id": "#/properties/podSecurityContext/properties/runAsGroup",
-          "type": "integer",
-          "title": "The runAsGroup schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            65534
-          ]
-        },
-        "runAsNonRoot": {
-          "$id": "#/properties/podSecurityContext/properties/runAsNonRoot",
-          "type": "boolean",
-          "title": "The runAsNonRoot schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": false,
-          "examples": [
-            true
-          ]
-        },
-        "runAsUser": {
-          "$id": "#/properties/podSecurityContext/properties/runAsUser",
-          "type": "integer",
-          "title": "The runAsUser schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": 0,
-          "examples": [
-            65534
-          ]
-        }
-      },
-      "additionalProperties": true
-    },
-    "securityContext": {
-      "$id": "#/properties/securityContext",
-      "type": "object",
-      "title": "The securityContext schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {}
-      ],
-      "required": [],
-      "additionalProperties": true
-    },
     "resources": {
       "$id": "#/properties/resources",
       "type": "object",
@@ -293,12 +196,12 @@
       "examples": [
         {
           "requests": {
-            "cpu": "300m",
+            "cpu": "100m",
             "memory": "640Mi"
           },
           "limits": {
-            "cpu": "500m",
-            "memory": "1000Mi"
+            "cpu": "400m",
+            "memory": "1500Mi"
           }
         }
       ],
@@ -315,7 +218,7 @@
           "default": {},
           "examples": [
             {
-              "cpu": "300m",
+              "cpu": "100m",
               "memory": "640Mi"
             }
           ],
@@ -331,7 +234,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "300m"
+                "100m"
               ]
             },
             "memory": {
@@ -355,8 +258,8 @@
           "default": {},
           "examples": [
             {
-              "cpu": "500m",
-              "memory": "1000Mi"
+              "cpu": "400m",
+              "memory": "1500Mi"
             }
           ],
           "required": [
@@ -371,7 +274,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "500m"
+                "400m"
               ]
             },
             "memory": {
@@ -381,7 +284,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "1000Mi"
+                "1500Mi"
               ]
             }
           },
@@ -476,19 +379,19 @@
             "enabled": true
           },
           "hyperledgerOrderer0": {
-            "enabled": true
+            "enabled": false
           },
           "hyperledgerOrderer1": {
-            "enabled": true
+            "enabled": false
           },
           "hyperledgerOrderer2": {
-            "enabled": true
+            "enabled": false
           },
           "hyperledgerOrderer3": {
-            "enabled": true
+            "enabled": false
           },
           "hyperledgerOrderer4": {
-            "enabled": true
+            "enabled": false
           },
           "hyperledgerPeer0": {
             "enabled": true
@@ -497,10 +400,10 @@
             "enabled": true
           },
           "redisearchPrometheusExporter": {
-            "enabled": false
+            "enabled": true
           },
           "redisExporter": {
-            "enabled": false
+            "enabled": true
           }
         }
       ],
@@ -553,7 +456,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": true
+              "enabled": false
             }
           ],
           "required": [
@@ -567,7 +470,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                true
+                false
               ]
             }
           },
@@ -581,7 +484,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": true
+              "enabled": false
             }
           ],
           "required": [
@@ -595,7 +498,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                true
+                false
               ]
             }
           },
@@ -609,7 +512,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": true
+              "enabled": false
             }
           ],
           "required": [
@@ -623,7 +526,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                true
+                false
               ]
             }
           },
@@ -637,7 +540,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": true
+              "enabled": false
             }
           ],
           "required": [
@@ -651,7 +554,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                true
+                false
               ]
             }
           },
@@ -665,7 +568,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": true
+              "enabled": false
             }
           ],
           "required": [
@@ -679,7 +582,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                true
+                false
               ]
             }
           },
@@ -749,7 +652,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": false
+              "enabled": true
             }
           ],
           "required": [
@@ -763,7 +666,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                false
+                true
               ]
             }
           },
@@ -777,7 +680,7 @@
           "default": {},
           "examples": [
             {
-              "enabled": false
+              "enabled": true
             }
           ],
           "required": [
@@ -791,7 +694,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": false,
               "examples": [
-                false
+                true
               ]
             }
           },

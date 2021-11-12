@@ -1,7 +1,7 @@
 apiVersion: v2
 name: prometheus
 # source coming from https://istio.io/latest/docs/ops/integrations/prometheus/#configuration
-version: 0.1.0
+version: 0.1.1
 description: Prometheus from fabric-es project (with custom scrapes)
 type: application
 appVersion: 2.26.0
@@ -11,4 +11,4 @@ annotations:
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "false"
+  artifacthub.io/prerelease: "true"

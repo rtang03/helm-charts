@@ -1,7 +1,9 @@
-# Application Name
-appname: prometheus
-orgname: org1
-namespace: n1
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: ORGNAME
+namespace: NAMESPACE
 
 persistence:
   enabled: true
@@ -11,22 +13,14 @@ persistence:
   size: 20Gi
   mountPath: "/data"
 
-podSecurityContext:
-  fsGroup: 65534
-  runAsGroup: 65534
-  runAsNonRoot: true
-  runAsUser: 65534
-
-securityContext: {}
-
 # Prometheus consumes at least 512 Mi
 resources:
   requests:
-    cpu: 300m
+    cpu: 100m
     memory: 640Mi
   limits:
-    cpu: 500m
-    memory: 1000Mi
+    cpu: 400m
+    memory: 1500Mi
 
 prometheus:
   global:
@@ -39,19 +33,19 @@ scrapes:
     enabled: true
   # Eligible for Org 0/1 deployment
   hyperledgerOrderer0:
-    enabled: true
+    enabled: false
   # Eligible for Org 0/1 deployment
   hyperledgerOrderer1:
-    enabled: true
+    enabled: false
   # Eligible for Org 0/1 deployment
   hyperledgerOrderer2:
-    enabled: true
+    enabled: false
   # Eligible for Org 0/1 deployment
   hyperledgerOrderer3:
-    enabled: true
+    enabled: false
   # Eligible for Org 0/1 deployment
   hyperledgerOrderer4:
-    enabled: true
+    enabled: false
   # Eligible for ALL orgs
   hyperledgerPeer0:
     enabled: true
@@ -60,7 +54,20 @@ scrapes:
     enabled: true
   # Eligible for OrgX, NOT for Org 0/1 deployment
   redisearchPrometheusExporter:
-    enabled: false
+    enabled: true
   # Eligible for OrgX, NOT for Org 0/1 deployment
   redisExporter:
-    enabled: false
+    enabled: true
+
+#######################
+### FIXTURE         ###
+#######################
+appname: prometheus
+
+podSecurityContext:
+  fsGroup: 65534
+  runAsGroup: 65534
+  runAsNonRoot: true
+  runAsUser: 65534
+
+securityContext: {}

@@ -1,0 +1,19 @@
+{{- if .Values.istioService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "explorer.labels" . | nindent 4 }}
+spec:
+  hosts:
+    - "{{ default "explorer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
+  http:
+  - route:
+    - destination:
+        host: {{ default "explorer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+        port:
+          number: 8080
+      weight: 100
+{{- end }}

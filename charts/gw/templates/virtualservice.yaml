@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "gw.labels" . | nindent 4 }}
+spec:
+  gateways:
+  - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  hosts:
+  - {{ .Values.fqdn | quote }}
+  tls:
+    - match:
+        - port: 4101
+          sniHosts:
+            - uat-bochk.cdi.network
+      route:
+        - destination:
+            host: gw-bochk.bochk.svc.cluster.local
+            port:
+              number: 4101
+          weight: 100

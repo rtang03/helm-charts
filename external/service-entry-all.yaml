@@ -1,0 +1,203 @@
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-bochk-cdi-test
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-bochk.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 3.115.198.47
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-hktvmall
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-hktvmall.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 3.36.8.166
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-paob
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-paob.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.166.173.83
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-scb
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-scb.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 16.163.16.100
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-tradelink
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-tradelink.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 16.162.227.194
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-hkt
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-hkt.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.166.87.129
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-gs1
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-gs1.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.163.164.100
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-hase
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-hase.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.166.119.246
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-qfpay
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-qfpay.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.166.106.200
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-dbs
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-dbs.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 16.162.232.86
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-keychainpay
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-keychainpay.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 18.167.125.24
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-hkicl
+  namespace: bochk
+spec:
+  hosts:
+    - peer0-org1.cdi.testnet
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: 13.208.60.10

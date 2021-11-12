@@ -1,0 +1,21 @@
+{{- if .Values.peersEnabled }}
+{{- range .Values.peers }}
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: peer0-{{ .targetOrg }}-external
+  namespace: {{ $.Values.namespace }}
+spec:
+  hosts:
+    - peer0-{{ .targetOrg }}.{{ $.Values.domainName }}
+  ports:
+    - number: 7051
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7051
+  resolution: STATIC
+  endpoints:
+    - address: {{ .address }}
+---
+{{- end }}
+{{- end }}

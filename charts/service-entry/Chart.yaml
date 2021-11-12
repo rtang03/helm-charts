@@ -1,0 +1,13 @@
+apiVersion: v2
+name: service-entry
+version: 0.1.0
+description: Helper charts to deploy service-entry
+type: application
+appVersion: 0.0.1
+annotations:
+  artifacthub.io/changes: |
+    - "initial commit"
+  artifacthub.io/maintainers: |
+    - name: "rtang03"
+      email: "ask@dashslab.com"
+  artifacthub.io/prerelease: "true"

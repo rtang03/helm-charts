@@ -1,0 +1,23 @@
+{{- if .Values.istioService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "explorer-db.labels" . | nindent 4 }}
+spec:
+  gateways:
+    - mesh
+  hosts:
+    - "{{ default "explorer-db" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
+  tcp:
+    - match:
+        - port: 5432
+      route:
+        - destination:
+            host: {{ default "explorer-db" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+            port:
+              number: 5432
+          weight: 100
+  {{- end }}

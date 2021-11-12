@@ -2,10 +2,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "hlf-peer.labels" . | nindent 4 }}
-    pvc.hkicl/name: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 {{- if .Values.persistence.annotations }}
   annotations:
 {{ toYaml .Values.persistence.annotations | indent 4 }}

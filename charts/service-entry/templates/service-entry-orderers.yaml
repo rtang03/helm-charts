@@ -1,0 +1,21 @@
+{{- if .Values.orderersEnabled }}
+{{- range .Values.orderers }}
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: {{ .targetOrg }}-org0
+  namespace: {{ $.Values.namespace }}
+spec:
+  hosts:
+    - {{ .targetOrg }}-org0.{{ $.Values.domainName }}
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: {{ .address }}
+---
+{{- end }}
+{{- end }}

@@ -7,9 +7,7 @@
   "default": {},
   "examples": [
     {
-      "appname": "jaeger",
       "orgname": "n1",
-      "namespace": "default",
       "podAnnotations": {
         "prometheus.io/scrape": "true",
         "prometheus.io/port": "14269"
@@ -17,11 +15,11 @@
       "resources": {
         "requests": {
           "cpu": "100m",
-          "memory": "64Mi"
+          "memory": "128Mi"
         },
         "limits": {
-          "cpu": "100m",
-          "memory": "128Mi"
+          "cpu": "200m",
+          "memory": "256Mi"
         }
       },
       "persistence": {
@@ -29,30 +27,18 @@
         "annotations": {},
         "storageClass": "",
         "accessMode": "ReadWriteOnce",
-        "size": "5Gi",
+        "size": "1Gi",
         "mountPath": "/badger"
       }
     }
   ],
   "required": [
-    "appname",
     "orgname",
-    "namespace",
     "podAnnotations",
     "resources",
     "persistence"
   ],
   "properties": {
-    "appname": {
-      "$id": "#/properties/appname",
-      "type": "string",
-      "title": "The appname schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "jaeger"
-      ]
-    },
     "orgname": {
       "$id": "#/properties/orgname",
       "type": "string",
@@ -61,16 +47,6 @@
       "default": "",
       "examples": [
         "n1"
-      ]
-    },
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "default"
       ]
     },
     "podAnnotations": {
@@ -123,11 +99,11 @@
         {
           "requests": {
             "cpu": "100m",
-            "memory": "64Mi"
+            "memory": "128Mi"
           },
           "limits": {
-            "cpu": "100m",
-            "memory": "128Mi"
+            "cpu": "200m",
+            "memory": "256Mi"
           }
         }
       ],
@@ -145,7 +121,7 @@
           "examples": [
             {
               "cpu": "100m",
-              "memory": "64Mi"
+              "memory": "128Mi"
             }
           ],
           "required": [
@@ -170,7 +146,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "64Mi"
+                "128Mi"
               ]
             }
           },
@@ -184,8 +160,8 @@
           "default": {},
           "examples": [
             {
-              "cpu": "100m",
-              "memory": "128Mi"
+              "cpu": "200m",
+              "memory": "256Mi"
             }
           ],
           "required": [
@@ -200,7 +176,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "100m"
+                "200m"
               ]
             },
             "memory": {
@@ -210,7 +186,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "128Mi"
+                "256Mi"
               ]
             }
           },
@@ -231,7 +207,7 @@
           "annotations": {},
           "storageClass": "",
           "accessMode": "ReadWriteOnce",
-          "size": "5Gi",
+          "size": "1Gi",
           "mountPath": "/badger"
         }
       ],
@@ -293,7 +269,7 @@
           "description": "An explanation about the purpose of this instance.",
           "default": "",
           "examples": [
-            "5Gi"
+            "1Gi"
           ]
         },
         "mountPath": {

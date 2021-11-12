@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "redisearch.labels" . | nindent 4 }}
-    svc.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   type: {{ .Values.service.type }}
   {{- with .Values.service.ports }}
@@ -13,4 +12,3 @@ spec:
   {{- end }}
   selector:
     {{- include "redisearch.selectorLabels" . | nindent 4 }}
-    app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}

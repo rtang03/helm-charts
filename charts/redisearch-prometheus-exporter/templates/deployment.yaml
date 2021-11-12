@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hkicl.appname" . }}
+  name: {{ include "appname" . }}
   labels:
     {{- include "redisearch-prometheus-exporter.labels" . | nindent 4 }}
-    app.hkicl/name: {{ include "hkicl.appname" . }}
 spec:
   replicas: 1
   selector:
@@ -18,21 +17,20 @@ spec:
       {{- end }}
       labels:
         {{- include "redisearch-prometheus-exporter.selectorLabels" . | nindent 8 }}
-        app.hkicl/name: {{ include "hkicl.appname" . }}
     spec:
       containers:
-        - name: {{ include "hkicl.appname" . }}
+        - name: {{ include "appname" . }}
           image: "ghcr.io/rtang03/redisearch_prometheus_exporter:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: REDISEARCH_ADDR
               value: "redisearch-{{ .Values.orgname }}.{{ .Values.orgname }}.svc.cluster.local:6379"
             - name: REDISEARCH_EXPORTER_CONNECTION_TIMEOUT
-              value: {{ .Values.timeout }}
+              value: "5s"
             - name: REDISEARCH_EXPORTER_DEBUG
-              value: {{ .Values.debug }}
+              value: "true"
             - name: REDISEARCH_EXPORTER_STATIC_INDEX_LIST
-              value: {{ .Values.redisearchExporterStaticIndex | default "cidx" }}
+              value: {{ .Values.redisearchExporterStaticIndex }}
           ports:
             {{- range .Values.service.ports }}
             - name: {{ .name }}

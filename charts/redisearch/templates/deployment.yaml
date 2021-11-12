@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "redisearch.labels" . | nindent 4 }}
-    app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -12,7 +11,6 @@ spec:
   selector:
     matchLabels:
       {{- include "redisearch.selectorLabels" . | nindent 6 }}
-      app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -21,20 +19,35 @@ spec:
       {{- end }}
       labels:
         {{- include "redisearch.selectorLabels" . | nindent 8 }}
-        app.hkicl/name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: sa-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        - name: health
+          configMap:
+            name: {{ include "appname" . }}-health
+            defaultMode: 0755
+        - name: config
+          configMap:
+            name: {{ include "appname" . }}-config
+            items:
+              - key: redis-config
+                path: redis.conf
       containers:
-        - name: {{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "redislabs/redisearch:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: TZ
@@ -45,18 +58,64 @@ spec:
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
             {{- end }}
-
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /health
+              name: health
+            - mountPath: /user/local/etc/redis/redis.conf
+              name: config
+              subPath: redis.conf
+          {{- if .Values.livenessProbe.enabled }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
-            {{- toYaml . | nindent 12 }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+            timeoutSeconds: {{ .timeoutSeconds }}
+            successThreshold: {{ .successThreshold }}
+            failureThreshold: {{ .failureThreshold }}
+            exec:
+              command:
+                - sh
+                - -c
+                - /health/ping_liveness_local.sh {{ .timeoutSeconds }}
           {{- end }}
-
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           {{- with .Values.readinessProbe }}
           readinessProbe:
-            {{- toYaml . | nindent 12 }}
+            initialDelaySeconds: {{ .initialDelaySeconds }}
+            periodSeconds: {{ .periodSeconds }}
+            timeoutSeconds: {{ .timeoutSeconds }}
+            successThreshold: {{ .successThreshold }}
+            failureThreshold: {{ .failureThreshold }}
+            exec:
+              command:
+              - sh
+              - -c
+              - /health/ping_readiness_local.sh {{ .timeoutSeconds }}
+          {{- end }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - name: redis-exporter
+          image: "{{ .Values.redisExporter.repository }}:v{{ .Values.redisExporterTag }}"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REDIS_ADDR
+              value: "localhost:6379"
+            - name: REDIS_EXPORTER_CONNECTION_TIMEOUT
+              value: "15s"
+            - name: REDIS_EXPORTER_INCL_SYSTEM_METRICS
+              value: "false"
+            - name: REDIS_EXPORTER_REDIS_ONLY_METRICS
+              value: "true"
+          ports:
+            {{- with .Values.redisExporter.service }}
+            - containerPort: {{ .port }}
+              name: {{ .name }}
+              protocol: {{ .protocol }}
+         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

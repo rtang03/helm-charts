@@ -1,6 +1,11 @@
-### CONFIGURABLE
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
 orgname: n1
 
-### FIXTURE
+#######################
+### FIXTURE         ###
+#######################
 appname: kiali
 namespace: istio-system

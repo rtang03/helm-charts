@@ -1,0 +1,126 @@
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: ORGNAME
+namespace: NAMESPACE
+mspid: MSPID
+channel_name: cdi-testnet
+# network name for use in Explorer only, can be any name
+network_name: cdi_testnet
+peer_url: grpcs://peer0-ORGNAME.cdi.testnet:7051
+ca_url: https://enrollment-ca-ORGNAME:7054
+# fqdn is reserved for future use. And, it shall have istioGateway manifest
+database_username: DATABASE_USERNAME
+database_passwd: DATABASE_PASSWORD
+# info | debug
+log_level_app: info
+log_level_db: info
+log_level_console: info
+# sync interval by minute
+blocksSyncTime: 5
+
+# use replicaCount to disable it
+replicaCount: 0
+
+image:
+  pullPolicy: IfNotPresent
+
+pgbouncer:
+  tag: 1.15.0
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 150Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+podAnnotations:
+  sidecar.istio.io/rewriteAppHTTPProbers: "false"
+  # trace|debug|info|warning|error|critical|off
+  sidecar.istio.io/logLevel: "warning"
+
+persistence:
+  enabled: true
+  annotations: {}
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  ## storageClass: ""
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  mountPath: "/opt/explorer/wallet/cdi"
+  # existingClaim: ""
+
+#######################
+### FIXTURE         ###
+#######################
+appname: explorer
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http-explorer
+
+configmap:
+  enabled: true
+
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+affinity: {}
+tolerations: []
+
+secretvol:
+  enabled: true
+  vol:
+    - name: msp-admin
+      mountPath: /secret/msp-admin
+    - name: tls-peer0
+      mountPath: /secret/tls-peer0
+    - name: explorer-login-token
+      mountPath: /secret/tokens
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+
+istioService:
+  enabled: true
+  ports:
+    - port: 8080
+      name: http-ext
+      protocol: HTTP
+      destPort: 8080

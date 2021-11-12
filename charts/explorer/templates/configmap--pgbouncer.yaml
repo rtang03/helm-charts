@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer-sidecar
+  namespace: {{ .Release.Namespace }}
+  labels:
+  {{- include "explorer.labels" . | nindent 4 }}
+data:
+  pgbouncer.ini: |
+    [databases]
+    fabricexplorer = host=explorer-db-{{ .Values.orgname }} port=5432 dbname=fabricexplorer user={{ .Values.database_username }} password={{ .Values.database_passwd }}
+
+    [pgbouncer]
+    listen_port = 5432
+    listen_addr = 127.0.0.1
+    auth_type = any
+    auth_file = /etc/pgbouncer/userlist.txt
+    admin_users = hppoc
+    pool_mode = session
+    max_client_conn = 10
+    server_reset_query = DISCARD ALL
+    verbose = 0
+  userlist.txt: |
+    "{{ .Values.database_username }}" "{{ .Values.database_passwd }}"

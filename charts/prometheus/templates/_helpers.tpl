@@ -64,15 +64,15 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-App Name
+HKICL App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "prometheus.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
-Org Name
+HKICL Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

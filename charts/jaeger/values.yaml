@@ -1,6 +1,8 @@
-appname: jaeger
-orgname: n1
-namespace: default
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: bochk
 
 podAnnotations:
   prometheus.io/scrape: "true"
@@ -9,15 +11,20 @@ podAnnotations:
 resources:
   requests:
     cpu: 100m
-    memory: 64Mi
-  limits:
-    cpu: 100m
     memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
 
 persistence:
   enabled: true
   annotations: {}
   storageClass: ""
   accessMode: ReadWriteOnce
-  size: 5Gi
+  size: 1Gi
   mountPath: "/badger"
+
+#######################
+### FIXTURE         ###
+#######################
+appname: jaeger

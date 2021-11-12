@@ -1,0 +1,198 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "gw.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      {{- include "gw.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gw.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: my-pvc
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - name: my-cm
+          configMap:
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        - name: msp-admin
+          secret:
+            secretName: msp-admin
+        - name: sec-tls-ca-org0
+          secret:
+            secretName: sec-tls-ca-org0
+        - name: tls-peer0
+          secret:
+            secretName: tls-peer0
+        - name: sec-tls-network-{{ .Values.orgname }}
+          secret:
+            secretName: sec-tls-network-{{ .Values.orgname }}
+      initContainers:
+        - name: init
+          image: "curlimages/curl:7.75.0"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            # see https://linuxpip.org/curl-failed-to-verify-the-legitimacy-of-the-server/
+            - |
+              until [ `curl -k --cacert {{ .Values.caPathCert }} {{ .Values.authCheckUrl }} | grep '{{ .Values.authCheckReply }}'` ]; do echo 'waiting for auth server...' && sleep 1; done; echo 'Auth server alive!'
+          volumeMounts:
+            - name: sec-tls-network-{{ .Values.orgname }}
+              mountPath: /cert
+      containers:
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              until [ -d "{{ .Values.persistence.mountPath }}" ]; do echo 'waiting for {{ .Values.persistence.mountPath }}...' && sleep 1; done; echo '{{ .Values.persistence.mountPath }} exists.'
+              until [ -f "{{ .Values.connectionProfile }}" ]; do echo 'waiting for {{ .Values.connectionProfile }}...' && sleep 1; done; echo '{{ .Values.connectionProfile }} exists.'
+              until [ `(printf "PING\r\n") | nc {{ .Values.redisHost }} {{ .Values.redisPort }} | grep '+PONG'` ]; do echo 'waiting for {{ .Values.redisHost }}:{{ .Values.redisPort }}...' && sleep 1; done; echo '{{ .Values.redisHost }}:{{ .Values.redisPort }} alive!'
+              # sleep infinity
+
+              entrypoint.sh "gateway" "admin queryHandler consent consentPrivate dataRequest dataRequestPrivate proxy fdiProxyApi fdiProxyPublic fdiProxyPrivate"
+          env:
+            - name: ACL_ORG_ACCOUNT_TYPE
+              value: {{ .Values.aclOrgAccountType }}
+            - name: ACL_ORG_ID
+              value: {{ .Values.aclOrgId }}
+            - name: ACL_ORG_NAME
+              value: {{ .Values.orgName }}
+            - name: ACL_FILE
+              value: {{ .Values.aclFile }}
+            - name: ADMINISTRATOR_PORT
+              value: '{{ .Values.administratorPort }}'
+            - name: AUTHORIZATION_SERVER_URI
+              value: {{ .Values.authorizationServerUri }}
+            - name: CA_ENROLLMENT_ID_ADMIN
+              value: {{ .Values.caEnrollmentIdAdmin }}
+            - name: CA_ENROLLMENT_SECRET_ADMIN
+              value: {{ .Values.caEnrollmentSecret }}
+            - name: CA_NAME
+              value: {{ .Values.caName }}
+            - name: CHANNEL_NAME
+              value: {{ .Values.channelName }}
+            - name: CONNECTION_PROFILE
+              value: {{ .Values.connectionProfile }}
+            - name: GATEWAY_HOST
+              value: {{ .Values.gatewayHost }}
+            - name: GATEWAY_PORT
+              value: '{{ .Values.gatewayPort }}'
+            - name: GRAPHQL_PATH
+              value: 'gw_org'
+            - name: LOG_LEVEL
+              value: {{ .Values.logLevel }}
+            - name: MSPID
+              value: {{ .Values.mspid }}
+            - name: ORG_ADMIN_ID
+              value: {{ .Values.orgAdminId }}
+            - name: ORG_ADMIN_SECRET
+              value: {{ .Values.orgAdminSecret }}
+            - name: ORG_CA_URL
+              value: {{ .Values.orgCaUrl }}
+            - name: ORGNAME
+              value: {{ .Values.orgName }}
+            - name: ORGURL
+              value: {{ .Values.orgUrl }}
+            - name: QUERY_PORT
+              value: '{{ .Values.queryPort }}'
+            - name: REDIS_HOST
+              value: {{ .Values.redisHost }}
+            - name: REDIS_PORT
+              value: '{{ .Values.redisPort }}'
+            - name: TZ
+              value: {{ .Values.timezone }}
+            - name: WALLET
+              value: {{ .Values.wallet }}
+            - name: ORGKEY
+              value: {{ .Values.orgKey }}
+            - name: DATA_ACCESS_HEADER_AUTH_TYPE
+              value: {{ .Values.dataAccessHeaderAuthType }}
+            - name: DATA_ACCESS_APIGW_URL
+              value: {{ .Values.dataAccessApigwUrl }}
+            - name: DATA_ACCESS_MAPPED_URL
+              value: {{ .Values.dataAccessMappedUrl }}
+            {{- if .Values.certPathKey }}
+            - name: CERT_PATH_KEY
+              value: {{ .Values.certPathKey }}
+            {{- end }}
+            {{- if .Values.certPathCert }}
+            - name: CERT_PATH_CERT
+              value: {{ .Values.certPathCert }}
+            {{- end }}
+            {{- if .Values.nodeTLSRejectUnauthorized.enabled }}
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: {{ .Values.nodeTLSRejectUnauthorized.value }}
+            {{- end }}
+            {{- if .Values.caPathCert }}
+            - name: NODE_EXTRA_CA_CERTS
+              value: {{ .Values.caPathCert }}
+            {{- end }}
+            {{- if .Values.debugPlaceholder }}
+            - name: DEBUG
+              value: {{ .Values.debugPlaceholder | quote }}
+            {{- end }}
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          volumeMounts:
+            {{- if .Values.persistence.enabled }}
+            - mountPath: {{ .Values.persistence.mountPath | quote }}
+              name: my-pvc
+            {{- end }}
+            {{- if .Values.configmap.enabled }}
+            - mountPath: {{ .Values.configmap.mountPath | quote }}
+              name: my-cm
+            {{- end }}
+            - name: msp-admin
+              mountPath: /crypto/msp-admin
+            - name: sec-tls-ca-org0
+              mountPath: /crypto/sec-tls-ca-org0
+            - name: tls-peer0
+              mountPath: /crypto/tls-peer0
+            - name: sec-tls-network-{{ .Values.orgname }}
+              mountPath: /cert
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

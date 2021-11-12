@@ -8,7 +8,7 @@ metadata:
     {{- include "grafana.labels" . | nindent 4 }}
 spec:
   replicas: 1
-  revisionHistoryLimit: 25
+  revisionHistoryLimit: 30
   selector:
     matchLabels:
       {{- include "grafana.selectorLabels" . | nindent 6 }}
@@ -24,7 +24,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
-      serviceAccountName: sa-{{ include "hkicl.appname" . }}
+      serviceAccountName: sa-{{ include "appname" . }}
       automountServiceAccountToken: true
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -44,6 +44,9 @@ spec:
               mountPath: {{ .mountPath }}
               subPath: {{ .subPath }}
             {{- end }}
+            - name: container-resource
+              mountPath: "/var/lib/grafana/dashboards/k8s/container_rev1.json"
+              subPath: "container_rev1.json"
             - name: config
               mountPath: "/etc/grafana/provisioning/datasources/datasources.yaml"
               subPath: "datasources.yaml"
@@ -98,10 +101,13 @@ spec:
           configMap:
             name: {{ .name }}
         {{- end }}
+        - name: container-resource
+          configMap:
+            name: container-resource
         {{- if and .Values.persistence.enabled }}
         - name: storage
           persistentVolumeClaim:
-            claimName: pvc-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- else }}
         - name: storage
           emptyDir: {}

@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+data:
+  connnection.yaml: |
+    name: connection-profile-{{ .Values.orgname }}
+    version: 1.0.0
+    description: connection profile for {{ .Values.orgname }}
+
+    client:
+      organization: {{ .Values.mspid }}
+      credentialStore:
+        path: /assets/client-certs/hfc-kvs/{{ .Values.orgname }}
+        cryptoStore:
+          path: /assets/client-certs/hfc-kvs/{{ .Values.orgname }}
+      connection:
+        timeout:
+          peer:
+            endorser: '300'
+          orderer: '300'
+
+    channels:
+      "{{ .Values.channelName }}":
+        orderers:
+          - orderer0-org0
+          - orderer1-org0
+          - orderer2-org0
+          - orderer3-org0
+          - orderer4-org0
+        peers:
+          peer0-{{ .Values.orgname }}:
+            endorsingPeer: true
+            chaincodeQuery: true
+            ledgerQuery: true
+            eventSource: true
+          peer1-{{ .Values.orgname }}:
+            endorsingPeer: true
+            chaincodeQuery: true
+            ledgerQuery: true
+            eventSource: true
+        chaincodes:
+          - eventstore
+
+    organizations:
+      "{{ .Values.mspid }}":
+        mspid: {{ .Values.mspid }}
+        peers:
+          - peer0-{{ .Values.orgname }}
+          - peer1-{{ .Values.orgname }}
+        certificateAuthorities:
+          - enrollment-ca-{{ .Values.orgname }}
+        adminPrivateKey:
+          path: /crypto/crypto/msp-admin/keystore.pem
+        signedCert:
+          path: /crypto/crypto/msp-admin/signcerts.pem
+    orderers:
+      {{- range .Values.orderers }}
+      "{{ .name }}":
+        url: {{ .url }}
+        tlsCACerts:
+          path: /crypto/sec-tls-ca-org0/org0-tls-ca-cert.pem
+      {{- end }}
+    peers:
+      peer0-{{ .Values.orgname }}:
+        url: grpcs://peer0-{{ .Values.orgname }}:7051
+        eventUrl: grpcs://peer0-{{ .Values.orgname }}:7053
+        tlsCACerts:
+          path: /crypto/tls-peer0/rootcert.pem
+      peer1-{{ .Values.orgname }}:
+        url: grpcs://peer1-{{ .Values.orgname }}:7051
+        eventUrl: grpcs://peer1-{{ .Values.orgname }}:7053
+        tlsCACerts:
+          path: /crypto/tls-peer0/rootcert.pem
+    certificateAuthorities:
+      enrollment-ca-{{ .Values.orgname }}:
+        url: https://enrollment-ca-{{ .Values.orgname }}:7054
+        caName: enrollment-ca-{{ .Values.orgname }}
+        tlsCACerts:
+          path: /crypto/tls-peer0/rootcert.pem
+        registrar:
+          - enrollId: ca-admin
+            enrollSecret: {{ .Values.caEnrollmentSecret }}
+        httpOptions:
+          verify: false
+

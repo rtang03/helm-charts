@@ -1,0 +1,617 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "fqdn": "uat-ORGNAME.cdi.network",
+      "gateway": "gw-gw-ORGNAME",
+      "namespace": "NAMESPACE",
+      "orgname": "ORGNAME",
+      "clientApplicationName": "root_client",
+      "clientSecret": "password",
+      "jwtExpInSecond": "900",
+      "jwtSecret": "secret",
+      "logLevel": "debug",
+      "logTarget": "console",
+      "orgAdminEmail": "admin@myorg.net",
+      "orgAdminId": "myadmin",
+      "orgAdminSecret": "t7CCOf0Vr0i8",
+      "port": "8443",
+      "redisHost": "redisearch-ORGNAME.NAMESPACE.svc.cluster.local",
+      "redisPort": "6379",
+      "refreshTokenExpInSec": "86400",
+      "typeormDatabase": "auth_db",
+      "typeormHost": "postgres-postgresql",
+      "typeormPassword": "docker",
+      "typeormPort": "5432",
+      "typeormUsername": "postgres",
+      "certPathCert": "/cert/tls.crt",
+      "certPathKey": "/cert/tls.key",
+      "timezone": "Asia/Hong_Kong",
+      "secretvol": {
+        "enabled": true,
+        "vol": [
+          {
+            "name": "sec-tls-network-ORGNAME",
+            "mountPath": "/cert"
+          }
+        ]
+      },
+      "resources": {
+        "requests": {
+          "cpu": "25m",
+          "memory": "64Mi"
+        },
+        "limits": {
+          "cpu": "125m",
+          "memory": "256Mi"
+        }
+      },
+      "image": {
+        "pullPolicy": "IfNotPresent"
+      },
+      "podAnnotations": {
+        "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+        "sidecar.istio.io/logLevel": "warning"
+      }
+    }
+  ],
+  "required": [
+    "fqdn",
+    "gateway",
+    "namespace",
+    "orgname",
+    "clientApplicationName",
+    "clientSecret",
+    "jwtExpInSecond",
+    "jwtSecret",
+    "logLevel",
+    "logTarget",
+    "orgAdminEmail",
+    "orgAdminId",
+    "orgAdminSecret",
+    "port",
+    "redisHost",
+    "redisPort",
+    "refreshTokenExpInSec",
+    "typeormDatabase",
+    "typeormHost",
+    "typeormPassword",
+    "typeormPort",
+    "typeormUsername",
+    "certPathCert",
+    "certPathKey",
+    "timezone",
+    "secretvol",
+    "resources",
+    "image",
+    "podAnnotations"
+  ],
+  "properties": {
+    "fqdn": {
+      "$id": "#/properties/fqdn",
+      "type": "string",
+      "title": "The fqdn schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "uat-ORGNAME.cdi.network"
+      ]
+    },
+    "gateway": {
+      "$id": "#/properties/gateway",
+      "type": "string",
+      "title": "The gateway schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "gw-gw-ORGNAME"
+      ]
+    },
+    "namespace": {
+      "$id": "#/properties/namespace",
+      "type": "string",
+      "title": "The namespace schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "NAMESPACE"
+      ]
+    },
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "ORGNAME"
+      ]
+    },
+    "clientApplicationName": {
+      "$id": "#/properties/clientApplicationName",
+      "type": "string",
+      "title": "The clientApplicationName schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "root_client"
+      ]
+    },
+    "clientSecret": {
+      "$id": "#/properties/clientSecret",
+      "type": "string",
+      "title": "The clientSecret schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "password"
+      ]
+    },
+    "jwtExpInSecond": {
+      "$id": "#/properties/jwtExpInSecond",
+      "type": "string",
+      "title": "The jwtExpInSecond schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "900"
+      ]
+    },
+    "jwtSecret": {
+      "$id": "#/properties/jwtSecret",
+      "type": "string",
+      "title": "The jwtSecret schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "secret"
+      ]
+    },
+    "logLevel": {
+      "$id": "#/properties/logLevel",
+      "type": "string",
+      "title": "The logLevel schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "debug"
+      ]
+    },
+    "logTarget": {
+      "$id": "#/properties/logTarget",
+      "type": "string",
+      "title": "The logTarget schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "console"
+      ]
+    },
+    "orgAdminEmail": {
+      "$id": "#/properties/orgAdminEmail",
+      "type": "string",
+      "title": "The orgAdminEmail schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "admin@myorg.net"
+      ]
+    },
+    "orgAdminId": {
+      "$id": "#/properties/orgAdminId",
+      "type": "string",
+      "title": "The orgAdminId schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "myadmin"
+      ]
+    },
+    "orgAdminSecret": {
+      "$id": "#/properties/orgAdminSecret",
+      "type": "string",
+      "title": "The orgAdminSecret schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "t7CCOf0Vr0i8"
+      ]
+    },
+    "port": {
+      "$id": "#/properties/port",
+      "type": "string",
+      "title": "The port schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "8443"
+      ]
+    },
+    "redisHost": {
+      "$id": "#/properties/redisHost",
+      "type": "string",
+      "title": "The redisHost schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "redisearch-ORGNAME.NAMESPACE.svc.cluster.local"
+      ]
+    },
+    "redisPort": {
+      "$id": "#/properties/redisPort",
+      "type": "string",
+      "title": "The redisPort schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "6379"
+      ]
+    },
+    "refreshTokenExpInSec": {
+      "$id": "#/properties/refreshTokenExpInSec",
+      "type": "string",
+      "title": "The refreshTokenExpInSec schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "86400"
+      ]
+    },
+    "typeormDatabase": {
+      "$id": "#/properties/typeormDatabase",
+      "type": "string",
+      "title": "The typeormDatabase schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "auth_db"
+      ]
+    },
+    "typeormHost": {
+      "$id": "#/properties/typeormHost",
+      "type": "string",
+      "title": "The typeormHost schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "postgres-postgresql"
+      ]
+    },
+    "typeormPassword": {
+      "$id": "#/properties/typeormPassword",
+      "type": "string",
+      "title": "The typeormPassword schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "docker"
+      ]
+    },
+    "typeormPort": {
+      "$id": "#/properties/typeormPort",
+      "type": "string",
+      "title": "The typeormPort schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "5432"
+      ]
+    },
+    "typeormUsername": {
+      "$id": "#/properties/typeormUsername",
+      "type": "string",
+      "title": "The typeormUsername schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "postgres"
+      ]
+    },
+    "certPathCert": {
+      "$id": "#/properties/certPathCert",
+      "type": "string",
+      "title": "The certPathCert schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "/cert/tls.crt"
+      ]
+    },
+    "certPathKey": {
+      "$id": "#/properties/certPathKey",
+      "type": "string",
+      "title": "The certPathKey schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "/cert/tls.key"
+      ]
+    },
+    "timezone": {
+      "$id": "#/properties/timezone",
+      "type": "string",
+      "title": "The timezone schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "Asia/Hong_Kong"
+      ]
+    },
+    "secretvol": {
+      "$id": "#/properties/secretvol",
+      "type": "object",
+      "title": "The secretvol schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "vol": [
+            {
+              "name": "sec-tls-network-ORGNAME",
+              "mountPath": "/cert"
+            }
+          ]
+        }
+      ],
+      "required": [
+        "enabled",
+        "vol"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/secretvol/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "vol": {
+          "$id": "#/properties/secretvol/properties/vol",
+          "type": "array",
+          "title": "The vol schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "name": "sec-tls-network-ORGNAME",
+                "mountPath": "/cert"
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/secretvol/properties/vol/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/secretvol/properties/vol/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "name": "sec-tls-network-ORGNAME",
+                    "mountPath": "/cert"
+                  }
+                ],
+                "required": [
+                  "name",
+                  "mountPath"
+                ],
+                "properties": {
+                  "name": {
+                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/name",
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "sec-tls-network-ORGNAME"
+                    ]
+                  },
+                  "mountPath": {
+                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/mountPath",
+                    "type": "string",
+                    "title": "The mountPath schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "/cert"
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "resources": {
+      "$id": "#/properties/resources",
+      "type": "object",
+      "title": "The resources schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "requests": {
+            "cpu": "25m",
+            "memory": "64Mi"
+          },
+          "limits": {
+            "cpu": "125m",
+            "memory": "256Mi"
+          }
+        }
+      ],
+      "required": [
+        "requests",
+        "limits"
+      ],
+      "properties": {
+        "requests": {
+          "$id": "#/properties/resources/properties/requests",
+          "type": "object",
+          "title": "The requests schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "25m",
+              "memory": "64Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/requests/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "25m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/requests/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "64Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "limits": {
+          "$id": "#/properties/resources/properties/limits",
+          "type": "object",
+          "title": "The limits schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "cpu": "125m",
+              "memory": "256Mi"
+            }
+          ],
+          "required": [
+            "cpu",
+            "memory"
+          ],
+          "properties": {
+            "cpu": {
+              "$id": "#/properties/resources/properties/limits/properties/cpu",
+              "type": "string",
+              "title": "The cpu schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "125m"
+              ]
+            },
+            "memory": {
+              "$id": "#/properties/resources/properties/limits/properties/memory",
+              "type": "string",
+              "title": "The memory schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "256Mi"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "image": {
+      "$id": "#/properties/image",
+      "type": "object",
+      "title": "The image schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "pullPolicy": "IfNotPresent"
+        }
+      ],
+      "required": [
+        "pullPolicy"
+      ],
+      "properties": {
+        "pullPolicy": {
+          "$id": "#/properties/image/properties/pullPolicy",
+          "type": "string",
+          "title": "The pullPolicy schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "IfNotPresent"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "podAnnotations": {
+      "$id": "#/properties/podAnnotations",
+      "type": "object",
+      "title": "The podAnnotations schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+          "sidecar.istio.io/logLevel": "warning"
+        }
+      ],
+      "required": [
+        "sidecar.istio.io/rewriteAppHTTPProbers",
+        "sidecar.istio.io/logLevel"
+      ],
+      "properties": {
+        "sidecar.istio.io/rewriteAppHTTPProbers": {
+          "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/rewriteAppHTTPProbers",
+          "type": "string",
+          "title": "The sidecar.istio.io/rewriteAppHTTPProbers schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "false"
+          ]
+        },
+        "sidecar.istio.io/logLevel": {
+          "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/logLevel",
+          "type": "string",
+          "title": "The sidecar.istio.io/logLevel schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "warning"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

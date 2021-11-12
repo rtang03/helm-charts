@@ -1,8 +1,8 @@
 ### Introduction
-Kiali Chart for customizaed integration with Grafana and Prometheus. Grafana and Prometheus is installed
-in "default" namespace; while Kiali is in "istio-system" namespace.  
+Kiali Chart
 
-Note: Jaeger is configured; don't integrate. Need further troubleshooting
+NOTE: This chart is opinionated for experimental project; with a pre-determined network toplogy via Istio. It is unlikely to use for general purpose.
+
 
 ### Port forward
 ```shell

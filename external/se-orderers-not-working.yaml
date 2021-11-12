@@ -1,0 +1,85 @@
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: orderer0-org0
+  namespace: bochk
+spec:
+  hosts:
+    - orderer0-org0.cdi.testnet
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: 13.208.117.152
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: orderer1-org0
+  namespace: bochk
+spec:
+  hosts:
+    - orderer1-org0.cdi.testnet
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: 13.208.60.10
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: orderer2-org0
+  namespace: bochk
+spec:
+  hosts:
+    - orderer2-org0.cdi.testnet
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: 15.152.88.93
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: orderer3-org0
+  namespace: bochk
+spec:
+  hosts:
+    - orderer3-org0.cdi.testnet
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: 13.208.117.152
+---
+kind: ServiceEntry
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: orderer4-org0
+  namespace: bochk
+spec:
+  hosts:
+    - orderer4-org0.cdi.testnet
+  ports:
+    - number: 7050
+      protocol: TCP
+      name: tcp-req
+      targetPort: 7050
+  resolution: STATIC
+  endpoints:
+    - address: 13.208.60.10
+---

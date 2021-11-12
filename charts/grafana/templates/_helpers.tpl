@@ -64,15 +64,15 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-HKICL App Name
+App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "grafana.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
-HKICL Org Name
+Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

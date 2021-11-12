@@ -48,6 +48,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "redisearch-prometheus-exporter.selectorLabels" -}}
+app: {{ .Chart.Name }}
+version: {{ .Chart.Version }}
 app.kubernetes.io/name: {{ include "redisearch-prometheus-exporter.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -66,13 +68,13 @@ Create the name of the service account to use
 {{/*
 App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "redisearch-prometheus-exporter.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
 Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

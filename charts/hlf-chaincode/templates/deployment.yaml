@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-chaincode.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- else }}
+  replicas: 1
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "hlf-chaincode.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "hlf-chaincode.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: check
+          image: library/busybox:1.32
+          command: ["sh", "-c"]
+          args:
+            - |-
+              if [ $CHAINCODE_CCID = "" ]; then
+                echo "🚫  CHAINCODE_CCID is empty"
+                exit 1
+              fi
+          env:
+            - name: CHAINCODE_CCID
+              valueFrom:
+                secretKeyRef:
+                  name: sec-{{ .Values.ccLog }}
+                  key: PACID
+      containers:
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
+            - name: CHAINCODE_ADDRESS
+              value: {{ .Values.chaincodeAddress }}
+            - name: CHAINCODE_CCID
+              valueFrom:
+                secretKeyRef:
+                  name: sec-{{ .Values.ccLog }}
+                  key: PACID
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

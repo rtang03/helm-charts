@@ -2,10 +2,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gw-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
+  name: gw-{{ include "appname" . }}-{{ include "orgname" . }}
   labels:
     {{- include "hlf-peer.labels" . | nindent 4 }}
-    gw.hkicl/name: gw-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}
 spec:
   selector:
     istio: ingressgateway # use istio default controller

@@ -34,9 +34,6 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "jaeger.labels" -}}
-app: {{ .Chart.Name }}
-release: {{ .Chart.Name }}
-version: {{ .Chart.AppVersion }}
 helm.sh/chart: {{ include "jaeger.chart" . }}
 {{ include "jaeger.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -49,6 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "jaeger.selectorLabels" -}}
+app: {{ .Chart.Name }}
+version: {{ .Chart.AppVersion }}
 app.kubernetes.io/name: {{ include "jaeger.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -65,15 +64,15 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-HKICL App Name
+App Name
 */}}
-{{- define "hkicl.appname" -}}
+{{- define "appname" -}}
 {{- default (include "jaeger.fullname" .) .Values.appname }}
 {{- end }}
 
 {{/*
-HKICL Org Name
+Org Name
 */}}
-{{- define "hkicl.orgname" -}}
+{{- define "orgname" -}}
 {{- default "default-org" .Values.orgname }}
 {{- end }}

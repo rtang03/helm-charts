@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cm-{{ include "hkicl.appname" . }}-{{ include "hkicl.orgname" . }}-nginx
-  labels:
-    {{- include "hlf-peer.labels" . | nindent 4 }}
+  name: cm-{{ include "appname" . }}-{{ include "orgname" . }}-nginx
 data:
   default.conf: |
     server { # simple reverse-proxy

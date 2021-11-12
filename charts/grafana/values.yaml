@@ -1,19 +1,13 @@
-# Application Name
-appname: grafana
-orgname: org1
-namespace: n1
-
-podAnnotations: {}
-
-podSecurityContext:
-  fsGroup: 472
-  runAsGroup: 472
-  runAsUser: 472
-
+#########################################################################
+### CONFIGURABLE                                                      ###
+### Note: values.schema.json is based on configurable items only.      ###
+#########################################################################
+orgname: bochk
+namespace: bochk
 resources:
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 64Mi
   limits:
     cpu: 300m
     memory: 256Mi
@@ -52,10 +46,6 @@ configmap:
       filename: "config/hyperledger-fabric_rev1.json"
       mountPath: "/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json"
       subPath: "hyperledger-fabric_rev1.json"
-    - name: "orderers"
-      filename: "config/orderers_rev1.json"
-      mountPath: "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json"
-      subPath: "orderers_rev1.json"
     - name: "k8s-cluster"
       filename: "config/k8s-cluster.json"
       mountPath: "/var/lib/grafana/dashboards/k8s/k8s-cluster.json"
@@ -64,7 +54,31 @@ configmap:
       filename: "config/k8s-storage.json"
       mountPath: "/var/lib/grafana/dashboards/k8s/k8s-storage.json"
       subPath: "k8s-storage.json"
-    - name: "container"
-      filename: "config/container_rev1.json"
-      mountPath: "/var/lib/grafana/dashboards/k8s/container_rev1.json"
-      subPath: "container_rev1.json"
+    - name: "redisearch-dashboard"
+      filename: "config/redisearch_rev1.json"
+      mountPath: "/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json"
+      subPath: "redisearch_rev1.json"
+    - name: "redis-dashboard"
+      filename: "config/redis_rev1.json"
+      mountPath: "/var/lib/grafana/dashboards/hyperledger/redis_rev1.json"
+      subPath: "redis_rev1.json"
+
+#######################
+### FIXTURE         ###
+#######################
+appname: grafana
+legendFormat_Container: "{{container}}"
+legendFormat_Name: "{{name}}"
+legendFormat_TransmitName: "tra-{{name}}"
+legendFormat_ReceiveName: "rec-{{name}}"
+legendFormat_Pod: "{{pod}}"
+legendFormat_TransmitPod: "tra-{{pod}}"
+legendFormat_ReceivePod: "rec-{{pod}}"
+legendFormat_Id: "{{id}}"
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 472
+  runAsGroup: 472
+  runAsUser: 472

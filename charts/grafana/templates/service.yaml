@@ -14,5 +14,5 @@ spec:
       protocol: TCP
       targetPort: 3000
   selector:
-    app.kubernetes.io/name: {{ include "hkicl.appname" . }}
-    app.kubernetes.io/instance: {{ include "hkicl.appname" . }}
+    app.kubernetes.io/name: {{ include "appname" . }}
+    app.kubernetes.io/instance: {{ include "appname" . }}
