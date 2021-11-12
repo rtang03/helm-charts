@@ -94,9 +94,9 @@ ignore: # (optional, packages that should not be indexed by Artifact Hub)
 **Notice that the Github Action will fail if there is pre-existing git-tag, as the Chart version. Therefore, for chart modification, 
 please make sure to increment the chart version, at patch level.**
 
-### Template
+### Note
 
-Do not use template directory now. Need to fix it.
+1. `external` directory contains charts and manifest, requiring manual installation.
 
 ### Reference Info
 - [ArtifactHub annotation](https://artifacthub.io/docs/topics/annotations/helm/)
