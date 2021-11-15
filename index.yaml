@@ -647,6 +647,25 @@ entries:
   redisearch-prometheus-exporter:
   - annotations:
       artifacthub.io/changes: |
+        - "update values file"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-11-15T06:06:31.46916898Z"
+    description: Export Redisearch FT.INFO for use by Prometheus.Supports RediSearch
+      v1.4, v1.6, >=v2.0
+    digest: a721af1af3a49a9fba3555b4eccfc13e8275f21477a79beb0078c25556d3395d
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: redisearch-prometheus-exporter
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-prometheus-exporter-0.1.2/redisearch-prometheus-exporter-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "none"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -700,4 +719,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-12T14:37:28.371194425Z"
+generated: "2021-11-15T06:06:31.469237302Z"
