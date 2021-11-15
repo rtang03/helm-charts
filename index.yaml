@@ -400,6 +400,23 @@ entries:
           email: "ask@dashslab.com"
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 1.27.0
+    created: "2021-11-15T07:10:04.312324611Z"
+    description: Jaeger for fabric-es project
+    digest: f7bb9c48ac9b9f6d75fcbf46ab845e936669cf90f1b75d0cc05bcbf4decf4ee5
+    name: jaeger
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.8/jaeger-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      artifacthub.io/changes: |
+        - "use 1.27 in labelSelector in deployment does not work"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: "1.27"
     created: "2021-11-15T07:02:11.936010097Z"
     description: Jaeger for fabric-es project
@@ -770,4 +787,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-15T07:02:11.936096199Z"
+generated: "2021-11-15T07:10:04.312431512Z"
