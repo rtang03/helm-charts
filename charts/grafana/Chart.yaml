@@ -1,7 +1,7 @@
 apiVersion: v2
 name: grafana
 # source coming from https://istio.io/latest/docs/ops/integrations/grafana/#configuration
-version: 0.1.6
+version: 0.1.7
 description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
