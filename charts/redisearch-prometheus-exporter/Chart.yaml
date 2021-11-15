@@ -8,7 +8,7 @@ appVersion: 0.0.2
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 annotations:
   artifacthub.io/changes: |
-    - "none"
+    - "update values file"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"

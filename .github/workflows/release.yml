@@ -24,9 +24,6 @@ jobs:
         with:
           version: v3.4.0
 
-      - name: lint
-        run: /home/runner/work/helm-charts/helm-charts/lint.sh
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
         env:

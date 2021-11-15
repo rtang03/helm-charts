@@ -7,7 +7,7 @@ type: application
 appVersion: 8.2.2
 annotations:
   artifacthub.io/changes: |
-    - "none"
+    - "update values file"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
