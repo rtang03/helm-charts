@@ -2,7 +2,7 @@
 ### CONFIGURABLE                                                      ###
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
-orgname: bochk
+orgname: ORGNAME
 redisearchExporterStaticIndex: "cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"
 
 image:
