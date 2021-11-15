@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: jaeger
+    # cannot add version label, when using 1.27
 spec:
   selector:
     matchLabels:
