@@ -1,13 +1,13 @@
 apiVersion: v2
 name: jaeger
 # source coming from https://istio.io/latest/docs/ops/integrations/jaeger/#configuration
-version: 0.1.6
+version: 0.1.7
 description: Jaeger for fabric-es project
 type: application
 appVersion: "1.27"
 annotations:
   artifacthub.io/changes: |
-    - "update label in deployment"
+    - "use 1.27 in labelSelector in deployment does not work"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
