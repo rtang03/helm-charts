@@ -4,15 +4,18 @@ metadata:
   name: jaeger
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "jaeger.labels" . | nindent 4 }}
+    app: jaeger
+    version: {{ .Values.appVersion }}
 spec:
   selector:
     matchLabels:
-      {{- include "jaeger.selectorLabels" . | nindent 6 }}
+      app: jaeger
+      version: {{ .Values.appVersion }}
   template:
     metadata:
       labels:
-        {{- include "jaeger.selectorLabels" . | nindent 8 }}
+        app: jaeger
+        version: {{ .Values.appVersion }}
       {{- with .Values.podAnnotations }}
       annotations:
         sidecar.istio.io/inject: "false"
