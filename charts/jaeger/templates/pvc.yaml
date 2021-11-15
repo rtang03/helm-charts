@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
   labels:
-    {{- include "jaeger.labels" . | nindent 4 }}
+    app: jaeger
   {{- if .Values.persistence.annotations }}
   annotations:
   {{ toYaml .Values.persistence.annotations | indent 4 }}
