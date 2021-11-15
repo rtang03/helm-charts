@@ -5,17 +5,17 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: jaeger
-    version: {{ .Values.appVersion }}
+    version: {{ .Chart.AppVersion }}
 spec:
   selector:
     matchLabels:
       app: jaeger
-      version: {{ .Values.appVersion }}
+      version: {{ .Chart.AppVersion }}
   template:
     metadata:
       labels:
         app: jaeger
-        version: {{ .Values.appVersion }}
+        version: {{ .Chart.AppVersion }}
       {{- with .Values.podAnnotations }}
       annotations:
         sidecar.istio.io/inject: "false"
