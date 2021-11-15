@@ -77,6 +77,7 @@ revisionHistoryLimit: 15
 
 image:
   repository: hktfp5/cdi-samples
+  imageBase: gw-data-consumer
   pullPolicy: IfNotPresent
 
 podAnnotations:

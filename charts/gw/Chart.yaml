@@ -2,11 +2,11 @@ apiVersion: v2
 name: gw
 description: Gateway App for fabric-es project
 type: application
-version: 0.1.0
-appVersion: gw-data-consumer-0.4.3
+version: 0.1.1
+appVersion: 0.4.4
 annotations:
   artifacthub.io/changes: |
-    - "cleanup values.yaml"
+    - "fix appVersion"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
