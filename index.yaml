@@ -394,6 +394,23 @@ entries:
   jaeger:
   - annotations:
       artifacthub.io/changes: |
+        - "update label in deployment"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: "1.27"
+    created: "2021-11-15T06:56:12.286636153Z"
+    description: Jaeger for fabric-es project
+    digest: ff15446ffa3a990ea09c05b6f4ed420d562044527f1bf582c85b82155b06bcb6
+    name: jaeger
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.6/jaeger-0.1.6.tgz
+    version: 0.1.6
+  - annotations:
+      artifacthub.io/changes: |
         - "update label"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -736,4 +753,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-15T06:47:11.060025064Z"
+generated: "2021-11-15T06:56:12.286708256Z"
