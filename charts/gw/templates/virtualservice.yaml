@@ -7,8 +7,18 @@ metadata:
 spec:
   gateways:
   - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  - mesh
   hosts:
   - {{ .Values.fqdn | quote }}
+  http:
+    - match:
+        - port: 4001
+      route:
+        - destination:
+            host: gw-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local
+            port:
+              number: 4001
+          weight: 100
   tls:
     - match:
         - port: 4101
@@ -16,7 +26,7 @@ spec:
             - uat-bochk.cdi.network
       route:
         - destination:
-            host: gw-bochk.bochk.svc.cluster.local
+            host: gw-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local
             port:
               number: 4101
           weight: 100
