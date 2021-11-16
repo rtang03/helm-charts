@@ -27,14 +27,10 @@ spec:
       serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.secretvol.enabled }}
       volumes:
-        {{- range .Values.secretvol.vol }}
-        - name: {{ .name }}
+        - name: sec-tls-network-{{ .Values.orgname }}
           secret:
-            secretName: {{ .name }}
-        {{- end }}
-      {{- end }}
+            secretName: sec-tls-network-{{ .Values.orgname }}
 
       initContainers:
         - name: init
@@ -107,13 +103,9 @@ spec:
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
             {{- end }}
-          {{- if .Values.secretvol.enabled }}
           volumeMounts:
-            {{- range .Values.secretvol.vol }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-            {{- end }}
-          {{- end }}
+            - name: sec-tls-network-{{ .Values.orgname }}
+              mountPath: /cert
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

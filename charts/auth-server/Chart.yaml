@@ -2,14 +2,14 @@ apiVersion: v2
 name: auth-server
 description: Experimental auth server
 type: application
-version: 0.1.1
+version: 0.1.2
 appVersion: "0.0.6"
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 sources:
   - https://github.com/rtang03/auth-server
 annotations:
   artifacthub.io/changes: |
-    - "add values and schema"
+    - "cleanup values and schema"
     - "remove (empty) livenessProbe and readinessProbe"
   artifacthub.io/maintainers: |
     - name: "rtang03"
