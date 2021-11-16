@@ -716,6 +716,25 @@ entries:
   redisearch:
   - annotations:
       artifacthub.io/changes: |
+        - "add pvc"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-11-16T02:56:50.866229433Z"
+    description: Redisearch for fabric-es project
+    digest: 6d373c7618c5f8cbf0807fb26671c8ac2914de9b65d8775e120230764ebf9e20
+    name: redisearch
+    sources:
+    - https://github.com/rtang03/fabric-es
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/redisearch-0.1.4/redisearch-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      artifacthub.io/changes: |
         - "correct label"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -859,4 +878,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-16T02:35:49.458394176Z"
+generated: "2021-11-16T02:56:50.866328034Z"
