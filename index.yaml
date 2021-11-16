@@ -3,6 +3,27 @@ entries:
   auth-server:
   - annotations:
       artifacthub.io/changes: |
+        - "cleanup values and schema"
+        - "remove (empty) livenessProbe and readinessProbe"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-11-16T02:35:49.329780864Z"
+    description: Experimental auth server
+    digest: 52a80c9e32d91c25c4f279c640b027f0fa36291529ab223532a6831a7cf36eda
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    name: auth-server
+    sources:
+    - https://github.com/rtang03/auth-server
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.2/auth-server-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "add values and schema"
         - "remove (empty) livenessProbe and readinessProbe"
       artifacthub.io/maintainers: |
@@ -185,6 +206,23 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
     version: 0.1.0
   gw:
+  - annotations:
+      artifacthub.io/changes: |
+        - "cleanup values and label"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-11-16T02:35:49.458301675Z"
+    description: Gateway App for fabric-es project
+    digest: 60cc5dd59866b8d07ab9d2a9374f440854db0704a24e32aa379c6b5836ba5b37
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.2/gw-0.1.2.tgz
+    version: 0.1.2
   - annotations:
       artifacthub.io/changes: |
         - "fix appVersion"
@@ -821,4 +859,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-15T09:27:39.964801781Z"
+generated: "2021-11-16T02:35:49.458394176Z"
