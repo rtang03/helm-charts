@@ -181,10 +181,8 @@ spec:
             - mountPath: {{ .Values.persistence.mountPath | quote }}
               name: my-pvc
             {{- end }}
-            {{- if .Values.configmap.enabled }}
-            - mountPath: {{ .Values.configmap.mountPath | quote }}
+            - mountPath: /connection
               name: my-cm
-            {{- end }}
             - name: msp-admin
               mountPath: /crypto/msp-admin
             - name: sec-tls-ca-org0

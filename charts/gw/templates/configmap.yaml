@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
 data:
-  connnection.yaml: |
+  connection.yaml: |
     name: connection-profile-{{ .Values.orgname }}
     version: 1.0.0
     description: connection profile for {{ .Values.orgname }}
