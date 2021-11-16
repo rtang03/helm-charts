@@ -10,15 +10,6 @@ spec:
   - mesh
   hosts:
   - {{ .Values.fqdn | quote }}
-  http:
-    - match:
-        - port: 4001
-      route:
-        - destination:
-            host: gw-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local
-            port:
-              number: 4001
-          weight: 100
   tls:
     - match:
         - port: 4101
