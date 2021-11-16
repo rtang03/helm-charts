@@ -7,10 +7,9 @@
   "default": {},
   "examples": [
     {
-      "fqdn": "uat-ORGNAME.cdi.network",
-      "gateway": "gw-gw-ORGNAME",
       "namespace": "NAMESPACE",
       "orgname": "ORGNAME",
+      "fqdn": "uat-ORGNAME.cdi.network",
       "clientApplicationName": "root_client",
       "clientSecret": "password",
       "jwtExpInSecond": "900",
@@ -21,26 +20,12 @@
       "orgAdminId": "myadmin",
       "orgAdminSecret": "t7CCOf0Vr0i8",
       "port": "8443",
-      "redisHost": "redisearch-ORGNAME.NAMESPACE.svc.cluster.local",
-      "redisPort": "6379",
+      "redisHost": "redisearch-ORGNAME",
       "refreshTokenExpInSec": "86400",
-      "typeormDatabase": "auth_db",
-      "typeormHost": "postgres-postgresql",
       "typeormPassword": "docker",
-      "typeormPort": "5432",
       "typeormUsername": "postgres",
-      "certPathCert": "/cert/tls.crt",
-      "certPathKey": "/cert/tls.key",
       "timezone": "Asia/Hong_Kong",
-      "secretvol": {
-        "enabled": true,
-        "vol": [
-          {
-            "name": "sec-tls-network-ORGNAME",
-            "mountPath": "/cert"
-          }
-        ]
-      },
+      "replicaCount": 1,
       "resources": {
         "requests": {
           "cpu": "25m",
@@ -61,10 +46,9 @@
     }
   ],
   "required": [
-    "fqdn",
-    "gateway",
     "namespace",
     "orgname",
+    "fqdn",
     "clientApplicationName",
     "clientSecret",
     "jwtExpInSecond",
@@ -76,42 +60,16 @@
     "orgAdminSecret",
     "port",
     "redisHost",
-    "redisPort",
     "refreshTokenExpInSec",
-    "typeormDatabase",
-    "typeormHost",
     "typeormPassword",
-    "typeormPort",
     "typeormUsername",
-    "certPathCert",
-    "certPathKey",
     "timezone",
-    "secretvol",
+    "replicaCount",
     "resources",
     "image",
     "podAnnotations"
   ],
   "properties": {
-    "fqdn": {
-      "$id": "#/properties/fqdn",
-      "type": "string",
-      "title": "The fqdn schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "uat-ORGNAME.cdi.network"
-      ]
-    },
-    "gateway": {
-      "$id": "#/properties/gateway",
-      "type": "string",
-      "title": "The gateway schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "gw-gw-ORGNAME"
-      ]
-    },
     "namespace": {
       "$id": "#/properties/namespace",
       "type": "string",
@@ -130,6 +88,16 @@
       "default": "",
       "examples": [
         "ORGNAME"
+      ]
+    },
+    "fqdn": {
+      "$id": "#/properties/fqdn",
+      "type": "string",
+      "title": "The fqdn schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "uat-ORGNAME.cdi.network"
       ]
     },
     "clientApplicationName": {
@@ -239,17 +207,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "redisearch-ORGNAME.NAMESPACE.svc.cluster.local"
-      ]
-    },
-    "redisPort": {
-      "$id": "#/properties/redisPort",
-      "type": "string",
-      "title": "The redisPort schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "6379"
+        "redisearch-ORGNAME"
       ]
     },
     "refreshTokenExpInSec": {
@@ -262,26 +220,6 @@
         "86400"
       ]
     },
-    "typeormDatabase": {
-      "$id": "#/properties/typeormDatabase",
-      "type": "string",
-      "title": "The typeormDatabase schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "auth_db"
-      ]
-    },
-    "typeormHost": {
-      "$id": "#/properties/typeormHost",
-      "type": "string",
-      "title": "The typeormHost schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "postgres-postgresql"
-      ]
-    },
     "typeormPassword": {
       "$id": "#/properties/typeormPassword",
       "type": "string",
@@ -290,16 +228,6 @@
       "default": "",
       "examples": [
         "docker"
-      ]
-    },
-    "typeormPort": {
-      "$id": "#/properties/typeormPort",
-      "type": "string",
-      "title": "The typeormPort schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "5432"
       ]
     },
     "typeormUsername": {
@@ -312,26 +240,6 @@
         "postgres"
       ]
     },
-    "certPathCert": {
-      "$id": "#/properties/certPathCert",
-      "type": "string",
-      "title": "The certPathCert schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "/cert/tls.crt"
-      ]
-    },
-    "certPathKey": {
-      "$id": "#/properties/certPathKey",
-      "type": "string",
-      "title": "The certPathKey schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "/cert/tls.key"
-      ]
-    },
     "timezone": {
       "$id": "#/properties/timezone",
       "type": "string",
@@ -342,101 +250,15 @@
         "Asia/Hong_Kong"
       ]
     },
-    "secretvol": {
-      "$id": "#/properties/secretvol",
-      "type": "object",
-      "title": "The secretvol schema",
+    "replicaCount": {
+      "$id": "#/properties/replicaCount",
+      "type": "integer",
+      "title": "The replicaCount schema",
       "description": "An explanation about the purpose of this instance.",
-      "default": {},
+      "default": 0,
       "examples": [
-        {
-          "enabled": true,
-          "vol": [
-            {
-              "name": "sec-tls-network-ORGNAME",
-              "mountPath": "/cert"
-            }
-          ]
-        }
-      ],
-      "required": [
-        "enabled",
-        "vol"
-      ],
-      "properties": {
-        "enabled": {
-          "$id": "#/properties/secretvol/properties/enabled",
-          "type": "boolean",
-          "title": "The enabled schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": false,
-          "examples": [
-            true
-          ]
-        },
-        "vol": {
-          "$id": "#/properties/secretvol/properties/vol",
-          "type": "array",
-          "title": "The vol schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": [],
-          "examples": [
-            [
-              {
-                "name": "sec-tls-network-ORGNAME",
-                "mountPath": "/cert"
-              }
-            ]
-          ],
-          "additionalItems": true,
-          "items": {
-            "$id": "#/properties/secretvol/properties/vol/items",
-            "anyOf": [
-              {
-                "$id": "#/properties/secretvol/properties/vol/items/anyOf/0",
-                "type": "object",
-                "title": "The first anyOf schema",
-                "description": "An explanation about the purpose of this instance.",
-                "default": {},
-                "examples": [
-                  {
-                    "name": "sec-tls-network-ORGNAME",
-                    "mountPath": "/cert"
-                  }
-                ],
-                "required": [
-                  "name",
-                  "mountPath"
-                ],
-                "properties": {
-                  "name": {
-                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/name",
-                    "type": "string",
-                    "title": "The name schema",
-                    "description": "An explanation about the purpose of this instance.",
-                    "default": "",
-                    "examples": [
-                      "sec-tls-network-ORGNAME"
-                    ]
-                  },
-                  "mountPath": {
-                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/mountPath",
-                    "type": "string",
-                    "title": "The mountPath schema",
-                    "description": "An explanation about the purpose of this instance.",
-                    "default": "",
-                    "examples": [
-                      "/cert"
-                    ]
-                  }
-                },
-                "additionalProperties": true
-              }
-            ]
-          }
-        }
-      },
-      "additionalProperties": true
+        1
+      ]
     },
     "resources": {
       "$id": "#/properties/resources",

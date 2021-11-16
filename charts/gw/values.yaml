@@ -22,27 +22,19 @@ orderers:
     url: grpcs://orderer4-org0.cdi.testnet:7050
 
 ####  application-related
-administratorPort: 15011
 authorizationServerUri: 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
 caEnrollmentIdAdmin: ca-admin
 caEnrollmentSecret: CA_ENROLLMENT_SECRET
 caName: enrollment-ca-ORGNAME
 channelName: cdi-testnet
-connectionProfile: /connection/connection.yaml
 gatewayHost: uat-ORGNAME.cdi.network
-gatewayPort: 4101
 logLevel: debug
 mspid: MSPID
 orgAdminId: myadmin
 orgAdminSecret: ORG_ADMIN_SECRET
 orgCaUrl: 'https://enrollmentca-ORGNAME:7054'
-orgName: bochk
 orgUrl: 'https://uat-ORGNAME.cdi.network:4101/gw_org'
-queryPort: 5001
 redisHost: redisearch-ORGNAME
-redisPort: 6379
-wallet: /assets/wallet
-orgKey: /assets/orgkey
 timezone: 'Asia/Hong_Kong'
 nodeTLSRejectUnauthorized:
   enabled: false
@@ -63,10 +55,6 @@ authCheckReply: Unauthorized
 # certPathCert: /cert/test-cdi-network.crt
 # certPathKey: /cert/test-cdi-network.key
 # caPathCert: /cert/test-cacert.crt
-# real cert
-certPathCert: /cert/tls.crt
-certPathKey: /cert/tls.key
-caPathCert: /cert/rootca.crt
 
 debugPlaceholder: queryHandler:* ioredis:redis gw-lib:*
 
@@ -94,18 +82,6 @@ persistence:
   mountPath: "/assets"
   # existingClaim: ""
 
-#secretvol:
-#  enabled: true
-#  vol:
-#    - name: msp-admin
-#      mountPath: /crypto/msp-admin
-#    - name: sec-tls-ca-org0
-#      mountPath: /crypto/sec-tls-ca-org0
-#    - name: tls-peer0
-#      mountPath: /crypto/tls-peer0
-#    - name: sec-tls-network-bochk
-#      mountPath: /cert
-
 resources:
   requests:
     cpu: 100m
@@ -121,6 +97,19 @@ replicaCount: 1
 ### FIXTURE         ###
 #######################
 appname: gw
+
+# real cert
+certPathCert: /cert/tls.crt
+certPathKey: /cert/tls.key
+caPathCert: /cert/rootca.crt
+administratorPort: 15011
+queryPort: 5001
+gatewayPort: 4101
+redisPort: 6379
+
+wallet: /assets/wallet
+orgKey: /assets/orgkey
+connectionProfile: /connection/connection.yaml
 
 configmap:
   enabled: true
@@ -161,3 +150,25 @@ service:
 tolerations: []
 
 affinity: {}
+
+## Note: need to :4101/healthcheck. The below logic may not work
+## Let do it later
+#livenessProbe:
+#  successThreshold: 1
+#  failureThreshold: 3
+#  httpGet:
+#    scheme: HTTP
+#    path: /healthcheck
+#    port: 4001
+#  initialDelaySeconds: 20
+#  periodSeconds: 10
+#
+#readinessProbe:
+#  successThreshold: 1
+#  failureThreshold: 3
+#  httpGet:
+#    scheme: HTTP
+#    path: /healthcheck
+#    port: 4001
+#  initialDelaySeconds: 20
+#  periodSeconds: 10

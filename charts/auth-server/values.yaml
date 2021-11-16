@@ -2,11 +2,9 @@
 ### CONFIGURABLE                                                      ###
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
-fqdn: 'uat-ORGNAME.cdi.network' # used by Istio
-gateway: gw-gw-ORGNAME
 namespace: NAMESPACE
 orgname: ORGNAME
-
+fqdn: 'uat-ORGNAME.cdi.network' # used by Istio
 clientApplicationName: root_client
 clientSecret: password
 jwtExpInSecond: "900"
@@ -17,28 +15,18 @@ orgAdminEmail: admin@myorg.net
 orgAdminId: myadmin
 orgAdminSecret: t7CCOf0Vr0i8
 port: "8443"
-redisHost: redisearch-ORGNAME.NAMESPACE.svc.cluster.local
-redisPort: "6379"
+redisHost: redisearch-ORGNAME
+# original
+#redisHost: redisearch-ORGNAME.NAMESPACE.svc.cluster.local
 refreshTokenExpInSec: "86400"
-typeormDatabase: auth_db
-typeormHost: postgres-postgresql
 typeormPassword: docker
-typeormPort: "5432"
 typeormUsername: postgres
 # test cert
 # certPathCert: /cert/test-cdi-network.crt
 # certPathKey: /cert/test-cdi-network.key
-# real cert
-certPathCert: /cert/tls.crt
-certPathKey: /cert/tls.key
 
 timezone: 'Asia/Hong_Kong'
-
-secretvol:
-  enabled: true
-  vol:
-    - name: sec-tls-network-ORGNAME
-      mountPath: /cert
+replicaCount: 1
 
 resources:
   requests:
@@ -60,8 +48,14 @@ podAnnotations:
 ### FIXTURE         ###
 #######################
 appname: auth
+typeormDatabase: auth_db
+typeormHost: postgres-postgresql
+typeormPort: "5432"
+redisPort: "6379"
 
-replicaCount: 1
+# real cert
+certPathCert: /cert/tls.crt
+certPathKey: /cert/tls.key
 
 imagePullSecrets: []
 nameOverride: ""
