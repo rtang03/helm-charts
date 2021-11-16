@@ -2,13 +2,13 @@ apiVersion: v2
 name: redisearch
 description: Redisearch for fabric-es project
 type: application
-version: 0.1.3
+version: 0.1.4
 appVersion: 2.0.5
 sources:
   - https://github.com/rtang03/fabric-es
 annotations:
   artifacthub.io/changes: |
-    - "correct label"
+    - "add pvc"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
