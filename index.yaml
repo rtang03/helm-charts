@@ -208,6 +208,23 @@ entries:
   gw:
   - annotations:
       artifacthub.io/changes: |
+        - "fix virtual service"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-11-16T10:45:07.528605255Z"
+    description: Gateway App for fabric-es project
+    digest: 790f9cae4a8d2938d9a872eed67a18b985c5e3fc0cf18f58d6fead10ffce532f
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.5/gw-0.1.5.tgz
+    version: 0.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - "undo virtual service"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -912,4 +929,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-16T10:36:51.737040829Z"
+generated: "2021-11-16T10:45:07.528710155Z"
