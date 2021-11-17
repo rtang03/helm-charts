@@ -336,6 +336,24 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.5.0
+    created: "2021-11-17T06:05:44.731055734Z"
+    description: CA chart (Experimental)
+    digest: e52a9a8561720f61027463958a1991348afd535517911f615e6b5baa7680f923
+    name: hlf-ca
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-ca-0.1.2/hlf-ca-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "correct label"
+        - "Cannot replace pre-existing CA directly"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.5.0
     created: "2021-11-12T14:37:27.204605852Z"
     description: CA chart (Experimental)
     digest: 621b1f65ae8645fa351fe2131434a849e7646132f8039298a66a7101d366dd62
@@ -946,4 +964,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-16T11:06:41.617137932Z"
+generated: "2021-11-17T06:05:44.731200836Z"
