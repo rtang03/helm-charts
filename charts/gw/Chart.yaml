@@ -2,11 +2,11 @@ apiVersion: v2
 name: gw
 description: Gateway App for fabric-es project
 type: application
-version: 0.1.6
+version: 0.1.7
 appVersion: 0.4.4
 annotations:
   artifacthub.io/changes: |
-    - "fix confiigmap"
+    - "fix exposed password"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"

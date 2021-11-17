@@ -24,14 +24,12 @@ orderers:
 ####  application-related
 authorizationServerUri: 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
 caEnrollmentIdAdmin: ca-admin
-caEnrollmentSecret: CA_ENROLLMENT_SECRET
 caName: enrollment-ca-ORGNAME
 channelName: cdi-testnet
 gatewayHost: uat-ORGNAME.cdi.network
 logLevel: debug
 mspid: MSPID
 orgAdminId: myadmin
-orgAdminSecret: ORG_ADMIN_SECRET
 orgCaUrl: 'https://enrollmentca-ORGNAME:7054'
 orgUrl: 'https://uat-ORGNAME.cdi.network:4101/gw_org'
 redisHost: redisearch-ORGNAME
