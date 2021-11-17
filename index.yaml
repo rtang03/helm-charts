@@ -328,6 +328,23 @@ entries:
   hlf-ca:
   - annotations:
       artifacthub.io/changes: |
+        - "remove istio gateway for tlsca"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-11-17T06:49:30.511728601Z"
+    description: CA chart (Experimental)
+    digest: 58cc684fff51f4c012105fe22f3965e0fe753a2cb05810e757060b656963c90c
+    name: hlf-ca
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-ca-0.1.5/hlf-ca-0.1.5.tgz
+    version: 0.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - "correct label"
         - "Cannot replace pre-existing CA directly"
       artifacthub.io/maintainers: |
@@ -1000,4 +1017,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-17T06:31:46.090804685Z"
+generated: "2021-11-17T06:49:30.511846405Z"
