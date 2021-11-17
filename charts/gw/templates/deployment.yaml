@@ -76,11 +76,10 @@ spec:
               # remove tailing return
               export CA_ENROLLMENT_SECRET_ADMIN=$(echo $adminpw | sed -e 's/[\r\n]//g')
               set -x
-              mkdir -p /connection
-              cp /tmp/connection.yaml /connection/connection.yaml
+              cp /tmp/connection.yaml {{ .Values.connectionProfile }}
               set +x
               # subsitute CA_ENROLLMENT_SECRET_ADMIN in connection profile
-              sed -i "s|<<<CA_ENROLLMENT_SECRET_ADMIN>>>|$CA_ENROLLMENT_SECRET_ADMIN|g" /connection/connection.yaml
+              sed -i "s|<<<CA_ENROLLMENT_SECRET_ADMIN>>>|$CA_ENROLLMENT_SECRET_ADMIN|g" {{ .Values.connectionProfile }}
               until [ -d "{{ .Values.persistence.mountPath }}" ]; do echo 'waiting for {{ .Values.persistence.mountPath }}...' && sleep 1; done; echo '{{ .Values.persistence.mountPath }} exists.'
               until [ -f "{{ .Values.connectionProfile }}" ]; do echo 'waiting for {{ .Values.connectionProfile }}...' && sleep 1; done; echo '{{ .Values.connectionProfile }} exists.'
               until [ `(printf "PING\r\n") | nc {{ .Values.redisHost }} {{ .Values.redisPort }} | grep '+PONG'` ]; do echo 'waiting for {{ .Values.redisHost }}:{{ .Values.redisPort }}...' && sleep 1; done; echo '{{ .Values.redisHost }}:{{ .Values.redisPort }} alive!'
