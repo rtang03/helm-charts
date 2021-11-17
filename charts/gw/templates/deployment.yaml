@@ -72,6 +72,15 @@ spec:
             - sh
             - -c
             - |
+              echo "*** Starting POD ***"
+              # remove tailing return
+              export CA_ENROLLMENT_SECRET_ADMIN=$(echo $adminpw | sed -e 's/[\r\n]//g')
+              set -x
+              mkdir -p /connection
+              cp /tmp/connection.yaml /connection/connection.yaml
+              set +x
+              # subsitute CA_ENROLLMENT_SECRET_ADMIN in connection profile
+              sed -i "s|<<<CA_ENROLLMENT_SECRET_ADMIN>>>|$CA_ENROLLMENT_SECRET_ADMIN|g" /connection/connection.yaml
               until [ -d "{{ .Values.persistence.mountPath }}" ]; do echo 'waiting for {{ .Values.persistence.mountPath }}...' && sleep 1; done; echo '{{ .Values.persistence.mountPath }} exists.'
               until [ -f "{{ .Values.connectionProfile }}" ]; do echo 'waiting for {{ .Values.connectionProfile }}...' && sleep 1; done; echo '{{ .Values.connectionProfile }} exists.'
               until [ `(printf "PING\r\n") | nc {{ .Values.redisHost }} {{ .Values.redisPort }} | grep '+PONG'` ]; do echo 'waiting for {{ .Values.redisHost }}:{{ .Values.redisPort }}...' && sleep 1; done; echo '{{ .Values.redisHost }}:{{ .Values.redisPort }} alive!'
@@ -84,7 +93,7 @@ spec:
             - name: ACL_ORG_ID
               value: {{ .Values.aclOrgId }}
             - name: ACL_ORG_NAME
-              value: {{ .Values.orgName }}
+              value: {{ .Values.orgname }}
             - name: ACL_FILE
               value: {{ .Values.aclFile }}
             - name: ADMINISTRATOR_PORT
@@ -93,8 +102,6 @@ spec:
               value: {{ .Values.authorizationServerUri }}
             - name: CA_ENROLLMENT_ID_ADMIN
               value: {{ .Values.caEnrollmentIdAdmin }}
-            - name: CA_ENROLLMENT_SECRET_ADMIN
-              value: {{ .Values.caEnrollmentSecret }}
             - name: CA_NAME
               value: {{ .Values.caName }}
             - name: CHANNEL_NAME
@@ -118,7 +125,7 @@ spec:
             - name: ORG_CA_URL
               value: {{ .Values.orgCaUrl }}
             - name: ORGNAME
-              value: {{ .Values.orgName }}
+              value: {{ .Values.orgname }}
             - name: ORGURL
               value: {{ .Values.orgUrl }}
             - name: QUERY_PORT
@@ -159,6 +166,9 @@ spec:
             - name: DEBUG
               value: {{ .Values.debugPlaceholder | quote }}
             {{- end }}
+          envFrom:
+            - secretRef:
+                name: "sec-enrollment-ca-{{ .Values.orgname }}"
           ports:
             {{- range .Values.service.ports }}
             - name: {{ .name }}
@@ -181,8 +191,9 @@ spec:
             - mountPath: {{ .Values.persistence.mountPath | quote }}
               name: my-pvc
             {{- end }}
-            - mountPath: /connection
+            - mountPath: /tmp/connection.yaml
               name: my-cm
+              subPath: connection.yaml
             - name: msp-admin
               mountPath: /crypto/msp-admin
             - name: sec-tls-ca-org0
