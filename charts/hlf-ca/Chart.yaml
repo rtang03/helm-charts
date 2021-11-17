@@ -2,12 +2,11 @@ apiVersion: v2
 name: hlf-ca
 description: CA chart (Experimental)
 type: application
-version: 0.1.4
+version: 0.1.5
 appVersion: 1.5.0
 annotations:
   artifacthub.io/changes: |
-    - "correct label"
-    - "Cannot replace pre-existing CA directly"
+    - "remove istio gateway for tlsca"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"
