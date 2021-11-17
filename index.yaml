@@ -215,6 +215,23 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 0.4.4
+    created: "2021-11-17T17:12:09.881372393Z"
+    description: Gateway App for fabric-es project
+    digest: 5f23c4664e65b54f94ae70d70fdad09d9cea53abe660123b13cdb6db5ee57a24
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.8/gw-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      artifacthub.io/changes: |
+        - "fix exposed password"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
     created: "2021-11-17T16:18:25.849812501Z"
     description: Gateway App for fabric-es project
     digest: 11d7c29ba1aeaa84cfb0d613e3069739a3e87e761b489bdea6a2afc71031c5d0
@@ -1034,4 +1051,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-17T16:18:25.849926402Z"
+generated: "2021-11-17T17:12:09.881491395Z"
