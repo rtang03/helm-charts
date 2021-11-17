@@ -107,12 +107,7 @@ redisPort: 6379
 
 wallet: /assets/wallet
 orgKey: /assets/orgkey
-connectionProfile: /connection/connection.yaml
-
-configmap:
-  enabled: true
-  data: "config/*.*"
-  mountPath: "/connection"
+connectionProfile: /home/app/connection.yaml
 
 imagePullSecrets: []
 nameOverride: ""
