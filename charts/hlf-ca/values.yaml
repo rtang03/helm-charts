@@ -10,14 +10,6 @@ orgname: ORGNAME
 fqdn: CA-TYPE-ORGNAME.cdi.testnet
 namespace: NAMESPACE
 
-# used when appName is "tls-ca"
-tlsca:
-  adminpw: PASSWORD
-
-# used when appName is "enrollment-ca"
-enrollmentca:
-  adminpw: PASSWORD
-
 replicaCount: 1
 
 image:
@@ -143,4 +135,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
