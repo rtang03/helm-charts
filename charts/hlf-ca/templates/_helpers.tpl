@@ -46,9 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "hlf-ca.selectorLabels" -}}
-{{/*Should be used in Helm-charts repo*/}}
-{{/*app: {{ .Chart.Name }}*/}}
-{{/*version: {{ .Chart.Version }}*/}}
+app: {{ .Chart.Name }}
+version: {{ .Chart.Version }}
 app.kubernetes.io/name: {{ include "hlf-ca.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
