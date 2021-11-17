@@ -1,4 +1,4 @@
-{{- if .Values.istioService.enabled }}
+{{- if eq .Values.appname "enrollment-ca" }}
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:

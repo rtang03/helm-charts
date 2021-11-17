@@ -6,7 +6,9 @@ metadata:
     {{- include "hlf-ca.labels" . | nindent 4 }}
 spec:
   gateways:
+  {{- if eq .Values.appname "enrollment-ca" }}
   - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  {{- end }}
   - mesh
   hosts:
   - {{ .Values.fqdn }}
