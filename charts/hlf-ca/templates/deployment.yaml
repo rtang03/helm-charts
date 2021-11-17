@@ -42,7 +42,7 @@ spec:
         - name: {{ include "appname" . }}-{{ include "orgname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{hyperledger/fabric-ca:{{ .Chart.AppVersion }}"
+          image: "hyperledger/fabric-ca:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           # command: ["sh", "-c", "fabric-ca-server start -d -b {{ .Values.adminName }}:${ADMINPW} --cfg.affiliations.allowremove --cfg.identities.allowremove --port 7054"]
           command:
