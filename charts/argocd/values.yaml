@@ -1,0 +1,45 @@
+aws_access_key_id: my-access-key-id
+aws_secret_access_key: my-access-key-secret
+aws_profile: my-aws-profile
+region: my-region
+destination: https://A0402B857F26E5EB2A37A907B15AE624.gr7.ap-northeast-2.eks.amazonaws.com
+
+argo-cd:
+  # https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
+  global:
+    image:
+      repository: "ghcr.io/rtang03/argocd-helm-secret"
+      tag: "2.1.7-rev2"
+      imagePullPolicy: IfNotPresent
+    securityContext:
+      fsGroup: 2000
+
+  repoServer:
+    logLevel: info
+    volumes:
+      - name: "argocd-aws-credentials"
+        secret:
+          secretName: "argocd-aws-credentials"
+    volumeMounts:
+      - mountPath: /home/argocd/.aws
+        name: argocd-aws-credentials
+
+  server:
+    # turn off tls mode, and leverage istio to enable tls
+    extraArgs:
+      - --insecure
+    podAnnotations:
+      sidecar.istio.io/rewriteAppHTTPProbers: "false"
+      sidecar.istio.io/logLevel: "warning"
+    config:
+      accounts.cli: apiKey, login
+      statusbadge.enabled: 'true'
+      # https://argoproj.github.io/argo-cd/operator-manual/declarative-setup/#helm-chart-repositories
+      # need to add non standard helm chart for istio, in order for argocd to work
+      helm.repositories: |
+        - url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
+          name: istio.io
+      repositories: |
+        - type: helm
+          url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
+          name: istio.io
