@@ -24,6 +24,9 @@ jobs:
         with:
           version: v3.4.0
 
+      - run: helm repo add argo https://argoproj.github.io/argo-helm
+        name: add argo-helm repo
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
         env:
