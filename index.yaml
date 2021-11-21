@@ -3,6 +3,27 @@ entries:
   argocd:
   - annotations:
       artifacthub.io/changes: |
+        - "remove project.yaml"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 3.26.9
+    created: "2021-11-21T17:46:14.987693004Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.26.9
+    description: Custom Argo installation
+    digest: 4262be8f73499c7fc5dc3cdd713b17bdbe17a0b24ca25dc5c9af4d0f245737c1
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argocd-0.1.2/argocd-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - "add crds"
       artifacthub.io/maintainers: |
         - name: "rtang03"
@@ -1094,4 +1115,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-21T15:51:58.708757398Z"
+generated: "2021-11-21T17:46:14.987895305Z"
