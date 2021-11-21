@@ -1,6 +1,6 @@
 name: argocd
 apiVersion: v2
-version: 0.1.1
+version: 0.1.2
 appVersion: 3.26.9
 description: Custom Argo installation
 type: application
@@ -10,7 +10,7 @@ dependencies:
     repository: "https://argoproj.github.io/argo-helm"
 annotations:
   artifacthub.io/changes: |
-    - "add crds"
+    - "remove project.yaml"
   artifacthub.io/maintainers: |
     - name: "rtang03"
       email: "ask@dashslab.com"

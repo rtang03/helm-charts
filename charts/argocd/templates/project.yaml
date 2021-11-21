@@ -1,43 +1,43 @@
-# kubectl -n argocd describe appprojects.argoproj.io/gw-apps-hktvmall-tst3
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: gw-apps-{{ .Release.Namespace }}
-  namespace: argocd
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: App Project
-  sourceRepos:
-    - '*'
-  destinations:
-    - namespace: default
-      server: {{ .Values.destination }}
-    - namespace: {{ .Release.Namespace }}
-      server: {{ .Values.destination }}
-    - namespace: n0
-      server: {{ .Values.destination }}
-    - namespace: n1
-      server: {{ .Values.destination }}
-    - namespace: argocd
-      server: {{ .Values.destination }}
-    - namespace: argo
-      server: {{ .Values.destination }}
-    - namespace: istio-system
-      server: {{ .Values.destination }}
-  clusterResourceWhitelist:
-    - group: ''
-      kind: Namespace
-    - group: 'rbac.authorization.k8s.io'
-      kind: ClusterRole
-    - group: 'rbac.authorization.k8s.io'
-      kind: ClusterRoleBinding
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-    - group: ''
-      kind: ResourceQuota
-    - group: ''
-      kind: LimitRange
-    - group: ''
-      kind: NetworkPolicy
+{{/*# kubectl -n argocd describe appprojects.argoproj.io/gw-apps-hktvmall-tst3*/}}
+{{/*apiVersion: argoproj.io/v1alpha1*/}}
+{{/*kind: AppProject*/}}
+{{/*metadata:*/}}
+{{/*  name: gw-apps-{{ .Release.Namespace }}*/}}
+{{/*  namespace: argocd*/}}
+{{/*  # Finalizer that ensures that project is not deleted until it is not referenced by any application*/}}
+{{/*  finalizers:*/}}
+{{/*    - resources-finalizer.argocd.argoproj.io*/}}
+{{/*spec:*/}}
+{{/*  description: App Project*/}}
+{{/*  sourceRepos:*/}}
+{{/*    - '*'*/}}
+{{/*  destinations:*/}}
+{{/*    - namespace: default*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: {{ .Release.Namespace }}*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: n0*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: n1*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: argocd*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: argo*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*    - namespace: istio-system*/}}
+{{/*      server: {{ .Values.destination }}*/}}
+{{/*  clusterResourceWhitelist:*/}}
+{{/*    - group: ''*/}}
+{{/*      kind: Namespace*/}}
+{{/*    - group: 'rbac.authorization.k8s.io'*/}}
+{{/*      kind: ClusterRole*/}}
+{{/*    - group: 'rbac.authorization.k8s.io'*/}}
+{{/*      kind: ClusterRoleBinding*/}}
+{{/*  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy*/}}
+{{/*  namespaceResourceBlacklist:*/}}
+{{/*    - group: ''*/}}
+{{/*      kind: ResourceQuota*/}}
+{{/*    - group: ''*/}}
+{{/*      kind: LimitRange*/}}
+{{/*    - group: ''*/}}
+{{/*      kind: NetworkPolicy*/}}
