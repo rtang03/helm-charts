@@ -2,7 +2,7 @@ apiVersion: v2
 name: argo-app-of-apps
 description: Parent app, with app-of-app pattern
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 0.4.4
 maintainers:
   - name: "rtang03"
