@@ -1,5 +1,33 @@
 apiVersion: v1
 entries:
+  argo-app-of-apps:
+  - apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-11-22T10:05:11.077861133Z"
+    description: Parent app, with app-of-app pattern
+    digest: 5b3d9f280e4d6d0858c94805cc7ec1e19f29687d012d18693a9798f06a0103f4
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argo-app-of-apps
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argo-app-of-apps-0.1.1/argo-app-of-apps-0.1.1.tgz
+    version: 0.1.1
+  argo-apps:
+  - apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-11-22T10:05:14.314766176Z"
+    description: Real Apps to be deployed by Argo CD, with app-of-app pattern
+    digest: 29268c2741b3e6b80fcbd3c25598703c307d2cbe106f84a6f010e663f9c0b8a6
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argo-apps
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argo-apps-0.1.1/argo-apps-0.1.1.tgz
+    version: 0.1.1
   argocd:
   - annotations:
       artifacthub.io/changes: |
@@ -1136,4 +1164,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-22T02:40:21.997761449Z"
+generated: "2021-11-22T10:05:14.314896077Z"
