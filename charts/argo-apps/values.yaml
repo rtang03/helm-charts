@@ -1,8 +1,8 @@
-# -- project name
+## -- project name
 project: projectName
 
 # -- base path to the application charts
-appBasePath: app-core/argo-app-of-apps
+appBasePath: app-core/argo-apps
 
 source:
   # -- url of git source
@@ -21,3 +21,12 @@ syncPolicy:
   automated:
     prune: true
     selfHeal: true
+
+apps:
+  - name: applicationName
+    # -- relative path to chart directory
+    path: pathToChartDirectory
+    # -- installion namespace for child app
+    namespace: installationNamespace
+    # -- (bool) has secret.yaml in Chart directory
+    useSecretFile: false
