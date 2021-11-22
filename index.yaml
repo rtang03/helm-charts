@@ -10,6 +10,27 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 3.26.9
+    created: "2021-11-22T02:40:21.997318846Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.26.9
+    description: Custom Argo installation with helm-secrets and aws-kms
+    digest: e74a07b6a37ee8cea6d702d4b5a29405b945ceff6beeecb74dd64c8c3cdd88f0
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argocd-0.1.3/argocd-0.1.3.tgz
+    version: 0.1.3
+  - annotations:
+      artifacthub.io/changes: |
+        - "remove project.yaml"
+      artifacthub.io/maintainers: |
+        - name: "rtang03"
+          email: "ask@dashslab.com"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 3.26.9
     created: "2021-11-21T17:46:14.987693004Z"
     dependencies:
     - name: argo-cd
@@ -1115,4 +1136,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-21T17:46:14.987895305Z"
+generated: "2021-11-22T02:40:21.997761449Z"
