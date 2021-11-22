@@ -6,16 +6,16 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: {{ .Values.project }}
+  project: {{ .Values.global.project }}
   source:
-    path: {{ .Values.appBasePath }}
-  {{- with .Values.source }}
+    path: {{ .Values.global.appBasePath }}
+  {{- with .Values.global.source }}
     {{- toYaml . | nindent 4 }}
   {{- end}}
   destination:
     namespace: argocd
-    server: '{{ .Values.destination.server}}'
-  {{- with $.Values.syncPolicy }}
+    server: '{{ .Values.global.destination.server}}'
+  {{- with $.Values.global.syncPolicy }}
   syncPolicy:
     {{- toYaml . | nindent 4 }}
   {{- end}}

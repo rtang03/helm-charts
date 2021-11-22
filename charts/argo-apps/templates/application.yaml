@@ -7,10 +7,10 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  project: {{ $.Values.project }}
+  project: {{ $.Values.global.project }}
   source:
     path: {{ .path }}
-  {{- with $.Values.source }}
+  {{- with $.Values.global.source }}
     {{- toYaml . | nindent 4 }}
   {{- end}}
     {{ if .useSecretFile }}
@@ -19,12 +19,12 @@ spec:
         - values.yaml
         - secrets.yaml
     {{ end }}
-  {{- with $.Values.destination }}
+  {{- with $.Values.global.destination }}
   destination:
     {{- toYaml . | nindent 4 }}
   {{- end}}
     namespace: {{ .namespace}}
-  {{- with $.Values.syncPolicy }}
+  {{- with $.Values.global.syncPolicy }}
   syncPolicy:
     {{- toYaml . | nindent 4 }}
   {{- end}}

@@ -1,23 +1,24 @@
-# -- project name
-project: projectName
+global:
+  # -- project name
+  project: projectName
 
-# -- base path to the application charts
-appBasePath: app-core/argo-app-of-apps
+  # -- base path to the application charts
+  appBasePath: app-core/argo-app-of-apps
 
-source:
-  # -- url of git source
-  repoURL: repoUrl
-  # -- branch name of git source
-  targetRevision: branchName
+  source:
+    # -- url of git source
+    repoURL: repoUrl
+    # -- branch name of git source
+    targetRevision: branchName
 
-destination:
-  # -- namespace of this App-of-Apps
-  namespace: namespace
-  # -- installation target
-  server: targetServerUrl
+  destination:
+    # -- namespace of this App-of-Apps
+    namespace: namespace
+    # -- installation target
+    server: targetServerUrl
 
-# @default -- the chart will construct this list internally unless specified
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
+  # @default -- the chart will construct this list internally unless specified
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
