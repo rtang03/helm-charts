@@ -1,6 +1,6 @@
-# argo-app-of-apps
+# argo-apps
 
-Parent app, with app-of-app pattern
+Real Apps to be deployed by Argo CD, with app-of-app pattern
 
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
 
@@ -14,17 +14,21 @@ To install the chart with the release name `my-release`:
 
 ```console
 $ helm repo add dashslab https://rtang03.github.io/helm-charts
-$ helm install my-release dashslab/argo-app-of-apps
+$ helm install my-release dashslab/argo-apps
 ```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| appBasePath | string | `"app-core/argo-app-of-apps"` | base path to the application charts |
+| appBasePath | string | `"app-core/argo-apps"` | base path to the application charts |
+| apps[0].name | string | `"applicationName"` |  |
+| apps[0].namespace | string | `"installationNamespace"` | installion namespace for child app |
+| apps[0].path | string | `"pathToChartDirectory"` | relative path to chart directory |
+| apps[0].useSecretFile | bool | `false` | (bool) has secret.yaml in Chart directory |
 | destination.namespace | string | `"namespace"` | namespace of this App-of-Apps |
 | destination.server | string | `"targetServerUrl"` | installation target |
-| project | string | `"projectName"` | project name |
+| project | string | `"projectName"` |  |
 | source.repoURL | string | `"repoUrl"` | url of git source |
 | source.targetRevision | string | `"branchName"` | branch name of git source |
 | syncPolicy.automated.prune | bool | `true` |  |
