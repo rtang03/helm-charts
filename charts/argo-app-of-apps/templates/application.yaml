@@ -1,0 +1,32 @@
+{{- range .Values.apps }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ $.Values.project }}
+  source:
+    path: {{ .path }}
+  {{- with $.Values.source }}
+    {{- toYaml . | nindent 4 }}
+  {{- end}}
+    {{ if .useSecretFile }}
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets.yaml
+    {{ end }}
+  {{- with $.Values.destination }}
+  destination:
+    {{- toYaml . | nindent 4 }}
+  {{- end}}
+    namespace: {{ .namespace}}
+  {{- with $.Values.syncPolicy }}
+  syncPolicy:
+    {{- toYaml . | nindent 4 }}
+  {{- end}}
+---
+{{- end }}
