@@ -1,8 +1,22 @@
 # argocd
 
+Custom Argo installation with helm-secrets and aws-kms
+
 ![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.26.9](https://img.shields.io/badge/AppVersion-3.26.9-informational?style=flat-square)
 
-Custom Argo installation with helm-secrets and aws-kms
+## Additional Information
+
+- [custom image for Argocd](https://github.com/rtang03/docker-argocd)
+- [argo-helm](https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd)
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm install my-release dashslab/argocd
+```
 
 ## Requirements
 
