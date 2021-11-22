@@ -2,7 +2,6 @@ aws_access_key_id: my-access-key-id
 aws_secret_access_key: my-access-key-secret
 aws_profile: my-aws-profile
 region: my-region
-destination: https://A0402B857F26E5EB2A37A907B15AE624.gr7.ap-northeast-2.eks.amazonaws.com
 
 argo-cd:
   # https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
