@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "hlf-ca.labels" . | nindent 4 }}
 spec:
@@ -21,7 +22,7 @@ spec:
       - {{ $.Values.fqdn }}
     route:
     - destination:
-        host: {{ default "hlf-ca" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+        host: {{ default "hlf-ca" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Release.Namespace }}.svc.cluster.local
         port:
           number: {{ .destPort }}
       weight: 100
@@ -34,7 +35,7 @@ spec:
     {{- toYaml .match | nindent 4}}
     route:
     - destination:
-        host: {{ default "hlf-ca" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+        host: {{ default "hlf-ca" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Release.Namespace }}.svc.cluster.local
         port:
           number: {{ .destPort }}
       weight: 100

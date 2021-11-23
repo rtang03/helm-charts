@@ -1,0 +1,234 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "global": {
+                "project": "projectName",
+                "appBasePath": "app-core/argo-app-of-apps",
+                "source": {
+                    "repoURL": "repoUrl",
+                    "targetRevision": "branchName"
+                },
+                "destination": {
+                    "namespace": "namespace",
+                    "server": "targetServerUrl"
+                },
+                "syncPolicy": {
+                    "automated": {
+                        "prune": true,
+                        "selfHeal": true
+                    }
+                }
+            }
+        }
+    ],
+    "required": [
+        "global"
+    ],
+    "properties": {
+        "global": {
+            "$id": "#/properties/global",
+            "type": "object",
+            "title": "The global schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "project": "projectName",
+                    "appBasePath": "app-core/argo-app-of-apps",
+                    "source": {
+                        "repoURL": "repoUrl",
+                        "targetRevision": "branchName"
+                    },
+                    "destination": {
+                        "namespace": "namespace",
+                        "server": "targetServerUrl"
+                    },
+                    "syncPolicy": {
+                        "automated": {
+                            "prune": true,
+                            "selfHeal": true
+                        }
+                    }
+                }
+            ],
+            "required": [
+                "project",
+                "appBasePath",
+                "source",
+                "destination",
+                "syncPolicy"
+            ],
+            "properties": {
+                "project": {
+                    "$id": "#/properties/global/properties/project",
+                    "type": "string",
+                    "title": "The project schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "projectName"
+                    ]
+                },
+                "appBasePath": {
+                    "$id": "#/properties/global/properties/appBasePath",
+                    "type": "string",
+                    "title": "The appBasePath schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "app-core/argo-app-of-apps"
+                    ]
+                },
+                "source": {
+                    "$id": "#/properties/global/properties/source",
+                    "type": "object",
+                    "title": "The source schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "repoURL": "repoUrl",
+                            "targetRevision": "branchName"
+                        }
+                    ],
+                    "required": [
+                        "repoURL",
+                        "targetRevision"
+                    ],
+                    "properties": {
+                        "repoURL": {
+                            "$id": "#/properties/global/properties/source/properties/repoURL",
+                            "type": "string",
+                            "title": "The repoURL schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "repoUrl"
+                            ]
+                        },
+                        "targetRevision": {
+                            "$id": "#/properties/global/properties/source/properties/targetRevision",
+                            "type": "string",
+                            "title": "The targetRevision schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "branchName"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "destination": {
+                    "$id": "#/properties/global/properties/destination",
+                    "type": "object",
+                    "title": "The destination schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "namespace": "namespace",
+                            "server": "targetServerUrl"
+                        }
+                    ],
+                    "required": [
+                        "namespace",
+                        "server"
+                    ],
+                    "properties": {
+                        "namespace": {
+                            "$id": "#/properties/global/properties/destination/properties/namespace",
+                            "type": "string",
+                            "title": "The namespace schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "namespace"
+                            ]
+                        },
+                        "server": {
+                            "$id": "#/properties/global/properties/destination/properties/server",
+                            "type": "string",
+                            "title": "The server schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "targetServerUrl"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "syncPolicy": {
+                    "$id": "#/properties/global/properties/syncPolicy",
+                    "type": "object",
+                    "title": "The syncPolicy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "automated": {
+                                "prune": true,
+                                "selfHeal": true
+                            }
+                        }
+                    ],
+                    "required": [
+                        "automated"
+                    ],
+                    "properties": {
+                        "automated": {
+                            "$id": "#/properties/global/properties/syncPolicy/properties/automated",
+                            "type": "object",
+                            "title": "The automated schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": {},
+                            "examples": [
+                                {
+                                    "prune": true,
+                                    "selfHeal": true
+                                }
+                            ],
+                            "required": [
+                                "prune",
+                                "selfHeal"
+                            ],
+                            "properties": {
+                                "prune": {
+                                    "$id": "#/properties/global/properties/syncPolicy/properties/automated/properties/prune",
+                                    "type": "boolean",
+                                    "title": "The prune schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": false,
+                                    "examples": [
+                                        true
+                                    ]
+                                },
+                                "selfHeal": {
+                                    "$id": "#/properties/global/properties/syncPolicy/properties/automated/properties/selfHeal",
+                                    "type": "boolean",
+                                    "title": "The selfHeal schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": false,
+                                    "examples": [
+                                        true
+                                    ]
+                                }
+                            },
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}

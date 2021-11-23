@@ -16,7 +16,7 @@ spec:
         - port: 5432
       route:
         - destination:
-            host: {{ default "explorer-db" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+            host: {{ default "explorer-db" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 5432
           weight: 100

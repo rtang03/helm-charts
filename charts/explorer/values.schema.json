@@ -7,15 +7,14 @@
   "default": {},
   "examples": [
     {
-      "orgname": "org1",
-      "namespace": "n1",
-      "mspid": "Org1MSP",
+      "orgname": "ORGNAME",
+      "mspid": "MSPID",
       "channel_name": "cdi-testnet",
       "network_name": "cdi_testnet",
-      "peer_url": "grpcs://peer1-org1.cdi.testnet:7051",
-      "ca_url": "https://enrollment-ca-org1:7054",
-      "database_username": "hppoc",
-      "database_passwd": "password",
+      "peer_url": "grpcs://peer0-ORGNAME.cdi.testnet:7051",
+      "ca_url": "https://enrollment-ca-ORGNAME:7054",
+      "database_username": "DATABASE_USERNAME",
+      "database_passwd": "DATABASE_PASSWORD",
       "log_level_app": "info",
       "log_level_db": "info",
       "log_level_console": "info",
@@ -30,10 +29,10 @@
       "resources": {
         "requests": {
           "cpu": "100m",
-          "memory": "150Mi"
+          "memory": "128Mi"
         },
         "limits": {
-          "cpu": "200m",
+          "cpu": "300m",
           "memory": "256Mi"
         }
       },
@@ -46,14 +45,13 @@
         "annotations": {},
         "storageClass": "",
         "accessMode": "ReadWriteOnce",
-        "size": "1Gi",
-        "mountPath": "/opt/explorer/wallet/cdi"
+        "size": "5Gi",
+        "mountPath": "/var/explorer"
       }
     }
   ],
   "required": [
     "orgname",
-    "namespace",
     "mspid",
     "channel_name",
     "network_name",
@@ -80,17 +78,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "org1"
-      ]
-    },
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "n1"
+        "ORGNAME"
       ]
     },
     "mspid": {
@@ -100,7 +88,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "Org1MSP"
+        "MSPID"
       ]
     },
     "channel_name": {
@@ -130,7 +118,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "grpcs://peer1-org1.cdi.testnet:7051"
+        "grpcs://peer0-ORGNAME.cdi.testnet:7051"
       ]
     },
     "ca_url": {
@@ -140,7 +128,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "https://enrollment-ca-org1:7054"
+        "https://enrollment-ca-ORGNAME:7054"
       ]
     },
     "database_username": {
@@ -150,7 +138,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "hppoc"
+        "DATABASE_USERNAME"
       ]
     },
     "database_passwd": {
@@ -160,7 +148,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "password"
+        "DATABASE_PASSWORD"
       ]
     },
     "log_level_app": {
@@ -279,10 +267,10 @@
         {
           "requests": {
             "cpu": "100m",
-            "memory": "150Mi"
+            "memory": "128Mi"
           },
           "limits": {
-            "cpu": "200m",
+            "cpu": "300m",
             "memory": "256Mi"
           }
         }
@@ -301,7 +289,7 @@
           "examples": [
             {
               "cpu": "100m",
-              "memory": "150Mi"
+              "memory": "128Mi"
             }
           ],
           "required": [
@@ -326,7 +314,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "150Mi"
+                "128Mi"
               ]
             }
           },
@@ -340,7 +328,7 @@
           "default": {},
           "examples": [
             {
-              "cpu": "200m",
+              "cpu": "300m",
               "memory": "256Mi"
             }
           ],
@@ -356,7 +344,7 @@
               "description": "An explanation about the purpose of this instance.",
               "default": "",
               "examples": [
-                "200m"
+                "300m"
               ]
             },
             "memory": {
@@ -427,8 +415,8 @@
           "annotations": {},
           "storageClass": "",
           "accessMode": "ReadWriteOnce",
-          "size": "1Gi",
-          "mountPath": "/opt/explorer/wallet/cdi"
+          "size": "5Gi",
+          "mountPath": "/var/explorer"
         }
       ],
       "required": [
@@ -489,7 +477,7 @@
           "description": "An explanation about the purpose of this instance.",
           "default": "",
           "examples": [
-            "1Gi"
+            "5Gi"
           ]
         },
         "mountPath": {
@@ -499,7 +487,7 @@
           "description": "An explanation about the purpose of this instance.",
           "default": "",
           "examples": [
-            "/opt/explorer/wallet/cdi"
+            "/var/explorer"
           ]
         }
       },

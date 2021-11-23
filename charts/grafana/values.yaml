@@ -3,7 +3,6 @@
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
 orgname: ORGNAME
-namespace: NAMESPACE
 resources:
   requests:
     cpu: 100m
@@ -13,11 +12,21 @@ resources:
     memory: 256Mi
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 1Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/var/lib/grafana"
 
 configmap:
@@ -63,17 +72,40 @@ configmap:
       mountPath: "/var/lib/grafana/dashboards/hyperledger/redis_rev1.json"
       subPath: "redis_rev1.json"
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: grafana
+
+# -- Fixture
+# @default -- internal value
 legendFormat_Container: "{{container}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_Name: "{{name}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_TransmitName: "tra-{{name}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_ReceiveName: "rec-{{name}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_Pod: "{{pod}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_TransmitPod: "tra-{{pod}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_ReceivePod: "rec-{{pod}}"
+
+# -- Fixture
+# @default -- internal value
 legendFormat_Id: "{{id}}"
 
 podAnnotations: {}

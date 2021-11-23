@@ -5,24 +5,28 @@
 orgname: ORGNAME
 database_username: DATABASE_USERNAME
 database_passwd: DATABASE_PASSWORD
-namespace: NAMESPACE
 
 image:
+  # -- Fixture
+  # @default -- internal value
   pullPolicy: IfNotPresent
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  ## storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 5Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/var/explorer"
   # existingClaim: ""
 
@@ -34,24 +38,31 @@ resources:
     cpu: 300m
     memory: 256Mi
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: explorer-db
 
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
@@ -68,6 +79,8 @@ securityContext: {}
 # runAsNonRoot: true
 # runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -76,20 +89,31 @@ service:
       protocol: TCP
       name: tcp-postgresql
 
+# -- Fixture
+# @default -- internal value
 configmap:
   enabled: true
   data: "config/*"
   mountPath: "/setup"
 
+# -- Fixture
+# @default -- internal value
 affinity: {}
+
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 1
   targetCPUUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 istioService:
   enabled: true
   ports:

@@ -1,0 +1,629 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "aws_access_key_id": "my-access-key-id",
+      "aws_secret_access_key": "my-access-key-secret",
+      "aws_profile": "my-aws-profile",
+      "region": "my-region",
+      "argo-cd": {
+        "global": {
+          "image": {
+            "repository": "ghcr.io/rtang03/argocd-helm-secret",
+            "tag": "2.1.7-rev2",
+            "imagePullPolicy": "IfNotPresent"
+          },
+          "securityContext": {
+            "fsGroup": 2000
+          }
+        },
+        "repoServer": {
+          "logLevel": "info",
+          "volumes": [
+            {
+              "name": "argocd-aws-credentials",
+              "secret": {
+                "secretName": "argocd-aws-credentials"
+              }
+            }
+          ],
+          "volumeMounts": [
+            {
+              "mountPath": "/home/argocd/.aws",
+              "name": "argocd-aws-credentials"
+            }
+          ]
+        },
+        "server": {
+          "extraArgs": [
+            "--insecure"
+          ],
+          "podAnnotations": {
+            "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+            "sidecar.istio.io/logLevel": "warning"
+          },
+          "config": {
+            "accounts.cli": "apiKey, login",
+            "statusbadge.enabled": "true",
+            "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
+            "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "aws_access_key_id",
+    "aws_secret_access_key",
+    "aws_profile",
+    "region",
+    "argo-cd"
+  ],
+  "properties": {
+    "aws_access_key_id": {
+      "$id": "#/properties/aws_access_key_id",
+      "type": "string",
+      "title": "The aws_access_key_id schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "my-access-key-id"
+      ]
+    },
+    "aws_secret_access_key": {
+      "$id": "#/properties/aws_secret_access_key",
+      "type": "string",
+      "title": "The aws_secret_access_key schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "my-access-key-secret"
+      ]
+    },
+    "aws_profile": {
+      "$id": "#/properties/aws_profile",
+      "type": "string",
+      "title": "The aws_profile schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "my-aws-profile"
+      ]
+    },
+    "region": {
+      "$id": "#/properties/region",
+      "type": "string",
+      "title": "The region schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "my-region"
+      ]
+    },
+    "argo-cd": {
+      "$id": "#/properties/argo-cd",
+      "type": "object",
+      "title": "The argo-cd schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "global": {
+            "image": {
+              "repository": "ghcr.io/rtang03/argocd-helm-secret",
+              "tag": "2.1.7-rev2",
+              "imagePullPolicy": "IfNotPresent"
+            },
+            "securityContext": {
+              "fsGroup": 2000
+            }
+          },
+          "repoServer": {
+            "logLevel": "info",
+            "volumes": [
+              {
+                "name": "argocd-aws-credentials",
+                "secret": {
+                  "secretName": "argocd-aws-credentials"
+                }
+              }
+            ],
+            "volumeMounts": [
+              {
+                "mountPath": "/home/argocd/.aws",
+                "name": "argocd-aws-credentials"
+              }
+            ]
+          },
+          "server": {
+            "extraArgs": [
+              "--insecure"
+            ],
+            "podAnnotations": {
+              "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+              "sidecar.istio.io/logLevel": "warning"
+            },
+            "config": {
+              "accounts.cli": "apiKey, login",
+              "statusbadge.enabled": "true",
+              "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
+              "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+            }
+          }
+        }
+      ],
+      "required": [
+        "global",
+        "repoServer",
+        "server"
+      ],
+      "properties": {
+        "global": {
+          "$id": "#/properties/argo-cd/properties/global",
+          "type": "object",
+          "title": "The global schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "image": {
+                "repository": "ghcr.io/rtang03/argocd-helm-secret",
+                "tag": "2.1.7-rev2",
+                "imagePullPolicy": "IfNotPresent"
+              },
+              "securityContext": {
+                "fsGroup": 2000
+              }
+            }
+          ],
+          "required": [
+            "image",
+            "securityContext"
+          ],
+          "properties": {
+            "image": {
+              "$id": "#/properties/argo-cd/properties/global/properties/image",
+              "type": "object",
+              "title": "The image schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "repository": "ghcr.io/rtang03/argocd-helm-secret",
+                  "tag": "2.1.7-rev2",
+                  "imagePullPolicy": "IfNotPresent"
+                }
+              ],
+              "required": [
+                "repository",
+                "tag",
+                "imagePullPolicy"
+              ],
+              "properties": {
+                "repository": {
+                  "$id": "#/properties/argo-cd/properties/global/properties/image/properties/repository",
+                  "type": "string",
+                  "title": "The repository schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "ghcr.io/rtang03/argocd-helm-secret"
+                  ]
+                },
+                "tag": {
+                  "$id": "#/properties/argo-cd/properties/global/properties/image/properties/tag",
+                  "type": "string",
+                  "title": "The tag schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "2.1.7-rev2"
+                  ]
+                },
+                "imagePullPolicy": {
+                  "$id": "#/properties/argo-cd/properties/global/properties/image/properties/imagePullPolicy",
+                  "type": "string",
+                  "title": "The imagePullPolicy schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "IfNotPresent"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            },
+            "securityContext": {
+              "$id": "#/properties/argo-cd/properties/global/properties/securityContext",
+              "type": "object",
+              "title": "The securityContext schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "fsGroup": 2000
+                }
+              ],
+              "required": [
+                "fsGroup"
+              ],
+              "properties": {
+                "fsGroup": {
+                  "$id": "#/properties/argo-cd/properties/global/properties/securityContext/properties/fsGroup",
+                  "type": "integer",
+                  "title": "The fsGroup schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": 0,
+                  "examples": [
+                    2000
+                  ]
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        },
+        "repoServer": {
+          "$id": "#/properties/argo-cd/properties/repoServer",
+          "type": "object",
+          "title": "The repoServer schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "logLevel": "info",
+              "volumes": [
+                {
+                  "name": "argocd-aws-credentials",
+                  "secret": {
+                    "secretName": "argocd-aws-credentials"
+                  }
+                }
+              ],
+              "volumeMounts": [
+                {
+                  "mountPath": "/home/argocd/.aws",
+                  "name": "argocd-aws-credentials"
+                }
+              ]
+            }
+          ],
+          "required": [
+            "logLevel",
+            "volumes",
+            "volumeMounts"
+          ],
+          "properties": {
+            "logLevel": {
+              "$id": "#/properties/argo-cd/properties/repoServer/properties/logLevel",
+              "type": "string",
+              "title": "The logLevel schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "info"
+              ]
+            },
+            "volumes": {
+              "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes",
+              "type": "array",
+              "title": "The volumes schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": [],
+              "examples": [
+                [
+                  {
+                    "name": "argocd-aws-credentials",
+                    "secret": {
+                      "secretName": "argocd-aws-credentials"
+                    }
+                  }
+                ]
+              ],
+              "additionalItems": true,
+              "items": {
+                "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes/items",
+                "anyOf": [
+                  {
+                    "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes/items/anyOf/0",
+                    "type": "object",
+                    "title": "The first anyOf schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "name": "argocd-aws-credentials",
+                        "secret": {
+                          "secretName": "argocd-aws-credentials"
+                        }
+                      }
+                    ],
+                    "required": [
+                      "name",
+                      "secret"
+                    ],
+                    "properties": {
+                      "name": {
+                        "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes/items/anyOf/0/properties/name",
+                        "type": "string",
+                        "title": "The name schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                          "argocd-aws-credentials"
+                        ]
+                      },
+                      "secret": {
+                        "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes/items/anyOf/0/properties/secret",
+                        "type": "object",
+                        "title": "The secret schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                          {
+                            "secretName": "argocd-aws-credentials"
+                          }
+                        ],
+                        "required": [
+                          "secretName"
+                        ],
+                        "properties": {
+                          "secretName": {
+                            "$id": "#/properties/argo-cd/properties/repoServer/properties/volumes/items/anyOf/0/properties/secret/properties/secretName",
+                            "type": "string",
+                            "title": "The secretName schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                              "argocd-aws-credentials"
+                            ]
+                          }
+                        },
+                        "additionalProperties": true
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                ]
+              }
+            },
+            "volumeMounts": {
+              "$id": "#/properties/argo-cd/properties/repoServer/properties/volumeMounts",
+              "type": "array",
+              "title": "The volumeMounts schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": [],
+              "examples": [
+                [
+                  {
+                    "mountPath": "/home/argocd/.aws",
+                    "name": "argocd-aws-credentials"
+                  }
+                ]
+              ],
+              "additionalItems": true,
+              "items": {
+                "$id": "#/properties/argo-cd/properties/repoServer/properties/volumeMounts/items",
+                "anyOf": [
+                  {
+                    "$id": "#/properties/argo-cd/properties/repoServer/properties/volumeMounts/items/anyOf/0",
+                    "type": "object",
+                    "title": "The first anyOf schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                      {
+                        "mountPath": "/home/argocd/.aws",
+                        "name": "argocd-aws-credentials"
+                      }
+                    ],
+                    "required": [
+                      "mountPath",
+                      "name"
+                    ],
+                    "properties": {
+                      "mountPath": {
+                        "$id": "#/properties/argo-cd/properties/repoServer/properties/volumeMounts/items/anyOf/0/properties/mountPath",
+                        "type": "string",
+                        "title": "The mountPath schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                          "/home/argocd/.aws"
+                        ]
+                      },
+                      "name": {
+                        "$id": "#/properties/argo-cd/properties/repoServer/properties/volumeMounts/items/anyOf/0/properties/name",
+                        "type": "string",
+                        "title": "The name schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                          "argocd-aws-credentials"
+                        ]
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "server": {
+          "$id": "#/properties/argo-cd/properties/server",
+          "type": "object",
+          "title": "The server schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "extraArgs": [
+                "--insecure"
+              ],
+              "podAnnotations": {
+                "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+                "sidecar.istio.io/logLevel": "warning"
+              },
+              "config": {
+                "accounts.cli": "apiKey, login",
+                "statusbadge.enabled": "true",
+                "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
+                "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+              }
+            }
+          ],
+          "required": [
+            "extraArgs",
+            "podAnnotations",
+            "config"
+          ],
+          "properties": {
+            "extraArgs": {
+              "$id": "#/properties/argo-cd/properties/server/properties/extraArgs",
+              "type": "array",
+              "title": "The extraArgs schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": [],
+              "examples": [
+                [
+                  "--insecure"
+                ]
+              ],
+              "additionalItems": true,
+              "items": {
+                "$id": "#/properties/argo-cd/properties/server/properties/extraArgs/items",
+                "anyOf": [
+                  {
+                    "$id": "#/properties/argo-cd/properties/server/properties/extraArgs/items/anyOf/0",
+                    "type": "string",
+                    "title": "The first anyOf schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "--insecure"
+                    ]
+                  }
+                ]
+              }
+            },
+            "podAnnotations": {
+              "$id": "#/properties/argo-cd/properties/server/properties/podAnnotations",
+              "type": "object",
+              "title": "The podAnnotations schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+                  "sidecar.istio.io/logLevel": "warning"
+                }
+              ],
+              "required": [
+                "sidecar.istio.io/rewriteAppHTTPProbers",
+                "sidecar.istio.io/logLevel"
+              ],
+              "properties": {
+                "sidecar.istio.io/rewriteAppHTTPProbers": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/podAnnotations/properties/sidecar.istio.io/rewriteAppHTTPProbers",
+                  "type": "string",
+                  "title": "The sidecar.istio.io/rewriteAppHTTPProbers schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "false"
+                  ]
+                },
+                "sidecar.istio.io/logLevel": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/podAnnotations/properties/sidecar.istio.io/logLevel",
+                  "type": "string",
+                  "title": "The sidecar.istio.io/logLevel schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "warning"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            },
+            "config": {
+              "$id": "#/properties/argo-cd/properties/server/properties/config",
+              "type": "object",
+              "title": "The config schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": {},
+              "examples": [
+                {
+                  "accounts.cli": "apiKey, login",
+                  "statusbadge.enabled": "true",
+                  "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
+                  "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+                }
+              ],
+              "required": [
+                "accounts.cli",
+                "statusbadge.enabled",
+                "helm.repositories",
+                "repositories"
+              ],
+              "properties": {
+                "accounts.cli": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/accounts.cli",
+                  "type": "string",
+                  "title": "The accounts.cli schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "apiKey, login"
+                  ]
+                },
+                "statusbadge.enabled": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/statusbadge.enabled",
+                  "type": "string",
+                  "title": "The statusbadge.enabled schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "true"
+                  ]
+                },
+                "helm.repositories": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/helm.repositories",
+                  "type": "string",
+                  "title": "The helm.repositories schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n"
+                  ]
+                },
+                "repositories": {
+                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/repositories",
+                  "type": "string",
+                  "title": "The repositories schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": "",
+                  "examples": [
+                    "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

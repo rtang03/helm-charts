@@ -2,8 +2,9 @@ apiVersion: v2
 name: argo-apps
 description: Real Apps to be deployed by Argo CD, with app-of-app pattern
 type: application
-version: 0.1.2
+version: 0.1.3
 appVersion: 0.4.4
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
   - name: "rtang03"
     email: "ask@dashslab.com"

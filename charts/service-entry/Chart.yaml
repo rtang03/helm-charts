@@ -1,13 +1,14 @@
 apiVersion: v2
 name: service-entry
-version: 0.1.0
-description: Helper charts to deploy service-entry
+version: 0.1.1
+description: Helper charts to deploy service-entry for peers or orderers
 type: application
 appVersion: 0.0.1
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "initial commit"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

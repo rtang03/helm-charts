@@ -1,15 +1,16 @@
 apiVersion: v2
 name: redisearch
-description: Redisearch for fabric-es project
+description: Redisearch + Redis Exporter
 type: application
-version: 0.1.4
+version: 0.1.5
 appVersion: 2.0.5
 sources:
   - https://github.com/rtang03/fabric-es
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "add pvc"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

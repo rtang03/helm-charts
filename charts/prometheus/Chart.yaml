@@ -1,14 +1,16 @@
 apiVersion: v2
 name: prometheus
-# source coming from https://istio.io/latest/docs/ops/integrations/prometheus/#configuration
-version: 0.1.1
+version: 0.1.2
 description: Prometheus from fabric-es project (with custom scrapes)
 type: application
 appVersion: 2.26.0
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+sources:
+  - https://istio.io/latest/docs/ops/integrations/prometheus/#configuration
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "initial commit"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

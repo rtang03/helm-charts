@@ -14,7 +14,7 @@ spec:
   {{- end}}
   destination:
     namespace: argocd
-    server: '{{ .Values.global.destination.server}}'
+    server: {{ $.Values.global.destination.server | quote }}
   {{- with $.Values.global.syncPolicy }}
   syncPolicy:
     {{- toYaml . | nindent 4 }}

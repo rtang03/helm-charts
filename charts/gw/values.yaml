@@ -2,58 +2,102 @@
 ### CONFIGURABLE                                                      ###
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
-# Application Name
 orgname: ORGNAME
+orgAdminSecret: xxxxx
 
-# Istio
+# -- fqdn used by istio gateway / VS
 fqdn: 'uat-ORGNAME.cdi.network'
-namespace: NAMESAPCE
 
 orderers:
+  # -- Fixture
+  # @default -- internal value
   - name: orderer0-org0
+    # -- fqdn for orderer
     url: grpcs://orderer0-org0.cdi.testnet:7050
   - name: orderer1-org0
+    # -- fqdn for orderer
     url: grpcs://orderer1-org0.cdi.testnet:7050
   - name: orderer2-org0
+    # -- fqdn for orderer
     url: grpcs://orderer2-org0.cdi.testnet:7050
   - name: orderer3-org0
+    # -- fqdn for orderer
     url: grpcs://orderer3-org0.cdi.testnet:7050
   - name: orderer4-org0
+    # -- fqdn for orderer
     url: grpcs://orderer4-org0.cdi.testnet:7050
 
-####  application-related
+# -- url to oauth/auth endpoint
 authorizationServerUri: 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
+
+# -- Fixture
+# @default -- internal value
 caEnrollmentIdAdmin: ca-admin
+
+# -- in format of "enrollment-ca-[ORGNAME]"
 caName: enrollment-ca-ORGNAME
+
+# -- Channel name
 channelName: cdi-testnet
+
+# -- fqdn for gateway, used by istio VS / gateway
 gatewayHost: uat-ORGNAME.cdi.network
+
+# -- info | debug
 logLevel: debug
+
+# -- MSP ID
 mspid: MSPID
+
+# -- Organization admin ID
 orgAdminId: myadmin
+
+# -- fqdn for enrollment CA
 orgCaUrl: 'https://enrollmentca-ORGNAME:7054'
+
+# -- fqdn for Gateway app; must use port 4101
 orgUrl: 'https://uat-ORGNAME.cdi.network:4101/gw_org'
+
+# -- istio VS or k8s service for redisearch
 redisHost: redisearch-ORGNAME
+
 timezone: 'Asia/Hong_Kong'
+
 nodeTLSRejectUnauthorized:
   enabled: false
   value: "0"
+
+# -- only supported "Bearer"
 dataAccessHeaderAuthType: Bearer
+
+# -- No info
 dataAccessApigwUrl: https://uat-TARGET_ORGNAME.cdi.network/apigw/gw/s2s/thirdparty/v1/SaleTransaction/fileUrls
+
+# -- No info
 dataAccessMappedUrl: https://uat-TARGET_ORGNAME.cdi.network/datafile/
 
-# Emali Consent Flow App Param
+# -- Emali Consent Flow App Param
 aclOrgId: CDI_PARTICIPANT_000001
+
+# -- No info
 aclOrgAccountType: consumer
+
+# -- Fixture
+# @default -- internal value
 aclFile: /assets/acl.json
 
-# Init Container
+# -- used by Init Container
 authCheckUrl: 'https://uat-ORGNAME.cdi.network:8443/account/login'
+
+# -- used by Init Container
 authCheckReply: Unauthorized
+
 # test cert
 # certPathCert: /cert/test-cdi-network.crt
 # certPathKey: /cert/test-cdi-network.key
 # caPathCert: /cert/test-cacert.crt
 
+# -- No info
 debugPlaceholder: queryHandler:* ioredis:redis gw-lib:*
 
 nodeSelector:
@@ -67,16 +111,28 @@ image:
   pullPolicy: IfNotPresent
 
 podAnnotations:
+  # -- Fixture
+  # @default -- internal value
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
   # trace|debug|info|warning|error|critical|off
   sidecar.istio.io/logLevel: "warning"
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 50Mi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/assets"
   # existingClaim: ""
 
@@ -88,31 +144,66 @@ resources:
     cpu: 500m
     memory: 3Gi
 
-# either 0 or 1
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: gw
 
-# real cert
+# -- Fixture
+# @default -- internal value
 certPathCert: /cert/tls.crt
+
+# -- Fixture
+# @default -- internal value
 certPathKey: /cert/tls.key
+
+# -- Fixture
+# @default -- internal value
 caPathCert: /cert/rootca.crt
+
+# -- Fixture
+# @default -- internal value
 administratorPort: 15011
+
+# -- Fixture
+# @default -- internal value
 queryPort: 5001
+
+# -- Fixture
+# @default -- internal value
 gatewayPort: 4101
+
+# -- Fixture
+# @default -- internal value
 redisPort: 6379
 
+# -- Fixture
+# @default -- internal value
 wallet: /assets/wallet
+
+# -- Fixture
+# @default -- internal value
 orgKey: /assets/orgkey
+
 connectionProfile: /home/app/connection.yaml
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -128,6 +219,8 @@ podSecurityContext:
 securityContext:
   runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -140,8 +233,12 @@ service:
       protocol: TCP
       name: https-gw
 
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 affinity: {}
 
 ## Note: need to :4101/healthcheck. The below logic may not work

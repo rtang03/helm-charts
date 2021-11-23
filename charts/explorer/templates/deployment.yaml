@@ -37,7 +37,6 @@ spec:
           persistentVolumeClaim:
             claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- end }}
-        {{- if .Values.configmap.enabled }}
         - name: my-cm
           configMap:
             name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
@@ -46,13 +45,10 @@ spec:
                 path: "config.json"
               - key: "test-network.json"
                 path: "test-network.json"
-        {{- end }}
-        {{- if .Values.secretvol.enabled }}
         {{- range .Values.secretvol.vol }}
         - name: {{ .name }}
           secret:
             secretName: {{ .name }}
-        {{- end }}
         {{- end }}
         - name: pgbouncer
           configMap:
@@ -180,12 +176,10 @@ spec:
             - mountPath: /tmp/test-network.json
               name: my-cm
               subPath: test-network.json
-            {{- if .Values.secretvol.enabled }}
             {{- range .Values.secretvol.vol }}
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
             {{- end }}
-          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.affinity }}

@@ -7,8 +7,7 @@
   "default": {},
   "examples": [
     {
-      "orgname": "org1",
-      "namespace": "n1",
+      "orgname": "ORGNAME",
       "resources": {
         "requests": {
           "cpu": "100m",
@@ -24,7 +23,7 @@
         "annotations": {},
         "storageClass": "",
         "accessMode": "ReadWriteOnce",
-        "size": "5Gi",
+        "size": "1Gi",
         "mountPath": "/var/lib/grafana"
       },
       "configmap": {
@@ -95,7 +94,6 @@
   ],
   "required": [
     "orgname",
-    "namespace",
     "resources",
     "persistence",
     "configmap"
@@ -108,17 +106,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "org1"
-      ]
-    },
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "n1"
+        "ORGNAME"
       ]
     },
     "resources": {
@@ -239,7 +227,7 @@
           "annotations": {},
           "storageClass": "",
           "accessMode": "ReadWriteOnce",
-          "size": "5Gi",
+          "size": "1Gi",
           "mountPath": "/var/lib/grafana"
         }
       ],
@@ -301,7 +289,7 @@
           "description": "An explanation about the purpose of this instance.",
           "default": "",
           "examples": [
-            "5Gi"
+            "1Gi"
           ]
         },
         "mountPath": {

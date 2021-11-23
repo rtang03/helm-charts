@@ -1,0 +1,42 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## Additional Information
+
+NOTE: This chart is opinionated for custom project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
+
+Below cli are not tested. Need verifiy again.
+
+TLS CA
+```bash
+# Below cli is NOT test.
+helm secrets install -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-tls.yaml tls hlf/hlf-ca
+
+# Subsequent Upgrade
+helm secrets upgrade -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-tls.yaml tls hlf/hlf-ca
+```
+
+Enrollment CA
+```bash
+helm secrets install -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-enr.yaml enr hlf/hlf-ca
+
+# Subsequent Upgrade
+helm secrets upgrade -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-enr.yaml enr hlf/hlf-ca
+```
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm install my-release dashslab/{{ template "chart.name" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

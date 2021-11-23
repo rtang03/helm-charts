@@ -1,14 +1,16 @@
 apiVersion: v2
 name: grafana
-# source coming from https://istio.io/latest/docs/ops/integrations/grafana/#configuration
-version: 0.1.7
+version: 0.1.8
 description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+sources:
+  - https://istio.io/latest/docs/ops/integrations/grafana/#configuration
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "update values file"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

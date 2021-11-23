@@ -12,7 +12,7 @@ spec:
   http:
   - route:
     - destination:
-        host: {{ default "explorer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+        host: {{ default "explorer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
         port:
           number: 8080
       weight: 100

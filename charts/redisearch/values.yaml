@@ -1,15 +1,16 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
+# -- Organization name
 orgname: ORGNAME
+
 config:
   maxmemory: 1000mb
+
 timezone: 'Asia/Hong_Kong'
 
 podAnnotations:
+  # -- Fixture
+  # @default -- internal value
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
+  # -- trace|debug|info|warning|error|critical|off
   sidecar.istio.io/logLevel: "warning"
 
 resources:
@@ -24,36 +25,60 @@ nodeSelector:
   node.hkicl/nodename: node3
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 1000Mi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/data"
 
 redisExporterTag: 1.29.0
 
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: redisearch
+
 image:
   repository: redislabs/redisearch
   pullPolicy: IfNotPresent
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
 redisExporter:
   repository:  oliver006/redis_exporter
+  # -- Fixture
+  # @default -- internal value
   service:
     port: 9121
     protocol: TCP
     name: tcp-exporter
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -63,9 +88,13 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Fixture
+# @default -- internal value
 podSecurityContext: {}
 # fsGroup: 2000
 
+# -- Fixture
+# @default -- internal value
 securityContext: {}
   # capabilities:
   #   drop:
@@ -74,6 +103,8 @@ securityContext: {}
   # runAsNonRoot: true
 # runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -102,6 +133,8 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 5
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -109,6 +142,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 affinity: {}

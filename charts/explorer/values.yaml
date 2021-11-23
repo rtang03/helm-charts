@@ -3,27 +3,34 @@
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
 orgname: ORGNAME
-namespace: NAMESPACE
+# -- MSP ID
 mspid: MSPID
+# -- Channel name
 channel_name: cdi-testnet
-# network name for use in Explorer only, can be any name
+# -- network name for use in Explorer only, can be any name
 network_name: cdi_testnet
+# -- url for addressable peer
 peer_url: grpcs://peer0-ORGNAME.cdi.testnet:7051
+# -- url of CA server (istio VS or k8s service)
 ca_url: https://enrollment-ca-ORGNAME:7054
-# fqdn is reserved for future use. And, it shall have istioGateway manifest
 database_username: DATABASE_USERNAME
 database_passwd: DATABASE_PASSWORD
-# info | debug
+# -- info | debug
 log_level_app: info
+# -- info | debug
 log_level_db: info
+# -- info | debug
 log_level_console: info
-# sync interval by minute
+# -- sync interval by minute
 blocksSyncTime: 5
 
-# use replicaCount to disable it
-replicaCount: 0
+# -- Fixture
+# @default -- internal value
+replicaCount: 1
 
 image:
+  # -- Fixture
+  # @default -- internal value
   pullPolicy: IfNotPresent
 
 pgbouncer:
@@ -38,44 +45,56 @@ resources:
     memory: 256Mi
 
 podAnnotations:
+  # -- Fixture
+  # @default -- internal value
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
+  # -- trace|debug|info|warning|error|critical|off
   sidecar.istio.io/logLevel: "warning"
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  ## storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 1Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/opt/explorer/wallet/cdi"
   # existingClaim: ""
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: explorer
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -83,9 +102,6 @@ service:
       targetPort: 8080
       protocol: TCP
       name: http-explorer
-
-configmap:
-  enabled: true
 
 podSecurityContext: {}
 # fsGroup: 2000
@@ -98,11 +114,17 @@ securityContext: {}
 # runAsNonRoot: true
 # runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 affinity: {}
+
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 secretvol:
-  enabled: true
   vol:
     - name: msp-admin
       mountPath: /secret/msp-admin
@@ -111,12 +133,16 @@ secretvol:
     - name: explorer-login-token
       mountPath: /secret/tokens
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 1
   targetCPUUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 istioService:
   enabled: true
   ports:

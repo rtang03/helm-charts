@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "gw.labels" . | nindent 4 }}
 spec:
@@ -15,7 +16,7 @@ spec:
         - port: 4001
       route:
         - destination:
-            host: gw-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local
+            host: gw-{{ .Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 4001
           weight: 100
@@ -26,7 +27,7 @@ spec:
             - uat-{{ .Values.orgname }}.cdi.network
       route:
         - destination:
-            host: gw-{{ .Values.orgname }}.{{ .Values.namespace }}.svc.cluster.local
+            host: gw-{{ .Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 4101
           weight: 100
