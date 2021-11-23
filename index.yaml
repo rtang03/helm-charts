@@ -352,6 +352,26 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 8.2.2
+    created: "2021-11-23T13:39:11.693139991Z"
+    description: Grafana for fabric-es project
+    digest: 53dcd6bc6cb4f347e4fc3b5665274fd548c7e51bcfa6cea4262ff75dc7654512
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: grafana
+    sources:
+    - https://istio.io/latest/docs/ops/integrations/grafana/#configuration
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.9/grafana-0.1.9.tgz
+    version: 0.1.9
+  - annotations:
+      artifacthub.io/changes: |
+        - "use helm-docs"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 8.2.2
     created: "2021-11-23T10:26:18.905643082Z"
     description: Grafana for fabric-es project
     digest: 20001e4a5aab17e3baf499931195ab3af0e7f61cd63fb6638b16355268e8c659
@@ -1509,4 +1529,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-23T10:26:20.3004806Z"
+generated: "2021-11-23T13:39:11.6933178Z"
