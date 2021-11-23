@@ -1,8 +1,3 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
-# -- Organization name
 orgname: ORGNAME
 # -- fqdn used by Istio gateway
 fqdn: 'uat-ORGNAME.cdi.network'
@@ -14,14 +9,17 @@ jwtExpInSecond: "900"
 jwtSecret: secret
 logLevel: debug
 logTarget: console
+
 # -- Organization admin email
 orgAdminEmail: admin@myorg.net
-# -- Organization admin id
+
+# -- admin id
 orgAdminId: myadmin
-# Organization admin secret
-orgAdminSecret: t7CCOf0Vr0i8
+
+# -- admin secret
+orgAdminSecret: xxxxx
 port: "8443"
-# -- hostname (Istio Virtual Service or k8s service)
+# -- hostname (istio VS or k8s service)
 redisHost: redisearch-ORGNAME
 # -- (depreciated)
 refreshTokenExpInSec: "86400"
@@ -102,9 +100,13 @@ serviceAccount:
   annotations: {}
   name: ""
 
+# -- Fixture
+# @default -- internal value
 podSecurityContext: {}
 # fsGroup: 2000
 
+# -- Fixture
+# @default -- internal value
 securityContext: {}
   # capabilities:
   #   drop:

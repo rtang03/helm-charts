@@ -1,8 +1,4 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
-# -- "enrollment-ca" | "tls-ca"
+# -- enrollment-ca|tls-ca
 appname: enrollment-ca
 
 # -- Organization name
@@ -23,6 +19,8 @@ fqdn: "TYPE-ORG.domain.net"
 # @default -- internal value
 replicaCount: 1
 
+# -- Fixture
+# @default -- internal value
 image:
   pullPolicy: IfNotPresent
 

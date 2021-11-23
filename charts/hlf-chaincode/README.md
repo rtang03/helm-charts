@@ -2,7 +2,7 @@
 
 External Chaincode Container chart (Experimental)
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
 
 ## Additional Information
 
@@ -34,7 +34,7 @@ $ helm install my-release dashslab/hlf-chaincode
 | podAnnotations."sidecar.istio.io/logLevel" | string | `"warning"` | trace|debug|info|warning|error|critical|off |
 | podAnnotations."sidecar.istio.io/rewriteAppHTTPProbers" | string | internal value | Fixture |
 | podSecurityContext | object | internal value | Fixture |
-| replicaCount | int | `1` |  |
+| replicaCount | int | internal value | Fixture |
 | resources.limits.cpu | string | `"125m"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"25m"` |  |

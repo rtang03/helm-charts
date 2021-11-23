@@ -2,7 +2,7 @@ apiVersion: v2
 name: gw
 description: Gateway App for fabric-es project
 type: application
-version: 0.1.9
+version: 0.1.10
 appVersion: 0.4.4
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:

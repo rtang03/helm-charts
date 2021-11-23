@@ -2,7 +2,7 @@
 
 Hyperledger Explorer Database (Experimental)
 
-![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.8](https://img.shields.io/badge/AppVersion-1.1.8-informational?style=flat-square)
+![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.8](https://img.shields.io/badge/AppVersion-1.1.8-informational?style=flat-square)
 
 ## Additional Information
 
@@ -39,14 +39,14 @@ $ helm install my-release dashslab/explorer-db
 | persistence.mountPath | string | internal value | Fixture |
 | persistence.size | string | `"5Gi"` |  |
 | persistence.storageClass | string | internal value | Fixture |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
+| podAnnotations | object | internal value | Fixture |
+| podSecurityContext | object | internal value | Fixture |
 | replicaCount | int | internal value | Fixture |
 | resources.limits.cpu | string | `"300m"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
-| securityContext | object | `{}` |  |
+| securityContext | object | internal value | Fixture |
 | service | object | internal value | Fixture |
 | serviceAccount | object | internal value | Fixture |
 | tolerations | list | internal value | Fixture |

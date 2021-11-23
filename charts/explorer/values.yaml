@@ -1,26 +1,33 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
 orgname: ORGNAME
+
 # -- MSP ID
 mspid: MSPID
+
 # -- Channel name
 channel_name: cdi-testnet
+
 # -- network name for use in Explorer only, can be any name
 network_name: cdi_testnet
+
 # -- url for addressable peer
 peer_url: grpcs://peer0-ORGNAME.cdi.testnet:7051
+
+# e.g. https://enrollment-ca-ORGNAME:7054
 # -- url of CA server (istio VS or k8s service)
-ca_url: https://enrollment-ca-ORGNAME:7054
+ca_url: https://example.com:7054
+
 database_username: DATABASE_USERNAME
 database_passwd: DATABASE_PASSWORD
+
 # -- info | debug
 log_level_app: info
+
 # -- info | debug
 log_level_db: info
+
 # -- info | debug
 log_level_console: info
+
 # -- sync interval by minute
 blocksSyncTime: 5
 
@@ -29,8 +36,6 @@ blocksSyncTime: 5
 replicaCount: 1
 
 image:
-  # -- Fixture
-  # @default -- internal value
   pullPolicy: IfNotPresent
 
 pgbouncer:
@@ -103,9 +108,13 @@ service:
       protocol: TCP
       name: http-explorer
 
+# -- Fixture
+# @default -- internal value
 podSecurityContext: {}
 # fsGroup: 2000
 
+# -- Fixture
+# @default -- internal value
 securityContext: {}
   # capabilities:
   #   drop:

@@ -2,7 +2,7 @@
 
 Export Redisearch FT.INFO for use by Prometheus.Supports RediSearch >=v2.0
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 ## Additional Information
 
@@ -44,7 +44,7 @@ $ helm install my-release dashslab/redisearch-prometheus-exporter
 | orgname | string | `"ORGNAME"` | Organization name |
 | podAnnotations | object | internal value | Fixture |
 | readinessProbe | object | internal value | Fixture |
-| redisearchExporterStaticIndex | string | `"cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"` | Indexes to export |
+| redisearchExporterStaticIndex | string | `"cidx"` |  |
 | replicaCount | int | internal value | Fixture |
 | resources.limits.cpu | string | `"50m"` |  |
 | resources.limits.memory | string | `"64Mi"` |  |
