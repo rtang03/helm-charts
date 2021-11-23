@@ -1,6 +1,6 @@
 apiVersion: v2
 name: grafana
-version: 0.1.8
+version: 0.1.9
 description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
