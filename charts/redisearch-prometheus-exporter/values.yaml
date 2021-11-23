@@ -1,7 +1,8 @@
 # -- Organization name
 orgname: ORGNAME
+# e.g. "cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"
 # -- Indexes to export
-redisearchExporterStaticIndex: "cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"
+redisearchExporterStaticIndex: "cidx"
 
 image:
   pullPolicy: IfNotPresent

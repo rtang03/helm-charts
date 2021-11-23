@@ -28,22 +28,22 @@ $ helm install my-release dashslab/gw
 | affinity | object | internal value | Fixture |
 | appname | string | internal value | Fixture |
 | authCheckReply | string | `"Unauthorized"` | used by Init Container |
-| authCheckUrl | string | `"https://uat-ORGNAME.cdi.network:8443/account/login"` | used by Init Container |
-| authorizationServerUri | string | `"https://uat-ORGNAME.cdi.network:8443/oauth/authenticate"` | url to oauth/auth endpoint |
+| authCheckUrl | string | `"https://example.com"` |  |
+| authorizationServerUri | string | `"https://example.com"` |  |
 | caEnrollmentIdAdmin | string | internal value | Fixture |
-| caName | string | `"enrollment-ca-ORGNAME"` | in format of "enrollment-ca-[ORGNAME]" |
+| caName | string | `"enrollment-ca-ORG"` | format: enrollment-ca-ORGNAME |
 | caPathCert | string | internal value | Fixture |
 | certPathCert | string | internal value | Fixture |
 | certPathKey | string | internal value | Fixture |
 | channelName | string | `"cdi-testnet"` | Channel name |
-| connectionProfile | string | `"/home/app/connection.yaml"` |  |
-| dataAccessApigwUrl | string | `"https://uat-TARGET_ORGNAME.cdi.network/apigw/gw/s2s/thirdparty/v1/SaleTransaction/fileUrls"` | No info |
+| connectionProfile | string | internal valu | Fixture |
+| dataAccessApigwUrl | string | `"https://example.com"` |  |
 | dataAccessHeaderAuthType | string | `"Bearer"` | only supported "Bearer" |
-| dataAccessMappedUrl | string | `"https://uat-TARGET_ORGNAME.cdi.network/datafile/"` | No info |
+| dataAccessMappedUrl | string | `"https://example.com"` |  |
 | debugPlaceholder | string | `"queryHandler:* ioredis:redis gw-lib:*"` |  |
-| fqdn | string | `"uat-ORGNAME.cdi.network"` | fqdn used by istio gateway / VS |
+| fqdn | string | `"https://example.com"` |  |
 | fullnameOverride | string | internal value | Fixture |
-| gatewayHost | string | `"uat-ORGNAME.cdi.network"` | fqdn for gateway, used by istio VS / gateway |
+| gatewayHost | string | `"https://example.com"` |  |
 | gatewayPort | int | internal value | Fixture |
 | image.imageBase | string | `"gw-data-consumer"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -56,20 +56,19 @@ $ helm install my-release dashslab/gw
 | nodeTLSRejectUnauthorized.enabled | bool | `false` |  |
 | nodeTLSRejectUnauthorized.value | string | `"0"` |  |
 | orderers[0] | object | internal value | Fixture |
-| orderers[0].url | string | `"grpcs://orderer0-org0.cdi.testnet:7050"` | fqdn for orderer |
 | orderers[1].name | string | `"orderer1-org0"` |  |
-| orderers[1].url | string | `"grpcs://orderer1-org0.cdi.testnet:7050"` | fqdn for orderer |
+| orderers[1].url | string | `"grpcs://o1.org0.com:7050"` |  |
 | orderers[2].name | string | `"orderer2-org0"` |  |
-| orderers[2].url | string | `"grpcs://orderer2-org0.cdi.testnet:7050"` | fqdn for orderer |
+| orderers[2].url | string | `"grpcs://o2.org0.com:7050"` |  |
 | orderers[3].name | string | `"orderer3-org0"` |  |
-| orderers[3].url | string | `"grpcs://orderer3-org0.cdi.testnet:7050"` | fqdn for orderer |
+| orderers[3].url | string | `"grpcs://o3.org0.com:7050"` |  |
 | orderers[4].name | string | `"orderer4-org0"` |  |
-| orderers[4].url | string | `"grpcs://orderer4-org0.cdi.testnet:7050"` | fqdn for orderer |
+| orderers[4].url | string | `"grpcs://o4.org0.com:7050"` |  |
 | orgAdminId | string | `"myadmin"` | Organization admin ID |
 | orgAdminSecret | string | `"xxxxx"` |  |
-| orgCaUrl | string | `"https://enrollmentca-ORGNAME:7054"` | fqdn for enrollment CA |
+| orgCaUrl | string | `"https://example.com"` |  |
 | orgKey | string | internal value | Fixture |
-| orgUrl | string | `"https://uat-ORGNAME.cdi.network:4101/gw_org"` | fqdn for Gateway app; must use port 4101 |
+| orgUrl | string | `"https://example.com"` |  |
 | orgname | string | `"ORGNAME"` |  |
 | persistence.accessMode | string | internal value | Fixture |
 | persistence.annotations | object | internal value | Fixture |
@@ -81,7 +80,7 @@ $ helm install my-release dashslab/gw
 | podAnnotations."sidecar.istio.io/rewriteAppHTTPProbers" | string | internal value | Fixture |
 | podSecurityContext.fsGroup | int | `1000` |  |
 | queryPort | int | internal value | Fixture |
-| redisHost | string | `"redisearch-ORGNAME"` | istio VS or k8s service for redisearch |
+| redisHost | string | `"redisearch-ORGNAME"` | istio VS or k8s service |
 | redisPort | int | internal value | Fixture |
 | replicaCount | int | internal value | Fixture |
 | resources.limits.cpu | string | `"500m"` |  |

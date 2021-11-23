@@ -22,16 +22,16 @@ $ helm install my-release dashslab/hlf-peer
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | internal value | Fixture |
-| appname | string | `"peer0"` |  |
+| appname | string | `"peer0"` | peer0 | peer1 |
 | autoscaling | object | internal value | Fixture |
 | certRootDir | string | internal value | Fixture |
 | configmap | object | internal value | Fixture |
 | cryptoDir | string | internal value | Fixture |
 | fqdn | string | `"peer0-ORGNAME.cdi.testnet"` | fqdn used in Route 53 private hosted zone |
 | fullnameOverride | string | internal value | Fixture |
-| gossip.bootstrap | string | `"peer1-ORGNAME.cdi.testnet:7051"` | fqdn used in Route 53 private hosted zone |
+| gossip.bootstrap | string | `"peer1-ORGNAME.cdi.testnet:7051"` |  |
 | gossip.external.enabled | bool | `true` | peer0=true,peer1=false |
-| gossip.external.endpoint | string | `"peer0-ORGNAME.cdi.testnet:7051"` | only for peer0 |
+| gossip.external.endpoint | string | `"peer0-ORGNAME.cdi.testnet:7051"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | internal value | Fixture |
 | image.tag | string | `"2.3.2"` |  |
@@ -45,7 +45,7 @@ $ helm install my-release dashslab/hlf-peer
 | mspid | string | `"MSPID"` | MSP ID |
 | nameOverride | string | internal value | Fixture |
 | nodeSelector."node.hkicl/nodename" | string | `"node2"` |  |
-| orgname | string | `"ORGNAME"` | Organization name |
+| orgname | string | `"ORGNAME"` |  |
 | persistence.accessMode | string | internal value | Fixture |
 | persistence.annotations | object | internal value | Fixture |
 | persistence.enabled | bool | internal value | Fixture |

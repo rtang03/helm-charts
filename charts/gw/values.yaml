@@ -5,43 +5,51 @@
 orgname: ORGNAME
 orgAdminSecret: xxxxx
 
+# e.g. 'uat-ORGNAME.cdi.network'
 # -- fqdn used by istio gateway / VS
-fqdn: 'uat-ORGNAME.cdi.network'
+fqdn: https://example.com
 
 orderers:
   # -- Fixture
   # @default -- internal value
   - name: orderer0-org0
+    # e.g. grpcs://orderer0-org0.cdi.testnet:7050
     # -- fqdn for orderer
-    url: grpcs://orderer0-org0.cdi.testnet:7050
+    url: grpcs://o0.org0.com:7050
   - name: orderer1-org0
+    # e.g. grpcs://orderer1-org0.cdi.testnet:7050
     # -- fqdn for orderer
-    url: grpcs://orderer1-org0.cdi.testnet:7050
+    url: grpcs://o1.org0.com:7050
   - name: orderer2-org0
+    # e.g. grpcs://orderer2-org0.cdi.testnet:7050
     # -- fqdn for orderer
-    url: grpcs://orderer2-org0.cdi.testnet:7050
+    url: grpcs://o2.org0.com:7050
   - name: orderer3-org0
+    # e.g. grpcs://orderer3-org0.cdi.testnet:7050
     # -- fqdn for orderer
-    url: grpcs://orderer3-org0.cdi.testnet:7050
+    url: grpcs://o3.org0.com:7050
   - name: orderer4-org0
+    # e.g. grpcs://orderer4-org0.cdi.testnet:7050
     # -- fqdn for orderer
-    url: grpcs://orderer4-org0.cdi.testnet:7050
+    url: grpcs://o4.org0.com:7050
 
+# e.g. 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
 # -- url to oauth/auth endpoint
-authorizationServerUri: 'https://uat-ORGNAME.cdi.network:8443/oauth/authenticate'
+authorizationServerUri: https://example.com
 
 # -- Fixture
 # @default -- internal value
 caEnrollmentIdAdmin: ca-admin
 
-# -- in format of "enrollment-ca-[ORGNAME]"
-caName: enrollment-ca-ORGNAME
+# -- format: enrollment-ca-ORGNAME
+caName: enrollment-ca-ORG
 
 # -- Channel name
 channelName: cdi-testnet
 
+# e.g. uat-ORGNAME.cdi.network
 # -- fqdn for gateway, used by istio VS / gateway
-gatewayHost: uat-ORGNAME.cdi.network
+gatewayHost: https://example.com
 
 # -- info | debug
 logLevel: debug
@@ -52,13 +60,15 @@ mspid: MSPID
 # -- Organization admin ID
 orgAdminId: myadmin
 
+# e.g. 'https://enrollmentca-ORGNAME:7054'
 # -- fqdn for enrollment CA
-orgCaUrl: 'https://enrollmentca-ORGNAME:7054'
+orgCaUrl: https://example.com
 
+# e.g. 'https://uat-ORGNAME.cdi.network:4101/gw_org'
 # -- fqdn for Gateway app; must use port 4101
-orgUrl: 'https://uat-ORGNAME.cdi.network:4101/gw_org'
+orgUrl: https://example.com
 
-# -- istio VS or k8s service for redisearch
+# -- istio VS or k8s service
 redisHost: redisearch-ORGNAME
 
 timezone: 'Asia/Hong_Kong'
@@ -70,11 +80,13 @@ nodeTLSRejectUnauthorized:
 # -- only supported "Bearer"
 dataAccessHeaderAuthType: Bearer
 
+# e.g. https://uat-TARGET_ORGNAME.cdi.network/apigw/gw/s2s/thirdparty/v1/SaleTransaction/fileUrls
 # -- No info
-dataAccessApigwUrl: https://uat-TARGET_ORGNAME.cdi.network/apigw/gw/s2s/thirdparty/v1/SaleTransaction/fileUrls
+dataAccessApigwUrl: https://example.com
 
+# e.g. https://uat-TARGET_ORGNAME.cdi.network/datafile/
 # -- No info
-dataAccessMappedUrl: https://uat-TARGET_ORGNAME.cdi.network/datafile/
+dataAccessMappedUrl: https://example.com
 
 # -- Emali Consent Flow App Param
 aclOrgId: CDI_PARTICIPANT_000001
@@ -86,8 +98,9 @@ aclOrgAccountType: consumer
 # @default -- internal value
 aclFile: /assets/acl.json
 
+# e.g. 'https://uat-ORGNAME.cdi.network:8443/account/login'
 # -- used by Init Container
-authCheckUrl: 'https://uat-ORGNAME.cdi.network:8443/account/login'
+authCheckUrl: https://example.com
 
 # -- used by Init Container
 authCheckReply: Unauthorized
@@ -188,6 +201,8 @@ wallet: /assets/wallet
 # @default -- internal value
 orgKey: /assets/orgkey
 
+# -- Fixture
+# @default -- internal valu
 connectionProfile: /home/app/connection.yaml
 
 # -- Fixture

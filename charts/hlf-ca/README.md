@@ -42,14 +42,14 @@ $ helm install my-release dashslab/hlf-ca
 |-----|------|---------|-------------|
 | adminName | string | internal value | Fixture |
 | affinity | object | internal value | Fixture |
-| appname | string | `"enrollment-ca"` |  |
+| appname | string | `"enrollment-ca"` | enrollment-ca|tls-ca |
 | autoscaling | object | internal value | Fixture |
 | caServerHome | string | internal value | Fixture |
 | configmap | object | internal value | Fixture |
 | enrollmentca.adminpw | string | `"xxxx"` | enrollmentca adminpw |
-| fqdn | string | `"[TYPE]-[ORG].domain.net"` | tlsca.org1.cdi.testnet |
+| fqdn | string | `"TYPE-ORG.domain.net"` | tlsca.org1.cdi.testnet |
 | fullnameOverride | string | internal value | Fixture |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image | object | internal value | Fixture |
 | imagePullSecrets | list | internal value | Fixture |
 | istioService | object | internal value | Fixture |
 | livenessProbe.failureThreshold | int | `3` |  |

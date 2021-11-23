@@ -100,10 +100,8 @@ $ helm install my-release dashslab/grafana
 | persistence.mountPath | string | internal value | Fixture |
 | persistence.size | string | `"1Gi"` |  |
 | persistence.storageClass | string | internal value | Fixture |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext.fsGroup | int | `472` |  |
-| podSecurityContext.runAsGroup | int | `472` |  |
-| podSecurityContext.runAsUser | int | `472` |  |
+| podAnnotations | object | internal value | Fixture |
+| podSecurityContext | object | internal value | Fixture |
 | resources.limits.cpu | string | `"300m"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |

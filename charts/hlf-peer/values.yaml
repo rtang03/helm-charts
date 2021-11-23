@@ -1,10 +1,5 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
 # -- peer0 | peer1
 appname: peer0
-# -- Organization name
 orgname: ORGNAME
 # -- fqdn used in Route 53 private hosted zone
 fqdn: peer0-ORGNAME.cdi.testnet
@@ -12,7 +7,6 @@ fqdn: peer0-ORGNAME.cdi.testnet
 mspid: MSPID
 timezone: Asia/Hong_Kong
 
-# configuring istio
 podAnnotations:
   # -- Fixture
   # @default -- internal value
@@ -52,11 +46,13 @@ resources:
 ###### PEER-0 or PEER-1######
 ###### PEER-0 ######
 gossip:
+  # e.g. peer1-ORGNAME.cdi.testnet:7051
   # -- fqdn used in Route 53 private hosted zone
   bootstrap: peer1-ORGNAME.cdi.testnet:7051
   external:
     # -- peer0=true,peer1=false
     enabled: true
+    # e.g. peer0-ORGNAME.cdi.testnet:7051
     # -- only for peer0
     endpoint: peer0-ORGNAME.cdi.testnet:7051
 
