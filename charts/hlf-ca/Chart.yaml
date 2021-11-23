@@ -2,12 +2,13 @@ apiVersion: v2
 name: hlf-ca
 description: CA chart (Experimental)
 type: application
-version: 0.1.5
+version: 0.1.6
 appVersion: 1.5.0
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "remove istio gateway for tlsca"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "false"
+    - "use helm-docs"
+  artifacthub.io/prerelease: "true"

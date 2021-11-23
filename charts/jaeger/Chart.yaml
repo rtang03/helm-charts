@@ -1,14 +1,16 @@
 apiVersion: v2
 name: jaeger
-# source coming from https://istio.io/latest/docs/ops/integrations/jaeger/#configuration
-version: 0.1.9
-description: Jaeger for fabric-es project
+version: 0.1.10
+description: Jaeger tracing tool
 type: application
 appVersion: "1.27.0"
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+sources:
+  - https://istio.io/latest/docs/ops/integrations/jaeger/#configuration
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "fix pvc label"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
-  artifacthub.io/prerelease: "false"
+    - "use helm-docs"
+  artifacthub.io/prerelease: "true"

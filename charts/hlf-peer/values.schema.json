@@ -10,7 +10,6 @@
       "appname": "peer0",
       "orgname": "ORGNAME",
       "fqdn": "peer0-ORGNAME.cdi.testnet",
-      "namespace": "NAMESPACE",
       "mspid": "MSPID",
       "timezone": "Asia/Hong_Kong",
       "podAnnotations": {
@@ -34,19 +33,46 @@
           "cpu": "600m",
           "memory": "256Mi"
         }
-      }
+      },
+      "gossip": {
+        "bootstrap": "peer1-bochk.cdi.testnet:7051",
+        "external": {
+          "enabled": true,
+          "endpoint": "peer0-bochk.cdi.testnet:7051"
+        }
+      },
+      "secretvol": {
+        "enabled": true,
+        "vol": [
+          {
+            "name": "tls-peer0",
+            "mountPath": "/secret/tls"
+          },
+          {
+            "name": "msp-peer0",
+            "mountPath": "/secret/msp"
+          }
+        ]
+      },
+      "nodeSelector": {
+        "node.hkicl/nodename": "node2"
+      },
+      "replicaCount": 1
     }
   ],
   "required": [
     "appname",
     "orgname",
     "fqdn",
-    "namespace",
     "mspid",
     "timezone",
     "podAnnotations",
     "persistence",
-    "resources"
+    "resources",
+    "gossip",
+    "secretvol",
+    "nodeSelector",
+    "replicaCount"
   ],
   "properties": {
     "appname": {
@@ -77,16 +103,6 @@
       "default": "",
       "examples": [
         "peer0-ORGNAME.cdi.testnet"
-      ]
-    },
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "NAMESPACE"
       ]
     },
     "mspid": {
@@ -344,6 +360,221 @@
         }
       },
       "additionalProperties": true
+    },
+    "gossip": {
+      "$id": "#/properties/gossip",
+      "type": "object",
+      "title": "The gossip schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "bootstrap": "peer1-bochk.cdi.testnet:7051",
+          "external": {
+            "enabled": true,
+            "endpoint": "peer0-bochk.cdi.testnet:7051"
+          }
+        }
+      ],
+      "required": [
+        "bootstrap",
+        "external"
+      ],
+      "properties": {
+        "bootstrap": {
+          "$id": "#/properties/gossip/properties/bootstrap",
+          "type": "string",
+          "title": "The bootstrap schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "peer1-bochk.cdi.testnet:7051"
+          ]
+        },
+        "external": {
+          "$id": "#/properties/gossip/properties/external",
+          "type": "object",
+          "title": "The external schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+            {
+              "enabled": true,
+              "endpoint": "peer0-bochk.cdi.testnet:7051"
+            }
+          ],
+          "required": [
+            "enabled",
+            "endpoint"
+          ],
+          "properties": {
+            "enabled": {
+              "$id": "#/properties/gossip/properties/external/properties/enabled",
+              "type": "boolean",
+              "title": "The enabled schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": false,
+              "examples": [
+                true
+              ]
+            },
+            "endpoint": {
+              "$id": "#/properties/gossip/properties/external/properties/endpoint",
+              "type": "string",
+              "title": "The endpoint schema",
+              "description": "An explanation about the purpose of this instance.",
+              "default": "",
+              "examples": [
+                "peer0-bochk.cdi.testnet:7051"
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "secretvol": {
+      "$id": "#/properties/secretvol",
+      "type": "object",
+      "title": "The secretvol schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "vol": [
+            {
+              "name": "tls-peer0",
+              "mountPath": "/secret/tls"
+            },
+            {
+              "name": "msp-peer0",
+              "mountPath": "/secret/msp"
+            }
+          ]
+        }
+      ],
+      "required": [
+        "enabled",
+        "vol"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/secretvol/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "vol": {
+          "$id": "#/properties/secretvol/properties/vol",
+          "type": "array",
+          "title": "The vol schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+            [
+              {
+                "name": "tls-peer0",
+                "mountPath": "/secret/tls"
+              },
+              {
+                "name": "msp-peer0",
+                "mountPath": "/secret/msp"
+              }
+            ]
+          ],
+          "additionalItems": true,
+          "items": {
+            "$id": "#/properties/secretvol/properties/vol/items",
+            "anyOf": [
+              {
+                "$id": "#/properties/secretvol/properties/vol/items/anyOf/0",
+                "type": "object",
+                "title": "The first anyOf schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                  {
+                    "name": "tls-peer0",
+                    "mountPath": "/secret/tls"
+                  }
+                ],
+                "required": [
+                  "name",
+                  "mountPath"
+                ],
+                "properties": {
+                  "name": {
+                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/name",
+                    "type": "string",
+                    "title": "The name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "tls-peer0"
+                    ]
+                  },
+                  "mountPath": {
+                    "$id": "#/properties/secretvol/properties/vol/items/anyOf/0/properties/mountPath",
+                    "type": "string",
+                    "title": "The mountPath schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                      "/secret/tls"
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "nodeSelector": {
+      "$id": "#/properties/nodeSelector",
+      "type": "object",
+      "title": "The nodeSelector schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "node.hkicl/nodename": "node2"
+        }
+      ],
+      "required": [
+        "node.hkicl/nodename"
+      ],
+      "properties": {
+        "node.hkicl/nodename": {
+          "$id": "#/properties/nodeSelector/properties/node.hkicl/nodename",
+          "type": "string",
+          "title": "The node.hkicl/nodename schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "node2"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "replicaCount": {
+      "$id": "#/properties/replicaCount",
+      "type": "integer",
+      "title": "The replicaCount schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": 0,
+      "examples": [
+        1
+      ]
     }
   },
   "additionalProperties": true

@@ -1,16 +1,25 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
+# -- Organization name
 orgname: ORGNAME
+
+# -- namespace of Scrape targets
 namespace: NAMESPACE
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 20Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/data"
 
 # Prometheus consumes at least 512 Mi
@@ -59,15 +68,18 @@ scrapes:
   redisExporter:
     enabled: true
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: prometheus
 
+# -- Fixture
+# @default -- internal value
 podSecurityContext:
   fsGroup: 65534
   runAsGroup: 65534
   runAsNonRoot: true
   runAsUser: 65534
 
+# -- Fixture
+# @default -- internal value
 securityContext: {}

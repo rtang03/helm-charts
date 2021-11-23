@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "auth-server.labels" . | nindent 4 }}
 spec:
@@ -16,7 +17,7 @@ spec:
           - {{ .Values.fqdn }}
     route:
     - destination:
-        host: {{ default "auth-server" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Values.namespace }}.svc.cluster.local
+        host: {{ default "auth-server" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
         port:
           number: 8443
       weight: 100

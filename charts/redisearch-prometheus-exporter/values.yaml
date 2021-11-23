@@ -1,13 +1,13 @@
-#########################################################################
-### CONFIGURABLE                                                      ###
-### Note: values.schema.json is based on configurable items only.      ###
-#########################################################################
+# -- Organization name
 orgname: ORGNAME
+# -- Indexes to export
 redisearchExporterStaticIndex: "cidx,eidx:Consent,eidx:user,eidx:participantDs,eidx:DataRequest,eidx:organization"
 
 image:
   pullPolicy: IfNotPresent
 
+# -- Fixture
+# @default -- internal value
 podAnnotations:
   sidecar.istio.io/inject: "false"
 
@@ -19,13 +19,16 @@ resources:
     cpu: 50m
     memory: 64Mi
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: redisearch-prometheus-exporter
 
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -34,14 +37,28 @@ service:
       protocol: TCP
       name: tcp-exporter
 
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: [ ]
 
+# -- Fixture
+# @default -- internal value
 livenessProbe: {}
 
+# -- Fixture
+# @default -- internal value
 readinessProbe: {}
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -49,8 +66,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 nodeSelector: {}
 
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 affinity: {}

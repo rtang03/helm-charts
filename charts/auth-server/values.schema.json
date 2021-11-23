@@ -1,439 +1,428 @@
+
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "title": "The root schema",
-  "description": "The root schema comprises the entire JSON document.",
-  "default": {},
-  "examples": [
-    {
-      "namespace": "NAMESPACE",
-      "orgname": "ORGNAME",
-      "fqdn": "uat-ORGNAME.cdi.network",
-      "clientApplicationName": "root_client",
-      "clientSecret": "password",
-      "jwtExpInSecond": "900",
-      "jwtSecret": "secret",
-      "logLevel": "debug",
-      "logTarget": "console",
-      "orgAdminEmail": "admin@myorg.net",
-      "orgAdminId": "myadmin",
-      "orgAdminSecret": "t7CCOf0Vr0i8",
-      "port": "8443",
-      "redisHost": "redisearch-ORGNAME",
-      "refreshTokenExpInSec": "86400",
-      "typeormPassword": "docker",
-      "typeormUsername": "postgres",
-      "timezone": "Asia/Hong_Kong",
-      "replicaCount": 1,
-      "resources": {
-        "requests": {
-          "cpu": "25m",
-          "memory": "64Mi"
-        },
-        "limits": {
-          "cpu": "125m",
-          "memory": "256Mi"
-        }
-      },
-      "image": {
-        "pullPolicy": "IfNotPresent"
-      },
-      "podAnnotations": {
-        "sidecar.istio.io/rewriteAppHTTPProbers": "false",
-        "sidecar.istio.io/logLevel": "warning"
-      }
-    }
-  ],
-  "required": [
-    "namespace",
-    "orgname",
-    "fqdn",
-    "clientApplicationName",
-    "clientSecret",
-    "jwtExpInSecond",
-    "jwtSecret",
-    "logLevel",
-    "logTarget",
-    "orgAdminEmail",
-    "orgAdminId",
-    "orgAdminSecret",
-    "port",
-    "redisHost",
-    "refreshTokenExpInSec",
-    "typeormPassword",
-    "typeormUsername",
-    "timezone",
-    "replicaCount",
-    "resources",
-    "image",
-    "podAnnotations"
-  ],
-  "properties": {
-    "namespace": {
-      "$id": "#/properties/namespace",
-      "type": "string",
-      "title": "The namespace schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "NAMESPACE"
-      ]
-    },
-    "orgname": {
-      "$id": "#/properties/orgname",
-      "type": "string",
-      "title": "The orgname schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "ORGNAME"
-      ]
-    },
-    "fqdn": {
-      "$id": "#/properties/fqdn",
-      "type": "string",
-      "title": "The fqdn schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "uat-ORGNAME.cdi.network"
-      ]
-    },
-    "clientApplicationName": {
-      "$id": "#/properties/clientApplicationName",
-      "type": "string",
-      "title": "The clientApplicationName schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "root_client"
-      ]
-    },
-    "clientSecret": {
-      "$id": "#/properties/clientSecret",
-      "type": "string",
-      "title": "The clientSecret schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "password"
-      ]
-    },
-    "jwtExpInSecond": {
-      "$id": "#/properties/jwtExpInSecond",
-      "type": "string",
-      "title": "The jwtExpInSecond schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "900"
-      ]
-    },
-    "jwtSecret": {
-      "$id": "#/properties/jwtSecret",
-      "type": "string",
-      "title": "The jwtSecret schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "secret"
-      ]
-    },
-    "logLevel": {
-      "$id": "#/properties/logLevel",
-      "type": "string",
-      "title": "The logLevel schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "debug"
-      ]
-    },
-    "logTarget": {
-      "$id": "#/properties/logTarget",
-      "type": "string",
-      "title": "The logTarget schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "console"
-      ]
-    },
-    "orgAdminEmail": {
-      "$id": "#/properties/orgAdminEmail",
-      "type": "string",
-      "title": "The orgAdminEmail schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "admin@myorg.net"
-      ]
-    },
-    "orgAdminId": {
-      "$id": "#/properties/orgAdminId",
-      "type": "string",
-      "title": "The orgAdminId schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "myadmin"
-      ]
-    },
-    "orgAdminSecret": {
-      "$id": "#/properties/orgAdminSecret",
-      "type": "string",
-      "title": "The orgAdminSecret schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "t7CCOf0Vr0i8"
-      ]
-    },
-    "port": {
-      "$id": "#/properties/port",
-      "type": "string",
-      "title": "The port schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "8443"
-      ]
-    },
-    "redisHost": {
-      "$id": "#/properties/redisHost",
-      "type": "string",
-      "title": "The redisHost schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "redisearch-ORGNAME"
-      ]
-    },
-    "refreshTokenExpInSec": {
-      "$id": "#/properties/refreshTokenExpInSec",
-      "type": "string",
-      "title": "The refreshTokenExpInSec schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "86400"
-      ]
-    },
-    "typeormPassword": {
-      "$id": "#/properties/typeormPassword",
-      "type": "string",
-      "title": "The typeormPassword schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "docker"
-      ]
-    },
-    "typeormUsername": {
-      "$id": "#/properties/typeormUsername",
-      "type": "string",
-      "title": "The typeormUsername schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "postgres"
-      ]
-    },
-    "timezone": {
-      "$id": "#/properties/timezone",
-      "type": "string",
-      "title": "The timezone schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "Asia/Hong_Kong"
-      ]
-    },
-    "replicaCount": {
-      "$id": "#/properties/replicaCount",
-      "type": "integer",
-      "title": "The replicaCount schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": 0,
-      "examples": [
-        1
-      ]
-    },
-    "resources": {
-      "$id": "#/properties/resources",
-      "type": "object",
-      "title": "The resources schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
         {
-          "requests": {
-            "cpu": "25m",
-            "memory": "64Mi"
-          },
-          "limits": {
-            "cpu": "125m",
-            "memory": "256Mi"
-          }
-        }
-      ],
-      "required": [
-        "requests",
-        "limits"
-      ],
-      "properties": {
-        "requests": {
-          "$id": "#/properties/resources/properties/requests",
-          "type": "object",
-          "title": "The requests schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": {},
-          "examples": [
-            {
-              "cpu": "25m",
-              "memory": "64Mi"
-            }
-          ],
-          "required": [
-            "cpu",
-            "memory"
-          ],
-          "properties": {
-            "cpu": {
-              "$id": "#/properties/resources/properties/requests/properties/cpu",
-              "type": "string",
-              "title": "The cpu schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
-              "examples": [
-                "25m"
-              ]
+            "orgname": "ORGNAME",
+            "fqdn": "uat-ORGNAME.cdi.network",
+            "clientApplicationName": "root_client",
+            "clientSecret": "password",
+            "jwtExpInSecond": "900",
+            "jwtSecret": "secret",
+            "logLevel": "debug",
+            "logTarget": "console",
+            "orgAdminEmail": "admin@myorg.net",
+            "orgAdminId": "myadmin",
+            "orgAdminSecret": "t7CCOf0Vr0i8",
+            "port": "8443",
+            "redisHost": "redisearch-ORGNAME",
+            "refreshTokenExpInSec": "86400",
+            "typeormPassword": "docker",
+            "typeormUsername": "postgres",
+            "timezone": "Asia/Hong_Kong",
+            "replicaCount": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "25m",
+                    "memory": "64Mi"
+                },
+                "limits": {
+                    "cpu": "125m",
+                    "memory": "256Mi"
+                }
             },
-            "memory": {
-              "$id": "#/properties/resources/properties/requests/properties/memory",
-              "type": "string",
-              "title": "The memory schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
-              "examples": [
-                "64Mi"
-              ]
-            }
-          },
-          "additionalProperties": true
-        },
-        "limits": {
-          "$id": "#/properties/resources/properties/limits",
-          "type": "object",
-          "title": "The limits schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": {},
-          "examples": [
-            {
-              "cpu": "125m",
-              "memory": "256Mi"
-            }
-          ],
-          "required": [
-            "cpu",
-            "memory"
-          ],
-          "properties": {
-            "cpu": {
-              "$id": "#/properties/resources/properties/limits/properties/cpu",
-              "type": "string",
-              "title": "The cpu schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
-              "examples": [
-                "125m"
-              ]
+            "image": {
+                "pullPolicy": "IfNotPresent"
             },
-            "memory": {
-              "$id": "#/properties/resources/properties/limits/properties/memory",
-              "type": "string",
-              "title": "The memory schema",
-              "description": "An explanation about the purpose of this instance.",
-              "default": "",
-              "examples": [
-                "256Mi"
-              ]
+            "podAnnotations": {
+                "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+                "sidecar.istio.io/logLevel": "warning"
             }
-          },
-          "additionalProperties": true
         }
-      },
-      "additionalProperties": true
-    },
-    "image": {
-      "$id": "#/properties/image",
-      "type": "object",
-      "title": "The image schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "pullPolicy": "IfNotPresent"
-        }
-      ],
-      "required": [
-        "pullPolicy"
-      ],
-      "properties": {
-        "pullPolicy": {
-          "$id": "#/properties/image/properties/pullPolicy",
-          "type": "string",
-          "title": "The pullPolicy schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "IfNotPresent"
-          ]
-        }
-      },
-      "additionalProperties": true
-    },
-    "podAnnotations": {
-      "$id": "#/properties/podAnnotations",
-      "type": "object",
-      "title": "The podAnnotations schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "sidecar.istio.io/rewriteAppHTTPProbers": "false",
-          "sidecar.istio.io/logLevel": "warning"
-        }
-      ],
-      "required": [
-        "sidecar.istio.io/rewriteAppHTTPProbers",
-        "sidecar.istio.io/logLevel"
-      ],
-      "properties": {
-        "sidecar.istio.io/rewriteAppHTTPProbers": {
-          "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/rewriteAppHTTPProbers",
-          "type": "string",
-          "title": "The sidecar.istio.io/rewriteAppHTTPProbers schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "false"
-          ]
+    ],
+    "required": [
+        "orgname",
+        "fqdn",
+        "clientApplicationName",
+        "clientSecret",
+        "jwtExpInSecond",
+        "jwtSecret",
+        "logLevel",
+        "logTarget",
+        "orgAdminEmail",
+        "orgAdminId",
+        "orgAdminSecret",
+        "port",
+        "redisHost",
+        "refreshTokenExpInSec",
+        "typeormPassword",
+        "typeormUsername",
+        "timezone",
+        "replicaCount",
+        "resources",
+        "image",
+        "podAnnotations"
+    ],
+    "properties": {
+        "orgname": {
+            "$id": "#/properties/orgname",
+            "type": "string",
+            "title": "The orgname schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "ORGNAME"
+            ]
         },
-        "sidecar.istio.io/logLevel": {
-          "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/logLevel",
-          "type": "string",
-          "title": "The sidecar.istio.io/logLevel schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "warning"
-          ]
+        "fqdn": {
+            "$id": "#/properties/fqdn",
+            "type": "string",
+            "title": "The fqdn schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "uat-ORGNAME.cdi.network"
+            ]
+        },
+        "clientApplicationName": {
+            "$id": "#/properties/clientApplicationName",
+            "type": "string",
+            "title": "The clientApplicationName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "root_client"
+            ]
+        },
+        "clientSecret": {
+            "$id": "#/properties/clientSecret",
+            "type": "string",
+            "title": "The clientSecret schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "password"
+            ]
+        },
+        "jwtExpInSecond": {
+            "$id": "#/properties/jwtExpInSecond",
+            "type": "string",
+            "title": "The jwtExpInSecond schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "900"
+            ]
+        },
+        "jwtSecret": {
+            "$id": "#/properties/jwtSecret",
+            "type": "string",
+            "title": "The jwtSecret schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "secret"
+            ]
+        },
+        "logLevel": {
+            "$id": "#/properties/logLevel",
+            "type": "string",
+            "title": "The logLevel schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "debug"
+            ]
+        },
+        "logTarget": {
+            "$id": "#/properties/logTarget",
+            "type": "string",
+            "title": "The logTarget schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "console"
+            ]
+        },
+        "orgAdminEmail": {
+            "$id": "#/properties/orgAdminEmail",
+            "type": "string",
+            "title": "The orgAdminEmail schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "admin@myorg.net"
+            ]
+        },
+        "orgAdminId": {
+            "$id": "#/properties/orgAdminId",
+            "type": "string",
+            "title": "The orgAdminId schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "myadmin"
+            ]
+        },
+        "orgAdminSecret": {
+            "$id": "#/properties/orgAdminSecret",
+            "type": "string",
+            "title": "The orgAdminSecret schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "t7CCOf0Vr0i8"
+            ]
+        },
+        "port": {
+            "$id": "#/properties/port",
+            "type": "string",
+            "title": "The port schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "8443"
+            ]
+        },
+        "redisHost": {
+            "$id": "#/properties/redisHost",
+            "type": "string",
+            "title": "The redisHost schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "redisearch-ORGNAME"
+            ]
+        },
+        "refreshTokenExpInSec": {
+            "$id": "#/properties/refreshTokenExpInSec",
+            "type": "string",
+            "title": "The refreshTokenExpInSec schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "86400"
+            ]
+        },
+        "typeormPassword": {
+            "$id": "#/properties/typeormPassword",
+            "type": "string",
+            "title": "The typeormPassword schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "docker"
+            ]
+        },
+        "typeormUsername": {
+            "$id": "#/properties/typeormUsername",
+            "type": "string",
+            "title": "The typeormUsername schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "postgres"
+            ]
+        },
+        "timezone": {
+            "$id": "#/properties/timezone",
+            "type": "string",
+            "title": "The timezone schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Asia/Hong_Kong"
+            ]
+        },
+        "replicaCount": {
+            "$id": "#/properties/replicaCount",
+            "type": "integer",
+            "title": "The replicaCount schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1
+            ]
+        },
+        "resources": {
+            "$id": "#/properties/resources",
+            "type": "object",
+            "title": "The resources schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "requests": {
+                        "cpu": "25m",
+                        "memory": "64Mi"
+                    },
+                    "limits": {
+                        "cpu": "125m",
+                        "memory": "256Mi"
+                    }
+                }
+            ],
+            "required": [
+                "requests",
+                "limits"
+            ],
+            "properties": {
+                "requests": {
+                    "$id": "#/properties/resources/properties/requests",
+                    "type": "object",
+                    "title": "The requests schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "25m",
+                            "memory": "64Mi"
+                        }
+                    ],
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/resources/properties/requests/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "25m"
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/resources/properties/requests/properties/memory",
+                            "type": "string",
+                            "title": "The memory schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "64Mi"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "limits": {
+                    "$id": "#/properties/resources/properties/limits",
+                    "type": "object",
+                    "title": "The limits schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "cpu": "125m",
+                            "memory": "256Mi"
+                        }
+                    ],
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/resources/properties/limits/properties/cpu",
+                            "type": "string",
+                            "title": "The cpu schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "125m"
+                            ]
+                        },
+                        "memory": {
+                            "$id": "#/properties/resources/properties/limits/properties/memory",
+                            "type": "string",
+                            "title": "The memory schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "examples": [
+                                "256Mi"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        },
+        "image": {
+            "$id": "#/properties/image",
+            "type": "object",
+            "title": "The image schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "pullPolicy": "IfNotPresent"
+                }
+            ],
+            "required": [
+                "pullPolicy"
+            ],
+            "properties": {
+                "pullPolicy": {
+                    "$id": "#/properties/image/properties/pullPolicy",
+                    "type": "string",
+                    "title": "The pullPolicy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "podAnnotations": {
+            "$id": "#/properties/podAnnotations",
+            "type": "object",
+            "title": "The podAnnotations schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "sidecar.istio.io/rewriteAppHTTPProbers": "false",
+                    "sidecar.istio.io/logLevel": "warning"
+                }
+            ],
+            "required": [
+                "sidecar.istio.io/rewriteAppHTTPProbers",
+                "sidecar.istio.io/logLevel"
+            ],
+            "properties": {
+                "sidecar.istio.io/rewriteAppHTTPProbers": {
+                    "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/rewriteAppHTTPProbers",
+                    "type": "string",
+                    "title": "The sidecar.istio.io/rewriteAppHTTPProbers schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "false"
+                    ]
+                },
+                "sidecar.istio.io/logLevel": {
+                    "$id": "#/properties/podAnnotations/properties/sidecar.istio.io/logLevel",
+                    "type": "string",
+                    "title": "The sidecar.istio.io/logLevel schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "warning"
+                    ]
+                }
+            },
+            "additionalProperties": true
         }
-      },
-      "additionalProperties": true
-    }
-  },
-  "additionalProperties": true
+    },
+    "additionalProperties": true
 }

@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "gw.labels" . | nindent 4 }}
 spec:

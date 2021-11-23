@@ -1,9 +1,10 @@
 name: argocd
 apiVersion: v2
-version: 0.1.3
+version: 0.1.4
 appVersion: 3.26.9
 description: Custom Argo installation with helm-secrets and aws-kms
 type: application
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 dependencies:
   - name: argo-cd
     version: 3.26.9

@@ -3,39 +3,9 @@ domainName: cdi.testnet
 peersEnabled: true
 peers:
   - address: 3.115.198.47
-    targetOrg: bochk
-  - address: 3.36.8.166
-    targetOrg: hktvmall
-  - address: 8.166.173.83
-    targetOrg: paob
-  - address: 16.163.16.100
-    targetOrg: scb
-  - address: 16.162.227.194
-    targetOrg: tradelink
-  - address: 18.166.87.129
-    targetOrg: hkt
-  - address: 18.163.164.100
-    targetOrg: gs1
-  - address: 18.166.119.246
-    targetOrg: hase
-  - address: 18.166.106.200
-    targetOrg: qfpay
-  - address: 16.162.232.86
-    targetOrg: dbs
-  - address: 18.167.125.24
-    targetOrg: keychainpay
-  - address: 13.208.60.10
-    targetOrg: hkicl
+    targetOrg: orgX
 
 orderersEnabled: false
 orderers:
   - address: 13.208.117.152
     targetOrg: orderer0
-  - address: 13.208.60.10
-    targetOrg: orderer1
-  - address: 15.152.88.93
-    targetOrg: orderer2
-  - address: 13.208.117.152
-    targetOrg: orderer3
-  - address: 13.208.60.10
-    targetOrg: orderer4

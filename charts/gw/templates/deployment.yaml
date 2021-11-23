@@ -32,11 +32,9 @@ spec:
           persistentVolumeClaim:
             claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- end }}
-        {{- if .Values.configmap.enabled }}
         - name: my-cm
           configMap:
             name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
-        {{- end }}
         - name: msp-admin
           secret:
             secretName: msp-admin

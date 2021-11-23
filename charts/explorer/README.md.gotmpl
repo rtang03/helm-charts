@@ -1,0 +1,53 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## Additional Information
+
+NOTE: This chart is opinionated for experimental project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
+
+### Pick Namespace
+
+The Hyperledger Explorer is deployed in the same namespace as peer.
+
+```shell
+export NS=YOUR_NAMESPACE
+```
+
+### Admin User
+- Each new deployment will register a new user in enrollment CA in the same organization. The username is POD_ID
+- The password is service-account-token `explorer-login-token`
+
+```shell
+# retrieve admin user's ID, replace the app name "explorer-$NS" and $NS with your namespace
+kubectl -n $NS get pod -l "app=explorer" --no-headers=true -o=custom-columns=LABELS:.metadata.name
+
+# retrieve password, replace n1 with your namepace
+kubectl -n $NS get secret $(kubectl -n $NS get secret | grep explorer-login-token | head -n1 | awk '{print $1;}') -o jsonpath={.data.token}| base64 -d
+```
+
+### Port Forward
+
+```shell
+# replace n1 with your namepace
+kubectl -n $NS port-forward $(kubectl -n $NS get pod -l "app=explorer" --no-headers=true -o=custom-columns=LABELS:.metadata.name) 18080:8080
+```
+
+Then, open browser with `http://localhost:18080`
+
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm install my-release dashslab/{{ template "chart.name" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

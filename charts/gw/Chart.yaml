@@ -2,12 +2,13 @@ apiVersion: v2
 name: gw
 description: Gateway App for fabric-es project
 type: application
-version: 0.1.8
+version: 0.1.9
 appVersion: 0.4.4
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "fix exposed password"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

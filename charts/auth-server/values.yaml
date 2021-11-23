@@ -2,30 +2,41 @@
 ### CONFIGURABLE                                                      ###
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
-namespace: NAMESPACE
+# -- Organization name
 orgname: ORGNAME
-fqdn: 'uat-ORGNAME.cdi.network' # used by Istio
+# -- fqdn used by Istio gateway
+fqdn: 'uat-ORGNAME.cdi.network'
+# -- Fixture
+# @default -- internal value
 clientApplicationName: root_client
 clientSecret: password
 jwtExpInSecond: "900"
 jwtSecret: secret
 logLevel: debug
 logTarget: console
+# -- Organization admin email
 orgAdminEmail: admin@myorg.net
+# -- Organization admin id
 orgAdminId: myadmin
+# Organization admin secret
 orgAdminSecret: t7CCOf0Vr0i8
 port: "8443"
+# -- hostname (Istio Virtual Service or k8s service)
 redisHost: redisearch-ORGNAME
-# original
-#redisHost: redisearch-ORGNAME.NAMESPACE.svc.cluster.local
+# -- (depreciated)
 refreshTokenExpInSec: "86400"
+# -- Psql password
 typeormPassword: docker
+# -- Psql username
 typeormUsername: postgres
 # test cert
 # certPathCert: /cert/test-cdi-network.crt
 # certPathKey: /cert/test-cdi-network.key
 
 timezone: 'Asia/Hong_Kong'
+
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
 resources:
@@ -37,37 +48,58 @@ resources:
     memory: 256Mi
 
 image:
+  # -- Fixture
+  # @default -- internal value
   pullPolicy: IfNotPresent
 
 podAnnotations:
+  # -- Fixture
+  # @default -- internal value
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
+  # -- trace|debug|info|warning|error|critical|off
   sidecar.istio.io/logLevel: "warning"
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: auth
+# -- Fixture
+# @default -- internal value
 typeormDatabase: auth_db
+# -- Fixture
+# @default -- internal value
 typeormHost: postgres-postgresql
+# -- Fixture
+# @default -- internal value
 typeormPort: "5432"
+# -- Fixture
+# @default -- internal value
 redisPort: "6379"
 
 # real cert
+# -- Fixture
+# @default -- internal value
 certPathCert: /cert/tls.crt
+# -- Fixture
+# @default -- internal value
 certPathKey: /cert/tls.key
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podSecurityContext: {}
@@ -81,6 +113,8 @@ securityContext: {}
   # runAsNonRoot: true
 # runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -93,6 +127,8 @@ service:
       protocol: TCP
       name: https-auth
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -100,8 +136,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 nodeSelector: {}
 
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 affinity: {}

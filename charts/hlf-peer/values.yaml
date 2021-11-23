@@ -2,35 +2,40 @@
 ### CONFIGURABLE                                                      ###
 ### Note: values.schema.json is based on configurable items only.      ###
 #########################################################################
-# use "peer0" or "peer1"
+# -- peer0 | peer1
 appname: peer0
-# organization name
+# -- Organization name
 orgname: ORGNAME
-# fqdn used in Route 53 private hosted zone
+# -- fqdn used in Route 53 private hosted zone
 fqdn: peer0-ORGNAME.cdi.testnet
-namespace: NAMESPACE
+# -- MSP ID
 mspid: MSPID
 timezone: Asia/Hong_Kong
 
 # configuring istio
 podAnnotations:
+  # -- Fixture
+  # @default -- internal value
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
-  # trace|debug|info|warning|error|critical|off
+  # -- trace|debug|info|warning|error|critical|off
   sidecar.istio.io/logLevel: "warning"
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  ## storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 1Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/var/artifacts"  # fixture
   # existingClaim: ""
 
@@ -47,14 +52,16 @@ resources:
 ###### PEER-0 or PEER-1######
 ###### PEER-0 ######
 gossip:
-  bootstrap:
-    # fqdn used in Route 53 private hosted zone
-    peer1-bochk.cdi.testnet:7051
+  # -- fqdn used in Route 53 private hosted zone
+  bootstrap: peer1-ORGNAME.cdi.testnet:7051
   external:
+    # -- peer0=true,peer1=false
     enabled: true
-    # fqdn used in Route 53 private hosted zone
-    endpoint: peer0-bochk.cdi.testnet:7051
+    # -- only for peer0
+    endpoint: peer0-ORGNAME.cdi.testnet:7051
 
+# -- Fixture
+# @default -- internal value
 secretvol:
   enabled: true
   vol:
@@ -76,24 +83,36 @@ secretvol:
 #      mountPath: /secret/tls
 #    - name: msp-peer1
 #      mountPath: /secret/msp
+
 nodeSelector:
   node.hkicl/nodename: node2
 
+# -- Fixture
+# @default -- internal value
 replicaCount: 1
 
-#######################
-### FIXTURE         ###
-#######################
 image:
+  # -- Fixture
+  # @default -- internal value
   repository: hyperledger/fabric-peer
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 2.3.2
 
+# -- Fixture
+# @default -- internal value
 imagePullSecrets: []
+
+# -- Fixture
+# @default -- internal value
 nameOverride: ""
+
+# -- Fixture
+# @default -- internal value
 fullnameOverride: ""
 
+# -- Fixture
+# @default -- internal value
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -103,9 +122,13 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Fixture
+# @default -- internal value
 podSecurityContext: {}
 # fsGroup: 2000
 
+# -- Fixture
+# @default -- internal value
 securityContext: {}
   # capabilities:
   #   drop:
@@ -114,6 +137,8 @@ securityContext: {}
   # runAsNonRoot: true
 # runAsUser: 1000
 
+# -- Fixture
+# @default -- internal value
 service:
   type: ClusterIP
   ports:
@@ -138,6 +163,8 @@ service:
       protocol: TCP
       name: tls-ping
 
+# -- Fixture
+# @default -- internal value
 istioService:
   enabled: true
   ports:
@@ -179,6 +206,8 @@ istioService:
 livenessProbe:
   successThreshold: 1
   failureThreshold: 3
+  # -- Fixture
+  # @default -- internal value
   httpGet:
     scheme: HTTP
     path: /healthz
@@ -189,6 +218,8 @@ livenessProbe:
 readinessProbe:
   successThreshold: 1
   failureThreshold: 3
+  # -- Fixture
+  # @default -- internal value
   httpGet:
     scheme: HTTP
     path: /healthz
@@ -196,11 +227,15 @@ readinessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
 
+# -- Fixture
+# @default -- internal value
 configmap:
   enabled: true
   data: "config/*"
   mountPath: "/setup"
 
+# -- Fixture
+# @default -- internal value
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -208,13 +243,18 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Fixture
+# @default -- internal value
 tolerations: []
 
+# -- Fixture
+# @default -- internal value
 affinity: {}
 
-##
-## HLF-PEER DEFAULT VALUES. These values can be overriden
-##
-# Cluster Wide
+# -- Fixture
+# @default -- internal value
 certRootDir: /var/artifacts
+
+# -- Fixture
+# @default -- internal value
 cryptoDir: crypto-config

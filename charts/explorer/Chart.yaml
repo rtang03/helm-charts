@@ -2,15 +2,13 @@ apiVersion: v2
 name: explorer
 description: Hyperledger Explorer chart (Experimental)
 type: application
-version: 0.1.4
+version: 0.1.5
 appVersion: 1.1.8
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "first release candidate"
-    - "change chart name"
-    - "update values.schema.json"
-    - "update label"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

@@ -17,8 +17,11 @@ global:
     # -- installation target
     server: targetServerUrl
 
-  # @default -- the chart will construct this list internally unless specified
   syncPolicy:
     automated:
+      # -- Fixture
+      # @default -- internal value
       prune: true
+      # -- Fixture
+      # @default -- internal value
       selfHeal: true

@@ -2,12 +2,13 @@ apiVersion: v2
 name: hlf-peer
 description: Peer chart (Experimental)
 type: application
-version: 0.1.2
+version: 0.1.3
 appVersion: 2.3.2
+icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "add values schema"
-  artifacthub.io/maintainers: |
-    - name: "rtang03"
-      email: "ask@dashslab.com"
+    - "use helm-docs"
   artifacthub.io/prerelease: "true"

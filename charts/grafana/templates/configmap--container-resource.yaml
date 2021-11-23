@@ -42,7 +42,7 @@ data:
           },
           "id": 8,
           "panels": [],
-          "title": "{{ .Values.namespace }} Namespace",
+          "title": "{{ .Release.Namespace }} Namespace",
           "type": "row"
         },
         {
@@ -119,7 +119,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"{{ .Values.namespace }}\",container!=\"\",container!=\"POD\",container!=\".*tornadoapp-{{ .Values.orgname }}.*\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"{{ .Release.Namespace }}\",container!=\"\",container!=\"POD\",container!=\".*tornadoapp-{{ .Values.orgname }}.*\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Container }}",
               "refId": "A"
@@ -202,7 +202,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{namespace=\"{{ .Values.namespace }}\",container!=\"\",container!=\"POD\",container!=\".*tornadoapp-{{ .Values.orgname }}.*\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
+              "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{namespace=\"{{ .Release.Namespace }}\",container!=\"\",container!=\"POD\",container!=\".*tornadoapp-{{ .Values.orgname }}.*\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Container }}",
               "refId": "A"
@@ -285,7 +285,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_fs_writes_bytes_total{namespace=\"{{ .Values.namespace }}\",container=~\".+\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
+              "expr": "sum(rate(container_fs_writes_bytes_total{namespace=\"{{ .Release.Namespace }}\",container=~\".+\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Container }}",
               "refId": "A"
@@ -368,7 +368,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_fs_reads_bytes_total{namespace=\"{{ .Values.namespace }}\",container=~\".+\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
+              "expr": "sum(rate(container_fs_reads_bytes_total{namespace=\"{{ .Release.Namespace }}\",container=~\".+\",container!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (container)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Container }}",
               "refId": "A"
@@ -451,7 +451,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_receive_bytes_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Name }}",
               "refId": "A"
@@ -534,7 +534,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_transmit_bytes_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Name }}",
               "refId": "A"
@@ -616,14 +616,14 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_receive_errors_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_receive_errors_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_ReceiveName }}",
               "refId": "A"
             },
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_transmit_errors_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_transmit_errors_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "hide": false,
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_TransmitName }}",
@@ -706,14 +706,14 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_receive_packets_dropped_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_receive_packets_dropped_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_ReceiveName }}",
               "refId": "A"
             },
             {
               "exemplar": true,
-              "expr": "sum(rate(container_network_transmit_packets_dropped_total{namespace=\"{{ .Values.namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
+              "expr": "sum(rate(container_network_transmit_packets_dropped_total{namespace=\"{{ .Release.Namespace }}\",name!~\".*ca-{{ .Values.orgname }}.*\"}[$__rate_interval])) by (name)",
               "hide": false,
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_TransmitName }}",
@@ -797,7 +797,7 @@ data:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum(container_memory_working_set_bytes{namespace=\"{{ .Values.namespace }}\",name!~\".*POD.*\",name!=\"\",name!~\".*ca-{{ .Values.orgname }}.*\"}) by (name)",
+              "expr": "sum(container_memory_working_set_bytes{namespace=\"{{ .Release.Namespace }}\",name!~\".*POD.*\",name!=\"\",name!~\".*ca-{{ .Values.orgname }}.*\"}) by (name)",
               "interval": "",
               "legendFormat": "{{ .Values.legendFormat_Name }}",
               "refId": "A"

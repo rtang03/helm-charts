@@ -4,6 +4,8 @@
 #########################################################################
 orgname: ORGNAME
 
+# -- Fixture
+# @default -- internal value
 podAnnotations:
   prometheus.io/scrape: "true"
   prometheus.io/port: "14269"
@@ -17,14 +19,23 @@ resources:
     memory: 256Mi
 
 persistence:
+  # -- Fixture
+  # @default -- internal value
   enabled: true
+  # -- Fixture
+  # @default -- internal value
   annotations: {}
+  # -- Fixture
+  # @default -- internal value
   storageClass: ""
+  # -- Fixture
+  # @default -- internal value
   accessMode: ReadWriteOnce
   size: 1Gi
+  # -- Fixture
+  # @default -- internal value
   mountPath: "/badger"
 
-#######################
-### FIXTURE         ###
-#######################
+# -- Fixture
+# @default -- internal value
 appname: jaeger

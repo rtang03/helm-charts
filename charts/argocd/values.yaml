@@ -1,24 +1,35 @@
+# -- ACCESS_KEY_ID for use by kms
 aws_access_key_id: my-access-key-id
+# -- SECRET_ACCESS_KEY for use by kms
 aws_secret_access_key: my-access-key-secret
+# -- AWS profile name
 aws_profile: my-aws-profile
+# -- AWS region
 region: my-region
 
 argo-cd:
   # https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd
   global:
     image:
+      # -- custom image with helm-secret
       repository: "ghcr.io/rtang03/argocd-helm-secret"
       tag: "2.1.7-rev2"
+      # -- imagePullPolicy
+      # @default -- internal value
       imagePullPolicy: IfNotPresent
     securityContext:
       fsGroup: 2000
 
   repoServer:
     logLevel: info
+    # -- Fixture
+    # @default -- internal value
     volumes:
       - name: "argocd-aws-credentials"
         secret:
           secretName: "argocd-aws-credentials"
+    # -- Fixture
+    # @default -- internal value
     volumeMounts:
       - mountPath: /home/argocd/.aws
         name: argocd-aws-credentials
@@ -28,8 +39,12 @@ argo-cd:
     extraArgs:
       - --insecure
     podAnnotations:
+      # -- Fixture
+      # @default -- internal value
       sidecar.istio.io/rewriteAppHTTPProbers: "false"
       sidecar.istio.io/logLevel: "warning"
+    # -- Fixture
+    # @default -- internal value
     config:
       accounts.cli: apiKey, login
       statusbadge.enabled: 'true'
