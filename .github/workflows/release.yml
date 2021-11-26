@@ -27,7 +27,7 @@ jobs:
       - run: helm repo add argo https://argoproj.github.io/argo-helm
         name: add argo-helm repo
 
-      - run: helm repo add bitnami https://charts.bitnami.com/bitnamim
+      - run: helm repo add bitnami https://charts.bitnami.com/bitnami
         name: add bitnami repo
 
       - name: Run chart-releaser
