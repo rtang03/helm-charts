@@ -1,0 +1,174 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-orderer.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "hlf-orderer.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "hlf-orderer.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: sa-{{ include "appname" . }}-{{ include "orgname" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- if and .Values.persistence.enabled }}
+        - name: my-pvc
+          persistentVolumeClaim:
+            claimName: pvc-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - name: my-cm
+          configMap:
+            name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+        {{- end }}
+        {{- range .Values.secretvol.vol }}
+        - name: {{ .name }}
+          secret:
+            secretName: {{ .name }}
+        {{- end }}
+      containers:
+        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              {{- if .Values.configmap.enabled }}
+              # Replace fabric orderer yaml
+              mkdir -p /etc/hyperledger/fabric
+              cp {{ .Values.configmap.mountPath }}/fabric-orderer.yaml /etc/hyperledger/fabric/orderer.yaml
+              {{- end }}
+
+              # Prepare MSP directory
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/admincerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/cacerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/keystore
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/signcerts
+              mkdir -p {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/user
+              mkdir -p {{ .Values.certRootDir }}/debug/deliver
+              mkdir -p {{ .Values.certRootDir }}/debug/broadcast
+
+              cp /secret/msp/admincerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/admincerts
+              cp /secret/msp/cacerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/cacerts
+              cp /secret/msp/keystore.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/keystore
+              cp /secret/msp/signcerts.pem {{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp/signcerts
+
+              # Start server
+              echo "🚀  orderer starting..."
+              orderer
+
+          env:
+            - name: TZ
+              value: {{ .Values.timezone }}
+            - name: GODEBUG
+              value: "netdns=go+1"
+            - name: ORDERER_GENERAL_LISTENADDRESS
+              value: "0.0.0.0"
+            - name: ORDERER_GENERAL_GENESISMETHOD
+              value: "file"
+            - name: ORDERER_GENERAL_TLS_ENABLED
+              value: "true"
+            - name: ORDERER_GENERAL_LOGLEVEL
+              value: "INFO"
+
+            - name: ORDERER_HOST
+              value: "{{ include "appname" . }}-{{ include "orgname" . }}"
+            - name: ORDERER_HOME
+              value: "{{ .Values.ordererHome }}"
+            - name: ORDERER_GENERAL_LOCALMSPID
+              value: "{{ .Values.mspid }}"
+            - name: ORDERER_GENERAL_LOCALMSPDIR
+              value: "{{ .Values.certRootDir }}/{{ .Values.cryptoDir }}/{{ .Values.mspid }}/{{ .Values.appname }}-{{ .Values.orgname }}/msp"
+            - name: ORDERER_GENERAL_TLS_CERTIFICATE
+              value: "/secret/tls/tlscert.pem"
+            - name: ORDERER_GENERAL_TLS_PRIVATEKEY
+              value: "/secret/tls/tlskey.pem"
+            - name: ORDERER_GENERAL_TLS_ROOTCAS
+              value: "[/secret/tls/rootcert.pem]"
+            - name: ORDERER_GENERAL_GENESISFILE
+              value: "/secret/genesis/genesis.block"
+            - name: ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE
+              value: "/secret/tls/tlscert.pem"
+            - name: ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY
+              value: "/secret/tls/tlskey.pem"
+            - name: ORDERER_GENERAL_CLUSTER_ROOTCAS
+              value: "[/secret/tls/rootcert.pem]"
+            - name: ORDERER_GENERAL_LISTENPORT
+              value: "7050"
+            - name: ORDERER_OPERATIONS_LISTENADDRESS
+              value: ":8443"
+            - name: ORDERER_METRICS_PROVIDER
+              value: "prometheus"
+            {{- if .Values.debug.broadcast }}
+            - name: ORDERER_DEBUG_BROADCASTTRACEDIR
+              value: "{{ .Values.certRootDir }}/debug/broadcast"
+            {{- end }}
+            {{- if .Values.debug.deliver }}
+            - name: ORDERER_DEBUG_DELIVERTRACEDIR
+              value: "{{ .Values.certRootDir }}/debug/deliver"
+            {{- end }}
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
+
+          {{- with .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          {{- with .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+          volumeMounts:
+            {{- if and .Values.persistence.enabled }}
+            - mountPath: {{ .Values.persistence.mountPath | quote }}
+              name: my-pvc
+            {{- end }}
+            {{- if .Values.configmap.enabled }}
+            - mountPath: {{ .Values.configmap.mountPath | quote }}
+              name: my-cm
+            {{- end }}
+            {{- range .Values.secretvol.vol }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

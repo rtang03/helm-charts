@@ -1,0 +1,27 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## Additional Information
+
+NOTE: This chart is opinionated for experimental project; with a pre-determined network toplogy via Istio. It is unlikely to use for general purpose.
+
+```shell
+kubectl port-forward deployment/argo-server
+```
+
+## Installing the Chart
+
+To install the chart with the release name `my-release`:
+
+```console
+$ helm repo add dashslab https://rtang03.github.io/helm-charts
+$ helm install my-release dashslab/{{ template "chart.name" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

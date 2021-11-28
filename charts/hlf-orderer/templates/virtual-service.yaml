@@ -1,0 +1,41 @@
+{{- if .Values.istioService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-{{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-orderer.labels" . | nindent 4 }}
+spec:
+  gateways:
+  - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  hosts:
+  - {{ .Values.fqdn }}
+  tls:
+  {{- range .Values.istioService.ports }}
+  {{ if or (eq "HTTPS" .protocol) (eq "TLS" .protocol) }}
+  - match:
+    - port: {{ .port }}
+      sniHosts:
+      - {{ $.Values.fqdn }}
+    route:
+    - destination:
+        host: {{ default "hlf-orderer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Release.Namespace }}.svc.cluster.local
+        port:
+          number: {{ .destPort }}
+      weight: 100
+  {{ end }}
+  {{- end }}
+  http:
+  {{- range .Values.istioService.ports }}
+  {{ if eq "HTTP" .protocol }}
+  - match:
+    {{- toYaml .match | nindent 4}}
+    route:
+    - destination:
+        host: {{ default "hlf-orderer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}.{{ $.Release.Namespace }}.svc.cluster.local
+        port:
+          number: {{ .destPort }}
+      weight: 100
+  {{ end }}
+  {{- end }}
+{{- end }}

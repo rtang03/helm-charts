@@ -1,8 +1,8 @@
 apiVersion: v2
-name: hlf-peer
-description: Peer chart (Experimental)
+name: hlf-orderer
+description: Hyperledger Fabric Orderer (Experimental)
 type: application
-version: 0.1.5
+version: 0.1.0
 appVersion: 2.3.2
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:

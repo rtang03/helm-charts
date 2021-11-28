@@ -1,0 +1,25 @@
+{{- if .Values.istioService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-orderer.labels" . | nindent 4 }}
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  {{- range .Values.istioService.ports }}
+  - hosts:
+    - {{ $.Values.fqdn }}
+    port:
+      name: {{ .name }}
+      number: {{ .port }}
+      protocol: {{ .protocol }}
+    {{ if or (eq "HTTPS" .protocol) (eq "TLS" .protocol) }}
+    tls:
+      httpsRedirect: false
+      mode: PASSTHROUGH
+    {{ end }}
+  {{- end }}
+{{- end }}
