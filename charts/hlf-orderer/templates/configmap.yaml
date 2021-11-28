@@ -1,0 +1,10 @@
+{{- if .Values.configmap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
+  labels:
+    {{- include "hlf-orderer.labels" . | nindent 4 }}
+data:
+{{ (.Files.Glob .Values.configmap.data).AsConfig | indent 2 }}
+{{- end }}

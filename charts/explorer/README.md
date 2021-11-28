@@ -2,7 +2,7 @@
 
 Hyperledger Explorer chart (Experimental)
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.8](https://img.shields.io/badge/AppVersion-1.1.8-informational?style=flat-square)
+![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.8](https://img.shields.io/badge/AppVersion-1.1.8-informational?style=flat-square)
 
 ## Additional Information
 
@@ -54,12 +54,12 @@ $ helm install my-release dashslab/explorer
 | appname | string | internal value | Fixture |
 | autoscaling | object | internal value | Fixture |
 | blocksSyncTime | int | `5` | sync interval by minute |
-| ca_url | string | `"https://enrollment-ca-ORGNAME:7054"` | url of CA server (istio VS or k8s service) |
+| ca_url | string | `"https://example.com:7054"` |  |
 | channel_name | string | `"cdi-testnet"` | Channel name |
 | database_passwd | string | `"DATABASE_PASSWORD"` |  |
 | database_username | string | `"DATABASE_USERNAME"` |  |
 | fullnameOverride | string | internal value | Fixture |
-| image.pullPolicy | string | internal value | Fixture |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
 | imagePullSecrets | list | internal value | Fixture |
 | istioService | object | internal value | Fixture |
 | log_level_app | string | `"info"` | info | debug |
@@ -79,14 +79,14 @@ $ helm install my-release dashslab/explorer
 | pgbouncer.tag | string | `"1.15.0"` |  |
 | podAnnotations."sidecar.istio.io/logLevel" | string | `"warning"` | trace|debug|info|warning|error|critical|off |
 | podAnnotations."sidecar.istio.io/rewriteAppHTTPProbers" | string | internal value | Fixture |
-| podSecurityContext | object | `{}` |  |
+| podSecurityContext | object | internal value | Fixture |
 | replicaCount | int | internal value | Fixture |
 | resources.limits.cpu | string | `"200m"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"150Mi"` |  |
 | secretvol | object | internal value | Fixture |
-| securityContext | object | `{}` |  |
+| securityContext | object | internal value | Fixture |
 | service | object | internal value | Fixture |
 | serviceAccount | object | internal value | Fixture |
 | tolerations | list | internal value | Fixture |

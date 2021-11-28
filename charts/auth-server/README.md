@@ -2,7 +2,7 @@
 
 Experimental auth server
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
 
 ## Additional Information
 
@@ -41,14 +41,14 @@ $ helm install my-release dashslab/auth-server
 | nameOverride | string | internal value | Fixture |
 | nodeSelector | object | internal value | Fixture |
 | orgAdminEmail | string | `"admin@myorg.net"` | Organization admin email |
-| orgAdminId | string | `"myadmin"` | Organization admin id |
-| orgAdminSecret | string | `"t7CCOf0Vr0i8"` |  |
+| orgAdminId | string | `"myadmin"` | admin id |
+| orgAdminSecret | string | `"xxxxx"` | admin secret |
 | orgname | string | `"ORGNAME"` |  |
 | podAnnotations."sidecar.istio.io/logLevel" | string | `"warning"` | trace|debug|info|warning|error|critical|off |
 | podAnnotations."sidecar.istio.io/rewriteAppHTTPProbers" | string | internal value | Fixture |
-| podSecurityContext | object | `{}` |  |
+| podSecurityContext | object | internal value | Fixture |
 | port | string | `"8443"` |  |
-| redisHost | string | `"redisearch-ORGNAME"` | hostname (Istio Virtual Service or k8s service) |
+| redisHost | string | `"redisearch-ORGNAME"` | hostname (istio VS or k8s service) |
 | redisPort | string | internal value | Fixture |
 | refreshTokenExpInSec | string | `"86400"` | (depreciated) |
 | replicaCount | int | internal value | Fixture |
@@ -56,7 +56,7 @@ $ helm install my-release dashslab/auth-server
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"25m"` |  |
 | resources.requests.memory | string | `"64Mi"` |  |
-| securityContext | object | `{}` |  |
+| securityContext | object | internal value | Fixture |
 | service | object | internal value | Fixture |
 | serviceAccount | object | internal value | Fixture |
 | timezone | string | `"Asia/Hong_Kong"` |  |

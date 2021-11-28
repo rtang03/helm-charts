@@ -1,12 +1,21 @@
-# hlf-peer
+# hlf-orderer
 
-Peer chart (Experimental)
+Hyperledger Fabric Orderer (Experimental)
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.2](https://img.shields.io/badge/AppVersion-2.3.2-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.2](https://img.shields.io/badge/AppVersion-2.3.2-informational?style=flat-square)
 
 ## Additional Information
 
-NOTE: This chart is opinionated for custom project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
+## Prerequisites
+
+- Kubernetes 1.9+
+- PV provisioner support in the underlying infrastructure.
+- K8S secrets containing:
+    - the crypto-materials (e.g. signcert, key, cacert, and optionally intermediatecert, CA credentials)
+    - the genesis block for the Orderer
+    - the certificate of the Orderer Organisation Admin
+
+**Note:** The workflow [genesisgen](../workflow/genesisgen/README.md) must be run on `n0` before hand.
 
 ## Installing the Chart
 
@@ -14,7 +23,7 @@ To install the chart with the release name `my-release`:
 
 ```console
 $ helm repo add dashslab https://rtang03.github.io/helm-charts
-$ helm install my-release dashslab/hlf-peer
+$ helm install my-release dashslab/hlf-orderer
 ```
 
 ## Values
@@ -22,30 +31,28 @@ $ helm install my-release dashslab/hlf-peer
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | internal value | Fixture |
-| appname | string | `"peer0"` | peer0 | peer1 |
+| appname | string | `"orderer0"` |  |
 | autoscaling | object | internal value | Fixture |
 | certRootDir | string | internal value | Fixture |
 | configmap | object | internal value | Fixture |
 | cryptoDir | string | internal value | Fixture |
-| fqdn | string | `"peer0-ORGNAME.cdi.testnet"` | fqdn used in Route 53 private hosted zone |
+| debug.broadcast | bool | `false` |  |
+| debug.deliver | bool | `false` |  |
+| fqdn | string | `"orderer0-org0.cdi.testnet"` |  |
 | fullnameOverride | string | internal value | Fixture |
-| gossip.bootstrap | string | `"peer1-ORGNAME.cdi.testnet:7051"` |  |
-| gossip.external.enabled | bool | `true` | peer0=true,peer1=false |
-| gossip.external.endpoint | string | `"peer0-ORGNAME.cdi.testnet:7051"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | internal value | Fixture |
-| image.tag | string | `"2.3.2"` |  |
+| image | object | internal value | Fixture |
 | imagePullSecrets | list | internal value | Fixture |
 | istioService | object | internal value | Fixture |
 | livenessProbe.failureThreshold | int | `3` |  |
 | livenessProbe.httpGet | object | internal value | Fixture |
 | livenessProbe.initialDelaySeconds | int | `30` |  |
-| livenessProbe.periodSeconds | int | `10` |  |
+| livenessProbe.periodSeconds | int | `30` |  |
 | livenessProbe.successThreshold | int | `1` |  |
-| mspid | string | `"MSPID"` | MSP ID |
+| mspid | string | `"Org0MSP"` |  |
 | nameOverride | string | internal value | Fixture |
-| nodeSelector."node.hkicl/nodename" | string | `"node2"` |  |
-| orgname | string | `"ORGNAME"` |  |
+| nodeSelector."node.hkicl/nodename" | string | `"node1"` |  |
+| ordererHome | string | internal value | Fixture |
+| orgname | string | `"org0"` |  |
 | persistence.accessMode | string | internal value | Fixture |
 | persistence.annotations | object | internal value | Fixture |
 | persistence.enabled | bool | internal value | Fixture |
@@ -58,14 +65,19 @@ $ helm install my-release dashslab/hlf-peer
 | readinessProbe.failureThreshold | int | `3` |  |
 | readinessProbe.httpGet | object | internal value | Fixture |
 | readinessProbe.initialDelaySeconds | int | `30` |  |
-| readinessProbe.periodSeconds | int | `10` |  |
+| readinessProbe.periodSeconds | int | `30` |  |
 | readinessProbe.successThreshold | int | `1` |  |
-| replicaCount | int | internal value | Fixture |
-| resources.limits.cpu | string | `"600m"` |  |
-| resources.limits.memory | string | `"256Mi"` |  |
-| resources.requests.cpu | string | `"200m"` |  |
+| replicaCount | int | `1` |  |
+| resources.limits.cpu | string | `"250m"` |  |
+| resources.limits.memory | string | `"512Mi"` |  |
+| resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
-| secretvol | object | internal value | Fixture |
+| secretvol.vol[0].mountPath | string | internal value | Fixture |
+| secretvol.vol[0].name | string | `"genesis"` |  |
+| secretvol.vol[1].mountPath | string | internal value | Fixture |
+| secretvol.vol[1].name | string | `"tls-orderer0"` |  |
+| secretvol.vol[2].mountPath | string | internal value | Fixture |
+| secretvol.vol[2].name | string | `"msp-orderer0"` |  |
 | securityContext | object | internal value | Fixture |
 | service | object | internal value | Fixture |
 | serviceAccount | object | internal value | Fixture |

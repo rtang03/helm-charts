@@ -1,0 +1,15 @@
+nodeSelector:
+  node.hkicl/nodename: node1
+
+appname: orderer0
+fqdn: orderer0-org0.cdi.dev3
+
+secretvol:
+  enabled: true
+  vol:
+  - name: genesis
+    mountPath: /secret/genesis
+  - name: tls-orderer0
+    mountPath: /secret/tls
+  - name: msp-orderer0
+    mountPath: /secret/msp
