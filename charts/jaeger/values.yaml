@@ -60,8 +60,8 @@ service:
     - port: 14268
       targetPort: 14268
       protocol: TCP
-      name: jaeger-collector-http
+      name: collector-http
     - port: 14250
       targetPort: 14250
       protocol: TCP
-      name: jaeger-collector-grpc
+      name: collector-grpc
