@@ -1,6 +1,6 @@
 apiVersion: v2
 name: prometheus
-version: 0.1.2
+version: 0.1.3
 description: Prometheus from fabric-es project (with custom scrapes)
 type: application
 appVersion: 2.26.0
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "use helm-docs"
+    - "fix label"
   artifacthub.io/prerelease: "true"

@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: jaeger
+        version: {{ .Chart.AppVersion }}
       {{- with .Values.podAnnotations }}
       annotations:
         sidecar.istio.io/inject: "false"
