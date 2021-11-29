@@ -1,6 +1,6 @@
 apiVersion: v2
 name: jaeger
-version: 0.1.12
+version: 0.1.13
 description: Jaeger tracing tool
 type: application
 appVersion: "1.27.0"
