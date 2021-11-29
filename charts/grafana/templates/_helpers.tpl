@@ -34,8 +34,6 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "grafana.labels" -}}
-app: {{ .Chart.Name }}
-release: {{ .Chart.Name }}
 helm.sh/chart: {{ include "grafana.chart" . }}
 {{ include "grafana.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -48,6 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "grafana.selectorLabels" -}}
+app: {{ .Chart.Name }}
+version: {{ .Chart.AppVersion }}
 app.kubernetes.io/name: {{ include "grafana.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

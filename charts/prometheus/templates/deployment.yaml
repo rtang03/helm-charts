@@ -24,6 +24,7 @@ spec:
         sidecar.istio.io/inject: "false"
         app: prometheus
         release: prometheus
+        version: {{ .Chart.AppVersion }}
     spec:
       enableServiceLinks: true
       serviceAccountName: {{ include "appname" . }}
