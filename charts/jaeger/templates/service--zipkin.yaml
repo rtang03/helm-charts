@@ -4,6 +4,7 @@ kind: Service
 metadata:
   labels:
     name: zipkin
+    app: jaeger
   name: zipkin
   namespace: {{ .Release.Namespace }}
 spec:
