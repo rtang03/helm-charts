@@ -1,3 +1,5 @@
+fqdn: "argo.server"
+
 argo-workflows:
   images:
     # -- imagePullPolicy to apply to all containers
