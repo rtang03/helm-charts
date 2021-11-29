@@ -196,6 +196,28 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 0.9.2
+    created: "2021-11-29T15:25:36.80973161Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.9.2
+    description: Custom Argo Workflow installation
+    digest: 8c6cb4b3be99516726dd41c960237eb1e0fcb5668c9d7713f592c91698731fbf
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argowf
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argowf-0.1.7/argowf-0.1.7.tgz
+    version: 0.1.7
+  - annotations:
+      artifacthub.io/changes: |
+        - "fix virtual service"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.9.2
     created: "2021-11-29T08:46:08.653046395Z"
     dependencies:
     - name: argo-workflows
@@ -1460,6 +1482,26 @@ entries:
   kiali:
   - annotations:
       artifacthub.io/changes: |
+        - "update configmap"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.42.0
+    created: "2021-11-29T15:25:36.984214715Z"
+    description: Kiiali for fabric-es project
+    digest: 5d20a8fbed66ca89500157441d79bfd8c86d0003fecda818044da3be9f972b4e
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: kiali
+    sources:
+    - https://github.com/istio/istio/blob/master/samples/addons/kiali.yaml
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.5/kiali-0.1.5.tgz
+    version: 0.1.5
+  - annotations:
+      artifacthub.io/changes: |
         - "use helm-docs"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1895,4 +1937,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-29T14:41:43.52312567Z"
+generated: "2021-11-29T15:25:36.984473313Z"
