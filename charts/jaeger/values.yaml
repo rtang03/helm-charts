@@ -47,7 +47,7 @@ service:
   ports:
     - port: 80
       targetPort: 80
-      protocol: HTTP
+      protocol: TCP
       name: http-query
     - port: 16685
       targetPort: 16685
@@ -55,11 +55,11 @@ service:
       name: grpc-query
     - port: 9411
       targetPort: 9411
-      protocol: HTTP
+      protocol: TCP
       name: http-zipkin
     - port: 14268
       targetPort: 14268
-      protocol: HTTP
+      protocol: TCP
       name: jaeger-collector-http
     - port: 14250
       targetPort: 14250
