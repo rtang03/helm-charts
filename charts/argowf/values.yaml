@@ -75,7 +75,9 @@ argo-workflows:
       sidecar.istio.io/rewriteAppHTTPProbers: "false"
     # -- Optional labels to add to the controller pods
     # @default -- internal value
-    podLabels: { }
+    podLabels:
+      app: argo
+      version: 2.1.7
     # -- Fixture
     # @default -- internal value
     podSecurityContext: { }
@@ -326,7 +328,9 @@ argo-workflows:
       sidecar.istio.io/rewriteAppHTTPProbers: "false"
       sidecar.istio.io/logLevel: "warning"
     # -- Optional labels to add to the UI pods
-    podLabels: { }
+    podLabels:
+      app: argo
+      version: 2.1.7
     # -- SecurityContext to set on the server pods
     podSecurityContext: { }
     # -- Servers container-level security context
