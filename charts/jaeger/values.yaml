@@ -39,3 +39,29 @@ persistence:
 # -- Fixture
 # @default -- internal value
 appname: jaeger
+
+# -- Fixture
+# @default -- internal value
+service:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: HTTP
+      name: http-query
+    - port: 16685
+      targetPort: 16685
+      protocol: TCP
+      name: grpc-query
+    - port: 9411
+      targetPort: 9411
+      protocol: HTTP
+      name: http-zipkin
+    - port: 14268
+      targetPort: 14268
+      protocol: HTTP
+      name: jaeger-collector-http
+    - port: 14250
+      targetPort: 14250
+      protocol: TCP
+      name: jaeger-collector-grpc

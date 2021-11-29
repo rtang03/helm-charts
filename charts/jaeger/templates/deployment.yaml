@@ -39,6 +39,12 @@ spec:
               value: "50000"
             - name: QUERY_BASE_PATH
               value: /jaeger
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .targetPort }}
+              protocol: {{ .protocol }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /
