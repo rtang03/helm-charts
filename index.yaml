@@ -192,6 +192,28 @@ entries:
   argowf:
   - annotations:
       artifacthub.io/changes: |
+        - "fix virtual service"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.9.2
+    created: "2021-11-29T08:46:08.653046395Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.9.2
+    description: Custom Argo Workflow installation
+    digest: f3e72bfff5a6bc7deb0245ad8fa0c729122252705a0a1a205b129ae56132f1c7
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argowf
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argowf-0.1.6/argowf-0.1.6.tgz
+    version: 0.1.6
+  - annotations:
+      artifacthub.io/changes: |
         - "remove crd"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1693,4 +1715,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-29T05:53:58.830466075Z"
+generated: "2021-11-29T08:46:08.653357705Z"
