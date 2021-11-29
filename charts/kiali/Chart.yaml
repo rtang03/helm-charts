@@ -1,6 +1,6 @@
 apiVersion: v2
 name: kiali
-version: 0.1.4
+version: 0.1.5
 description: Kiiali for fabric-es project
 type: application
 appVersion: 1.42.0
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "use helm-docs"
+    - "update configmap"
   artifacthub.io/prerelease: "true"
