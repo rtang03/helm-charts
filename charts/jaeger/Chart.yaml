@@ -1,6 +1,6 @@
 apiVersion: v2
 name: jaeger
-version: 0.1.14
+version: 0.1.15
 description: Jaeger tracing tool
 type: application
 appVersion: "1.27.0"
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "update readme"
+    - "fix ports"
   artifacthub.io/prerelease: "true"
