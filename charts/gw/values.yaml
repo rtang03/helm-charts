@@ -91,9 +91,6 @@ dataAccessMappedUrl: https://example.com
 # -- Emali Consent Flow App Param
 aclOrgId: CDI_PARTICIPANT_000001
 
-# -- No info
-aclOrgAccountType: consumer
-
 # -- Fixture
 # @default -- internal value
 aclFile: /assets/acl.json
@@ -186,7 +183,7 @@ administratorPort: 15011
 queryPort: 5001
 
 # -- Fixture
-# @default -- internal value
+# @deprecated -- internal value
 gatewayPort: 4101
 
 # -- Fixture

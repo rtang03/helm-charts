@@ -2,7 +2,7 @@
 
 Custom Argo Workflow installation
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.9.2](https://img.shields.io/badge/AppVersion-0.9.2-informational?style=flat-square)
+![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.9.2](https://img.shields.io/badge/AppVersion-0.9.2-informational?style=flat-square)
 
 ## Additional Information
 
@@ -134,7 +134,7 @@ $ helm install my-release dashslab/argowf
 | argo-workflows.server.pdb | object | internal value | Fixture |
 | argo-workflows.server.pdb.enabled | bool | `false` | Configure [Pod Disruption Budget] for the server pods |
 | argo-workflows.server.podAnnotations | object | `{"sidecar.istio.io/logLevel":"warning","sidecar.istio.io/rewriteAppHTTPProbers":"false"}` | optional map of annotations to be applied to the ui Pods |
-| argo-workflows.server.podLabels | object | `{}` | Optional labels to add to the UI pods |
+| argo-workflows.server.podLabels | object | `{"app":"argo","version":"3.2.4"}` | Optional labels to add to the UI pods |
 | argo-workflows.server.podSecurityContext | object | `{}` | SecurityContext to set on the server pods |
 | argo-workflows.server.priorityClassName | string | internal value | Leverage a PriorityClass to ensure your pods survive resource shortages |
 | argo-workflows.server.replicas | int | `1` | The number of server pods to run |
