@@ -65,3 +65,7 @@ service:
       targetPort: 14250
       protocol: TCP
       name: collector-grpc
+    - port: 14269
+      targetPort: 14269
+      protocol: TCP
+      name: healthz
