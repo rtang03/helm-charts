@@ -373,6 +373,26 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 0.0.6
+    created: "2021-11-30T03:22:35.418396928Z"
+    description: Experimental auth server
+    digest: b0fe0609e78aa2adc36939485d0203303aa1af739697a43e8650db69a5a49226
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: auth-server
+    sources:
+    - https://github.com/rtang03/auth-server
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.6/auth-server-0.1.6.tgz
+    version: 0.1.6
+  - annotations:
+      artifacthub.io/changes: |
+        - "update readme"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
     created: "2021-11-28T15:01:46.925636911Z"
     description: Experimental auth server
     digest: c7f9deb427848ad8fdc0b6211c5bc598feee8da3ffd098782703808fcdf68269
@@ -1959,4 +1979,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-29T15:46:03.196883338Z"
+generated: "2021-11-30T03:22:35.418586329Z"
