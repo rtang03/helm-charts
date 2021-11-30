@@ -8,6 +8,7 @@ metadata:
 spec:
   hosts:
     - peer0-{{ .targetOrg }}.{{ $.Values.domainName }}
+    - grpc://peer0-{{ .targetOrg }}.{{ $.Values.domainName }}
   ports:
     - number: 7051
       protocol: TCP
