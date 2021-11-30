@@ -45,14 +45,14 @@ spec:
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
             {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 14269
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 14269
+{{/*          livenessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /*/}}
+{{/*              port: 14269*/}}
+{{/*          readinessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /*/}}
+{{/*              port: 14269*/}}
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
