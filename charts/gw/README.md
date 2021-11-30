@@ -2,7 +2,7 @@
 
 Gateway App for fabric-es project
 
-![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
+![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
 
 ## Additional Information
 
@@ -22,7 +22,6 @@ $ helm install my-release dashslab/gw
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | aclFile | string | internal value | Fixture |
-| aclOrgAccountType | string | `"consumer"` | No info |
 | aclOrgId | string | `"CDI_PARTICIPANT_000001"` | Emali Consent Flow App Param |
 | administratorPort | int | internal value | Fixture |
 | affinity | object | internal value | Fixture |
@@ -44,7 +43,7 @@ $ helm install my-release dashslab/gw
 | fqdn | string | `"https://example.com"` |  |
 | fullnameOverride | string | internal value | Fixture |
 | gatewayHost | string | `"https://example.com"` |  |
-| gatewayPort | int | internal value | Fixture |
+| gatewayPort | int | `4101` | Fixture @deprecated -- internal value |
 | image.imageBase | string | `"gw-data-consumer"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"hktfp5/cdi-samples"` |  |
