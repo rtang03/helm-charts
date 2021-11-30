@@ -1218,6 +1218,26 @@ entries:
   jaeger:
   - annotations:
       artifacthub.io/changes: |
+        - "add ports"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.27.0
+    created: "2021-11-30T03:45:01.468048798Z"
+    description: Jaeger tracing tool
+    digest: 6def8dce710d1f2f23ef2f49e54e634ad0342452012256df62e830abc0fab78d
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: jaeger
+    sources:
+    - https://istio.io/latest/docs/ops/integrations/jaeger/#configuration
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/jaeger-0.1.18/jaeger-0.1.18.tgz
+    version: 0.1.18
+  - annotations:
+      artifacthub.io/changes: |
         - "fix label"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2015,4 +2035,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-30T03:38:24.28260379Z"
+generated: "2021-11-30T03:45:01.4683458Z"
