@@ -1946,6 +1946,24 @@ entries:
   service-entry:
   - annotations:
       artifacthub.io/changes: |
+        - "remove grpcs"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-11-30T03:38:24.282321289Z"
+    description: Helper charts to deploy service-entry for peers or orderers
+    digest: c97f70d1e1d658874d98d3c353781adda9f3bc50cf79f46b8916e7b5beff4e9d
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.4/service-entry-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      artifacthub.io/changes: |
         - "add grpcs"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1997,4 +2015,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-30T03:26:22.068102135Z"
+generated: "2021-11-30T03:38:24.28260379Z"
