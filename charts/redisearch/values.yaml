@@ -20,9 +20,6 @@ resources:
     cpu: 300m
     memory: 1Gi
 
-nodeSelector:
-  node.hkicl/nodename: node3
-
 persistence:
   # -- Fixture
   # @default -- internal value
@@ -46,6 +43,9 @@ redisExporterTag: 1.29.0
 # -- Fixture
 # @default -- internal value
 replicaCount: 1
+
+nodeSelector: {}
+#  node.hkicl/nodename: node3
 
 # -- Fixture
 # @default -- internal value

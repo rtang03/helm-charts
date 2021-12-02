@@ -110,8 +110,8 @@ authCheckReply: Unauthorized
 # -- No info
 debugPlaceholder: queryHandler:* ioredis:redis gw-lib:*
 
-nodeSelector:
-  node.hkicl/nodename: node2
+nodeSelector: {}
+# node.hkicl/nodename: node2
 
 revisionHistoryLimit: 15
 

@@ -2,7 +2,7 @@ apiVersion: v2
 name: redisearch
 description: Redisearch + Redis Exporter
 type: application
-version: 0.1.6
+version: 0.1.7
 appVersion: 2.0.5
 sources:
   - https://github.com/rtang03/fabric-es
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "use helm-docs"
+    - "remove nodeSelector"
   artifacthub.io/prerelease: "true"
