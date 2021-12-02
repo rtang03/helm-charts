@@ -2,7 +2,7 @@
 
 Gateway App for fabric-es project
 
-![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
+![Version: 0.1.12](https://img.shields.io/badge/Version-0.1.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
 
 ## Additional Information
 
@@ -51,7 +51,7 @@ $ helm install my-release dashslab/gw
 | logLevel | string | `"debug"` | info | debug |
 | mspid | string | `"MSPID"` | MSP ID |
 | nameOverride | string | internal value | Fixture |
-| nodeSelector."node.hkicl/nodename" | string | `"node2"` |  |
+| nodeSelector | object | `{}` |  |
 | nodeTLSRejectUnauthorized.enabled | bool | `false` |  |
 | nodeTLSRejectUnauthorized.value | string | `"0"` |  |
 | orderers[0] | object | internal value | Fixture |

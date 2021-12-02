@@ -7,7 +7,7 @@
   "default": {},
   "examples": [
     {
-      "orgname": "org1",
+      "orgname": "ORGNAME",
       "config": {
         "maxmemory": "1000mb"
       },
@@ -26,9 +26,6 @@
           "memory": "1Gi"
         }
       },
-      "nodeSelector": {
-        "node.hkicl/nodename": "node3"
-      },
       "persistence": {
         "enabled": true,
         "annotations": {},
@@ -46,7 +43,6 @@
     "timezone",
     "podAnnotations",
     "resources",
-    "nodeSelector",
     "persistence",
     "redisExporterTag"
   ],
@@ -58,7 +54,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "org1"
+        "ORGNAME"
       ]
     },
     "config": {
@@ -241,34 +237,6 @@
             }
           },
           "additionalProperties": true
-        }
-      },
-      "additionalProperties": true
-    },
-    "nodeSelector": {
-      "$id": "#/properties/nodeSelector",
-      "type": "object",
-      "title": "The nodeSelector schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "node.hkicl/nodename": "node3"
-        }
-      ],
-      "required": [
-        "node.hkicl/nodename"
-      ],
-      "properties": {
-        "node.hkicl/nodename": {
-          "$id": "#/properties/nodeSelector/properties/node.hkicl/nodename",
-          "type": "string",
-          "title": "The node.hkicl/nodename schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "node3"
-          ]
         }
       },
       "additionalProperties": true

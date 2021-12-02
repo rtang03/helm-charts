@@ -80,8 +80,8 @@ secretvol:
 #    - name: msp-peer1
 #      mountPath: /secret/msp
 
-nodeSelector:
-  node.hkicl/nodename: node2
+nodeSelector: {}
+#  node.hkicl/nodename: node2
 
 # -- Fixture
 # @default -- internal value
