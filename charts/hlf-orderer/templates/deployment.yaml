@@ -44,7 +44,7 @@ spec:
             secretName: {{ .name }}
         {{- end }}
       containers:
-        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+        - name: {{ include "appname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"

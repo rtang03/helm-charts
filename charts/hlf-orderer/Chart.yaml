@@ -2,7 +2,7 @@ apiVersion: v2
 name: hlf-orderer
 description: Hyperledger Fabric Orderer (Experimental)
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 2.3.2
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "cleanup only"
+    - "initial commit"
   artifacthub.io/prerelease: "true"
