@@ -2,7 +2,7 @@ apiVersion: v2
 name: hlf-chaincode
 description: External Chaincode Container chart for fabric-es
 type: application
-version: 0.1.5
+version: 0.1.6
 appVersion: 0.0.6
 sources:
   - https://github.com/rtang03/fabric-es-chaincode
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "chore"
+    - "change container name"
   artifacthub.io/prerelease: "true"
