@@ -962,6 +962,24 @@ entries:
   hlf-ca:
   - annotations:
       artifacthub.io/changes: |
+        - "change container name"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-12-05T14:06:01.597152261Z"
+    description: CA chart (Experimental)
+    digest: fc8962ae45e2acc334b4b592e98a2fb3546938fd8d03fabcd0cb2b266e990e46
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-ca
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-ca-0.1.8/hlf-ca-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      artifacthub.io/changes: |
         - "use helm-docs"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1243,6 +1261,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-orderer-0.1.1/hlf-orderer-0.1.1.tgz
     version: 0.1.1
   hlf-peer:
+  - annotations:
+      artifacthub.io/changes: |
+        - "change container name"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-05T14:06:01.80985393Z"
+    description: Peer chart (Experimental)
+    digest: b9113d5f8db2d801f09985ce46879a13cbd63bb40547fe8a6725cb66afdbed28
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.7/hlf-peer-0.1.7.tgz
+    version: 0.1.7
   - annotations:
       artifacthub.io/changes: |
         - "remove nodeSelector"
@@ -2192,4 +2228,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-05T13:35:34.397149646Z"
+generated: "2021-12-05T14:06:01.810167341Z"
