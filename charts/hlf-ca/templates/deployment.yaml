@@ -39,7 +39,7 @@ spec:
             name: cm-{{ include "appname" . }}-{{ include "orgname" . }}
         {{- end }}
       containers:
-        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+        - name: {{ include "appname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "hyperledger/fabric-ca:{{ .Chart.AppVersion }}"
