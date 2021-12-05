@@ -2,22 +2,9 @@
 
 Hyperledger Fabric Orderer (Experimental)
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.2](https://img.shields.io/badge/AppVersion-2.3.2-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.3.2](https://img.shields.io/badge/AppVersion-2.3.2-informational?style=flat-square)
 
-## Additional Information
-
-## Prerequisites
-
-- Kubernetes 1.9+
-- PV provisioner support in the underlying infrastructure.
-- K8S secrets containing:
-    - the crypto-materials (e.g. signcert, key, cacert, and optionally intermediatecert, CA credentials)
-    - the genesis block for the Orderer
-    - the certificate of the Orderer Organisation Admin
-
-**Note:** The workflow [genesisgen](../workflow/genesisgen/README.md) must be run on `n0` before hand.
-
-## Installing the Chart
+## TL;DR
 
 To install the chart with the release name `my-release`:
 

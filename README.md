@@ -68,10 +68,6 @@ $ helm install my-release dashslab/<chart>
 **Notice that the Github Action will fail if there is pre-existing git-tag, as the Chart version. Therefore, for chart modification,
 please make sure to increment the chart version, at patch level.**
 
-### Note
-
-1. `external` directory contains charts and manifest, requiring manual installation.
-
 ### Reference Info
 - [Validate helm chart with json schema](https://www.arthurkoziel.com/validate-helm-chart-values-with-json-schemas/)
 - [json2yaml](https://www.json2yaml.com)
