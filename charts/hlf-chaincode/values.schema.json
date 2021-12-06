@@ -7,7 +7,7 @@
   "default": {},
   "examples": [
     {
-      "replicaCount": 1,
+      "orgname": "ORGNAME",
       "image": {
         "repository": "hktfp5/eventstore",
         "pullPolicy": "IfNotPresent"
@@ -30,21 +30,21 @@
     }
   ],
   "required": [
-    "replicaCount",
+    "orgname",
     "image",
     "podAnnotations",
     "resources",
     "timezone"
   ],
   "properties": {
-    "replicaCount": {
-      "$id": "#/properties/replicaCount",
-      "type": "integer",
-      "title": "The replicaCount schema",
+    "orgname": {
+      "$id": "#/properties/orgname",
+      "type": "string",
+      "title": "The orgname schema",
       "description": "An explanation about the purpose of this instance.",
-      "default": 0,
+      "default": "",
       "examples": [
-        1
+        "ORGNAME"
       ]
     },
     "image": {
