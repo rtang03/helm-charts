@@ -43,7 +43,7 @@ spec:
             - name: CHAINCODE_CCID
               valueFrom:
                 secretKeyRef:
-                  name: sec-{{ .Values.ccLog }}
+                  name: sec-ccid-peer0-{{ .Values.orgname }}
                   key: PACID
       containers:
         - name: {{ include "appname" . }}
