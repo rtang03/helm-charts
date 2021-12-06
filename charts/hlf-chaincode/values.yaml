@@ -1,6 +1,4 @@
-# -- Fixture
-# @default -- internal value
-replicaCount: 1
+orgname: ORGNAME
 
 image:
   repository: hktfp5/eventstore
@@ -22,6 +20,14 @@ resources:
     memory: 256Mi
 
 timezone: Asia/Hong_Kong
+
+# -- Fixture
+# @default -- internal value
+appname: cc
+
+# -- Fixture
+# @default -- internal value
+replicaCount: 1
 
 # -- Fixture
 # @default -- internal value

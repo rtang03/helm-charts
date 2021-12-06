@@ -2,13 +2,11 @@
 
 External Chaincode Container chart for fabric-es
 
-![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
+![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
 
 ## TL;DR
 
-None
-
-## Installing the Chart
+### Installing the Chart
 
 To install the chart with the release name `my-release`:
 
@@ -22,6 +20,7 @@ $ helm install my-release dashslab/hlf-chaincode
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | internal value | Fixture |
+| appname | string | internal value | Fixture |
 | autoscaling | object | internal value | Fixture |
 | chaincodeAddress | string | internal value | Fixture |
 | fullnameOverride | string | internal value | Fixture |
@@ -31,6 +30,7 @@ $ helm install my-release dashslab/hlf-chaincode
 | istioService | object | internal value | Fixture |
 | nameOverride | string | internal value | Fixture |
 | nodeSelector | object | internal value | Fixture |
+| orgname | string | `"ORGNAME"` |  |
 | podAnnotations."sidecar.istio.io/logLevel" | string | `"warning"` | trace|debug|info|warning|error|critical|off |
 | podAnnotations."sidecar.istio.io/rewriteAppHTTPProbers" | string | internal value | Fixture |
 | podSecurityContext | object | internal value | Fixture |
