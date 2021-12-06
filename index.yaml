@@ -1,6 +1,24 @@
 apiVersion: v1
 entries:
   argo-app-of-apps:
+  - annotations:
+      artifacthub.io/changes: |
+        - "remove finalizer"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-12-06T07:15:25.2836503Z"
+    description: Parent app, with app-of-app pattern
+    digest: f12536a595a7ef42e4c1d6c030f5c88667932d95b4de539bdd94fdde91298c3f
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argo-app-of-apps
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argo-app-of-apps-0.1.4/argo-app-of-apps-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 0.4.4
     created: "2021-11-23T10:26:18.09312669Z"
@@ -42,6 +60,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/argo-app-of-apps-0.1.1/argo-app-of-apps-0.1.1.tgz
     version: 0.1.1
   argo-apps:
+  - annotations:
+      artifacthub.io/changes: |
+        - "remove finalizer"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-12-06T07:15:25.396502103Z"
+    description: Real Apps to be deployed by Argo CD, with app-of-app pattern
+    digest: 4978b675f29a346f95bcae1f262d8462842ebcc6e47841d518c584932c9dbd22
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argo-apps
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argo-apps-0.1.4/argo-apps-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 0.4.4
     created: "2021-11-23T10:26:18.224900132Z"
@@ -2248,4 +2284,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-05T14:11:23.692080368Z"
+generated: "2021-12-06T07:15:25.396788003Z"
