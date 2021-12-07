@@ -2,7 +2,7 @@
 
 Custom Argo installation with helm-secrets and aws-kms
 
-![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.26.9](https://img.shields.io/badge/AppVersion-3.26.9-informational?style=flat-square)
+![Version: 0.1.9](https://img.shields.io/badge/Version-0.1.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.26.9](https://img.shields.io/badge/AppVersion-3.26.9-informational?style=flat-square)
 
 ## TL;DR
 
@@ -30,7 +30,7 @@ $ helm install my-release dashslab/argocd
 |-----|------|---------|-------------|
 | argo-cd.global.image.imagePullPolicy | string | internal value | imagePullPolicy |
 | argo-cd.global.image.repository | string | `"ghcr.io/rtang03/argocd-helm-secret"` | custom image with helm-secret |
-| argo-cd.global.image.tag | string | `"2.1.7-rev3"` |  |
+| argo-cd.global.image.tag | string | `"2.1.7-rev4"` |  |
 | argo-cd.global.securityContext.fsGroup | int | `2000` |  |
 | argo-cd.repoServer.logLevel | string | `"info"` |  |
 | argo-cd.repoServer.volumeMounts | list | internal value | Fixture |
