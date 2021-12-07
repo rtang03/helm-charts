@@ -121,6 +121,28 @@ entries:
   argocd:
   - annotations:
       artifacthub.io/changes: |
+        - "upgrade to v2.1.7-rev4, enabling helm dep build"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 3.26.9
+    created: "2021-12-07T15:06:51.689174955Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.26.9
+    description: Custom Argo installation with helm-secrets and aws-kms
+    digest: fc90878382c713879a3eac31b50e46d5ce5c0a53a919953972dabc2732e0c633
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argocd-0.1.9/argocd-0.1.9.tgz
+    version: 0.1.9
+  - annotations:
+      artifacthub.io/changes: |
         - "upgrade to v2.1.7-rev3, enabling helm repo add "
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2470,4 +2492,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-07T14:37:39.63151162Z"
+generated: "2021-12-07T15:06:51.689610858Z"
