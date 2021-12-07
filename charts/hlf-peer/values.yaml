@@ -180,7 +180,8 @@ istioService:
       name: tls-ping
       protocol: TLS
       destPort: 1313
-    - name: http-nginx
+    - port: 8080
+      name: http-nginx
       protocol: HTTP
       destPort: 8080
       match:
@@ -192,7 +193,8 @@ istioService:
             exact: /rootcert.pem
         - uri:
             exact: /tlscert.pem
-    - name: http-ext-metrics
+    - port: 9443
+      name: http-ext-metrics
       protocol: HTTP
       destPort: 9443
       match:
