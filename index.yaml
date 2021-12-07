@@ -1381,6 +1381,24 @@ entries:
   hlf-peer:
   - annotations:
       artifacthub.io/changes: |
+        - "add back port number in istio gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-07T02:13:45.035269317Z"
+    description: Peer chart (Experimental)
+    digest: 27c5884d8284f3d93c4a4b653b9da9d9483dd6c5588cec519690230ad2bf4c7b
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.8/hlf-peer-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      artifacthub.io/changes: |
         - "change container name"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2346,4 +2364,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-06T15:03:08.548277686Z"
+generated: "2021-12-07T02:13:45.035579923Z"
