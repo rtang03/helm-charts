@@ -2,7 +2,7 @@ apiVersion: v2
 name: hlf-peer
 description: Peer chart (Experimental)
 type: application
-version: 0.1.8
+version: 0.1.9
 appVersion: 2.3.2
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "add back port number in istio gateway"
+    - "update incoming port of health check from 9443 to 80"
   artifacthub.io/prerelease: "true"

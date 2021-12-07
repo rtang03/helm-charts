@@ -193,7 +193,7 @@ istioService:
             exact: /rootcert.pem
         - uri:
             exact: /tlscert.pem
-    - port: 9443
+    - port: 80
       name: http-ext-metrics
       protocol: HTTP
       destPort: 9443
