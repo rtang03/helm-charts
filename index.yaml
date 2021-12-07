@@ -1403,6 +1403,24 @@ entries:
   hlf-peer:
   - annotations:
       artifacthub.io/changes: |
+        - "update incoming port of health check from 9443 to 80"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-07T07:20:54.982816073Z"
+    description: Peer chart (Experimental)
+    digest: e5efbcd5786e78bec8e77dcd6671e816a940a3d8e07370ea33d898abc7f432f4
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.9/hlf-peer-0.1.9.tgz
+    version: 0.1.9
+  - annotations:
+      artifacthub.io/changes: |
         - "add back port number in istio gateway"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2386,4 +2404,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-07T02:54:51.639005183Z"
+generated: "2021-12-07T07:20:54.983249376Z"
