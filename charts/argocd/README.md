@@ -2,7 +2,7 @@
 
 Custom Argo installation with helm-secrets and aws-kms
 
-![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.26.9](https://img.shields.io/badge/AppVersion-3.26.9-informational?style=flat-square)
+![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.26.9](https://img.shields.io/badge/AppVersion-3.26.9-informational?style=flat-square)
 
 ## TL;DR
 

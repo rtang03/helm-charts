@@ -49,9 +49,7 @@
           },
           "config": {
             "accounts.cli": "apiKey, login",
-            "statusbadge.enabled": "true",
-            "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
-            "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+            "statusbadge.enabled": "false"
           }
         }
       }
@@ -150,9 +148,7 @@
             },
             "config": {
               "accounts.cli": "apiKey, login",
-              "statusbadge.enabled": "true",
-              "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
-              "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+              "statusbadge.enabled": "false"
             }
           }
         }
@@ -474,9 +470,7 @@
               },
               "config": {
                 "accounts.cli": "apiKey, login",
-                "statusbadge.enabled": "true",
-                "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
-                "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+                "statusbadge.enabled": "false"
               }
             }
           ],
@@ -563,16 +557,12 @@
               "examples": [
                 {
                   "accounts.cli": "apiKey, login",
-                  "statusbadge.enabled": "true",
-                  "helm.repositories": "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n",
-                  "repositories": "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+                  "statusbadge.enabled": "false"
                 }
               ],
               "required": [
                 "accounts.cli",
-                "statusbadge.enabled",
-                "helm.repositories",
-                "repositories"
+                "statusbadge.enabled"
               ],
               "properties": {
                 "accounts.cli": {
@@ -592,27 +582,7 @@
                   "description": "An explanation about the purpose of this instance.",
                   "default": "",
                   "examples": [
-                    "true"
-                  ]
-                },
-                "helm.repositories": {
-                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/helm.repositories",
-                  "type": "string",
-                  "title": "The helm.repositories schema",
-                  "description": "An explanation about the purpose of this instance.",
-                  "default": "",
-                  "examples": [
-                    "- url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io\n"
-                  ]
-                },
-                "repositories": {
-                  "$id": "#/properties/argo-cd/properties/server/properties/config/properties/repositories",
-                  "type": "string",
-                  "title": "The repositories schema",
-                  "description": "An explanation about the purpose of this instance.",
-                  "default": "",
-                  "examples": [
-                    "- type: helm\n  url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts\n  name: istio.io"
+                    "false"
                   ]
                 }
               },
