@@ -121,6 +121,28 @@ entries:
   argocd:
   - annotations:
       artifacthub.io/changes: |
+        - "remove helm.repository for istio"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 3.26.9
+    created: "2021-12-07T10:02:27.497373877Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.26.9
+    description: Custom Argo installation with helm-secrets and aws-kms
+    digest: 4ff9565ed514cc0ab6c0be6c4612e0afe26b5213c29e19e45821111aed926665
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argocd-0.1.7/argocd-0.1.7.tgz
+    version: 0.1.7
+  - annotations:
+      artifacthub.io/changes: |
         - "chore"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2426,4 +2448,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-07T07:22:52.695595544Z"
+generated: "2021-12-07T10:02:27.497686579Z"
