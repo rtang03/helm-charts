@@ -1,6 +1,6 @@
 name: argocd
 apiVersion: v2
-version: 0.1.9
+version: 0.1.10
 appVersion: 3.26.9
 description: Custom Argo installation with helm-secrets and aws-kms
 type: application
@@ -14,5 +14,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "upgrade to v2.1.7-rev4, enabling helm dep build"
+    - "upgrade readme"
   artifacthub.io/prerelease: "true"
