@@ -316,6 +316,28 @@ entries:
   argowf:
   - annotations:
       artifacthub.io/changes: |
+        - "add service-account, artifactory repo, aws-s3-credentials"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.9.2
+    created: "2021-12-08T07:06:57.567812029Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.9.2
+    description: Custom Argo Workflow installation
+    digest: 7855575ac8fc36ea3d4ce0ae3e1c763444a37baee6d7db3028c9dd708fc44bd9
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argowf
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argowf-0.1.13/argowf-0.1.13.tgz
+    version: 0.1.13
+  - annotations:
+      artifacthub.io/changes: |
         - "remove service-account"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -700,6 +722,24 @@ entries:
   explorer:
   - annotations:
       artifacthub.io/changes: |
+        - "cleanup"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-12-08T07:06:57.752746189Z"
+    description: Hyperledger Explorer chart (Experimental)
+    digest: cfad31760c8e75b68d0611e54b7a0969e121b793c241a76893d45ac8c41f0253
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-0.1.7/explorer-0.1.7.tgz
+    version: 0.1.7
+  - annotations:
+      artifacthub.io/changes: |
         - "use helm-docs"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -737,6 +777,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/explorer-0.1.4/explorer-0.1.4.tgz
     version: 0.1.4
   explorer-db:
+  - annotations:
+      artifacthub.io/changes: |
+        - "cleanup"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-12-08T07:06:57.936243563Z"
+    description: Hyperledger Explorer Database (Experimental)
+    digest: 2f49e26a51cc0ddae41dc7292de5356d43938a317097039cfc9aa88254663ab0
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: explorer-db
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-db-0.1.9/explorer-db-0.1.9.tgz
+    version: 0.1.9
   - annotations:
       artifacthub.io/changes: |
         - "use helm-docs"
@@ -2512,4 +2570,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-08T04:55:22.202845324Z"
+generated: "2021-12-08T07:06:57.936654759Z"
