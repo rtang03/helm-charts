@@ -121,6 +121,28 @@ entries:
   argocd:
   - annotations:
       artifacthub.io/changes: |
+        - "upgrade readme"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 3.26.9
+    created: "2021-12-08T09:57:08.400214417Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.26.9
+    description: Custom Argo installation with helm-secrets and aws-kms
+    digest: 9d04e99991426bf604aeac53e5ce2bb713637ff7093ff88edaff93bc9ac65107
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argocd-0.1.10/argocd-0.1.10.tgz
+    version: 0.1.10
+  - annotations:
+      artifacthub.io/changes: |
         - "upgrade to v2.1.7-rev4, enabling helm dep build"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1038,6 +1060,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
     version: 0.1.0
   gw:
+  - annotations:
+      artifacthub.io/changes: |
+        - "put image version into values.yaml"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-12-08T09:57:08.534958528Z"
+    description: Gateway App for fabric-es project
+    digest: 9a96d86d7995139db6bf710755fd9331299937a90b2283917e31b712698229b8
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.13/gw-0.1.13.tgz
+    version: 0.1.13
   - annotations:
       artifacthub.io/changes: |
         - "remove nodeSelector"
@@ -2592,4 +2632,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-08T08:17:01.848957652Z"
+generated: "2021-12-08T09:57:08.535368734Z"
