@@ -84,7 +84,7 @@ spec:
             allowPrivilegeEscalation: false
             capabilities:
               drop: ['all']
-        - name: {{ include "appname" . }}-{{ include "orgname" . }}
+        - name: {{ include "appname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "hyperledger/explorer:{{ .Chart.AppVersion }}"
@@ -129,7 +129,11 @@ spec:
             - |
               echo "*** Starting POD ***"
               # remove tailing return
+              echo "adminpw"
+              echo $adminpw
               export CA_ADMIN_PASSWORD=$(echo $adminpw | sed -e 's/[\r\n]//g')
+              echo "CA_ADMIN_PASSWORD"
+              echo $CA_ADMIN_PASSWORD
               set -x
               cp /tmp/test-network.json /opt/explorer/app/platform/fabric/connection-profile/test-network.json
               set +x
@@ -160,8 +164,9 @@ spec:
               ### End of Note2
               ### Note 3:
               # syncstart.sh will trigger frequent chaincode query via peer0. That means, it may impact peer0 performance.
-              /opt/explorer/syncstart.sh &
-              npm run app-start && tail -f /dev/null
+              # /opt/explorer/syncstart.sh &
+              # npm run app-start && tail -f /dev/null
+              sleep 840000
           volumeMounts:
             - name: wait-for-it
               mountPath: /setup/wait-for-it.sh
