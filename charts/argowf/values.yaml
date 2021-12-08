@@ -14,7 +14,7 @@ artifactRepository:
   secretKey: KEY
 
 # -- target ns to create "workflow" SA
-serviceAccounts:
+targets:
   - namespace: n1
 
 argo-workflows:
