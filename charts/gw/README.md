@@ -2,7 +2,7 @@
 
 Gateway App for fabric-es project
 
-![Version: 0.1.12](https://img.shields.io/badge/Version-0.1.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
+![Version: 0.1.13](https://img.shields.io/badge/Version-0.1.13-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.4](https://img.shields.io/badge/AppVersion-0.4.4-informational?style=flat-square)
 
 ## Additional Information
 
@@ -44,6 +44,7 @@ $ helm install my-release dashslab/gw
 | fullnameOverride | string | internal value | Fixture |
 | gatewayHost | string | `"https://example.com"` |  |
 | gatewayPort | int | `4101` | Fixture @deprecated -- internal value |
+| image.appVersion | string | `"0.4.5"` |  |
 | image.imageBase | string | `"gw-data-consumer"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"hktfp5/cdi-samples"` |  |
