@@ -316,6 +316,28 @@ entries:
   argowf:
   - annotations:
       artifacthub.io/changes: |
+        - "fix artifactory repo, aws-s3-credentials"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.9.2
+    created: "2021-12-08T08:17:01.848536644Z"
+    dependencies:
+    - name: argo-workflows
+      repository: https://argoproj.github.io/argo-helm
+      version: 0.9.2
+    description: Custom Argo Workflow installation
+    digest: 4e22a075b5cfa005f8f1c36512695f07a2df2e972ffcc8348f8b739719cce26a
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: argowf
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/argowf-0.1.14/argowf-0.1.14.tgz
+    version: 0.1.14
+  - annotations:
+      artifacthub.io/changes: |
         - "add service-account, artifactory repo, aws-s3-credentials"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2570,4 +2592,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-08T07:06:57.936654759Z"
+generated: "2021-12-08T08:17:01.848957652Z"
