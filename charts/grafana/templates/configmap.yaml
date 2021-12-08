@@ -1,4 +1,5 @@
 {{- range .Values.configmap.json }}
+{{- if .enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,4 +7,5 @@ metadata:
 data:
 {{ ($.Files.Glob .filename).AsConfig | indent 2 }}
 ---
+{{- end }}
 {{- end }}

@@ -2,9 +2,9 @@
 
 Grafana for fabric-es project
 
-![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.2.2](https://img.shields.io/badge/AppVersion-8.2.2-informational?style=flat-square)
+![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.2.2](https://img.shields.io/badge/AppVersion-8.2.2-informational?style=flat-square)
 
-## Additional Information
+## TL;DR
 
 NOTE: This chart is opinionated for experimental project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
 
@@ -19,7 +19,7 @@ Note: After updating dashboard json file in configMap, Grafana deployment need t
 ### Supported Dashboard
 - K8s Cluster
 - K8s Storage
-- Hyperledger Fabric
+- Hyperledger Fabric and Orderer
 - Istio Control Plane
 - Istio Performance Dashboard
 - Istio Service Dashboard
@@ -45,46 +45,61 @@ $ helm install my-release dashslab/grafana
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | appname | string | internal value | Fixture |
+| configmap.json[0].enabled | bool | `true` |  |
 | configmap.json[0].filename | string | `"config/istio-service-dashboard_rev93.json"` |  |
 | configmap.json[0].mountPath | string | `"/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json"` |  |
 | configmap.json[0].name | string | `"istio-service-dashboard"` |  |
 | configmap.json[0].subPath | string | `"istio-service-dashboard_rev93.json"` |  |
+| configmap.json[10].enabled | bool | `false` |  |
+| configmap.json[10].filename | string | `"config/redis_rev1.json"` |  |
+| configmap.json[10].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/redis_rev1.json"` |  |
+| configmap.json[10].name | string | `"redis-dashboard"` |  |
+| configmap.json[10].subPath | string | `"redis_rev1.json"` |  |
+| configmap.json[1].enabled | bool | `true` |  |
 | configmap.json[1].filename | string | `"config/istio-workload-dashboard_rev93.json"` |  |
 | configmap.json[1].mountPath | string | `"/var/lib/grafana/dashboards/istio/istio-workload-dashboard_rev93.json"` |  |
 | configmap.json[1].name | string | `"istio-workload-dashboard"` |  |
 | configmap.json[1].subPath | string | `"istio-workload-dashboard_rev93.json"` |  |
+| configmap.json[2].enabled | bool | `true` |  |
 | configmap.json[2].filename | string | `"config/istio-control-plane-dashboard_rev93.json"` |  |
 | configmap.json[2].mountPath | string | `"/var/lib/grafana/dashboards/istio/istio-control-plane-dashboard_rev93.json"` |  |
 | configmap.json[2].name | string | `"istio-control-plane-dashboard"` |  |
 | configmap.json[2].subPath | string | `"istio-control-plane-dashboard_rev93.json"` |  |
+| configmap.json[3].enabled | bool | `true` |  |
 | configmap.json[3].filename | string | `"config/istio-mesh-dashboard_rev93.json"` |  |
 | configmap.json[3].mountPath | string | `"/var/lib/grafana/dashboards/istio/istio-mesh-dashboard_rev93.json"` |  |
 | configmap.json[3].name | string | `"istio-mesh-dashboard"` |  |
 | configmap.json[3].subPath | string | `"istio-mesh-dashboard_rev93.json"` |  |
+| configmap.json[4].enabled | bool | `true` |  |
 | configmap.json[4].filename | string | `"config/istio-performance-dashboard_rev93.json"` |  |
 | configmap.json[4].mountPath | string | `"/var/lib/grafana/dashboards/istio/istio-performance-dashboard_rev93.json"` |  |
 | configmap.json[4].name | string | `"istio-performance-dashboard"` |  |
 | configmap.json[4].subPath | string | `"istio-performance-dashboard_rev93.json"` |  |
-| configmap.json[5].filename | string | `"config/hyperledger-fabric_rev1.json"` |  |
-| configmap.json[5].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json"` |  |
-| configmap.json[5].name | string | `"hyperledger-fabric"` |  |
-| configmap.json[5].subPath | string | `"hyperledger-fabric_rev1.json"` |  |
-| configmap.json[6].filename | string | `"config/k8s-cluster.json"` |  |
-| configmap.json[6].mountPath | string | `"/var/lib/grafana/dashboards/k8s/k8s-cluster.json"` |  |
-| configmap.json[6].name | string | `"k8s-cluster"` |  |
-| configmap.json[6].subPath | string | `"k8s-cluster.json"` |  |
-| configmap.json[7].filename | string | `"config/k8s-storage.json"` |  |
-| configmap.json[7].mountPath | string | `"/var/lib/grafana/dashboards/k8s/k8s-storage.json"` |  |
-| configmap.json[7].name | string | `"k8s-storage"` |  |
-| configmap.json[7].subPath | string | `"k8s-storage.json"` |  |
-| configmap.json[8].filename | string | `"config/redisearch_rev1.json"` |  |
-| configmap.json[8].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json"` |  |
-| configmap.json[8].name | string | `"redisearch-dashboard"` |  |
-| configmap.json[8].subPath | string | `"redisearch_rev1.json"` |  |
-| configmap.json[9].filename | string | `"config/redis_rev1.json"` |  |
-| configmap.json[9].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/redis_rev1.json"` |  |
-| configmap.json[9].name | string | `"redis-dashboard"` |  |
-| configmap.json[9].subPath | string | `"redis_rev1.json"` |  |
+| configmap.json[5].enabled | bool | `true` |  |
+| configmap.json[5].filename | string | `"config/k8s-cluster.json"` |  |
+| configmap.json[5].mountPath | string | `"/var/lib/grafana/dashboards/k8s/k8s-cluster.json"` |  |
+| configmap.json[5].name | string | `"k8s-cluster"` |  |
+| configmap.json[5].subPath | string | `"k8s-cluster.json"` |  |
+| configmap.json[6].enabled | bool | `true` |  |
+| configmap.json[6].filename | string | `"config/k8s-storage.json"` |  |
+| configmap.json[6].mountPath | string | `"/var/lib/grafana/dashboards/k8s/k8s-storage.json"` |  |
+| configmap.json[6].name | string | `"k8s-storage"` |  |
+| configmap.json[6].subPath | string | `"k8s-storage.json"` |  |
+| configmap.json[7].enabled | bool | `false` |  |
+| configmap.json[7].filename | string | `"config/hyperledger-fabric_rev1.json"` |  |
+| configmap.json[7].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json"` |  |
+| configmap.json[7].name | string | `"hyperledger-fabric"` |  |
+| configmap.json[7].subPath | string | `"hyperledger-fabric_rev1.json"` |  |
+| configmap.json[8].enabled | bool | `false` |  |
+| configmap.json[8].filename | string | `"config/orderers_rev1.json"` |  |
+| configmap.json[8].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json"` |  |
+| configmap.json[8].name | string | `"orderers"` |  |
+| configmap.json[8].subPath | string | `"orderers_rev1.json"` |  |
+| configmap.json[9].enabled | bool | `false` |  |
+| configmap.json[9].filename | string | `"config/redisearch_rev1.json"` |  |
+| configmap.json[9].mountPath | string | `"/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json"` |  |
+| configmap.json[9].name | string | `"redisearch-dashboard"` |  |
+| configmap.json[9].subPath | string | `"redisearch_rev1.json"` |  |
 | legendFormat_Container | string | internal value | Fixture |
 | legendFormat_Id | string | internal value | Fixture |
 | legendFormat_Name | string | internal value | Fixture |

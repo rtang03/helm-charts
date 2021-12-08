@@ -27,46 +27,63 @@ persistence:
 
 configmap:
   json:
+    # DEFAUFT true
     - name: "istio-service-dashboard"
       filename: "config/istio-service-dashboard_rev93.json"
       mountPath: "/var/lib/grafana/dashboards/istio/istio-service-dashboard_rev93.json"
       subPath: "istio-service-dashboard_rev93.json"
+      enabled: true
     - name: "istio-workload-dashboard"
       filename: "config/istio-workload-dashboard_rev93.json"
       mountPath: "/var/lib/grafana/dashboards/istio/istio-workload-dashboard_rev93.json"
       subPath: "istio-workload-dashboard_rev93.json"
+      enabled: true
     - name: "istio-control-plane-dashboard"
       filename: "config/istio-control-plane-dashboard_rev93.json"
       mountPath: "/var/lib/grafana/dashboards/istio/istio-control-plane-dashboard_rev93.json"
       subPath: "istio-control-plane-dashboard_rev93.json"
+      enabled: true
     - name: "istio-mesh-dashboard"
       filename: "config/istio-mesh-dashboard_rev93.json"
       mountPath: "/var/lib/grafana/dashboards/istio/istio-mesh-dashboard_rev93.json"
       subPath: "istio-mesh-dashboard_rev93.json"
+      enabled: true
     - name: "istio-performance-dashboard"
       filename: "config/istio-performance-dashboard_rev93.json"
       mountPath: "/var/lib/grafana/dashboards/istio/istio-performance-dashboard_rev93.json"
       subPath: "istio-performance-dashboard_rev93.json"
-    - name: "hyperledger-fabric"
-      filename: "config/hyperledger-fabric_rev1.json"
-      mountPath: "/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json"
-      subPath: "hyperledger-fabric_rev1.json"
+      enabled: true
     - name: "k8s-cluster"
       filename: "config/k8s-cluster.json"
       mountPath: "/var/lib/grafana/dashboards/k8s/k8s-cluster.json"
       subPath: "k8s-cluster.json"
+      enabled: true
     - name: "k8s-storage"
       filename: "config/k8s-storage.json"
       mountPath: "/var/lib/grafana/dashboards/k8s/k8s-storage.json"
       subPath: "k8s-storage.json"
+      enabled: true
+    # DEFAULT false
+    - name: "hyperledger-fabric"
+      filename: "config/hyperledger-fabric_rev1.json"
+      mountPath: "/var/lib/grafana/dashboards/hyperledger/hyperledger-fabric_rev1.json"
+      subPath: "hyperledger-fabric_rev1.json"
+      enabled: false
+    - name: "orderers"
+      filename: "config/orderers_rev1.json"
+      mountPath: "/var/lib/grafana/dashboards/hyperledger/orderers_rev1.json"
+      subPath: "orderers_rev1.json"
+      enabled: false
     - name: "redisearch-dashboard"
       filename: "config/redisearch_rev1.json"
       mountPath: "/var/lib/grafana/dashboards/hyperledger/redisearch_rev1.json"
       subPath: "redisearch_rev1.json"
+      enabled: false
     - name: "redis-dashboard"
       filename: "config/redis_rev1.json"
       mountPath: "/var/lib/grafana/dashboards/hyperledger/redis_rev1.json"
       subPath: "redis_rev1.json"
+      enabled: false
 
 # -- Fixture
 # @default -- internal value
