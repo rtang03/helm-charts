@@ -775,6 +775,26 @@ entries:
   grafana:
   - annotations:
       artifacthub.io/changes: |
+        - "configurable dashboards"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 8.2.2
+    created: "2021-12-08T04:55:22.202418321Z"
+    description: Grafana for fabric-es project
+    digest: 1bd5b802370bfdf50e48852c951708563b51aaaac95b117737b28b46ed9389dc
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: grafana
+    sources:
+    - https://istio.io/latest/docs/ops/integrations/grafana/#configuration
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.11/grafana-0.1.11.tgz
+    version: 0.1.11
+  - annotations:
+      artifacthub.io/changes: |
         - "fix label"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2492,4 +2512,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-07T15:06:51.689610858Z"
+generated: "2021-12-08T04:55:22.202845324Z"
