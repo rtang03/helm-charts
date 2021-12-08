@@ -17,7 +17,7 @@
         "accessKey": "ID",
         "secretKey": "KEY"
       },
-      "serviceAccounts": [
+      "targets": [
         {
           "namespace": "n1"
         }
@@ -27,7 +27,7 @@
   "required": [
     "fqdn",
     "artifactRepository",
-    "serviceAccounts"
+    "targets"
   ],
   "properties": {
     "fqdn": {
@@ -140,10 +140,10 @@
       },
       "additionalProperties": true
     },
-    "serviceAccounts": {
-      "$id": "#/properties/serviceAccounts",
+    "targets": {
+      "$id": "#/properties/targets",
       "type": "array",
-      "title": "The serviceAccounts schema",
+      "title": "The targets schema",
       "description": "An explanation about the purpose of this instance.",
       "default": [],
       "examples": [
@@ -155,10 +155,10 @@
       ],
       "additionalItems": true,
       "items": {
-        "$id": "#/properties/serviceAccounts/items",
+        "$id": "#/properties/targets/items",
         "anyOf": [
           {
-            "$id": "#/properties/serviceAccounts/items/anyOf/0",
+            "$id": "#/properties/targets/items/anyOf/0",
             "type": "object",
             "title": "The first anyOf schema",
             "description": "An explanation about the purpose of this instance.",
@@ -173,7 +173,7 @@
             ],
             "properties": {
               "namespace": {
-                "$id": "#/properties/serviceAccounts/items/anyOf/0/properties/namespace",
+                "$id": "#/properties/targets/items/anyOf/0/properties/namespace",
                 "type": "string",
                 "title": "The namespace schema",
                 "description": "An explanation about the purpose of this instance.",
