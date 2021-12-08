@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "fqdn": "argo.server",
+      "artifactRepository": {
+        "enabled": true,
+        "alias": "alias",
+        "endpoint": "s3.ap-northeast-2.amazonaws.com",
+        "bucket": "s3.bucket.hktvmall.tst3",
+        "keyFormat": "hktvmall",
+        "accessKey": "ID",
+        "secretKey": "KEY"
+      },
+      "serviceAccounts": [
+        {
+          "namespace": "n1"
+        }
+      ]
+    }
+  ],
+  "required": [
+    "fqdn",
+    "artifactRepository",
+    "serviceAccounts"
+  ],
+  "properties": {
+    "fqdn": {
+      "$id": "#/properties/fqdn",
+      "type": "string",
+      "title": "The fqdn schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": [
+        "argo.server"
+      ]
+    },
+    "artifactRepository": {
+      "$id": "#/properties/artifactRepository",
+      "type": "object",
+      "title": "The artifactRepository schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "examples": [
+        {
+          "enabled": true,
+          "alias": "alias",
+          "endpoint": "s3.ap-northeast-2.amazonaws.com",
+          "bucket": "s3.bucket.hktvmall.tst3",
+          "keyFormat": "hktvmall",
+          "accessKey": "ID",
+          "secretKey": "KEY"
+        }
+      ],
+      "required": [
+        "enabled",
+        "alias",
+        "endpoint",
+        "bucket",
+        "keyFormat",
+        "accessKey",
+        "secretKey"
+      ],
+      "properties": {
+        "enabled": {
+          "$id": "#/properties/artifactRepository/properties/enabled",
+          "type": "boolean",
+          "title": "The enabled schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "alias": {
+          "$id": "#/properties/artifactRepository/properties/alias",
+          "type": "string",
+          "title": "The alias schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "alias"
+          ]
+        },
+        "endpoint": {
+          "$id": "#/properties/artifactRepository/properties/endpoint",
+          "type": "string",
+          "title": "The endpoint schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "s3.ap-northeast-2.amazonaws.com"
+          ]
+        },
+        "bucket": {
+          "$id": "#/properties/artifactRepository/properties/bucket",
+          "type": "string",
+          "title": "The bucket schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "s3.bucket.hktvmall.tst3"
+          ]
+        },
+        "keyFormat": {
+          "$id": "#/properties/artifactRepository/properties/keyFormat",
+          "type": "string",
+          "title": "The keyFormat schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "hktvmall"
+          ]
+        },
+        "accessKey": {
+          "$id": "#/properties/artifactRepository/properties/accessKey",
+          "type": "string",
+          "title": "The accessKey schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "ID"
+          ]
+        },
+        "secretKey": {
+          "$id": "#/properties/artifactRepository/properties/secretKey",
+          "type": "string",
+          "title": "The secretKey schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+            "KEY"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "serviceAccounts": {
+      "$id": "#/properties/serviceAccounts",
+      "type": "array",
+      "title": "The serviceAccounts schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "namespace": "n1"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/serviceAccounts/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/serviceAccounts/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "namespace": "n1"
+              }
+            ],
+            "required": [
+              "namespace"
+            ],
+            "properties": {
+              "namespace": {
+                "$id": "#/properties/serviceAccounts/items/anyOf/0/properties/namespace",
+                "type": "string",
+                "title": "The namespace schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "n1"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

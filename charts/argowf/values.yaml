@@ -1,4 +1,21 @@
 fqdn: "argo.server"
+artifactRepository:
+  # -- Fixture
+  # @default -- internal value
+  enabled: true
+  # -- artifactory repository
+  alias: alias
+  endpoint: s3.ap-northeast-2.amazonaws.com
+  bucket: s3.bucket.hktvmall.tst3
+  keyFormat: hktvmall
+  # -- S3 access key
+  accessKey: ID
+  # -- S3 secret key
+  secretKey: KEY
+
+# -- target ns to create "workflow" SA
+serviceAccounts:
+  - namespace: n1
 
 argo-workflows:
   images:

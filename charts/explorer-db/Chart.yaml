@@ -2,7 +2,7 @@ apiVersion: v2
 name: explorer-db
 description: Hyperledger Explorer Database (Experimental)
 type: application
-version: 0.1.8
+version: 0.1.9
 appVersion: 1.1.8
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "use helm-docs"
+    - "cleanup"
   artifacthub.io/prerelease: "true"

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cdi-artifact-repositories
+data:
+  {{ .Values.artifactRepository.alias }}: |
+    archive: none
+    archiveLogs: false
+    s3:
+      endpoint: {{ .Values.artifactRepository.endpoint }}
+      bucket: {{ .Values.artifactRepository.bucket }}
+      keyFormat: {{ .Values.artifactRepository.keyFormat }}
+      accessKeySecret:
+        name: aws-s3-credentials
+        key: accessKey
+      secretKeySecret:
+        name: aws-s3-credentials
+        key: secretKey
