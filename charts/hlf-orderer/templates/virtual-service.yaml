@@ -8,6 +8,7 @@ metadata:
 spec:
   gateways:
   - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  - mesh
   hosts:
   - {{ .Values.fqdn }}
   tls:
