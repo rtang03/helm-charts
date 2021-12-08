@@ -1,6 +1,6 @@
 apiVersion: v2
 name: grafana
-version: 0.1.10
+version: 0.1.11
 description: Grafana for fabric-es project
 type: application
 appVersion: 8.2.2
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "fix label"
+    - "configurable dashboards"
   artifacthub.io/prerelease: "true"
