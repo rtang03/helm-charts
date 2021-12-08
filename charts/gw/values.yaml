@@ -119,6 +119,7 @@ image:
   repository: hktfp5/cdi-samples
   imageBase: gw-data-consumer
   pullPolicy: IfNotPresent
+  appVersion: 0.4.5
 
 podAnnotations:
   # -- Fixture

@@ -64,7 +64,7 @@ spec:
         - name: {{ include "appname" . }}-{{ include "orgname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.imageBase }}-{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.imageBase }}-{{ .Values.image.appVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
             - sh
