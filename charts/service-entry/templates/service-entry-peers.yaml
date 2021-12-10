@@ -3,7 +3,7 @@
 kind: ServiceEntry
 apiVersion: networking.istio.io/v1alpha3
 metadata:
-  name: peer0-{{ .targetOrg }}-external
+  name: peer0-{{ .targetOrg }}
   namespace: {{ $.Values.namespace }}
 spec:
   hosts:
@@ -13,6 +13,7 @@ spec:
       protocol: GRPC
       name: grpc-req
       targetPort: 7051
+  location: {{ default "MESH_EXTERNAL" .location }}
   resolution: STATIC
   endpoints:
     - address: {{ .address }}
