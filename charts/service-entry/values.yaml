@@ -4,8 +4,10 @@ peersEnabled: true
 peers:
   - address: 3.115.198.47
     targetOrg: orgX
+    # location: MESH_EXTERNAL
 
 orderersEnabled: false
 orderers:
   - address: 13.208.117.152
     targetOrg: orderer0
+    # location: MESH_EXTERNAL
