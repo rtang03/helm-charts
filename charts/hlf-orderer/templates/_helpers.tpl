@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "hlf-orderer.selectorLabels" -}}
-app: {{ .Chart.Name }}
+app: {{ .Values.appname }}
 version: {{ .Chart.Version }}
 app.kubernetes.io/name: {{ include "hlf-orderer.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
