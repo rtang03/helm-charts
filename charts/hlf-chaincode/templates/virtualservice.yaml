@@ -8,6 +8,8 @@ metadata:
 spec:
   hosts:
     - "{{ default "cc" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
+  gateways:
+    - mesh
   tcp:
     - route:
         - destination:

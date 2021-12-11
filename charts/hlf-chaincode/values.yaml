@@ -69,7 +69,7 @@ service:
 istioService:
   enabled: true
   port: 7052
-  name: tcp-ext-chaincode
+  name: grpc-ext-chaincode
   protocol: TCP
   destPort: 7052
 
