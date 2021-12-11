@@ -4,6 +4,7 @@ peersEnabled: true
 peers:
   - address: 3.115.198.47
     targetOrg: orgX
+    resolution: NONE
     # location: MESH_EXTERNAL
 
 orderersEnabled: false

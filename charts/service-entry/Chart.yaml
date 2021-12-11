@@ -1,6 +1,6 @@
 apiVersion: v2
 name: service-entry
-version: 0.1.8
+version: 0.1.9
 description: Helper charts to deploy service-entry for peers or orderers
 type: application
 appVersion: 0.0.2
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "switch to TLS"
+    - "add MESH_INTERNAL to peers"
   artifacthub.io/prerelease: "true"
