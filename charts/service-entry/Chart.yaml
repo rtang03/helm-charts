@@ -1,6 +1,6 @@
 apiVersion: v2
 name: service-entry
-version: 0.1.6
+version: 0.1.7
 description: Helper charts to deploy service-entry for peers or orderers
 type: application
 appVersion: 0.0.2
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "fix orderers"
+    - "switch to GRPC"
   artifacthub.io/prerelease: "true"

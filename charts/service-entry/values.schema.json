@@ -19,8 +19,7 @@
       "orderersEnabled": false,
       "orderers": [
         {
-          "targetOrg": "orderer0",
-          "resolution": "NONE"
+          "targetOrg": "orderer0"
         }
       ]
     }
@@ -144,8 +143,7 @@
       "examples": [
         [
           {
-            "targetOrg": "orderer0",
-            "resolution": "NONE"
+            "targetOrg": "orderer0"
           }
         ]
       ],
@@ -161,13 +159,11 @@
             "default": {},
             "examples": [
               {
-                "targetOrg": "orderer0",
-                "resolution": "NONE"
+                "targetOrg": "orderer0"
               }
             ],
             "required": [
-              "targetOrg",
-              "resolution"
+              "targetOrg"
             ],
             "properties": {
               "targetOrg": {
@@ -178,16 +174,6 @@
                 "default": "",
                 "examples": [
                   "orderer0"
-                ]
-              },
-              "resolution": {
-                "$id": "#/properties/orderers/items/anyOf/0/properties/resolution",
-                "type": "string",
-                "title": "The resolution schema",
-                "description": "An explanation about the purpose of this instance.",
-                "default": "",
-                "examples": [
-                  "NONE"
                 ]
               }
             },
