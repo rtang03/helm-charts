@@ -3,7 +3,7 @@
 kind: ServiceEntry
 apiVersion: networking.istio.io/v1alpha3
 metadata:
-  name: peer0-{{ .targetOrg }}
+  name: {{ default "peer0" .peerName }}-{{ .targetOrg }}
   namespace: {{ $.Values.namespace }}
 spec:
   hosts:
