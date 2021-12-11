@@ -2,11 +2,15 @@
 
 Helper charts to deploy service-entry for peers or orderers
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 ## TL;DR
 
-Note: Orderer's service entry is not working yet.
+### Release note
+
+v0.1.6
+
+- Orderer's service entry is only applicable for org 0 / 1 cluster. It is not tested for orgx cluster.
 
 ## Installing the Chart
 
@@ -24,7 +28,7 @@ $ helm install my-release dashslab/service-entry
 | domainName | string | `"cdi.testnet"` |  |
 | namespace | string | `"NAMESPACE"` |  |
 | orderersEnabled | bool | `false` |  |
-| orderers[0].address | string | `"13.208.117.152"` |  |
+| orderers[0].resolution | string | `"NONE"` |  |
 | orderers[0].targetOrg | string | `"orderer0"` |  |
 | peersEnabled | bool | `true` |  |
 | peers[0].address | string | `"3.115.198.47"` |  |

@@ -8,6 +8,5 @@ peers:
 
 orderersEnabled: false
 orderers:
-  - address: 13.208.117.152
-    targetOrg: orderer0
-    # location: MESH_EXTERNAL
+  - targetOrg: orderer0
+    resolution: NONE
