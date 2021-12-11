@@ -19,8 +19,8 @@
       "orderersEnabled": false,
       "orderers": [
         {
-          "address": "13.208.117.152",
-          "targetOrg": "orderer0"
+          "targetOrg": "orderer0",
+          "resolution": "NONE"
         }
       ]
     }
@@ -144,8 +144,8 @@
       "examples": [
         [
           {
-            "address": "13.208.117.152",
-            "targetOrg": "orderer0"
+            "targetOrg": "orderer0",
+            "resolution": "NONE"
           }
         ]
       ],
@@ -161,25 +161,15 @@
             "default": {},
             "examples": [
               {
-                "address": "13.208.117.152",
-                "targetOrg": "orderer0"
+                "targetOrg": "orderer0",
+                "resolution": "NONE"
               }
             ],
             "required": [
-              "address",
-              "targetOrg"
+              "targetOrg",
+              "resolution"
             ],
             "properties": {
-              "address": {
-                "$id": "#/properties/orderers/items/anyOf/0/properties/address",
-                "type": "string",
-                "title": "The address schema",
-                "description": "An explanation about the purpose of this instance.",
-                "default": "",
-                "examples": [
-                  "13.208.117.152"
-                ]
-              },
               "targetOrg": {
                 "$id": "#/properties/orderers/items/anyOf/0/properties/targetOrg",
                 "type": "string",
@@ -188,6 +178,16 @@
                 "default": "",
                 "examples": [
                   "orderer0"
+                ]
+              },
+              "resolution": {
+                "$id": "#/properties/orderers/items/anyOf/0/properties/resolution",
+                "type": "string",
+                "title": "The resolution schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "NONE"
                 ]
               }
             },
