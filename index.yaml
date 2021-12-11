@@ -1648,6 +1648,24 @@ entries:
   hlf-orderer:
   - annotations:
       artifacthub.io/changes: |
+        - "change selectorLabel"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-11T03:19:34.192003328Z"
+    description: Hyperledger Fabric Orderer (Experimental)
+    digest: 779ad1f4f3879539462171661c83b6965ed5cc6a0a4c169b96a7225c280027e5
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-orderer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-orderer-0.1.3/hlf-orderer-0.1.3.tgz
+    version: 0.1.3
+  - annotations:
+      artifacthub.io/changes: |
         - "initial commit"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2758,4 +2776,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-11T03:06:04.385761571Z"
+generated: "2021-12-11T03:19:34.19288224Z"
