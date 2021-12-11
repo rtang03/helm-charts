@@ -2635,6 +2635,24 @@ entries:
   service-entry:
   - annotations:
       artifacthub.io/changes: |
+        - "add MESH_INTERNAL to peers"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-12-11T14:22:06.869257998Z"
+    description: Helper charts to deploy service-entry for peers or orderers
+    digest: 19c22bb47878bfd49591425d25a431d3afb7f3cef35faa436c6a141bebe335d9
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.9/service-entry-0.1.9.tgz
+    version: 0.1.9
+  - annotations:
+      artifacthub.io/changes: |
         - "switch to TLS"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2776,4 +2794,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-11T03:19:34.19288224Z"
+generated: "2021-12-11T14:22:06.873677025Z"
