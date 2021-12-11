@@ -10,8 +10,8 @@ spec:
     - {{ .targetOrg }}-org0.{{ $.Values.domainName }}
   ports:
     - number: 7050
-      protocol: TLS
-      name: tls-req
+      protocol: GRPC
+      name: grpc-req
       targetPort: 7050
   location: {{ default "MESH_INTERNAL" .location }}
   resolution: {{ default "NONE" .resolution }}
