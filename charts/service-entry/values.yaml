@@ -5,6 +5,7 @@ peers:
   - targetOrg: org1
     resolution: NONE
     location: MESH_INTERNAL
+    peerName: peer1
   - targetOrg: org2
     resolution: STATIC
     address: 1.2.3.4
