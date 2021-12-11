@@ -10,13 +10,15 @@ spec:
     - "peer0-{{ .targetOrg }}.{{ $.Values.domainName }}"
   ports:
     - number: 7051
-      protocol: GRPC
-      name: grpc-req
+      protocol: TLS
+      name: tls-req
       targetPort: 7051
   location: {{ default "MESH_EXTERNAL" .location }}
-  resolution: STATIC
+  resolution: {{ default "STATIC" .resolution }}
+  {{- if eq .resolution "STATIC "}}
   endpoints:
     - address: {{ .address }}
+  {{- end }}
 ---
 {{- end }}
 {{- end }}
