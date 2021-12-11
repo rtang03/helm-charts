@@ -1432,6 +1432,26 @@ entries:
   hlf-chaincode:
   - annotations:
       artifacthub.io/changes: |
+        - "change to grpc again"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-12-11T16:44:31.394932294Z"
+    description: External Chaincode Container chart for fabric-es
+    digest: 80e07804dd61289174d66a4c46e4c5053eacad0df49ea99ee7ae71017a608633
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-chaincode
+    sources:
+    - https://github.com/rtang03/fabric-es-chaincode
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-chaincode-0.1.11/hlf-chaincode-0.1.11.tgz
+    version: 0.1.11
+  - annotations:
+      artifacthub.io/changes: |
         - "add mesh"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2924,4 +2944,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-11T16:32:10.487378705Z"
+generated: "2021-12-11T16:44:31.395403821Z"
