@@ -10,8 +10,8 @@ spec:
     - {{ default "peer0" .peerName }}-{{ .targetOrg }}.{{ $.Values.domainName }}
   ports:
     - number: 7051
-      protocol: TLS
-      name: tls-req
+      protocol: TCP
+      name: tcp-req
       targetPort: 7051
   location: {{ default "MESH_EXTERNAL" .location }}
   resolution: {{ default "STATIC" .resolution }}
