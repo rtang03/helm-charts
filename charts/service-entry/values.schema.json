@@ -12,7 +12,6 @@
       "peersEnabled": true,
       "peers": [
         {
-          "address": "3.115.198.47",
           "targetOrg": "orgX"
         }
       ],
@@ -72,7 +71,6 @@
       "examples": [
         [
           {
-            "address": "3.115.198.47",
             "targetOrg": "orgX"
           }
         ]
@@ -89,25 +87,13 @@
             "default": {},
             "examples": [
               {
-                "address": "3.115.198.47",
                 "targetOrg": "orgX"
               }
             ],
             "required": [
-              "address",
               "targetOrg"
             ],
             "properties": {
-              "address": {
-                "$id": "#/properties/peers/items/anyOf/0/properties/address",
-                "type": "string",
-                "title": "The address schema",
-                "description": "An explanation about the purpose of this instance.",
-                "default": "",
-                "examples": [
-                  "3.115.198.47"
-                ]
-              },
               "targetOrg": {
                 "$id": "#/properties/peers/items/anyOf/0/properties/targetOrg",
                 "type": "string",
