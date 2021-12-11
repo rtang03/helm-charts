@@ -2,8 +2,7 @@ namespace: NAMESPACE
 domainName: cdi.testnet
 peersEnabled: true
 peers:
-  - address: 3.115.198.47
-    targetOrg: orgX
+  - targetOrg: orgX
     resolution: NONE
     # location: MESH_EXTERNAL
 

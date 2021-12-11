@@ -2,11 +2,15 @@
 
 Helper charts to deploy service-entry for peers or orderers
 
-![Version: 0.1.9](https://img.shields.io/badge/Version-0.1.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 ## TL;DR
 
 ### Release note
+
+v0.1.10
+
+- fix schema
 
 v0.1.9
 
@@ -39,7 +43,6 @@ $ helm install my-release dashslab/service-entry
 | orderers[0].resolution | string | `"NONE"` |  |
 | orderers[0].targetOrg | string | `"orderer0"` |  |
 | peersEnabled | bool | `true` |  |
-| peers[0].address | string | `"3.115.198.47"` |  |
 | peers[0].resolution | string | `"NONE"` |  |
 | peers[0].targetOrg | string | `"orgX"` |  |
 
