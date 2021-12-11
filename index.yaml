@@ -2715,6 +2715,24 @@ entries:
   service-entry:
   - annotations:
       artifacthub.io/changes: |
+        - "attempt to change to tcp"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-12-11T17:09:31.511279834Z"
+    description: Helper charts to deploy service-entry for peers or orderers
+    digest: 06770d38e304b4249b479d271a5214ec48cc8755b23ff506b77734ecde3dd4ed
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.15/service-entry-0.1.15.tgz
+    version: 0.1.15
+  - annotations:
+      artifacthub.io/changes: |
         - "add peer1 service entry"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -2964,4 +2982,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-11T16:51:22.819510477Z"
+generated: "2021-12-11T17:09:31.512640393Z"
