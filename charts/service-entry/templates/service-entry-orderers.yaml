@@ -15,7 +15,7 @@ spec:
       targetPort: 7050
   location: {{ default "MESH_INTERNAL" .location }}
   resolution: {{ default "NONE" .resolution }}
-  {{- if eq .resolution "STATIC "}}
+  {{- if eq .resolution "STATIC" }}
   endpoints:
     - address: {{ .address }}
   {{- end }}

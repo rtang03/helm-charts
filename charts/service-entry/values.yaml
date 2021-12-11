@@ -2,11 +2,16 @@ namespace: NAMESPACE
 domainName: cdi.testnet
 peersEnabled: true
 peers:
-  - targetOrg: orgX
+  - targetOrg: org1
     resolution: NONE
-    # location: MESH_EXTERNAL
+    location: MESH_INTERNAL
+  - targetOrg: org2
+    resolution: STATIC
+    address: 1.2.3.4
+    location: MESH_EXTERNAL
 
-orderersEnabled: false
+orderersEnabled: true
 orderers:
   - targetOrg: orderer0
+    location: MESH_INTERNAL
     resolution: NONE
