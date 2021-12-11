@@ -7,7 +7,7 @@ metadata:
   namespace: {{ $.Values.namespace }}
 spec:
   hosts:
-    - "peer0-{{ .targetOrg }}.{{ $.Values.domainName }}"
+    - {{ default "peer0" .peerName }}-{{ .targetOrg }}.{{ $.Values.domainName }}
   ports:
     - number: 7051
       protocol: TLS
