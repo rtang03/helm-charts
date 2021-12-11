@@ -62,14 +62,14 @@ service:
     - port: 7052
       targetPort: 7052
       protocol: TCP
-      name: grpc-chaincode
+      name: tcp-chaincode
 
 # -- Fixture
 # @default -- internal value
 istioService:
   enabled: true
   port: 7052
-  name: grpc-ext-chaincode
+  name: tcp-chaincode
   protocol: TCP
   destPort: 7052
 
