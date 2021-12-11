@@ -62,7 +62,7 @@ service:
     - port: 7052
       targetPort: 7052
       protocol: TCP
-      name: tcp-chaincode
+      name: grpc-chaincode
 
 # -- Fixture
 # @default -- internal value
