@@ -8,7 +8,7 @@ metadata:
 spec:
   gateways:
   {{- if eq .Values.appname "enrollment-ca" }}
-  - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  - gw-{{ .Release.Namespace }}
   {{- end }}
   - mesh
   hosts:

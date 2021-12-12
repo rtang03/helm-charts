@@ -2,17 +2,22 @@
 
 CA chart (Experimental)
 
-![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 0.1.9](https://img.shields.io/badge/Version-0.1.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 ## TL;DR
 
 NOTE: This chart is opinionated for custom project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
 
-Below cli are not tested. Need verifiy again.
+### Release notes
+
+v0.1.9
+
+- remove istio gateway
+
+### Install
 
 TLS CA
 ```bash
-# Below cli is NOT test.
 helm secrets install -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-tls.yaml tls hlf/hlf-ca
 
 # Subsequent Upgrade
