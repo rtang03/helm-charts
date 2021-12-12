@@ -2769,6 +2769,24 @@ entries:
   service-entry:
   - annotations:
       artifacthub.io/changes: |
+        - "add protocol field"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-12-12T14:25:28.959818934Z"
+    description: Helper charts to deploy service-entry for peers or orderers
+    digest: 0833656b8588f4d8ee0f3fab2fadaf76a46434b5e4d67f2cb417ffbaa656fbdd
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.23/service-entry-0.1.23.tgz
+    version: 0.1.23
+  - annotations:
+      artifacthub.io/changes: |
         - "external MUST be grpc. Now test what internal should look like"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -3162,4 +3180,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-12T14:10:14.612841919Z"
+generated: "2021-12-12T14:25:28.960418439Z"
