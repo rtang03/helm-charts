@@ -2769,6 +2769,24 @@ entries:
   service-entry:
   - annotations:
       artifacthub.io/changes: |
+        - "change back 1313 to tcp"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.2
+    created: "2021-12-12T12:39:37.182936971Z"
+    description: Helper charts to deploy service-entry for peers or orderers
+    digest: 9bab929daac2dc63fec26c7e4eaa1254cda0daa459d7123e8b79dec063c760ba
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: service-entry
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.18/service-entry-0.1.18.tgz
+    version: 0.1.18
+  - annotations:
+      artifacthub.io/changes: |
         - "add 1313 with tls"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -3072,4 +3090,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-12T12:15:12.044248376Z"
+generated: "2021-12-12T12:39:37.183466175Z"
