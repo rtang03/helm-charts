@@ -13,6 +13,10 @@ spec:
       protocol: TCP
       name: tcp-req
       targetPort: 7051
+    - number: 1313
+      protocol: TCP
+      name: tcp-gupload
+      targetPort: 1313
   location: {{ default "MESH_EXTERNAL" .location }}
   resolution: {{ default "STATIC" .resolution }}
   {{- if eq .resolution "STATIC" }}
