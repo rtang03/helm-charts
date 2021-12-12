@@ -7,11 +7,16 @@
 
 NOTE: This chart is opinionated for custom project; with a pre-determined network toplogy. It is unlikely to use for general purpose.
 
-Below cli are not tested. Need verifiy again.
+### Release notes
+
+v0.1.9
+
+- remove istio gateway
+
+### Install
 
 TLS CA
 ```bash
-# Below cli is NOT test.
 helm secrets install -n [ORGNAME] -f path-to/secrets.yaml -f path-to/values-tls.yaml tls hlf/hlf-ca
 
 # Subsequent Upgrade

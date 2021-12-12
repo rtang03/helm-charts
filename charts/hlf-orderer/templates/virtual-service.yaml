@@ -7,7 +7,7 @@ metadata:
     {{- include "hlf-orderer.labels" . | nindent 4 }}
 spec:
   gateways:
-  - gw-{{ include "appname" . }}-{{ include "orgname" . }}
+  - gw-{{ .Release.Namespace }}
   - mesh
   hosts:
   - {{ .Values.fqdn }}
