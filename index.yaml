@@ -1306,6 +1306,24 @@ entries:
   hlf-ca:
   - annotations:
       artifacthub.io/changes: |
+        - "remove istio gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.5.0
+    created: "2021-12-12T03:48:01.550382579Z"
+    description: CA chart (Experimental)
+    digest: b144b570b6f3c79504f9dfe11d25392879157983099b595100007c6d251251b3
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-ca
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-ca-0.1.9/hlf-ca-0.1.9.tgz
+    version: 0.1.9
+  - annotations:
+      artifacthub.io/changes: |
         - "change container name"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1728,6 +1746,24 @@ entries:
   hlf-orderer:
   - annotations:
       artifacthub.io/changes: |
+        - "remove istio-gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-12T03:48:01.687011516Z"
+    description: Hyperledger Fabric Orderer (Experimental)
+    digest: f01f6de9512f1b49af3839b034b9e590dcaddb10ca060167ce88aff668ffe33d
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-orderer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-orderer-0.1.4/hlf-orderer-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      artifacthub.io/changes: |
         - "change selectorLabel"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1781,6 +1817,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/hlf-orderer-0.1.1/hlf-orderer-0.1.1.tgz
     version: 0.1.1
   hlf-peer:
+  - annotations:
+      artifacthub.io/changes: |
+        - "remove gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 2.3.2
+    created: "2021-12-12T03:48:01.85534639Z"
+    description: Peer chart (Experimental)
+    digest: 7e7501ea2dc1b10bf74f0f78048c89f00e7b6b8985e40f39554d3330c1c2882b
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: hlf-peer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/hlf-peer-0.1.10/hlf-peer-0.1.10.tgz
+    version: 0.1.10
   - annotations:
       artifacthub.io/changes: |
         - "update incoming port of health check from 9443 to 80"
@@ -2982,4 +3036,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-11T17:09:31.512640393Z"
+generated: "2021-12-12T03:48:01.855773785Z"
