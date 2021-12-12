@@ -15,10 +15,10 @@ spec:
       name: grpc-req
       targetPort: 7051
   {{- else if eq .protocol "TLS" }}
-    - - number: 7051
-        protocol: TLS
-        name: tls-req
-        targetPort: 7051
+    - number: 7051
+      protocol: TLS
+      name: tls-req
+      targetPort: 7051
   {{- else }}
     - number: 7051
       protocol: TCP
