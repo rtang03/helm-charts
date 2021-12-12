@@ -5,9 +5,11 @@ peers:
   - targetOrg: org1
     resolution: NONE
     location: MESH_INTERNAL
+    protocol: TCP
     peerName: peer1
   - targetOrg: org2
     resolution: STATIC
+    protocol: TCP
     address: 1.2.3.4
     location: MESH_EXTERNAL
 

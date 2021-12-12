@@ -2,7 +2,7 @@
 
 Helper charts to deploy service-entry for peers or orderers
 
-![Version: 0.1.22](https://img.shields.io/badge/Version-0.1.22-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
+![Version: 0.1.23](https://img.shields.io/badge/Version-0.1.23-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.2](https://img.shields.io/badge/AppVersion-0.0.2-informational?style=flat-square)
 
 ## TL;DR
 
@@ -50,10 +50,12 @@ $ helm install my-release dashslab/service-entry
 | peersEnabled | bool | `true` |  |
 | peers[0].location | string | `"MESH_INTERNAL"` |  |
 | peers[0].peerName | string | `"peer1"` |  |
+| peers[0].protocol | string | `"TCP"` |  |
 | peers[0].resolution | string | `"NONE"` |  |
 | peers[0].targetOrg | string | `"org1"` |  |
 | peers[1].address | string | `"1.2.3.4"` |  |
 | peers[1].location | string | `"MESH_EXTERNAL"` |  |
+| peers[1].protocol | string | `"TCP"` |  |
 | peers[1].resolution | string | `"STATIC"` |  |
 | peers[1].targetOrg | string | `"org2"` |  |
 
