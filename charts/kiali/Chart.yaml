@@ -1,6 +1,6 @@
 apiVersion: v2
 name: kiali
-version: 0.1.5
+version: 0.1.6
 description: Kiiali for fabric-es project
 type: application
 appVersion: 1.42.0
