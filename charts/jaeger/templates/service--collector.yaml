@@ -8,6 +8,10 @@ metadata:
 spec:
   type: ClusterIP
   ports:
+    - name: http-health
+      port: 14269
+      targetPort: 14269
+      protocol: TCP
     - name: jaeger-collector-http
       port: 14268
       targetPort: 14268
