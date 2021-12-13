@@ -2,7 +2,7 @@ apiVersion: v2
 name: gw
 description: Gateway App for fabric-es project
 type: application
-version: 0.1.13
+version: 0.1.14
 appVersion: 0.4.4
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "put image version into values.yaml"
+    - "remove istio gateway"
   artifacthub.io/prerelease: "true"

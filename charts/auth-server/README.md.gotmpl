@@ -3,13 +3,17 @@
 
 {{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
 
-## Additional Information
+## TL;DR
 
 An experimental project for customized Oauth server. NOT READY FOR PRODUCTION USE.
 
-Note: livenessProbe and readinessProbe are missing
+### Release notes
 
-## Installing the Chart
+v0.1.8
+
+- remove istio gateway
+
+### Installing the Chart
 
 To install the chart with the release name `my-release`:
 
@@ -17,6 +21,8 @@ To install the chart with the release name `my-release`:
 $ helm repo add dashslab https://rtang03.github.io/helm-charts
 $ helm install my-release dashslab/{{ template "chart.name" . }}
 ```
+
+Note: livenessProbe and readinessProbe are missing
 
 {{ template "chart.requirementsSection" . }}
 
