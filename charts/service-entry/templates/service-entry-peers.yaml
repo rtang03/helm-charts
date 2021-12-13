@@ -19,6 +19,16 @@ spec:
       protocol: TLS
       name: tls-req
       targetPort: {{ default "7051" .port }}
+  {{- else if eq .protocol "HTTPS" }}
+    - number: {{ default "7051" .port }}
+      protocol: HTTPS
+      name: https-req
+      targetPort: {{ default "7051" .port }}
+  {{- else if eq .protocol "HTTP" }}
+    - number: {{ default "7051" .port }}
+      protocol: HTTP
+      name: http-req
+      targetPort: {{ default "7051" .port }}
   {{- else }}
     - number: {{ default "7051" .port }}
       protocol: TCP
