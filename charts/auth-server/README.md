@@ -2,15 +2,19 @@
 
 Experimental auth server
 
-![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
+![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.6](https://img.shields.io/badge/AppVersion-0.0.6-informational?style=flat-square)
 
-## Additional Information
+## TL;DR
 
 An experimental project for customized Oauth server. NOT READY FOR PRODUCTION USE.
 
-Note: livenessProbe and readinessProbe are missing
+### Release notes
 
-## Installing the Chart
+v0.1.8
+
+- remove istio gateway
+
+### Installing the Chart
 
 To install the chart with the release name `my-release`:
 
@@ -18,6 +22,8 @@ To install the chart with the release name `my-release`:
 $ helm repo add dashslab https://rtang03.github.io/helm-charts
 $ helm install my-release dashslab/auth-server
 ```
+
+Note: livenessProbe and readinessProbe are missing
 
 ## Values
 

@@ -2,7 +2,7 @@ apiVersion: v2
 name: auth-server
 description: Experimental auth server
 type: application
-version: 0.1.7
+version: 0.1.8
 appVersion: "0.0.6"
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 sources:
@@ -12,5 +12,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "update readme"
+    - "remove istio-gateway"
   artifacthub.io/prerelease: "true"
