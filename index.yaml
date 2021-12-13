@@ -2429,6 +2429,26 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 1.42.0
+    created: "2021-12-13T09:05:07.912986227Z"
+    description: Kiiali for fabric-es project
+    digest: 1ee5aa45a8a8dd33e7f02856144875ea644e131d298976529cc03a4009db12d9
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: kiali
+    sources:
+    - https://github.com/istio/istio/blob/master/samples/addons/kiali.yaml
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.6/kiali-0.1.6.tgz
+    version: 0.1.6
+  - annotations:
+      artifacthub.io/changes: |
+        - "update configmap"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.42.0
     created: "2021-11-29T15:25:36.984214715Z"
     description: Kiiali for fabric-es project
     digest: 5d20a8fbed66ca89500157441d79bfd8c86d0003fecda818044da3be9f972b4e
@@ -3332,4 +3352,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-13T08:44:55.179814084Z"
+generated: "2021-12-13T09:05:07.913685875Z"
