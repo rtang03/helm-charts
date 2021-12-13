@@ -61,8 +61,9 @@ data:
       version_label: v{{ .Chart.AppVersion}}
       view_only_mode: false
     external_services:
-      # jaeger:
-      #   url: "http://tracing.istio-system.svc.cluster.local:16686"
+      tracing:
+        inc_cluster_url: "http://tracing.istio-system:16685/jaeger"
+        use_grpc: true
       prometheus:
         url: "http://prometheus.default.svc.cluster.local:9090"
       grafana:
