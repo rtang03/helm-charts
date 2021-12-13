@@ -625,6 +625,26 @@ entries:
   auth-server:
   - annotations:
       artifacthub.io/changes: |
+        - "remove istio-gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.0.6
+    created: "2021-12-13T01:58:56.365213111Z"
+    description: Experimental auth server
+    digest: 995a48080ad628f7ebecbb94e60febc1f30eb81620ba862bb71ae17fbee2f6ec
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: auth-server
+    sources:
+    - https://github.com/rtang03/auth-server
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/auth-server-0.1.8/auth-server-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      artifacthub.io/changes: |
         - "update readme"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -1096,6 +1116,24 @@ entries:
     - https://github.com/rtang03/helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
     version: 0.1.0
   gw:
+  - annotations:
+      artifacthub.io/changes: |
+        - "remove istio gateway"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.4
+    created: "2021-12-13T01:58:56.560806765Z"
+    description: Gateway App for fabric-es project
+    digest: 1a770d914bc92b5ca5df1981fda49fd2aad7ec467c831b892814ba6a9a21a9d8
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.14/gw-0.1.14.tgz
+    version: 0.1.14
   - annotations:
       artifacthub.io/changes: |
         - "put image version into values.yaml"
@@ -3198,4 +3236,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-12T15:47:19.074130136Z"
+generated: "2021-12-13T01:58:56.561351199Z"
