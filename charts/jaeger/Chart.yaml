@@ -1,9 +1,9 @@
 apiVersion: v2
 name: jaeger
-version: 0.1.19
+version: 0.1.20
 description: Jaeger tracing tool
 type: application
-appVersion: "1.27.0"
+appVersion: "1.23.0"
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 sources:
   - https://istio.io/latest/docs/ops/integrations/jaeger/#configuration

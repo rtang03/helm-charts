@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: jaeger
-          image: "docker.io/jaegertracing/all-in-one:1.27"
+          image: "docker.io/jaegertracing/all-in-one:{{ .Chart.AppVersion }}"
           env:
             - name: BADGER_EPHEMERAL
               value: "false"
@@ -45,14 +45,14 @@ spec:
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
             {{- end }}
-{{/*          livenessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /*/}}
-{{/*              port: 14269*/}}
-{{/*          readinessProbe:*/}}
-{{/*            httpGet:*/}}
-{{/*              path: /*/}}
-{{/*              port: 14269*/}}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 14269
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 14269
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
