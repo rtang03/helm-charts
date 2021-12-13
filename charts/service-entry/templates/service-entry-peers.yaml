@@ -10,20 +10,20 @@ spec:
     - {{ default "peer0" .peerName }}-{{ .targetOrg }}.{{ $.Values.domainName }}
   ports:
     {{- if eq .protocol "GRPC" }}
-    - number: 7051
+    - number: {{ default "7051" .port }}
       protocol: GRPC
       name: grpc-req
-      targetPort: 7051
+      targetPort: {{ default "7051" .port }}
   {{- else if eq .protocol "TLS" }}
-    - number: 7051
+    - number: {{ default "7051" .port }}
       protocol: TLS
       name: tls-req
-      targetPort: 7051
+      targetPort: {{ default "7051" .port }}
   {{- else }}
-    - number: 7051
+    - number: {{ default "7051" .port }}
       protocol: TCP
       name: tcp-req
-      targetPort: 7051
+      targetPort: {{ default "7051" .port }}
   {{- end }}
   location: {{ default "MESH_EXTERNAL" .location }}
   resolution: {{ default "STATIC" .resolution }}

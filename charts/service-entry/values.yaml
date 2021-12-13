@@ -7,11 +7,13 @@ peers:
     location: MESH_INTERNAL
     protocol: TCP
     peerName: peer1
+    port: 7051
   - targetOrg: org2
     resolution: STATIC
     protocol: TCP
     address: 1.2.3.4
     location: MESH_EXTERNAL
+    port: 7051
 
 orderersEnabled: true
 orderers:
