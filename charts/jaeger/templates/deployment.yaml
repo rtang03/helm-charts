@@ -39,20 +39,22 @@ spec:
               value: "50000"
             - name: QUERY_BASE_PATH
               value: /jaeger
+            - name: BADGER_SPAN_STORE_TTL
+              value: "48h0m0s"
           ports:
             {{- range .Values.service.ports }}
             - name: {{ .name }}
               containerPort: {{ .targetPort }}
               protocol: {{ .protocol }}
             {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 14269
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 14269
+{{/*          livenessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /*/}}
+{{/*              port: 14269*/}}
+{{/*          readinessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              path: /*/}}
+{{/*              port: 14269*/}}
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
