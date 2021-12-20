@@ -1,0 +1,22 @@
+apiVersion: v2
+name: nginx
+description: Chart for the nginx server
+type: application
+version: 8.9.0
+appVersion: 1.19.10
+dependencies:
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    tags:
+    - bitnami-common
+    version: 1.x.x
+  - name: nginx
+    repository: https://charts.bitnami.com/bitnami
+    version: 8.9.0
+maintainers:
+  - name: "rtang03"
+    email: "ask@dashslab.com"
+annotations:
+  artifacthub.io/changes: |
+    - "initial commit"
+  artifacthub.io/prerelease: "true"
