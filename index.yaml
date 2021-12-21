@@ -790,6 +790,24 @@ entries:
       artifacthub.io/prerelease: "true"
     apiVersion: v2
     appVersion: 1.1.8
+    created: "2021-12-21T06:30:09.228869791Z"
+    description: Hyperledger Explorer chart (Experimental)
+    digest: ce6d12c94780ec0f24fcf862e36df14f5c89456f674b4bea8b66132d1d9c72f3
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-0.1.13/explorer-0.1.13.tgz
+    version: 0.1.13
+  - annotations:
+      artifacthub.io/changes: |
+        - "debug"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
     created: "2021-12-21T06:16:04.855482555Z"
     description: Hyperledger Explorer chart (Experimental)
     digest: dda0abf9d16b7e6ffb5a5cf72aa9f93e29d8204401a0a51ecd07b0990e0f9a15
@@ -3471,4 +3489,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T06:16:04.85605265Z"
+generated: "2021-12-21T06:30:09.232838196Z"
