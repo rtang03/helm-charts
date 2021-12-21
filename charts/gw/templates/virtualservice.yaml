@@ -24,7 +24,7 @@ spec:
     - match:
         - port: 4101
           sniHosts:
-            - uat-{{ .Values.orgname }}.cdi.network
+            - {{ .Values.fqdn }}
       route:
         - destination:
             host: gw-{{ .Values.orgname }}.{{ .Release.Namespace }}.svc.cluster.local
