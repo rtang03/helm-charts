@@ -2,7 +2,7 @@ apiVersion: v2
 name: explorer
 description: Hyperledger Explorer chart (Experimental)
 type: application
-version: 0.1.11
+version: 0.1.12
 appVersion: 1.1.8
 icon: "https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg"
 maintainers:
@@ -10,5 +10,5 @@ maintainers:
     email: "ask@dashslab.com"
 annotations:
   artifacthub.io/changes: |
-    - "fix syncstart"
+    - "debug"
   artifacthub.io/prerelease: "true"

@@ -154,8 +154,9 @@ spec:
               # psql --list postgres://127.0.0.1/fabricexplorer
               # echo $?
               ### End of Note1
-              /opt/explorer/syncstart.sh
+              # /opt/explorer/syncstart.sh
               # npm run app-start && tail -f /dev/null
+              sleep 86400
           volumeMounts:
             - name: wait-for-it
               mountPath: /setup/wait-for-it.sh
