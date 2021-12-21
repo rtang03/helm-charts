@@ -2588,6 +2588,33 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/kiali-0.1.0/kiali-0.1.0.tgz
     version: 0.1.0
+  nginx:
+  - annotations:
+      artifacthub.io/changes: |
+        - "initial commit"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.19.10
+    created: "2021-12-21T01:06:06.064359506Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    - name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.0
+    description: Chart for the nginx server
+    digest: df9f5bf241e244f3685ed9ba78d80a599fd752ab3a045ebbcb59fbd9875787bf
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/nginx-8.9.0/nginx-8.9.0.tgz
+    version: 8.9.0
   postgresql:
   - annotations:
       category: Database
@@ -3390,4 +3417,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T00:54:15.268591864Z"
+generated: "2021-12-21T01:06:06.064981709Z"
