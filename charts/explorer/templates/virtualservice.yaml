@@ -9,6 +9,7 @@ metadata:
 spec:
   hosts:
     - "{{ default "explorer" $.Values.appname }}-{{ default "default-org" $.Values.orgname }}"
+    - mesh
   http:
   - route:
     - destination:
