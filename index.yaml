@@ -786,6 +786,24 @@ entries:
   explorer:
   - annotations:
       artifacthub.io/changes: |
+        - "fix syncstart"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-12-21T06:01:45.655105743Z"
+    description: Hyperledger Explorer chart (Experimental)
+    digest: 02ec41624a84109e7a1b69ef1b9a3e47412947157d2579dd9d3645d026efe21f
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: explorer
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/explorer-0.1.11/explorer-0.1.11.tgz
+    version: 0.1.11
+  - annotations:
+      artifacthub.io/changes: |
         - "add to mesh"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -3435,4 +3453,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T01:34:42.450030094Z"
+generated: "2021-12-21T06:01:45.655648545Z"
