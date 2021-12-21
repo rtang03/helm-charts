@@ -95,7 +95,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: DISCOVERY_AS_LOCALHOST
-              value: "false /opt/explorer/syncstart.sh"
+              value: "false"
             - name: DATABASE_HOST
               value: "127.0.0.1"
             - name: DATABASE_PORT
@@ -154,14 +154,8 @@ spec:
               # psql --list postgres://127.0.0.1/fabricexplorer
               # echo $?
               ### End of Note1
-              ### Note 2:
-              # In theory, the sync process should start automatically. But not knowing why, it does not.
-              # run sync process at the background explicitly.
-              ### End of Note2
-              ### Note 3:
-              # syncstart.sh will trigger frequent chaincode query via peer0. That means, it may impact peer0 performance.
-              /opt/explorer/syncstart.sh &
-              npm run app-start && tail -f /dev/null
+              /opt/explorer/syncstart.sh
+              # npm run app-start && tail -f /dev/null
           volumeMounts:
             - name: wait-for-it
               mountPath: /setup/wait-for-it.sh
