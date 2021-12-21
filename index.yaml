@@ -1136,6 +1136,24 @@ entries:
   gw:
   - annotations:
       artifacthub.io/changes: |
+        - "fix virtualservice sniHost"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 0.4.5
+    created: "2021-12-21T01:34:42.449455499Z"
+    description: Gateway App for fabric-es project
+    digest: caea05a451216823fbec5c1040fc1aaca10cb280925f95da23dec31c9d8f5c06
+    icon: https://raw.githubusercontent.com/rtang03/rtang03/main/dashslab_icon.jpg
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: gw
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/gw-0.1.15/gw-0.1.15.tgz
+    version: 0.1.15
+  - annotations:
+      artifacthub.io/changes: |
         - "remove istio gateway"
       artifacthub.io/prerelease: "true"
     apiVersion: v2
@@ -3417,4 +3435,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T01:06:06.064981709Z"
+generated: "2021-12-21T01:34:42.450030094Z"
