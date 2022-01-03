@@ -2687,6 +2687,32 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/nginx-8.9.0/nginx-8.9.0.tgz
     version: 8.9.0
+  - annotations:
+      artifacthub.io/changes: |
+        - "fix nginx config"
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.19.10
+    created: "2022-01-03T10:04:15.52082521Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.10.3
+    - name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.0
+    description: Chart for the nginx server
+    digest: 39f781b6893dcd291cff7668c19656d8eb1a407e6b859e4e60bb7473ac4f7973
+    maintainers:
+    - email: ask@dashslab.com
+      name: rtang03
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/rtang03/helm-charts/releases/download/nginx-0.0.2/nginx-0.0.2.tgz
+    version: 0.0.2
   postgresql:
   - annotations:
       category: Database
@@ -3489,4 +3515,4 @@ entries:
     urls:
     - https://github.com/rtang03/helm-charts/releases/download/service-entry-0.1.0/service-entry-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T06:30:09.232838196Z"
+generated: "2022-01-03T10:04:15.523560737Z"
