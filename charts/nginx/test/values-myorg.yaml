@@ -2,17 +2,17 @@ appname: nginx
 orgname: myorg
 namespace: myns
 fqdn: uat-myorg.cdi.network
+service:
+  port: 6000
+  httpsPort: 6101
+  targetPort:
+    http: 6000
+    https: 6101
+
 nginx:
   containerPorts:
     http: 6000
     https: 6101
-
-  service:
-    port: 6000
-    httpsPort: 6101
-    targetPort:
-      http: 6000
-      https: 6101
 
   extraVolumes:
     - name: nginx-server-certs
