@@ -1,6 +1,10 @@
 [![Release Charts](https://github.com/rtang03/helm-charts/actions/workflows/release.yml/badge.svg)](https://github.com/rtang03/helm-charts/actions/workflows/release.yml)
 
 # Chart Library for fabric-es project
+This is a custom project; the charts deploys
+- Redis, PSQL, Jaeger, Kiali, Prometheus, Ngnix Grafana, Hyperledger Peer / Orderer / CA
+- All deployment are Istio endabled, with mTLS
+- All deployment are secured with SOPS, for encryption-at-rest
 
 - see [fabric-es](https://rtang03.github.com/fabric-es)
 
